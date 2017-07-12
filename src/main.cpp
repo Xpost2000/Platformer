@@ -66,7 +66,7 @@ int main(int argc, char** argv){
 		ctx->Viewport(0, 0, 1024, 768);
 
 		ctx->BindVertexArray(*vao);
-		ctx->DrawArrays(DrawMode::TRIANGLES, 0, 6);
+		ctx->DrawArrays(DrawMode::TRIANGLE_STRIPS, 0, 6);
 		ctx->UnbindVertexArray();
 
 
