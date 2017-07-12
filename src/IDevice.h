@@ -2,6 +2,7 @@
 #define INTERFACE_DEVICE_HPP
 #include <memory>
 #include "GetParam.h"
+#include "Feature.h"
 #include "DrawModes.h"
 #include "DeviceTypes.h"
 #include "BufferUsage.h"
@@ -67,6 +68,9 @@ class IDevice{
 		virtual long GetInteger64(GetParam) = 0;
 		virtual float GetFloat(GetParam) = 0;
 		
+		//Enable
+		virtual void Enable(Feature) = 0;
+		virtual void Disable(Feature) = 0;
 		// etc.
 		virtual void Viewport(GLuint x, GLuint y, GLuint w, GLuint h) = 0;	
 		virtual void SetLineWidth(GLuint size) = 0;

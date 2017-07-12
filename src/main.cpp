@@ -26,8 +26,13 @@ int main(int argc, char** argv){
 	std::shared_ptr<Buffer> vbo;
 	std::shared_ptr<VertexArray> vao;
 	GLfloat vertices[] ={
-		-0.5, -0.5, 0.0,
-		-0.5, 0.5, 0.0,
+		-1.0, -1.0, 0.0,
+		0.0, -1.0, 0.0,
+	        -0.5, 1.0, 0.0	
+		,
+		0.0, -1.0, 0.0,
+		1.0, -1.0, 0.0,
+		0.5, 1.0, 0.0
 	};
 
 	std::cout << "According to the OpenGL context \n";
@@ -60,7 +65,10 @@ int main(int argc, char** argv){
 		ctx->Clear(BufferClear::COLOR_DEPTH_BUFFERS);
 		ctx->Viewport(0, 0, 1024, 768);
 
-		vao->DrawArrays(DrawMode::LINES, 0, 2);
+		ctx->BindVertexArray(*vao);
+		ctx->DrawArrays(DrawMode::TRIANGLES, 0, 6);
+		ctx->UnbindVertexArray();
+
 
 		SDL_GL_SwapWindow(window);
 	}

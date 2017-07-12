@@ -33,6 +33,8 @@ public:
 	void VertexAttribPointer(GLuint index, GLint size, GLenum type, bool normalized, GLsizei stride, const GLvoid* offsetPtr);
 	void EnableAttribute(GLint index);
 
+	void Enable(Feature);
+	void Disable(Feature);
 		
 	bool GetBool(GetParam);
 	int GetInteger(GetParam);

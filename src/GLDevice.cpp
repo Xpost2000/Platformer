@@ -135,3 +135,11 @@ float GLDevice::GetFloat(GetParam par){
 	glGetFloatv(static_cast<int>(par), &x);
 	return x;
 }
+
+void GLDevice::Enable(Feature f){
+	glEnable(static_cast<int>(f));
+}
+
+void GLDevice::Disable(Feature f){
+	glDisable(static_cast<int>(f));
+}
