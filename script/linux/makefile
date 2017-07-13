@@ -7,6 +7,7 @@ OBJ_FILES= ../../obj/IDevice.o\
 	  ../../obj/Buffer.o\
 	  ../../obj/Shader.o\
 	  ../../obj/ShaderProgram.o\
+	  ../../obj/ShaderUniform.o\
 	  ../../obj/VertexArray.o\
 	  ../../obj/BufferTypes.o\
 	  ../../obj/GLDevice.o\
@@ -22,6 +23,7 @@ all:
 	$(GCC) ../../src/GLDevice.cpp $(LIBS_LINUX) $(FLAGS) -c -o ../../obj/GLDevice.o
 	$(GCC) ../../src/Shader.cpp $(LIBS_LINUX) $(FLAGS) -c -o ../../obj/Shader.o
 	$(GCC) ../../src/ShaderProgram.cpp $(LIBS_LINUX) $(FLAGS) -c -o ../../obj/ShaderProgram.o
+	$(GCC) ../../src/ShaderUniform.cpp $(LIBS_LINUX) $(FLAGS) -c -o ../../obj/ShaderUniform.o
 link:
 	$(GCC) $(OBJ_FILES) $(LIBS_LINUX) $(FLAGS) -o ../../bin/Game_linux
 clean:

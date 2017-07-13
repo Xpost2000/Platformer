@@ -10,6 +10,7 @@ OBJ_FILES= ../../obj/IDevice.o\
 	  ../../obj/GLDevice.o\
 	  ../../obj/Shader.o\
 	  ../../obj/ShaderProgram.o\
+	  ../../obj/ShaderUniform.o\
 	  ../../obj/main.o
 
 all:
@@ -22,6 +23,7 @@ all:
 	$(GCC) ../../src/GLDevice.cpp $(LIBS) $(FLAGS) -c -o ../../obj/GLDevice.o
 	$(GCC) ../../src/Shader.cpp $(LIBS) $(FLAGS) -c -o ../../obj/Shader.o
 	$(GCC) ../../src/ShaderProgram.cpp $(LIBS) $(FLAGS) -c -o ../../obj/ShaderProgram.o
+	$(GCC) ../../src/ShaderUniform.cpp $(LIBS) $(FLAGS) -c -o ../../obj/ShaderUniform.o
 link:
 	$(GCC) $(OBJ_FILES) $(LIBS) $(FLAGS) -o ../../bin/Game.exe
 clean:

@@ -2,6 +2,7 @@
 #include "GLDevice.h"
 #include "Shader.h"
 #include "ShaderProgram.h"
+#include "ShaderUniform.h"
 #include "VertexArray.h"
 #include "Buffer.h"
 
@@ -19,8 +20,9 @@ std::string frag(R"RW(
 	#version 330 core
 	in vec3 vClr;
 	out vec4 color;
+	uniform float d;
 	void main(){
-		color = vec4(vClr, 1.0f);	
+		color = vec4(vClr.r - d, vClr.g - d, vClr.b - d, 1.0f);	
 	}
 )RW");
 
@@ -48,6 +50,7 @@ int main(int argc, char** argv){
 	std::shared_ptr<VertexArray> vao;
 	std::shared_ptr<Shader> vs, fs;
 	std::shared_ptr<ShaderProgram> sp;
+	std::shared_ptr<ShaderUniform> d;
 	GLfloat vertices[] ={
 		-1.0, -1.0, 0.0, 1.0, 0.0, 0.0,
 		1.0, -1.0, 0.0, 0.0, 1.0, 0.0,
@@ -72,6 +75,7 @@ int main(int argc, char** argv){
 	
 	sp = ctx->createProgram(ctx, *vs, *fs);
 	sp->link();
+	d = std::make_shared<ShaderUniform>( "d", *sp );
 
 	std::cout << vs->get_log() << std::endl;
 
@@ -95,6 +99,7 @@ int main(int argc, char** argv){
 			}
 		}
 		sp->use();
+		d->uniformf(.2f);
 		ctx->setLineWidth(80);
 		ctx->clearColor(0.5, 0.2, 0.3);
 		ctx->clear(BufferClear::COLOR_DEPTH_BUFFERS);
