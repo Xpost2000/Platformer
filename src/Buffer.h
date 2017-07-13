@@ -19,9 +19,9 @@ class Buffer : public IObjectHandle{
 	 */
 	// Visitor stuff here.
 	// And this class is the visitor.
-	void Bind(const BufferTypes target);
-	void Unbind(const BufferTypes target);
-	void BufferData( const BufferTypes target, size_t size, const GLvoid* data, const BufferUsage usage );
+	void bind(const BufferTypes target);
+	void unbind(const BufferTypes target);
+	void bufferData( const BufferTypes target, size_t size, const GLvoid* data, const BufferUsage usage );
 	const std::shared_ptr<IDevice>& get_device() { return device; }
 	private:	
 	std::shared_ptr<IDevice> device = nullptr;

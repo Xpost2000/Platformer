@@ -37,44 +37,44 @@ class IDevice{
 //		~IDevice(){}
 //
 //		Create functions functions.
-		virtual std::shared_ptr<VertexArray> GenVertexArray() = 0;
-		virtual std::shared_ptr<Buffer> GenBuffer() = 0;
+		virtual std::shared_ptr<VertexArray> genVertexArray() = 0;
+		virtual std::shared_ptr<Buffer> genBuffer() = 0;
 
-		virtual std::shared_ptr<VertexArray> GenVertexArray(const std::shared_ptr<IDevice>& dev) = 0;
-		virtual std::shared_ptr<Buffer> GenBuffer(const std::shared_ptr<IDevice>& dev) = 0;
+		virtual std::shared_ptr<VertexArray> genVertexArray(const std::shared_ptr<IDevice>& dev) = 0;
+		virtual std::shared_ptr<Buffer> genBuffer(const std::shared_ptr<IDevice>& dev) = 0;
 		// Binding Functions
-		virtual void BindVertexArray( VertexArray& vao ) = 0;
-		virtual void BindBuffer( Buffer& buf, BufferTypes target) = 0;
-		virtual void UnbindBuffer( BufferTypes target ) = 0 ;
-		virtual void UnbindVertexArray( ) = 0;
+		virtual void bindVertexArray( VertexArray& vao ) = 0;
+		virtual void bindBuffer( Buffer& buf, BufferTypes target) = 0;
+		virtual void unbindBuffer( BufferTypes target ) = 0 ;
+		virtual void unbindVertexArray( ) = 0;
 		// Clear Functions
-		virtual void Clear(const BufferClear buf) = 0;
-		virtual void ClearColor(GLclampf r = 1.0, GLclampf g = 1.0, GLclampf b = 1.0, GLclampf a = 1.0) = 0;
-		virtual void ClearAccum(GLclampf r = 1.0, GLclampf g = 1.0, GLclampf b = 1.0, GLclampf a = 1.0) = 0;
-		virtual void ClearDepth(GLfloat value) = 0;
-		virtual void ClearStencil(GLint index) = 0;
+		virtual void clear(const BufferClear buf) = 0;
+		virtual void clearColor(GLclampf r = 1.0, GLclampf g = 1.0, GLclampf b = 1.0, GLclampf a = 1.0) = 0;
+		virtual void clearAccum(GLclampf r = 1.0, GLclampf g = 1.0, GLclampf b = 1.0, GLclampf a = 1.0) = 0;
+		virtual void clearDepth(GLfloat value) = 0;
+		virtual void clearStencil(GLint index) = 0;
 		// Draw
-		virtual void DrawArrays( DrawMode m, GLint first, GLint count ) = 0;
-		virtual void DrawElements( DrawMode m, GLint first, GLint count, const GLvoid* indices) = 0;
+		virtual void drawArrays( DrawMode m, GLint first, GLint count ) = 0;
+		virtual void drawElements( DrawMode m, GLint first, GLint count, const GLvoid* indices) = 0;
 		
 		// Data init functions
-		virtual void BufferData(const BufferTypes target, size_t size, const GLvoid* data, const BufferUsage usage) = 0;
-		virtual void VertexAttribPointer(GLuint index, GLint size, GLenum type, bool normalized, GLsizei stride, const GLvoid* offsetPtr) = 0;
-		virtual void EnableAttribute(GLint index) = 0;
+		virtual void bufferData(const BufferTypes target, size_t size, const GLvoid* data, const BufferUsage usage) = 0;
+		virtual void vertexAttribPointer(GLuint index, GLint size, GLenum type, bool normalized, GLsizei stride, const GLvoid* offsetPtr) = 0;
+		virtual void enableAttribute(GLint index) = 0;
 		// Get
 		
-		virtual bool GetBool(GetParam) = 0;
-		virtual int GetInteger(GetParam) = 0;
-		virtual GLint64 GetInteger64(GetParam) = 0;
-		virtual float GetFloat(GetParam) = 0;
+		virtual bool getBool(GetParam) = 0;
+		virtual int getInteger(GetParam) = 0;
+		virtual GLint64 getInteger64(GetParam) = 0;
+		virtual float getFloat(GetParam) = 0;
 		
 		//Enable
-		virtual void Enable(Feature) = 0;
-		virtual void Disable(Feature) = 0;
+		virtual void enable(Feature) = 0;
+		virtual void disable(Feature) = 0;
 		// etc.
-		virtual void Viewport(GLuint x, GLuint y, GLuint w, GLuint h) = 0;	
-		virtual void SetLineWidth(GLuint size) = 0;
-		virtual void SetPointSize(GLuint size) = 0;
+		virtual void viewport(GLuint x, GLuint y, GLuint w, GLuint h) = 0;	
+		virtual void setLineWidth(GLuint size) = 0;
+		virtual void setPointSize(GLuint size) = 0;
 		virtual DeviceType device_type() = 0;
 		// context
 		virtual SDL_GLContext& get_context_gl() = 0;

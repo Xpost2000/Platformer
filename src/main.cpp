@@ -37,21 +37,21 @@ int main(int argc, char** argv){
 
 	std::cout << "According to the OpenGL context \n";
 
-	std::cout << "MAJOR : " << ctx->GetInteger(GetParam::MAJOR_VERSION) << std::endl;
-	std::cout << "MINOR : " << ctx->GetInteger(GetParam::MINOR_VERSION) << std::endl;
+	std::cout << "MAJOR : " << ctx->getInteger(GetParam::MAJOR_VERSION) << std::endl;
+	std::cout << "MINOR : " << ctx->getInteger(GetParam::MINOR_VERSION) << std::endl;
 	
-	vbo = ctx->GenBuffer(ctx);
-	vao = ctx->GenVertexArray(ctx);
+	vbo = ctx->genBuffer(ctx);
+	vao = ctx->genVertexArray(ctx);
 
-	vbo->Bind(BufferTypes::ARRAY_BUFFER);
-	vao->Bind();
+	vbo->bind(BufferTypes::ARRAY_BUFFER);
+	vao->bind();
 
-	vbo->BufferData( BufferTypes::ARRAY_BUFFER, sizeof(vertices), vertices, BufferUsage::STATIC_DRAW );
-	vao->AttribPointer(0, 3, GL_FLOAT, false, sizeof(float)*3, (const void*)0);
-	vao->EnableAttribute(0);
+	vbo->bufferData( BufferTypes::ARRAY_BUFFER, sizeof(vertices), vertices, BufferUsage::STATIC_DRAW );
+	vao->attribPointer(0, 3, GL_FLOAT, false, sizeof(float)*3, (const void*)0);
+	vao->enableAttribute(0);
 
-	vbo->Unbind(BufferTypes::ARRAY_BUFFER);
-	vao->Unbind();
+	vbo->unbind(BufferTypes::ARRAY_BUFFER);
+	vao->unbind();
 
 
 	while(true){
@@ -60,14 +60,14 @@ int main(int argc, char** argv){
 				return 0;
 			}
 		}
-		ctx->SetLineWidth(80);
-		ctx->ClearColor(0.5, 0.2, 0.3);
-		ctx->Clear(BufferClear::COLOR_DEPTH_BUFFERS);
-		ctx->Viewport(0, 0, 1024, 768);
+		ctx->setLineWidth(80);
+		ctx->clearColor(0.5, 0.2, 0.3);
+		ctx->clear(BufferClear::COLOR_DEPTH_BUFFERS);
+		ctx->viewport(0, 0, 1024, 768);
 
-		ctx->BindVertexArray(*vao);
-		ctx->DrawArrays(DrawMode::TRIANGLE_STRIPS, 0, 6);
-		ctx->UnbindVertexArray();
+		ctx->bindVertexArray(*vao);
+		ctx->drawArrays(DrawMode::TRIANGLE_STRIPS, 0, 6);
+		ctx->unbindVertexArray();
 
 
 		SDL_GL_SwapWindow(window);

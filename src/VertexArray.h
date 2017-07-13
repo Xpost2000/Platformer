@@ -13,12 +13,12 @@ class VertexArray : public IObjectHandle{
 		~VertexArray();
 		void set_device(const std::shared_ptr<IDevice> &dev);
 		const HandleType is_type() const { return HandleType::HANDLE_VERTEXARRAY; }
-		void AttribPointer(GLuint index, GLint size, GLenum type, bool normalized, GLsizei stride, const GLvoid* offsetPtr);
-		void EnableAttribute(GLint index);
-		void DrawArrays(DrawMode mode, GLint first, GLint count);
-		void DrawElements(DrawMode mode, GLint first, GLint count, const GLvoid* indices);
-		void Bind();
-		void Unbind();
+		void attribPointer(GLuint index, GLint size, GLenum type, bool normalized, GLsizei stride, const GLvoid* offsetPtr);
+		void enableAttribute(GLint index);
+		void drawArrays(DrawMode mode, GLint first, GLint count);
+		void drawElements(DrawMode mode, GLint first, GLint count, const GLvoid* indices);
+		void bind();
+		void unbind();
 		const std::shared_ptr<IDevice>& get_device() { return device; }
 	private:
 		std::shared_ptr<IDevice> device = nullptr;

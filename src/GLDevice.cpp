@@ -30,88 +30,88 @@ GLDevice::~GLDevice(){
 	gl = 0;
 }
 
-std::shared_ptr<VertexArray> GLDevice::GenVertexArray(){
+std::shared_ptr<VertexArray> GLDevice::genVertexArray(){
 	return std::make_shared<VertexArray>();
 }
-std::shared_ptr<Buffer> GLDevice::GenBuffer(){
+std::shared_ptr<Buffer> GLDevice::genBuffer(){
 	return std::make_shared<Buffer>();
 }
-std::shared_ptr<VertexArray> GLDevice::GenVertexArray(const std::shared_ptr<IDevice>& dev){
+std::shared_ptr<VertexArray> GLDevice::genVertexArray(const std::shared_ptr<IDevice>& dev){
 	return std::make_shared<VertexArray>(dev);
 }
-std::shared_ptr<Buffer> GLDevice::GenBuffer(const std::shared_ptr<IDevice>& dev){
+std::shared_ptr<Buffer> GLDevice::genBuffer(const std::shared_ptr<IDevice>& dev){
 	return std::make_shared<Buffer>(dev);
 }
 
-void GLDevice::BindVertexArray( VertexArray& vao ){
+void GLDevice::bindVertexArray( VertexArray& vao ){
 	glBindVertexArray(vao.get_handle());
 }
 
-void GLDevice::BindBuffer(Buffer& buf, BufferTypes target){
+void GLDevice::bindBuffer(Buffer& buf, BufferTypes target){
 	glBindBuffer(static_cast<int>(target), buf.get_handle());
 }
 
-void GLDevice::UnbindBuffer( BufferTypes target ){
+void GLDevice::unbindBuffer( BufferTypes target ){
 	glBindBuffer(static_cast<int>(target), 0);
 }
 
-void GLDevice::UnbindVertexArray(){
+void GLDevice::unbindVertexArray(){
 	glBindVertexArray(0);
 }
 
-void GLDevice::Clear(const BufferClear buf){
+void GLDevice::clear(const BufferClear buf){
 	glClear(static_cast<int>(buf));
 }
 
-void GLDevice::ClearColor(GLclampf r , GLclampf g , GLclampf b , GLclampf a ){
+void GLDevice::clearColor(GLclampf r , GLclampf g , GLclampf b , GLclampf a ){
 	glClearColor(r, g, b, a);
 }
-void GLDevice::ClearAccum(GLclampf r , GLclampf g , GLclampf b , GLclampf a ){
+void GLDevice::clearAccum(GLclampf r , GLclampf g , GLclampf b , GLclampf a ){
 	glClearAccum(r, g, b, a);
 }
 
-void GLDevice::ClearDepth(GLfloat value){
+void GLDevice::clearDepth(GLfloat value){
 	glClearDepthf(value);
 }
 
-void GLDevice::ClearStencil(GLint index){
+void GLDevice::clearStencil(GLint index){
 	glClearStencil(index);
 }
 
-void GLDevice::DrawArrays( DrawMode m, GLint first, GLint count ){
+void GLDevice::drawArrays( DrawMode m, GLint first, GLint count ){
 	glDrawArrays( static_cast<int>(m), first, count );
 }
-void GLDevice::DrawElements( DrawMode m, GLint first, GLint count, const GLvoid* indices){
+void GLDevice::drawElements( DrawMode m, GLint first, GLint count, const GLvoid* indices){
 	glDrawElements( static_cast<int>(m), first , count , indices );
 }
 
-void GLDevice::BufferData( const BufferTypes target, size_t size, const GLvoid* data, const BufferUsage usage ){
+void GLDevice::bufferData( const BufferTypes target, size_t size, const GLvoid* data, const BufferUsage usage ){
 //	glBufferData(static_cast<int>(target), sizeof(float)*2, NULL, static_cast<int>(usage));
 	glBufferData(static_cast<int>(target), size, data, static_cast<int>(usage));
 }
 
-void GLDevice::VertexAttribPointer(GLuint index, GLint size, GLenum type, bool normalized, GLsizei stride, const GLvoid* offsetPtr){
+void GLDevice::vertexAttribPointer(GLuint index, GLint size, GLenum type, bool normalized, GLsizei stride, const GLvoid* offsetPtr){
 	
 	glVertexAttribPointer(index, size, type, normalized, stride, offsetPtr);
 }
 
-void GLDevice::EnableAttribute(GLint index){
+void GLDevice::enableAttribute(GLint index){
 	glEnableVertexAttribArray(index);
 }
 
-void GLDevice::Viewport(GLuint x, GLuint y, GLuint w, GLuint h){
+void GLDevice::viewport(GLuint x, GLuint y, GLuint w, GLuint h){
 	glViewport(x, y, w, h);
 }
 
-void GLDevice::SetLineWidth(GLuint size){
+void GLDevice::setLineWidth(GLuint size){
 	glLineWidth(size);
 }
 
-void GLDevice::SetPointSize(GLuint size){
+void GLDevice::setPointSize(GLuint size){
 	glPointSize(size);
 }
 
-bool GLDevice::GetBool(GetParam par){
+bool GLDevice::getBool(GetParam par){
 	unsigned char x;
 	glGetBooleanv( static_cast<int>(par) , &x );
 	if(x == GL_TRUE)
@@ -120,27 +120,27 @@ bool GLDevice::GetBool(GetParam par){
 		return false;
 	}
 }
-int GLDevice::GetInteger(GetParam par){
+int GLDevice::getInteger(GetParam par){
 	int x;
 	glGetIntegerv( static_cast<int>(par), &x );
 	return x;
 }
 // I just realized GLint64 ain't same for all platforms...
-GLint64 GLDevice::GetInteger64(GetParam par){
+GLint64 GLDevice::getInteger64(GetParam par){
 	GLint64 x;
 	glGetInteger64v(static_cast<int>(par), &x);
 	return x;
 }
-float GLDevice::GetFloat(GetParam par){
+float GLDevice::getFloat(GetParam par){
 	float x;
 	glGetFloatv(static_cast<int>(par), &x);
 	return x;
 }
 
-void GLDevice::Enable(Feature f){
+void GLDevice::enable(Feature f){
 	glEnable(static_cast<int>(f));
 }
 
-void GLDevice::Disable(Feature f){
+void GLDevice::disable(Feature f){
 	glDisable(static_cast<int>(f));
 }

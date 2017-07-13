@@ -28,46 +28,46 @@ void VertexArray::set_device(const std::shared_ptr<IDevice> &dev){
 	device = dev;
 }
 
-void VertexArray::AttribPointer(GLuint index, GLint size, GLenum type, bool normalized, GLsizei stride, const GLvoid* offsetPtr){
+void VertexArray::attribPointer(GLuint index, GLint size, GLenum type, bool normalized, GLsizei stride, const GLvoid* offsetPtr){
 	try{
 		if(device == nullptr){
 			throw std::runtime_error("IDevice is nullptr");
 		}
-		device->VertexAttribPointer(index, size, type, normalized, stride, offsetPtr);
+		device->vertexAttribPointer(index, size, type, normalized, stride, offsetPtr);
 	}catch(std::exception const &e){
 		std::cout << "Vertex Array Exception :: " << e.what() << std::endl;
 		exit(-1);
 	}
 }
 
-void VertexArray::EnableAttribute(GLint index){
+void VertexArray::enableAttribute(GLint index){
 	try{
 		if(device == nullptr){
 			throw std::runtime_error("IDevice is nullptr");
 		}
-		device->EnableAttribute(index);
+		device->enableAttribute(index);
 	}catch(std::exception const &e){
 		std::cout << "Vertex Array Exception :: " << e.what() << std::endl;
 		exit(-1);
 	}
 }
 
-void VertexArray::Bind(){
-	device->BindVertexArray(*this);
+void VertexArray::bind(){
+	device->bindVertexArray(*this);
 }
 
-void VertexArray::Unbind(){
-	device->UnbindVertexArray();
+void VertexArray::unbind(){
+	device->unbindVertexArray();
 }
 
-void VertexArray::DrawArrays(DrawMode mode, GLint first, GLint count){
-	Bind();
-	device->DrawArrays(mode, first, count);
-	Unbind();
+void VertexArray::drawArrays(DrawMode mode, GLint first, GLint count){
+	bind();
+	device->drawArrays(mode, first, count);
+	unbind();
 }
 
-void VertexArray::DrawElements(DrawMode mode, GLint first, GLint count, const GLvoid* indices){
-	Bind();
-	device->DrawElements(mode, first ,count , indices);
-	Unbind();
+void VertexArray::drawElements(DrawMode mode, GLint first, GLint count, const GLvoid* indices){
+	bind();
+	device->drawElements(mode, first ,count , indices);
+	unbind();
 }
