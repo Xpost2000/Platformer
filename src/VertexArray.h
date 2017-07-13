@@ -2,10 +2,11 @@
 #define VERTEX_ARRAY_OBJECT_HPP
 #include <memory>
 #include "DrawModes.h"
+#include "Comparable.h"
 #include "IObjectHandle.h"
 
 class IDevice;
-class VertexArray : public IObjectHandle{
+class VertexArray : public IObjectHandle, public Comparable<VertexArray>{
 	public:
 		VertexArray(const VertexArray&) = default;
 		VertexArray();
@@ -19,6 +20,12 @@ class VertexArray : public IObjectHandle{
 		void drawElements(DrawMode mode, GLint first, GLint count, const GLvoid* indices);
 		void bind();
 		void unbind();
+// except for the equality operator. All return true since handles aren't exactly numerical and the comparable class is abstract.
+	        virtual bool operator >  ( VertexArray rhs )    { return true ;}
+	        virtual bool operator <  ( VertexArray rhs )    { return true; }
+	        virtual bool operator >= ( VertexArray rhs )  { return true; }
+		virtual bool operator <= ( VertexArray rhs )  { return true; }
+		virtual bool operator == ( VertexArray rhs )  { return (obj == rhs.obj);}
 		const std::shared_ptr<IDevice>& get_device() { return device; }
 	private:
 		std::shared_ptr<IDevice> device = nullptr;

@@ -4,9 +4,10 @@
 #include "BufferTypes.h"
 #include "BufferUsage.h"
 #include "IObjectHandle.h"
+#include "Comparable.h"
 
 class IDevice;
-class Buffer : public IObjectHandle{
+class Buffer : public IObjectHandle, public Comparable<Buffer>{
 	public:
 	Buffer(const Buffer&) = default; // No copy constructors wanted.
 	Buffer(const std::shared_ptr<IDevice>& dev);
@@ -23,6 +24,11 @@ class Buffer : public IObjectHandle{
 	void unbind(const BufferTypes target);
 	void bufferData( const BufferTypes target, size_t size, const GLvoid* data, const BufferUsage usage );
 	const std::shared_ptr<IDevice>& get_device() { return device; }
+	bool operator >  ( Buffer rhs )  { return true; }
+	bool operator <  ( Buffer rhs )  { return true; }
+	bool operator >= ( Buffer rhs ) { return true; }
+        bool operator <= ( Buffer rhs ) { return true; }
+	bool operator == ( Buffer rhs ) {return ( obj == rhs.obj );}
 	private:	
 	std::shared_ptr<IDevice> device = nullptr;
 };

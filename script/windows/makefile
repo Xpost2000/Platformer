@@ -8,6 +8,7 @@ OBJ_FILES= ../../obj/IDevice.o\
 	  ../../obj/VertexArray.o\
 	  ../../obj/BufferTypes.o\
 	  ../../obj/GLDevice.o\
+	  ../../obj/Shader.o\
 	  ../../obj/main.o
 
 all:
@@ -18,6 +19,7 @@ all:
 	$(GCC) ../../src/IDevice.cpp $(LIBS) $(FLAGS) -c -o ../../obj/IDevice.o
 	$(GCC) ../../src/BufferTypes.cpp $(LIBS) $(FLAGS) -c -o ../../obj/BufferTypes.o
 	$(GCC) ../../src/GLDevice.cpp $(LIBS) $(FLAGS) -c -o ../../obj/GLDevice.o
+	$(GCC) ../../src/Shader.cpp $(LIBS) $(FLAGS) -c -o ../../obj/Shader.o
 link:
 	$(GCC) $(OBJ_FILES) $(LIBS) $(FLAGS) -o ../../bin/Game.exe
 clean:
