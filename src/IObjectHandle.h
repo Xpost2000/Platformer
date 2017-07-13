@@ -2,6 +2,7 @@
 #define OBJECT_HANDLE_HPP
 #include <GL/glew.h> // For the typedefs.
 #include "ObjectTypes.h"
+#include "Comparable.h"
 /*
  * Abstract class for type safe OpenGL object handles.
  *
@@ -18,6 +19,7 @@ public:
 	//virtual ~IObjectHandle() = 0;
 	virtual const HandleType is_type() const = 0;
 	GLuint& get_handle() { return obj; }
+
 protected:
 	GLuint obj = 0;
 	/* data */
