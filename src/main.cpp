@@ -1,6 +1,7 @@
 #include <iostream>
 #include "GLDevice.h"
 #include "Shader.h"
+#include "ShaderProgram.h"
 #include "VertexArray.h"
 #include "Buffer.h"
 
@@ -46,6 +47,7 @@ int main(int argc, char** argv){
 	std::shared_ptr<Buffer> vbo;
 	std::shared_ptr<VertexArray> vao;
 	std::shared_ptr<Shader> vs, fs;
+	std::shared_ptr<ShaderProgram> sp;
 	GLfloat vertices[] ={
 		-1.0, -1.0, 0.0, 1.0, 0.0, 0.0,
 		1.0, -1.0, 0.0, 0.0, 1.0, 0.0,
@@ -67,6 +69,9 @@ int main(int argc, char** argv){
 	fs->source(1, frag, 0);
 	vs->compile();
 	fs->compile();
+	
+	sp = ctx->createProgram(ctx, *vs, *fs);
+	sp->link();
 
 	std::cout << vs->get_log() << std::endl;
 
@@ -89,6 +94,7 @@ int main(int argc, char** argv){
 				return 0;
 			}
 		}
+		sp->use();
 		ctx->setLineWidth(80);
 		ctx->clearColor(0.5, 0.2, 0.3);
 		ctx->clear(BufferClear::COLOR_DEPTH_BUFFERS);

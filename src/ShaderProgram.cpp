@@ -3,6 +3,13 @@
 #include "Shader.h"
 #include "IDevice.h"
 
+ShaderProgram::ShaderProgram(const std::shared_ptr<IDevice>& device, Shader& a, Shader& b){
+	obj = glCreateProgram();
+	this->device = device;
+	attach(a);
+	attach(b);
+}
+
 ShaderProgram::ShaderProgram(const std::shared_ptr<IDevice>& device){
 	obj = glCreateProgram();
 	this->device = device;

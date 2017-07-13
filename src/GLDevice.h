@@ -20,6 +20,7 @@ public:
 	std::shared_ptr<Buffer> genBuffer(const std::shared_ptr<IDevice>& dev);
 	std::shared_ptr<Shader> createShader(const std::shared_ptr<IDevice>& dev, ShaderType type);
 	std::shared_ptr<ShaderProgram> createProgram(const std::shared_ptr<IDevice>& dev);
+	std::shared_ptr<ShaderProgram> createProgram(const std::shared_ptr<IDevice>& dev, Shader& a, Shader& b);
 
 	void bindVertexArray( VertexArray& vao );
 	void bindBuffer( Buffer& buf, BufferTypes target);

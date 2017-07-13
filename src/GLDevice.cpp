@@ -49,6 +49,10 @@ std::shared_ptr<ShaderProgram> GLDevice::createProgram( const std::shared_ptr<ID
 	return std::make_shared<ShaderProgram>(dev);
 }
 
+std::shared_ptr<ShaderProgram> GLDevice::createProgram( const std::shared_ptr<IDevice>& dev, Shader& a, Shader& b ){
+	return std::make_shared<ShaderProgram>(dev, a, b);
+}
+
 std::shared_ptr<Shader> GLDevice::createShader( const std::shared_ptr<IDevice>& dev, ShaderType type ) {
 	return std::make_shared<Shader>( dev, type );
 }
