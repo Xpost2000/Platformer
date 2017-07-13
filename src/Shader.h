@@ -14,6 +14,8 @@ class Shader : public IObjectHandle, public Comparable<Shader>{
 	~Shader();
 
 	const HandleType is_type() const { return HandleType::HANDLE_SHADER; }	
+	void compile();
+	void source(GLsizei, std::string, const GLint*);
 	/*
 	 * Empty function prototypes.
 	 * Because these are the amount of functions I estimate will work.
