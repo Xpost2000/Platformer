@@ -19,7 +19,7 @@ all:
 	$(GCC) ../../src/BufferTypes.cpp $(LIBS) $(FLAGS) -c -o ../../obj/BufferTypes.o
 	$(GCC) ../../src/GLDevice.cpp $(LIBS) $(FLAGS) -c -o ../../obj/GLDevice.o
 link:
-	$(GCC) $(OBJ_FILES) $(LIBS) $(FLAGS) -o ../bin/Game.exe
+	$(GCC) $(OBJ_FILES) $(LIBS) $(FLAGS) -o ../../bin/Game.exe
 clean:
 	rm ../../obj/*.o
 exec:

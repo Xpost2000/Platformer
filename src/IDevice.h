@@ -65,7 +65,7 @@ class IDevice{
 		
 		virtual bool GetBool(GetParam) = 0;
 		virtual int GetInteger(GetParam) = 0;
-		virtual long GetInteger64(GetParam) = 0;
+		virtual GLint64 GetInteger64(GetParam) = 0;
 		virtual float GetFloat(GetParam) = 0;
 		
 		//Enable

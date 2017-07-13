@@ -125,8 +125,9 @@ int GLDevice::GetInteger(GetParam par){
 	glGetIntegerv( static_cast<int>(par), &x );
 	return x;
 }
-long GLDevice::GetInteger64(GetParam par){
-	long x;
+// I just realized GLint64 ain't same for all platforms...
+GLint64 GLDevice::GetInteger64(GetParam par){
+	GLint64 x;
 	glGetInteger64v(static_cast<int>(par), &x);
 	return x;
 }

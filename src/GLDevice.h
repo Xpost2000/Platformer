@@ -38,7 +38,7 @@ public:
 		
 	bool GetBool(GetParam);
 	int GetInteger(GetParam);
-	long GetInteger64(GetParam);
+	GLint64 GetInteger64(GetParam);
 	float GetFloat(GetParam);
 	
 	void Viewport(GLuint x, GLuint y, GLuint w, GLuint h);
