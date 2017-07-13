@@ -158,8 +158,9 @@ void GLDevice::disable(Feature f){
 	glDisable(static_cast<int>(f));
 }
 
-void GLDevice::shaderSource(Shader& m, GLsizei size, const char** str, const GLint* len){
-	glShaderSource(m.get_handle(), size, str, len);
+void GLDevice::shaderSource(Shader& m, GLsizei size, std::string str, const GLint* len){
+	const char* cstr = str.c_str();
+	glShaderSource(m.get_handle(), size, &cstr, len);
 }
 
 void GLDevice::compileShader(Shader& m){

@@ -1,6 +1,7 @@
 #ifndef GL_DEVICE_HPP
 #define GL_DEVICE_HPP
 #include "IDevice.h"
+#include <string>
 #include "gl_info_struct_t.h"
 
 class GLDevice : public IDevice{
@@ -36,7 +37,7 @@ public:
 	void vertexAttribPointer(GLuint index, GLint size, GLenum type, bool normalized, GLsizei stride, const GLvoid* offsetPtr);
 	void enableAttribute(GLint index);
 
-	void shaderSource(Shader&m, GLsizei, const char**, const GLint*);
+	void shaderSource(Shader&m, GLsizei, std::string , const GLint*);
 	void compileShader(Shader&);
 
 	void enable(Feature);
