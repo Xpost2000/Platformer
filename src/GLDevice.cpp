@@ -1,4 +1,5 @@
 #include "GLDevice.h"
+#include "ShaderProgram.h"
 #include "Shader.h"
 #include "VertexArray.h"
 #include "Buffer.h"
@@ -40,6 +41,14 @@ std::shared_ptr<Buffer> GLDevice::genBuffer(){
 std::shared_ptr<Shader> GLDevice::createShader(ShaderType type){
 	return std::make_shared<Shader>( type );
 }
+std::shared_ptr<ShaderProgram> GLDevice::createProgram(){
+	return std::make_shared<ShaderProgram>();
+}
+
+std::shared_ptr<ShaderProgram> GLDevice::createProgram( const std::shared_ptr<IDevice>& dev ){
+	return std::make_shared<ShaderProgram>(dev);
+}
+
 std::shared_ptr<Shader> GLDevice::createShader( const std::shared_ptr<IDevice>& dev, ShaderType type ) {
 	return std::make_shared<Shader>( dev, type );
 }
@@ -166,4 +175,21 @@ void GLDevice::shaderSource(Shader& m, GLsizei size, std::string str, const GLin
 void GLDevice::compileShader(Shader& m){
 	glCompileShader(m.get_handle());
 	m.set_compiled(true);
+}
+
+void GLDevice::detachShader(ShaderProgram& sp, Shader& s){
+	glDetachShader(sp.get_handle(), s.get_handle());
+}
+void GLDevice::attachShader(ShaderProgram& sp, Shader& s){
+	glAttachShader(sp.get_handle(), s.get_handle());
+}
+void GLDevice::useProgram(ShaderProgram& sp){
+	glUseProgram(sp.get_handle());
+}
+void GLDevice::linkProgram(ShaderProgram& sp){
+	glLinkProgram(sp.get_handle());
+	sp.set_linked(true);
+}
+void GLDevice::unuseProgram(){
+	glUseProgram(0);
 }

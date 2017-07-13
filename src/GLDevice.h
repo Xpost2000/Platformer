@@ -14,10 +14,12 @@ public:
 	std::shared_ptr<VertexArray> genVertexArray();
 	std::shared_ptr<Buffer> genBuffer();
 	std::shared_ptr<Shader> createShader(ShaderType type);
+	std::shared_ptr<ShaderProgram> createProgram();
 
 	std::shared_ptr<VertexArray> genVertexArray(const std::shared_ptr<IDevice>& dev);
 	std::shared_ptr<Buffer> genBuffer(const std::shared_ptr<IDevice>& dev);
 	std::shared_ptr<Shader> createShader(const std::shared_ptr<IDevice>& dev, ShaderType type);
+	std::shared_ptr<ShaderProgram> createProgram(const std::shared_ptr<IDevice>& dev);
 
 	void bindVertexArray( VertexArray& vao );
 	void bindBuffer( Buffer& buf, BufferTypes target);
@@ -39,6 +41,12 @@ public:
 
 	void shaderSource(Shader&m, GLsizei, std::string , const GLint*);
 	void compileShader(Shader&);
+
+	void detachShader(ShaderProgram&, Shader&);
+	void attachShader(ShaderProgram&, Shader&);
+	void useProgram(ShaderProgram&);
+	void linkProgram(ShaderProgram&);
+	void unuseProgram();
 
 	void enable(Feature);
 	void disable(Feature);

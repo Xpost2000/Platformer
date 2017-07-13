@@ -31,6 +31,7 @@
 class VertexArray;
 class Buffer;
 class Shader;
+class ShaderProgram;
 
 // class
 class IDevice{
@@ -42,10 +43,12 @@ class IDevice{
 		virtual std::shared_ptr<VertexArray> genVertexArray() = 0;
 		virtual std::shared_ptr<Buffer> genBuffer() = 0;
 		virtual std::shared_ptr<Shader> createShader( ShaderType type ) = 0;
+		virtual std::shared_ptr<ShaderProgram> createProgram() = 0;
 
 		virtual std::shared_ptr<VertexArray> genVertexArray(const std::shared_ptr<IDevice>& dev) = 0;
 		virtual std::shared_ptr<Buffer> genBuffer(const std::shared_ptr<IDevice>& dev) = 0;
 		virtual std::shared_ptr<Shader> createShader( const std::shared_ptr<IDevice>& dev, ShaderType type ) = 0;
+		virtual std::shared_ptr<ShaderProgram> createProgram( const std::shared_ptr<IDevice>& dev ) = 0;
 		// Binding Functions
 		virtual void bindVertexArray( VertexArray& vao ) = 0;
 		virtual void bindBuffer( Buffer& buf, BufferTypes target) = 0;
@@ -68,6 +71,12 @@ class IDevice{
 		virtual void enableAttribute(GLint index) = 0;
 		virtual void shaderSource(Shader&, GLsizei, std::string , const GLint*) = 0;
 		virtual void compileShader(Shader&) = 0;
+
+		virtual void detachShader(ShaderProgram&, Shader&) = 0;
+		virtual void attachShader(ShaderProgram&, Shader&) = 0;
+		virtual void useProgram(ShaderProgram&) = 0;
+		virtual void linkProgram(ShaderProgram&) = 0;
+		virtual void unuseProgram() = 0;
 
 
 		// Get
