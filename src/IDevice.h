@@ -4,6 +4,7 @@
 #include "GetParam.h"
 #include "Feature.h"
 #include "DrawModes.h"
+#include "ShaderInfo.h"
 #include "DeviceTypes.h"
 #include "BufferUsage.h"
 #include <SDL2/SDL.h>
@@ -29,6 +30,7 @@
 
 class VertexArray;
 class Buffer;
+class Shader;
 
 // class
 class IDevice{
@@ -39,9 +41,11 @@ class IDevice{
 //		Create functions functions.
 		virtual std::shared_ptr<VertexArray> genVertexArray() = 0;
 		virtual std::shared_ptr<Buffer> genBuffer() = 0;
+		virtual std::shared_ptr<Shader> createShader( ShaderType type ) = 0;
 
 		virtual std::shared_ptr<VertexArray> genVertexArray(const std::shared_ptr<IDevice>& dev) = 0;
 		virtual std::shared_ptr<Buffer> genBuffer(const std::shared_ptr<IDevice>& dev) = 0;
+		virtual std::shared_ptr<Shader> createShader( const std::shared_ptr<IDevice>& dev, ShaderType type ) = 0;
 		// Binding Functions
 		virtual void bindVertexArray( VertexArray& vao ) = 0;
 		virtual void bindBuffer( Buffer& buf, BufferTypes target) = 0;
@@ -56,17 +60,24 @@ class IDevice{
 		// Draw
 		virtual void drawArrays( DrawMode m, GLint first, GLint count ) = 0;
 		virtual void drawElements( DrawMode m, GLint first, GLint count, const GLvoid* indices) = 0;
+		// Shader Related Functions
 		
 		// Data init functions
 		virtual void bufferData(const BufferTypes target, size_t size, const GLvoid* data, const BufferUsage usage) = 0;
 		virtual void vertexAttribPointer(GLuint index, GLint size, GLenum type, bool normalized, GLsizei stride, const GLvoid* offsetPtr) = 0;
 		virtual void enableAttribute(GLint index) = 0;
+		virtual void shaderSource(Shader&, GLsizei, const char**, const GLint*) = 0;
+		virtual void compileShader(Shader&) = 0;
+
+
 		// Get
 		
 		virtual bool getBool(GetParam) = 0;
 		virtual int getInteger(GetParam) = 0;
 		virtual GLint64 getInteger64(GetParam) = 0;
 		virtual float getFloat(GetParam) = 0;
+		virtual int getShaderInteger(Shader&, ShaderInfo) = 0;
+		
 		
 		//Enable
 		virtual void enable(Feature) = 0;

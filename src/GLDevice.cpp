@@ -1,4 +1,5 @@
 #include "GLDevice.h"
+#include "Shader.h"
 #include "VertexArray.h"
 #include "Buffer.h"
 #include <iostream>
@@ -35,6 +36,12 @@ std::shared_ptr<VertexArray> GLDevice::genVertexArray(){
 }
 std::shared_ptr<Buffer> GLDevice::genBuffer(){
 	return std::make_shared<Buffer>();
+}
+std::shared_ptr<Shader> GLDevice::createShader(ShaderType type){
+	return std::make_shared<Shader>( type );
+}
+std::shared_ptr<Shader> GLDevice::createShader( const std::shared_ptr<IDevice>& dev, ShaderType type ) {
+	return std::make_shared<Shader>( dev, type );
 }
 std::shared_ptr<VertexArray> GLDevice::genVertexArray(const std::shared_ptr<IDevice>& dev){
 	return std::make_shared<VertexArray>(dev);
@@ -137,10 +144,24 @@ float GLDevice::getFloat(GetParam par){
 	return x;
 }
 
+int GLDevice::getShaderInteger( Shader& sh, ShaderInfo type){
+	int x;
+	glGetShaderiv( sh.get_handle(), static_cast<int>(type), &x);
+	return x;
+}
+
 void GLDevice::enable(Feature f){
 	glEnable(static_cast<int>(f));
 }
 
 void GLDevice::disable(Feature f){
 	glDisable(static_cast<int>(f));
+}
+
+void GLDevice::shaderSource(Shader& m, GLsizei size, const char** str, const GLint* len){
+	glShaderSource(m.get_handle(), size, str, len);
+}
+
+void GLDevice::compileShader(Shader& m){
+	glCompileShader(m.get_handle());
 }

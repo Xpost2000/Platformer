@@ -5,10 +5,10 @@ FLAGS=-std=gnu++11 -Wall -O2
 OBJ_FILES= ../../obj/IDevice.o\
 	  ../../obj/IObjectHandle.o\
 	  ../../obj/Buffer.o\
+	  ../../obj/Shader.o\
 	  ../../obj/VertexArray.o\
 	  ../../obj/BufferTypes.o\
 	  ../../obj/GLDevice.o\
-	  ../../obj/Shader.o\
 	  ../../obj/main.o
 
 all:

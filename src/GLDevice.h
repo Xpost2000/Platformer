@@ -12,9 +12,12 @@ public:
 	
 	std::shared_ptr<VertexArray> genVertexArray();
 	std::shared_ptr<Buffer> genBuffer();
+	std::shared_ptr<Shader> createShader(ShaderType type);
 
 	std::shared_ptr<VertexArray> genVertexArray(const std::shared_ptr<IDevice>& dev);
 	std::shared_ptr<Buffer> genBuffer(const std::shared_ptr<IDevice>& dev);
+	std::shared_ptr<Shader> createShader(const std::shared_ptr<IDevice>& dev, ShaderType type);
+
 	void bindVertexArray( VertexArray& vao );
 	void bindBuffer( Buffer& buf, BufferTypes target);
 	void unbindBuffer(BufferTypes target);
@@ -33,6 +36,9 @@ public:
 	void vertexAttribPointer(GLuint index, GLint size, GLenum type, bool normalized, GLsizei stride, const GLvoid* offsetPtr);
 	void enableAttribute(GLint index);
 
+	void shaderSource(Shader&m, GLsizei, const char**, const GLint*);
+	void compileShader(Shader&);
+
 	void enable(Feature);
 	void disable(Feature);
 		
@@ -40,6 +46,7 @@ public:
 	int getInteger(GetParam);
 	GLint64 getInteger64(GetParam);
 	float getFloat(GetParam);
+	int getShaderInteger(Shader&, ShaderInfo);
 	
 	void viewport(GLuint x, GLuint y, GLuint w, GLuint h);
 	void setLineWidth(GLuint size);
