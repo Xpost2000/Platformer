@@ -5,6 +5,7 @@
 #include "IObjectHandle.h"
 
 class IDevice;
+class Shader;
 class ShaderProgram : public IObjectHandle, public Comparable<ShaderProgram>{
 	public:
 		ShaderProgram(const ShaderProgram& other) = default;	
@@ -14,6 +15,11 @@ class ShaderProgram : public IObjectHandle, public Comparable<ShaderProgram>{
 
 		const HandleType is_type() const{ return HandleType::HANDLE_SHADERPROGRAM; }
 		void set_linked(bool val) { linked = val; }
+		void use();
+		void unuse();
+		void link();
+		void attach(Shader&);
+		void detach(Shader&);
 		bool is_linked() { return linked; }
 
 		bool operator > ( ShaderProgram rhs ) { return true;}
