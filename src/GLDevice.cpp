@@ -165,4 +165,5 @@ void GLDevice::shaderSource(Shader& m, GLsizei size, std::string str, const GLin
 
 void GLDevice::compileShader(Shader& m){
 	glCompileShader(m.get_handle());
+	m.set_compiled(true);
 }

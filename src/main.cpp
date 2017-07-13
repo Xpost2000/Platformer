@@ -1,7 +1,27 @@
 #include <iostream>
 #include "GLDevice.h"
+#include "Shader.h"
 #include "VertexArray.h"
 #include "Buffer.h"
+
+std::string vert ( R"RW(
+	#version 330 core
+	layout(location=0) in vec3 pos;
+	layout(location=1) in vec3 clr;
+	out vec3 vClr;
+	void main(){
+		gl_Position = vec4(pos, 1.0f);
+		vClr = clr;
+	}
+)RW");
+std::string frag(R"RW(
+	#version 330 core
+	in vec3 vClr;
+	out vec4 color;
+	void main(){
+		color = vec4(vClr, 1.0f);	
+	}
+)RW");
 
 int main(int argc, char** argv){
 	SDL_Window* window;
@@ -25,14 +45,11 @@ int main(int argc, char** argv){
 	std::shared_ptr<IDevice> ctx = std::make_shared<GLDevice>(window, info);
 	std::shared_ptr<Buffer> vbo;
 	std::shared_ptr<VertexArray> vao;
+	std::shared_ptr<Shader> vs, fs;
 	GLfloat vertices[] ={
-		-1.0, -1.0, 0.0,
-		0.0, -1.0, 0.0,
-	        -0.5, 1.0, 0.0	
-		,
-		0.0, -1.0, 0.0,
-		1.0, -1.0, 0.0,
-		0.5, 1.0, 0.0
+		-1.0, -1.0, 0.0, 1.0, 0.0, 0.0,
+		1.0, -1.0, 0.0, 0.0, 1.0, 0.0,
+		0.0, 1.0, 0.0, 0.0, 0.0, 1.0
 	};
 
 	std::cout << "According to the OpenGL context \n";
@@ -43,11 +60,23 @@ int main(int argc, char** argv){
 	vbo = ctx->genBuffer(ctx);
 	vao = ctx->genVertexArray(ctx);
 
+	vs = ctx->createShader(ctx, ShaderType::VERTEX);
+	fs = ctx->createShader(ctx, ShaderType::FRAGMENT);
+
+	vs->source(1, vert, 0);
+	fs->source(1, frag, 0);
+	vs->compile();
+	fs->compile();
+
+	std::cout << vs->get_log() << std::endl;
+
 	vbo->bind(BufferTypes::ARRAY_BUFFER);
 	vao->bind();
 
 	vbo->bufferData( BufferTypes::ARRAY_BUFFER, sizeof(vertices), vertices, BufferUsage::STATIC_DRAW );
-	vao->attribPointer(0, 3, GL_FLOAT, false, sizeof(float)*3, (const void*)0);
+	vao->attribPointer(0, 3, GL_FLOAT, false, sizeof(float)*6, (const void*)0);
+	vao->attribPointer(1, 3, GL_FLOAT, false, sizeof(float)*6, (const void*)(sizeof(float)*3));
+	vao->enableAttribute(1);
 	vao->enableAttribute(0);
 
 	vbo->unbind(BufferTypes::ARRAY_BUFFER);
@@ -66,7 +95,7 @@ int main(int argc, char** argv){
 		ctx->viewport(0, 0, 1024, 768);
 
 		ctx->bindVertexArray(*vao);
-		ctx->drawArrays(DrawMode::TRIANGLE_STRIPS, 0, 6);
+		ctx->drawArrays(DrawMode::TRIANGLES, 0, 3);
 		ctx->unbindVertexArray();
 
 

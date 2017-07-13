@@ -15,18 +15,22 @@ Shader::~Shader(){
 }
 
 void Shader::compile(){
+	if(not compiled){
 	try{
 		if(device==nullptr){
 			throw std::runtime_error("Device is nullptr");
 		}
 		device->compileShader(*this);
+		compiled = true;
 	}
 	catch(std::exception const & e){
 		std::cout << "Shader Exception :: " << e.what() << std::endl;
 	}
+	}
 }
 
 void Shader::source(GLsizei sz, std::string str, const GLint* len){
+	if(not compiled){
 	try{
 		if(device==nullptr){
 			throw std::runtime_error("Device is nullptr");
@@ -36,4 +40,26 @@ void Shader::source(GLsizei sz, std::string str, const GLint* len){
 	catch(std::exception const & e){
 		std::cout << "Shader Exception :: " << e.what() << std::endl;
 	}
+	}
+}
+
+std::string Shader::get_log(){
+	std::string res = std::string("Compilation status is perfect.");
+	if(compiled){
+		try{
+			if(device==nullptr){
+				throw std::runtime_error("Device is nullptr");
+			}
+			GLint log_size = 0;
+			log_size = device->getShaderInteger(*this, ShaderInfo::INFO_LOG_SIZE);
+			GLchar log [log_size];
+			glGetShaderInfoLog(obj, log_size, &log_size, &log[0]);
+			res = std::string(log);
+			if(log_size == 0){ res = std::string( "Compilation status is perfect" );} 
+		}
+		catch(std::exception const & e){
+			std::cout << "Shader Exception :: " << e.what() << std::endl;
+		}
+	}
+	return res;
 }
