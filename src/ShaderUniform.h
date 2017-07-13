@@ -9,6 +9,10 @@ class ShaderUniform : public IObjectHandle , public Comparable<ShaderUniform>{
 	public:
 		ShaderUniform(const ShaderUniform& other) = default;
 		ShaderUniform(std::string name, ShaderProgram& prg);	
+		~ShaderUniform(){
+			obj = 0;
+			self = nullptr;
+		}
 
 		const HandleType is_type() const { return HandleType::HANDLE_SHADERUNIFORM; }
 		

@@ -1,5 +1,6 @@
 #include "GLDevice.h"
 #include "ShaderProgram.h"
+#include "ShaderUniform.h"
 #include "Shader.h"
 #include "VertexArray.h"
 #include "Buffer.h"
@@ -61,6 +62,10 @@ std::shared_ptr<VertexArray> GLDevice::genVertexArray(const std::shared_ptr<IDev
 }
 std::shared_ptr<Buffer> GLDevice::genBuffer(const std::shared_ptr<IDevice>& dev){
 	return std::make_shared<Buffer>(dev);
+}
+
+std::shared_ptr<ShaderUniform> GLDevice::createUniform(std::string name, const std::shared_ptr<ShaderProgram>& sp){
+	return std::make_shared<ShaderUniform>(name, *sp);
 }
 
 void GLDevice::bindVertexArray( VertexArray& vao ){

@@ -32,6 +32,7 @@ class VertexArray;
 class Buffer;
 class Shader;
 class ShaderProgram;
+class ShaderUniform;
 
 // class
 class IDevice{
@@ -50,6 +51,7 @@ class IDevice{
 		virtual std::shared_ptr<Shader> createShader( const std::shared_ptr<IDevice>& dev, ShaderType type ) = 0;
 		virtual std::shared_ptr<ShaderProgram> createProgram( const std::shared_ptr<IDevice>& dev ) = 0;
 		virtual std::shared_ptr<ShaderProgram> createProgram(const std::shared_ptr<IDevice>& dev, Shader& a, Shader& b) = 0;
+		virtual std::shared_ptr<ShaderUniform> createUniform(std::string name, const std::shared_ptr<ShaderProgram>& sp) = 0;
 		// Binding Functions
 		virtual void bindVertexArray( VertexArray& vao ) = 0;
 		virtual void bindBuffer( Buffer& buf, BufferTypes target) = 0;

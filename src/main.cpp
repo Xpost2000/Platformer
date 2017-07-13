@@ -1,10 +1,13 @@
 #include <iostream>
+/*
 #include "GLDevice.h"
 #include "Shader.h"
 #include "ShaderProgram.h"
 #include "ShaderUniform.h"
 #include "VertexArray.h"
 #include "Buffer.h"
+*/
+#include "typedefs.h"
 
 std::string vert ( R"RW(
 	#version 330 core
@@ -45,12 +48,12 @@ int main(int argc, char** argv){
 		true,
 		CORE_CONTEXT
 	};
-	std::shared_ptr<IDevice> ctx = std::make_shared<GLDevice>(window, info);
-	std::shared_ptr<Buffer> vbo;
-	std::shared_ptr<VertexArray> vao;
-	std::shared_ptr<Shader> vs, fs;
-	std::shared_ptr<ShaderProgram> sp;
-	std::shared_ptr<ShaderUniform> d;
+	core::IDevice ctx = std::make_shared<GLDevice>(window, info);
+	core::Buffer vbo;
+	core::VertexArray vao;
+	core::Shader vs, fs;
+	core::ShaderProgram sp;
+	core::ShaderUniform d;
 	GLfloat vertices[] ={
 		-1.0, -1.0, 0.0, 1.0, 0.0, 0.0,
 		1.0, -1.0, 0.0, 0.0, 1.0, 0.0,
@@ -75,7 +78,7 @@ int main(int argc, char** argv){
 	
 	sp = ctx->createProgram(ctx, *vs, *fs);
 	sp->link();
-	d = std::make_shared<ShaderUniform>( "d", *sp );
+	d = ctx->createUniform("d", sp); 
 
 	std::cout << vs->get_log() << std::endl;
 
@@ -99,7 +102,7 @@ int main(int argc, char** argv){
 			}
 		}
 		sp->use();
-		d->uniformf(.2f);
+		d->uniformf(.7f);
 		ctx->setLineWidth(80);
 		ctx->clearColor(0.5, 0.2, 0.3);
 		ctx->clear(BufferClear::COLOR_DEPTH_BUFFERS);

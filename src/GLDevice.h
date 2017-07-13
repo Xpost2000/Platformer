@@ -21,6 +21,7 @@ public:
 	std::shared_ptr<Shader> createShader(const std::shared_ptr<IDevice>& dev, ShaderType type);
 	std::shared_ptr<ShaderProgram> createProgram(const std::shared_ptr<IDevice>& dev);
 	std::shared_ptr<ShaderProgram> createProgram(const std::shared_ptr<IDevice>& dev, Shader& a, Shader& b);
+	std::shared_ptr<ShaderUniform> createUniform(std::string name, const std::shared_ptr<ShaderProgram>& sp);
 
 	void bindVertexArray( VertexArray& vao );
 	void bindBuffer( Buffer& buf, BufferTypes target);
