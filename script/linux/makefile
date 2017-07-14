@@ -11,6 +11,7 @@ OBJ_FILES= ../../obj/IDevice.o\
 	  ../../obj/Shader.o\
 	  ../../obj/ShaderProgram.o\
 	  ../../obj/ShaderUniform.o\
+	  ../../obj/Bitmap.o\
 	  ../../obj/vectors.o\
 	  ../../obj/main.o
 all:
@@ -25,6 +26,7 @@ all:
 	$(GCC) ../../src/ShaderProgram.cpp $(LIBS) $(FLAGS) -c -o ../../obj/ShaderProgram.o
 	$(GCC) ../../src/vectors.cpp $(LIBS) $(FLAGS) -c -o ../../obj/vectors.o
 	$(GCC) ../../src/ShaderUniform.cpp $(LIBS) $(FLAGS) -c -o ../../obj/ShaderUniform.o
+	$(GCC) ../../src/Bitmap.cpp $(LIBS) $(FLAGS) -c -o ../../obj/Bitmap.o
 link:
 	$(GCC) $(OBJ_FILES) $(LIBS_LINUX) $(FLAGS) -o ../../bin/Game_linux
 clean:

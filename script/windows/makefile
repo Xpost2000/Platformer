@@ -7,6 +7,7 @@ OBJ_FILES= ../../obj/IDevice.o\
 	  ../../obj/Buffer.o\
 	  ../../obj/VertexArray.o\
 	  ../../obj/BufferTypes.o\
+	  ../../obj/Bitmap.o\
 	  ../../obj/GLDevice.o\
 	  ../../obj/Shader.o\
 	  ../../obj/ShaderProgram.o\
@@ -25,6 +26,7 @@ all:
 	$(GCC) ../../src/ShaderProgram.cpp $(LIBS) $(FLAGS) -c -o ../../obj/ShaderProgram.o
 	$(GCC) ../../src/vectors.cpp $(LIBS) $(FLAGS) -c -o ../../obj/vectors.o
 	$(GCC) ../../src/ShaderUniform.cpp $(LIBS) $(FLAGS) -c -o ../../obj/ShaderUniform.o
+	$(GCC) ../../src/Bitmap.cpp $(LIBS) $(FLAGS) -c -o ../../obj/Bitmap.o
 link:
 	$(GCC) $(OBJ_FILES) $(LIBS) $(FLAGS) -o ../../bin/Game.exe
 clean:
