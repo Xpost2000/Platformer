@@ -4,6 +4,12 @@
 #include "vec3.hpp"
 #include "vec2.hpp"
 #include <cstddef>
+
+/*
+ * Templated Matrix4 class.
+ * Header only implementation.
+ */
+
 template<typename t>
 class Matrix4{
 	private:
@@ -292,9 +298,5 @@ class Matrix4{
 			t d[C];
 		};
 };
-using Matrix4f = Matrix4<float>;
-using Matrix4i = Matrix4<int>;
-using Matrix4ui = Matrix4<unsigned int>;
-using Matrix4d = Matrix4<double>;
-using Matrix4b = Matrix4<bool>;
+
 #endif

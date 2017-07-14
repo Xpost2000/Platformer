@@ -1,6 +1,10 @@
 #ifndef BUFFER_CLEAR_TYPES_H
 #define BUFFER_CLEAN_TYPES_H
 #include <GL/glew.h>
+/*
+		scoped enum.
+		Used for IDevice::Clear
+*/
 	enum class BufferClear : int{
 		ALL_BUFFERS = GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT | GL_ACCUM_BUFFER_BIT,
 		COLOR_DEPTH_BUFFERS = GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT,

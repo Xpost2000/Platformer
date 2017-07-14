@@ -29,6 +29,13 @@ void Buffer::set_device(const std::shared_ptr<IDevice>& dev){
 	device = dev;
 }
 
+/*
+ * All the classes below are self explainatory.
+ * These classes all throw exceptions mainly because
+ * in the case that the device is equal to a nullptr
+ * we will at least detect it.
+ */
+
 void Buffer::bind(const BufferTypes target){
 	try{
 	if(device == nullptr){

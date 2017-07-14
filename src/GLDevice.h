@@ -4,6 +4,12 @@
 #include <string>
 #include "gl_info_struct_t.h"
 
+/*
+	Derived class of IDevice.
+	
+	This device implements abstract IDevice with OpenGL.
+*/
+
 class GLDevice : public IDevice{
 public:
 	GLDevice(const GLDevice&) = default;
@@ -11,6 +17,7 @@ public:
 	GLDevice(SDL_Window* window, gl_info_struct_t info);
 	~GLDevice();
 	
+	// All these return shared pointers because these are ment to be used with smart_ptrs.
 	std::shared_ptr<VertexArray> genVertexArray();
 	std::shared_ptr<Buffer> genBuffer();
 	std::shared_ptr<Shader> createShader(ShaderType type);

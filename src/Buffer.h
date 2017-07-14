@@ -6,6 +6,13 @@
 #include "IObjectHandle.h"
 #include "Comparable.h"
 
+/*
+	Buffer class.
+	
+	Mostly intended to be an OpenGL buffer wrapper.
+	easy usage and almost 1 - 1 function call coorelation
+*/
+
 class IDevice;
 class Buffer : public IObjectHandle, public Comparable<Buffer>{
 	public:

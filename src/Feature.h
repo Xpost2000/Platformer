@@ -2,6 +2,7 @@
 #define FEATURE_HPP
 /*
  * Header file that contains feature flags for OpenGL .
+ used with IDevice::Enable and IDevice::Disable
  */
 #include <GL/glew.h>
 	enum class Feature: int{

@@ -2,6 +2,10 @@
 #define DRAW_MODES_H
 #include <GL/glew.h>
 
+/*
+	enum class to state the possible Draw Mode targets
+*/
+
 enum class DrawMode: int{
 	TRIANGLES = GL_TRIANGLES,
 	TRIANGLE_STRIPS = GL_TRIANGLE_STRIP,

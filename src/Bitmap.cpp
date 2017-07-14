@@ -1,6 +1,10 @@
 #include "Bitmap.h"
 #include <GL/glew.h>
 
+/*
+ * Implementation file
+ */
+
 Bitmap::Bitmap( void* data, int w, int h, PixelFormat fmt ) : data(data), width(w), height(h), fmt(fmt){
 }
 
@@ -10,7 +14,10 @@ Bitmap::Bitmap( int w, int h, PixelFormat fmt ) : data(nullptr) , width(w), heig
 Bitmap::~Bitmap() {
 	data = nullptr;
 }
-
+/*
+ * What I do here is that I use a switch statement to check the value of the enum
+ * I return the cooresponding GLenum.
+ */
 int Bitmap::get_format() const{
 	switch(fmt){
 		case RGB:

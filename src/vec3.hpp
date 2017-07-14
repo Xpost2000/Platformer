@@ -231,13 +231,5 @@ class Vector3{
 		}
 };
 
-using iVec3 = Vector3<signed int>;
-using Vec3 = Vector3<float>;
-using dVec3 = Vector3<double>;
-using bVec3 = Vector3<bool>;
-using uiVec3 = Vector3<unsigned int>;
-using cVec3 = Vector3<char>;
-using ucVec3 = Vector3<unsigned char>;
-using lVec3 = Vector3<long>;
-using llVec3 = Vector3<long long>;
+
 #endif
