@@ -28,6 +28,9 @@ class ShaderUniform : public IObjectHandle , public Comparable<ShaderUniform>{
 		void uniformf(float, float, float);
 		void uniformf(float, float, float, float);
 
+		/*
+		 * TODO: Maybe add in overloads to support my math library. Like it's really needed anyways.
+		 */
 		void uniformMatrix4(GLsizei, bool transpose, const GLfloat* val);
 		void uniformMatrix3(GLsizei, bool transpose, const GLfloat* val);
 
