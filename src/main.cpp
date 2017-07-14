@@ -100,14 +100,16 @@ int main(int argc, char** argv){
 	vao->unbind();
 
 	SDL_Surface *surf = IMG_Load("grass.png");
+	Bitmap bm(surf->pixels, surf->w, surf->h, PixelFormat::RGBA);
 	ctx->bindTexture(TextureTarget::TEXTURE2D, *tex);
 	ctx->textureParameter(TextureTarget::TEXTURE2D , TextureParameter::WRAP_T , ParamValue::REPEAT);
 	ctx->textureParameter(TextureTarget::TEXTURE2D , TextureParameter::WRAP_S , ParamValue::REPEAT);
 	ctx->textureParameter(TextureTarget::TEXTURE2D , TextureParameter::MAG_FILTER , ParamValue::LINEAR);
 	ctx->textureParameter(TextureTarget::TEXTURE2D , TextureParameter::MIN_FILTER , ParamValue::LINEAR);
-	ctx->texImage2D(TextureTarget::TEXTURE2D, 0, GL_RGBA, surf->w, surf->h, 0, GL_RGBA, GL_UNSIGNED_BYTE, surf->pixels);	
+	ctx->texImage2D(TextureTarget::TEXTURE2D, 0, bm.get_format(), bm.get_width(), bm.get_height(), 0, bm.get_format(), GL_UNSIGNED_BYTE, bm.get_data());	
 	ctx->genMipmaps( TextureTarget::TEXTURE2D );
 	
+	SDL_FreeSurface(surf);
 	while(true){
 		while(SDL_PollEvent(&ev)){
 			if(ev.type== SDL_QUIT){

@@ -7,6 +7,7 @@
 #include "Shader.h"
 #include "ShaderProgram.h"
 #include "GLDevice.h"
+#include "Bitmap.h"
 #include "ShaderUniform.h"
 #include "Texture.h"
 namespace core{
@@ -17,5 +18,6 @@ namespace core{
 	using ShaderProgram = std::shared_ptr<ShaderProgram>;
 	using ShaderUniform = std::shared_ptr<ShaderUniform>;
 	using Texture = std::shared_ptr<Texture>;
+	using Bitmap = std::shared_ptr<Bitmap>;
 	};
 #endif
