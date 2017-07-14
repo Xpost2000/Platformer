@@ -8,6 +8,7 @@
 #include "ShaderProgram.h"
 #include "GLDevice.h"
 #include "ShaderUniform.h"
+#include "Texture.h"
 namespace core{
 	using Buffer = std::shared_ptr<Buffer>;
 	using VertexArray = std::shared_ptr<VertexArray>;
@@ -15,5 +16,6 @@ namespace core{
 	using Shader = std::shared_ptr<Shader>;
 	using ShaderProgram = std::shared_ptr<ShaderProgram>;
 	using ShaderUniform = std::shared_ptr<ShaderUniform>;
+	using Texture = std::shared_ptr<Texture>;
 	};
 #endif

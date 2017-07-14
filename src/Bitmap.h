@@ -2,8 +2,6 @@
 #define BITMAP_H
 #define UNKNOWN_FORMAT 0x01A
 
-typedef struct SDL_Surface;
-
 typedef enum{
 	RGB,
 	RGBA,

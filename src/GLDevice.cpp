@@ -1,4 +1,5 @@
 #include "GLDevice.h"
+#include "Texture.h"
 #include "ShaderProgram.h"
 #include "ShaderUniform.h"
 #include "Shader.h"
@@ -66,6 +67,13 @@ std::shared_ptr<Buffer> GLDevice::genBuffer(const std::shared_ptr<IDevice>& dev)
 
 std::shared_ptr<ShaderUniform> GLDevice::createUniform(std::string name, const std::shared_ptr<ShaderProgram>& sp){
 	return std::make_shared<ShaderUniform>(name, *sp);
+}
+
+std::shared_ptr<Texture> GLDevice::createTexture(){
+	return std::make_shared<Texture>();
+}
+std::shared_ptr<Texture> GLDevice::createTexture(const std::shared_ptr<IDevice>& dev){
+	return std::make_shared<Texture>(dev);
 }
 
 void GLDevice::bindVertexArray( VertexArray& vao ){
@@ -201,4 +209,22 @@ void GLDevice::linkProgram(ShaderProgram& sp){
 }
 void GLDevice::unuseProgram(){
 	glUseProgram(0);
+}
+
+void GLDevice::bindTexture( TextureTarget targ, Texture& tex){
+	glBindTexture( static_cast<int>(targ), tex.get_handle() );
+}
+
+void GLDevice::unbindTexture( TextureTarget targ ) {
+	glBindTexture(static_cast<int>(targ), 0);
+}
+
+void GLDevice::texImage2D(TextureTarget targ, GLint level, GLint inFmt, GLsizei width, GLsizei height, GLint border, GLenum format, GLenum type, const GLvoid* data){
+	glTexImage2D( static_cast<int>(targ), level, inFmt, width, height, border, format, type, data );
+}
+void GLDevice::textureParameter(TextureTarget targ, TextureParameter param, ParamValue val){
+	glTexParameteri( static_cast<int>(targ), static_cast<int>(param), static_cast<int>(val) );
+}
+void GLDevice::genMipmaps( TextureTarget targ ){
+	glGenerateMipmap(static_cast<int>(targ));
 }

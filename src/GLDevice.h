@@ -15,18 +15,26 @@ public:
 	std::shared_ptr<Buffer> genBuffer();
 	std::shared_ptr<Shader> createShader(ShaderType type);
 	std::shared_ptr<ShaderProgram> createProgram();
+	std::shared_ptr<Texture> createTexture();
 
 	std::shared_ptr<VertexArray> genVertexArray(const std::shared_ptr<IDevice>& dev);
 	std::shared_ptr<Buffer> genBuffer(const std::shared_ptr<IDevice>& dev);
 	std::shared_ptr<Shader> createShader(const std::shared_ptr<IDevice>& dev, ShaderType type);
 	std::shared_ptr<ShaderProgram> createProgram(const std::shared_ptr<IDevice>& dev);
 	std::shared_ptr<ShaderProgram> createProgram(const std::shared_ptr<IDevice>& dev, Shader& a, Shader& b);
+	std::shared_ptr<Texture> createTexture(const std::shared_ptr<IDevice>& dev);
 	std::shared_ptr<ShaderUniform> createUniform(std::string name, const std::shared_ptr<ShaderProgram>& sp);
 
 	void bindVertexArray( VertexArray& vao );
 	void bindBuffer( Buffer& buf, BufferTypes target);
 	void unbindBuffer(BufferTypes target);
 	void unbindVertexArray();
+	void bindTexture( TextureTarget targ,  Texture& tex ); 
+	void unbindTexture( TextureTarget targ ) ;
+
+	void texImage2D(TextureTarget targ, GLint level, GLint inFmt, GLsizei width, GLsizei height, GLint border, GLenum format, GLenum type, const GLvoid* data);	
+	void textureParameter(TextureTarget targ, TextureParameter param, ParamValue val);
+	void genMipmaps( TextureTarget targ );
 
 	void clear(const BufferClear buf);
 	void clearColor(GLclampf r = 1.0, GLclampf g = 1.0, GLclampf b = 1.0, GLclampf a = 1.0);
