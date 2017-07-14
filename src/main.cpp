@@ -1,13 +1,6 @@
 #include <iostream>
+#include <map>
 #include <SDL2/SDL_image.h>
-/*
-#include "GLDevice.h"
-#include "Shader.h"
-#include "ShaderProgram.h"
-#include "ShaderUniform.h"
-#include "VertexArray.h"
-#include "Buffer.h"
-*/
 #include "typedefs.h"
 
 std::string vert ( R"RW(
@@ -30,6 +23,10 @@ std::string frag(R"RW(
 		color = texture(tex, vClr);	
 	}
 )RW");
+
+std::string array[] ={
+	"grass", "stone"
+};
 
 int main(int argc, char** argv){
 	SDL_Window* window;
@@ -57,10 +54,11 @@ int main(int argc, char** argv){
 	core::Shader vs, fs;
 	core::ShaderProgram sp;
 	core::ShaderUniform d;
-	core::Texture tex;
+	std::map<std::string, core::Texture> m;
+	core::Texture tex, tex1;
 	GLfloat vertices[] ={
-		-1.0, -1.0, 0.0, 1.0, 0.0,
-		1.0, -1.0, 0.0, 0.0, 1.0,
+		-1.0, -1.0, 0.0, 0.0, 0.0,
+		1.0, -1.0, 0.0, 1.0, 1.0,
 		0.0, 1.0, 0.0, 1.0, 0.0
 	};
 
@@ -75,6 +73,7 @@ int main(int argc, char** argv){
 	vs = ctx->createShader(ctx, ShaderType::VERTEX);
 	fs = ctx->createShader(ctx, ShaderType::FRAGMENT);
 	tex = ctx->createTexture(ctx);
+	tex1 = ctx->createTexture(ctx);
 
 	vs->source(1, vert, 0);
 	fs->source(1, frag, 0);
@@ -85,6 +84,7 @@ int main(int argc, char** argv){
 	sp->link();
 	d = ctx->createUniform("tex", sp); 
 
+	std::cout << fs->get_log() << std::endl;
 	std::cout << vs->get_log() << std::endl;
 
 	vbo->bind(BufferTypes::ARRAY_BUFFER);
@@ -99,8 +99,8 @@ int main(int argc, char** argv){
 	vbo->unbind(BufferTypes::ARRAY_BUFFER);
 	vao->unbind();
 
-	SDL_Surface *surf = IMG_Load("grass.png");
-	Bitmap bm(surf->pixels, surf->w, surf->h, PixelFormat::RGBA);
+	ImageSurface surf("grass.png");
+	Bitmap bm(surf.surf->pixels, surf.surf->w, surf.surf->h, PixelFormat::RGBA);
 	ctx->bindTexture(TextureTarget::TEXTURE2D, *tex);
 	ctx->textureParameter(TextureTarget::TEXTURE2D , TextureParameter::WRAP_T , ParamValue::REPEAT);
 	ctx->textureParameter(TextureTarget::TEXTURE2D , TextureParameter::WRAP_S , ParamValue::REPEAT);
@@ -108,8 +108,19 @@ int main(int argc, char** argv){
 	ctx->textureParameter(TextureTarget::TEXTURE2D , TextureParameter::MIN_FILTER , ParamValue::LINEAR);
 	ctx->texImage2D(TextureTarget::TEXTURE2D, 0, bm.get_format(), bm.get_width(), bm.get_height(), 0, bm.get_format(), GL_UNSIGNED_BYTE, bm.get_data());	
 	ctx->genMipmaps( TextureTarget::TEXTURE2D );
+
+	ImageSurface s ("stone.png");
+	bm = Bitmap(s.surf->pixels, s.surf->w, s.surf->h, PixelFormat::RGBA);
+	ctx->bindTexture(TextureTarget::TEXTURE2D, *tex1);
+	ctx->textureParameter(TextureTarget::TEXTURE2D , TextureParameter::WRAP_T , ParamValue::REPEAT);
+	ctx->textureParameter(TextureTarget::TEXTURE2D , TextureParameter::WRAP_S , ParamValue::REPEAT);
+	ctx->textureParameter(TextureTarget::TEXTURE2D , TextureParameter::MAG_FILTER , ParamValue::LINEAR);
+	ctx->textureParameter(TextureTarget::TEXTURE2D , TextureParameter::MIN_FILTER , ParamValue::LINEAR);
+	ctx->texImage2D(TextureTarget::TEXTURE2D, 0, bm.get_format(), bm.get_width(), bm.get_height(), 0, bm.get_format(), GL_UNSIGNED_BYTE, bm.get_data());	
+	ctx->genMipmaps( TextureTarget::TEXTURE2D );
 	
-	SDL_FreeSurface(surf);
+	m.insert(std::pair< std::string, core::Texture > (array[1], tex1));
+	m.insert(std::pair< std::string, core::Texture > (array[0], tex));	
 	while(true){
 		while(SDL_PollEvent(&ev)){
 			if(ev.type== SDL_QUIT){
@@ -123,6 +134,7 @@ int main(int argc, char** argv){
 		ctx->viewport(0, 0, 1024, 768);
 
 		d->uniformf(0);
+		ctx->bindTexture(TextureTarget::TEXTURE2D, *m[array[0]]);
 		glActiveTexture(GL_TEXTURE0);
 		ctx->bindVertexArray(*vao);
 		ctx->drawArrays(DrawMode::TRIANGLES, 0, 3);
