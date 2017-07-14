@@ -10,6 +10,7 @@
 #include "Bitmap.h"
 #include "ShaderUniform.h"
 #include "Texture.h"
+#include "sdl_surface_load_image_wrapper.h"
 namespace core{
 	using Buffer = std::shared_ptr<Buffer>;
 	using VertexArray = std::shared_ptr<VertexArray>;
