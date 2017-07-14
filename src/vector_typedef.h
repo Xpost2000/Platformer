@@ -1,5 +1,10 @@
 #ifndef VECTOR_TYPES_H
 #define VECTOR_TYPES_H
+template<typename t>
+class Vector3;
+template<typename t>
+class Vector2;
+
 using iVec3 = Vector3<signed int>;
 using Vec3 = Vector3<float>;
 using dVec3 = Vector3<double>;

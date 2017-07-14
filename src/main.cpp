@@ -62,6 +62,8 @@ int main(int argc, char** argv){
 		0.0, 1.0, 0.0, 1.0, 0.0
 	};
 
+	int index = 0;
+
 	std::cout << "According to the OpenGL context \n";
 
 	std::cout << "MAJOR : " << ctx->getInteger(GetParam::MAJOR_VERSION) << std::endl;
@@ -126,6 +128,12 @@ int main(int argc, char** argv){
 			if(ev.type== SDL_QUIT){
 				return 0;
 			}
+			if(ev.type == SDL_KEYDOWN){
+				index = 1;
+			}
+			else{
+				index = 0;
+			}
 		}
 		sp->use();
 		ctx->setLineWidth(80);
@@ -134,7 +142,7 @@ int main(int argc, char** argv){
 		ctx->viewport(0, 0, 1024, 768);
 
 		d->uniformf(0);
-		ctx->bindTexture(TextureTarget::TEXTURE2D, *m[array[0]]);
+		ctx->bindTexture(TextureTarget::TEXTURE2D, *m[array[index]]);
 		glActiveTexture(GL_TEXTURE0);
 		ctx->bindVertexArray(*vao);
 		ctx->drawArrays(DrawMode::TRIANGLES, 0, 3);
