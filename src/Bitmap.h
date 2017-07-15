@@ -17,8 +17,10 @@ typedef enum{
 	Contains pixel data width and height
 	as well as an enum that states the pixel format
 */
+struct SDL_Surface;
 class Bitmap{
 	public:
+		Bitmap( SDL_Surface* , PixelFormat fmt);
 		Bitmap( void*, int, int, PixelFormat fmt);
 		Bitmap ( int , int , PixelFormat fmt);
 		Bitmap();

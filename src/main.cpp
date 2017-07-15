@@ -102,7 +102,8 @@ int main(int argc, char** argv){
 	vao->unbind();
 
 	ImageSurface surf("grass.png");
-	Bitmap bm(surf.surf->pixels, surf.surf->w, surf.surf->h, PixelFormat::RGBA);
+	// using delegated constructor
+	Bitmap bm(surf.surf, PixelFormat::RGBA);
 	ctx->bindTexture(TextureTarget::TEXTURE2D, *tex);
 	ctx->textureParameter(TextureTarget::TEXTURE2D , TextureParameter::WRAP_T , ParamValue::REPEAT);
 	ctx->textureParameter(TextureTarget::TEXTURE2D , TextureParameter::WRAP_S , ParamValue::REPEAT);

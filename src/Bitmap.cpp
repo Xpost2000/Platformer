@@ -1,9 +1,13 @@
 #include "Bitmap.h"
+#include <SDL2/SDL.h>
 #include <GL/glew.h>
 
 /*
  * Implementation file
  */
+
+Bitmap::Bitmap( SDL_Surface* s, PixelFormat fmt) : Bitmap(s->pixels, s->w, s->h, fmt){
+}
 
 Bitmap::Bitmap( void* data, int w, int h, PixelFormat fmt ) : data(data), width(w), height(h), fmt(fmt){
 }
