@@ -1,6 +1,5 @@
 GCC=g++
-LIBS=-lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lglew32 -lOpenGL32
-LIBS_LINUX=-lSDL2main -lSDL2 -lSDL2_image -lGLEW -lGL
+LIBS=-lSDL2main -lSDL2 -lSDL2_image -lGLEW -lGL
 FLAGS=-std=gnu++14 -Wall -O2
 OBJ_FILES= ../../obj/IDevice.o\
 	  ../../obj/IObjectHandle.o\
