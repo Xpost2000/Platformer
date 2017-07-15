@@ -273,7 +273,7 @@ class Matrix4{
 		inline constexpr const size_t c() const { return C; }
 		inline constexpr const auto index(const size_t i){ if(i < 16) return d[i]; else return 0;  }
 		inline constexpr const auto data() { return d; }
-		inline const auto& value_ptr() { return &d[0]; }
+		inline const auto& value_ptr() { return data; } // fix error
 	private:
 		static constexpr const size_t C = 16;
 		union{
