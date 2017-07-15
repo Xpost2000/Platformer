@@ -1,6 +1,7 @@
 #include <iostream>
 #include <map>
 #include <SDL2/SDL_image.h>
+#include "BitmapUtil.h"
 #include "typedefs.h"
 
 std::string vert ( R"RW(
@@ -48,14 +49,14 @@ int main(int argc, char** argv){
 		true,
 		CORE_CONTEXT
 	};
-	core::IDevice ctx = std::make_shared<GLDevice>(window, info);
-	core::Buffer vbo;
-	core::VertexArray vao;
-	core::Shader vs, fs;
-	core::ShaderProgram sp;
-	core::ShaderUniform d;
-	std::map<std::string, core::Texture> m;
-	core::Texture tex, tex1;
+	ptrs::IDevice ctx = std::make_shared<GLDevice>(window, info);
+	ptrs::Buffer vbo;
+	ptrs::VertexArray vao;
+	ptrs::Shader vs, fs;
+	ptrs::ShaderProgram sp;
+	ptrs::ShaderUniform d;
+	std::map<std::string, ptrs::Texture> m;
+	ptrs::Texture tex, tex1;
 	GLfloat vertices[] ={
 		-1.0, -1.0, 0.0, 0.0, 0.0,
 		1.0, -1.0, 0.0, 1.0, 1.0,
@@ -101,29 +102,30 @@ int main(int argc, char** argv){
 	vbo->unbind(BufferTypes::ARRAY_BUFFER);
 	vao->unbind();
 
-	ImageSurface surf("grass.png");
 	// using delegated constructor
-	Bitmap bm(surf.surf, PixelFormat::RGBA);
+	ImageSurface es("grass.png");
+	Bitmap bm (es.surf, PixelFormat::RGBA);
 	ctx->bindTexture(TextureTarget::TEXTURE2D, *tex);
 	ctx->textureParameter(TextureTarget::TEXTURE2D , TextureParameter::WRAP_T , ParamValue::REPEAT);
 	ctx->textureParameter(TextureTarget::TEXTURE2D , TextureParameter::WRAP_S , ParamValue::REPEAT);
 	ctx->textureParameter(TextureTarget::TEXTURE2D , TextureParameter::MAG_FILTER , ParamValue::LINEAR);
 	ctx->textureParameter(TextureTarget::TEXTURE2D , TextureParameter::MIN_FILTER , ParamValue::LINEAR);
-	ctx->texImage2D(TextureTarget::TEXTURE2D, 0, bm.get_format(), bm.get_width(), bm.get_height(), 0, bm.get_format(), GL_UNSIGNED_BYTE, bm.get_data());	
+	tex->texImage2D(TextureTarget::TEXTURE2D, bm, 0, 0, GL_UNSIGNED_BYTE);	
 	ctx->genMipmaps( TextureTarget::TEXTURE2D );
 
 	ImageSurface s ("stone.png");
-	bm = Bitmap(s.surf->pixels, s.surf->w, s.surf->h, PixelFormat::RGBA);
+	bm = Bitmap(s.surf, PixelFormat::RGBA);
 	ctx->bindTexture(TextureTarget::TEXTURE2D, *tex1);
 	ctx->textureParameter(TextureTarget::TEXTURE2D , TextureParameter::WRAP_T , ParamValue::REPEAT);
 	ctx->textureParameter(TextureTarget::TEXTURE2D , TextureParameter::WRAP_S , ParamValue::REPEAT);
 	ctx->textureParameter(TextureTarget::TEXTURE2D , TextureParameter::MAG_FILTER , ParamValue::LINEAR);
 	ctx->textureParameter(TextureTarget::TEXTURE2D , TextureParameter::MIN_FILTER , ParamValue::LINEAR);
-	ctx->texImage2D(TextureTarget::TEXTURE2D, 0, bm.get_format(), bm.get_width(), bm.get_height(), 0, bm.get_format(), GL_UNSIGNED_BYTE, bm.get_data());	
+	tex1->texImage2D(TextureTarget::TEXTURE2D, bm, 0, 0, GL_UNSIGNED_BYTE);	
 	ctx->genMipmaps( TextureTarget::TEXTURE2D );
 	
-	m.insert(std::pair< std::string, core::Texture > (array[1], tex1));
-	m.insert(std::pair< std::string, core::Texture > (array[0], tex));	
+	m.insert(std::pair< std::string, ptrs::Texture > (array[1], tex1));
+	m.insert(std::pair< std::string, ptrs::Texture > (array[0], tex));	
+	ctx->unbindTexture( TextureTarget::TEXTURE2D );
 	while(true){
 		while(SDL_PollEvent(&ev)){
 			if(ev.type== SDL_QUIT){

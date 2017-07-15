@@ -13,7 +13,7 @@
 #include "sdl_surface_load_image_wrapper.h"
 #include "vector_typedef.h"
 #include "matrix_typedef.h"
-namespace core{
+namespace ptrs{
 	using Buffer = std::shared_ptr<Buffer>;
 	using VertexArray = std::shared_ptr<VertexArray>;
 	using IDevice = std::shared_ptr<GLDevice>;
@@ -22,5 +22,6 @@ namespace core{
 	using ShaderUniform = std::shared_ptr<ShaderUniform>;
 	using Texture = std::shared_ptr<Texture>;
 	using Bitmap = std::shared_ptr<Bitmap>;
+	using ImageSurface = std::shared_ptr<ImageSurface>;
 	};
 #endif
