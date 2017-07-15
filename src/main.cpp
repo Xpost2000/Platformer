@@ -9,22 +9,27 @@ std::string vert ( R"RW(
 	#version 330 core
 	layout(location=0) in vec3 pos;
 	layout(location=1) in vec2 clr;
+	layout(location=2) in vec3 fst;
 	out vec2 vClr;
+	out vec3 vFst;
 	uniform mat4 model;
 	void main(){
 		gl_Position = model*vec4(pos, 1.0f);
 		vClr = clr;
+		vFst = fst;
 	}
 )RW");
 std::string frag(R"RW(
 	#version 330 core
 	uniform sampler2D tex;
 	in vec2 vClr;
+	in vec3 vFst;
 	out vec4 color;
 	uniform float d;
 	void main(){
 		color = texture(tex, vClr);	
 		color *= vec4(d);
+		color += vec4(vFst, 1.0f);
 	}
 )RW");
 
@@ -54,6 +59,8 @@ int main(int argc, char** argv){
 	};
 	ptrs::IDevice ctx = std::make_shared<GLDevice>(window, info);
 	ptrs::Buffer vbo;
+	ptrs::Buffer vbo3;
+	ptrs::VertexArray vao3;
 	ptrs::Buffer vbo2;
 	ptrs::VertexArray vao2;
 	ptrs::VertexArray vao;
@@ -65,15 +72,21 @@ int main(int argc, char** argv){
 	std::map<std::string, ptrs::Texture> m;
 	ptrs::Texture tex, tex1;
 	GLfloat vertices[] ={
-		-.5, -.5, 0.0, 0.0, 0.0,
-		.5, -.5, 0.0, 1.0, 1.0,
-		0., .5, 0.0, 1.0, 0.0
+		-.5, -.5, 0.0, 0.0, 0.0, 0.2, 0.0, 0.0,
+		.5, -.5, 0.0, 1.0, 1.0, 0.0, 0.0, 0.2,
+		0., .5, 0.0, 1.0, 0.0, 1.0, 1.0, 1.0
 	};
 	GLfloat rect[] = {
-		-1.0, 0.0, 0.0, 0.0, 1.0,
-		-1.0, -1.0, 0.0, 0.0, 0.0,
-		1.0, 0.0, 0.0, 1, 1,
-		1.0, -1.0, 0.0,  1.0, 0.0
+		-1.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, 1.0,
+		-1.0, -1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+		1.0, 0.0, 0.0, 1, 1, 1.0, 1.0, 1.0,
+		1.0, -1.0, 0.0,  1.0, 0.0, 0.0, 0.0, 0.0
+	};
+	GLfloat gradient[] = {
+		-1.0, 1.0, 0.0, 0.0, 0.0, 1.0,
+		-1.0, -1.0, 0.0, 1.0, 1.0, 1.0,
+		 1.0, 1.0, 0.0, 0.0, 0.0, 1.0,
+		 1.0, -1.0, 0.0, 1.0, 1.0, 1.0
 	};
 
 	int index = 0;
@@ -88,6 +101,9 @@ int main(int argc, char** argv){
 
 	vbo2 = ctx->genBuffer(ctx);
 	vao2 = ctx->genVertexArray(ctx);
+	
+	vbo3 = ctx->genBuffer(ctx);
+	vao3 = ctx->genVertexArray(ctx);
 
 	vs = ctx->createShader(ctx, ShaderType::VERTEX);
 	fs = ctx->createShader(ctx, ShaderType::FRAGMENT);
@@ -112,8 +128,10 @@ int main(int argc, char** argv){
 	vao->bind();
 
 	vbo->bufferData( BufferTypes::ARRAY_BUFFER, sizeof(vertices), vertices, BufferUsage::STATIC_DRAW );
-	vao->attribPointer(0, 3, GL_FLOAT, false, sizeof(float)*5, (const void*)0);
-	vao->attribPointer(1, 2, GL_FLOAT, false, sizeof(float)*5, (const void*)(sizeof(float)*3));
+	vao->attribPointer(0, 3, GL_FLOAT, false, sizeof(float)*8, (const void*)0);
+	vao->attribPointer(1, 2, GL_FLOAT, false, sizeof(float)*8, (const void*)(sizeof(float)*3));
+	vao->attribPointer(2, 3, GL_FLOAT, false, sizeof(float)*8, (const void*)(sizeof(float)*5));
+	vao->enableAttribute(2);
 	vao->enableAttribute(1);
 	vao->enableAttribute(0);
 
@@ -123,12 +141,25 @@ int main(int argc, char** argv){
 	vbo2->bind(BufferTypes::ARRAY_BUFFER);
 	vao2->bind();
 	vbo2->bufferData( BufferTypes::ARRAY_BUFFER, sizeof(rect), rect, BufferUsage::STATIC_DRAW );
-	vao2->attribPointer(0, 3, GL_FLOAT, false, sizeof(float)*5, (const void*)0);
-	vao2->attribPointer(1, 2, GL_FLOAT, false, sizeof(float)*5, (const void*)(sizeof(float)*3));
+	vao2->attribPointer(0, 3, GL_FLOAT, false, sizeof(float)*8, (const void*)0);
+	vao2->attribPointer(1, 2, GL_FLOAT, false, sizeof(float)*8, (const void*)(sizeof(float)*3));
+	vao2->attribPointer(2, 3, GL_FLOAT, false, sizeof(float)*8, (const void*)(sizeof(float)*5));
+	vao2->enableAttribute(2);
 	vao2->enableAttribute(1);
 	vao2->enableAttribute(0);
 	vao2->unbind();
 	vbo2->unbind(BufferTypes::ARRAY_BUFFER);
+
+
+	vbo3->bind(BufferTypes::ARRAY_BUFFER);
+	vao3->bind();
+	vbo3->bufferData( BufferTypes::ARRAY_BUFFER, sizeof(gradient), gradient, BufferUsage::STATIC_DRAW );
+	vao3->attribPointer(0, 3, GL_FLOAT, false, sizeof(float)*6, (const void*)0);
+	vao3->attribPointer(2, 3, GL_FLOAT, false, sizeof(float)*6, (const void*)(sizeof(float)*3));
+	vao3->enableAttribute(2);
+	vao3->enableAttribute(0);
+	vao3->unbind();
+	vbo3->unbind(BufferTypes::ARRAY_BUFFER);
 
 	// using delegated constructor
 	ImageSurface es("grass.png");
@@ -173,8 +204,14 @@ int main(int argc, char** argv){
 		ctx->clear(BufferClear::COLOR_DEPTH_BUFFERS);
 		ctx->viewport(0, 0, 1024, 768);
 
+		model = Matrix4f::Identity();
+		matrix->uniformMatrix4(1, false, model.data());
+		ctx->bindVertexArray(*vao3);
+		ctx->drawArrays(DrawMode::TRIANGLE_STRIPS, 0, 4);
+		
 		ctx->bindVertexArray(*vao);
 		d->uniformi(0);
+		
 		ctx->bindTexture(TextureTarget::TEXTURE2D, *m[array[index]]);
 		model = Matrix4f::Identity();
 		model = Matrix4f::translate( model, Vec3( 0.5, 0.0, 0.0 ) );
@@ -214,6 +251,7 @@ int main(int argc, char** argv){
 		ctx->drawArrays(DrawMode::TRIANGLE_STRIPS, 0, 4);
 
 		ctx->unbindVertexArray();
+		ctx->unbindTexture(TextureTarget::TEXTURE2D);
 
 
 		SDL_GL_SwapWindow(window);
