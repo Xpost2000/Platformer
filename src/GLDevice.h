@@ -24,6 +24,12 @@ public:
 	std::shared_ptr<ShaderProgram> createProgram();
 	std::shared_ptr<Texture> createTexture();
 
+	std::shared_ptr<Renderbuffer> createRenderbuffer();
+	std::shared_ptr<Framebuffer> createFramebuffer();
+
+	std::shared_ptr<Renderbuffer> createRenderbuffer( const std::shared_ptr<IDevice>& dev );
+	std::shared_ptr<Framebuffer> createFramebuffer(const std::shared_ptr<IDevice>& dev);
+
 	std::shared_ptr<VertexArray> genVertexArray(const std::shared_ptr<IDevice>& dev);
 	std::shared_ptr<Buffer> genBuffer(const std::shared_ptr<IDevice>& dev);
 	std::shared_ptr<Shader> createShader(const std::shared_ptr<IDevice>& dev, ShaderType type);
@@ -38,6 +44,10 @@ public:
 	void unbindVertexArray();
 	void bindTexture( TextureTarget targ,  Texture& tex ); 
 	void unbindTexture( TextureTarget targ ) ;
+	void bindFramebuffer( FrameBufferTarget fbt, Framebuffer &fb);
+	void bindRenderbuffer( Renderbuffer& rb );
+	void unbindFramebuffer( FrameBufferTarget fbt );
+	void unbindRenderbuffer( );
 
 	void texImage2D(TextureTarget targ, GLint level, GLint inFmt, GLsizei width, GLsizei height, GLint border, GLenum format, GLenum type, const GLvoid* data);	
 	void textureParameter(TextureTarget targ, TextureParameter param, ParamValue val);
@@ -59,6 +69,12 @@ public:
 
 	void shaderSource(Shader&m, GLsizei, std::string , const GLint*);
 	void compileShader(Shader&);
+
+	 void renderBufferStorage( RenderBufferInternalFormat fmt ) ;
+	// 2D
+	 void frameBufferTexture(FrameBufferTarget rb, FrameBufferAttachment attach, TextureTarget tt, Texture& tex, GLint evel );
+	 void frameBufferRenderbuffer( FrameBufferAttachment attach, Renderbuffer& rbo );
+
 
 	void detachShader(ShaderProgram&, Shader&);
 	void attachShader(ShaderProgram&, Shader&);

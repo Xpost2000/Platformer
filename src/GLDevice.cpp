@@ -1,5 +1,7 @@
 #include "GLDevice.h"
 #include "Texture.h"
+#include "Renderbuffer.h"
+#include "Framebuffer.h"
 #include "ShaderProgram.h"
 #include "ShaderUniform.h"
 #include "Shader.h"
@@ -45,6 +47,19 @@ std::shared_ptr<Shader> GLDevice::createShader(ShaderType type){
 }
 std::shared_ptr<ShaderProgram> GLDevice::createProgram(){
 	return std::make_shared<ShaderProgram>();
+}
+
+std::shared_ptr<Renderbuffer> GLDevice::createRenderbuffer(){
+	return std::make_shared<Renderbuffer>();
+}
+std::shared_ptr<Framebuffer> GLDevice::createFramebuffer(){
+	return std::make_shared<Framebuffer>();
+}
+std::shared_ptr<Framebuffer> GLDevice::createFramebuffer(const std::shared_ptr<IDevice>& dev){
+	return std::make_shared<Framebuffer>(dev);
+}
+std::shared_ptr<Renderbuffer> GLDevice::createRenderbuffer(const std::shared_ptr<IDevice>& dev){
+	return std::make_shared<Renderbuffer>(dev);
 }
 
 std::shared_ptr<ShaderProgram> GLDevice::createProgram( const std::shared_ptr<IDevice>& dev ){
@@ -232,3 +247,25 @@ void GLDevice::textureParameter(TextureTarget targ, TextureParameter param, Para
 void GLDevice::genMipmaps( TextureTarget targ ){
 	glGenerateMipmap(static_cast<int>(targ));
 }
+void GLDevice::bindFramebuffer( FrameBufferTarget fbt, Framebuffer &fb){
+	glBindFramebuffer(static_cast<int>(fbt), fb.get_handle());
+}
+void GLDevice::bindRenderbuffer( Renderbuffer& rb ){
+	glBindRenderbuffer( GL_RENDERBUFFER, rb.get_handle() );
+}
+void GLDevice::unbindFramebuffer( FrameBufferTarget fbt){
+	glBindFramebuffer(static_cast<int>(fbt), 0);
+}
+void GLDevice::unbindRenderbuffer(){
+	glBindRenderbuffer( GL_RENDERBUFFER, 0 );
+}
+void GLDevice::renderBufferStorage( RenderBufferInternalFormat fmt ){
+
+}
+// 2D
+void GLDevice::frameBufferTexture(FrameBufferTarget rb, FrameBufferAttachment attach, TextureTarget tt, Texture& tex, GLint level ){
+}
+void GLDevice::frameBufferRenderbuffer( FrameBufferAttachment attach, Renderbuffer& rbo ){
+}
+
+

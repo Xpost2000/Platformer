@@ -1,6 +1,9 @@
 #ifndef INTERFACE_DEVICE_HPP
 #define INTERFACE_DEVICE_HPP
 #include <memory>
+#include "FramebufferTargets.h"
+#include "RenderbufferInternalFormat.h"
+#include "FramebufferAttachmentTarget.h"
 #include "GetParam.h"
 #include "TextureParameter.h"
 #include "Feature.h"
@@ -51,6 +54,8 @@ class IDevice{
 		virtual std::shared_ptr<Shader> createShader( ShaderType type ) = 0;
 		virtual std::shared_ptr<ShaderProgram> createProgram() = 0;
 		virtual std::shared_ptr<Texture> createTexture() = 0;
+		virtual std::shared_ptr<Renderbuffer> createRenderbuffer() = 0;
+		virtual std::shared_ptr<Framebuffer> createFramebuffer() = 0;
 
 		virtual std::shared_ptr<VertexArray> genVertexArray(const std::shared_ptr<IDevice>& dev) = 0;
 		virtual std::shared_ptr<Texture> createTexture(const std::shared_ptr<IDevice>& dev) = 0;
@@ -59,12 +64,17 @@ class IDevice{
 		virtual std::shared_ptr<ShaderProgram> createProgram( const std::shared_ptr<IDevice>& dev ) = 0;
 		virtual std::shared_ptr<ShaderProgram> createProgram(const std::shared_ptr<IDevice>& dev, Shader& a, Shader& b) = 0;
 		virtual std::shared_ptr<ShaderUniform> createUniform(std::string name, const std::shared_ptr<ShaderProgram>& sp) = 0;
+		virtual std::shared_ptr<Renderbuffer> createRenderbuffer( const std::shared_ptr<IDevice>& dev ) = 0;
+		virtual std::shared_ptr<Framebuffer> createFramebuffer( const std::shared_ptr<IDevice>& dev ) = 0;
 		// Binding Functions
 		virtual void bindVertexArray( VertexArray& vao ) = 0;
 		virtual void bindBuffer( Buffer& buf, BufferTypes target) = 0;
 		virtual void unbindBuffer( BufferTypes target ) = 0 ;
 		virtual void unbindVertexArray( ) = 0;
 		virtual void bindTexture( TextureTarget targ, Texture& tex ) = 0; 
+		virtual void bindFramebuffer( FrameBufferTarget fbt, Framebuffer& fb ) = 0;
+		virtual void bindRenderbuffer( Renderbuffer& rb ) = 0;
+
 		virtual void unbindTexture( TextureTarget targ ) = 0;
 		// Clear Functions
 		virtual void clear(const BufferClear buf) = 0;
@@ -87,6 +97,7 @@ class IDevice{
 		virtual void vertexAttribPointer(GLuint index, GLint size, GLenum type, bool normalized, GLsizei stride, const GLvoid* offsetPtr) = 0;
 		virtual void enableAttribute(GLint index) = 0;
 		virtual void shaderSource(Shader&, GLsizei, std::string , const GLint*) = 0;
+
 		virtual void compileShader(Shader&) = 0;
 
 		virtual void detachShader(ShaderProgram&, Shader&) = 0;
@@ -95,6 +106,10 @@ class IDevice{
 		virtual void linkProgram(ShaderProgram&) = 0;
 		virtual void unuseProgram() = 0;
 
+		virtual void renderBufferStorage( RenderBufferInternalFormat fmt ) = 0;
+		// 2D
+		virtual void frameBufferTexture(FrameBufferTarget rb, FrameBufferAttachment attach, TextureTarget tt, Texture& tex, GLint evel ) = 0;
+		virtual void frameBufferRenderbuffer( FrameBufferAttachment attach, Renderbuffer& rbo ) = 0;
 
 		// Get
 		
