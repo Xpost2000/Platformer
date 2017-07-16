@@ -4,6 +4,10 @@
 #include "IObjectHandle.h"
 #include "Comparable.h"
 class IDevice;
+/*
+TODO : Add visitor pattern functions like I do for all other
+Object Handles.
+*/
 class Framebuffer : public IObjectHandle, public Comparable<Framebuffer> {
 	public:
 		Framebuffer( const Framebuffer& other ) = default;

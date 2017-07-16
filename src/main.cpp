@@ -51,7 +51,7 @@ std::string frag1(R"RW(
 	out vec4 color;
 	void main(){
 		color = texture(tex, vClr);	
-		color -= vec4(0.0, 0.4, 0.3, 0.5);
+		color -= vec4(0.0, 0.4, 1., 1.0);
 	}
 )RW");
 std::string array[] ={

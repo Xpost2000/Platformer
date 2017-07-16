@@ -37,7 +37,7 @@ all:
 	$(GCC) ../../src/sdl_surface_load_image_wrapper.cpp $(LIBS) $(FLAGS) -c -o ../../obj/sdl_surface_load_image_wrapper.o
 	$(GCC) ../../src/Texture.cpp $(LIBS) $(FLAGS) -c -o ../../obj/Texture.o
 link:
-	$(GCC) $(OBJ_FILES) $(LIBS) $(FLAGS) -o ../../bin/Game_linux
+	$(GCC) $(OBJ_FILES) $(LIBS_LINUX) $(FLAGS) -o ../../bin/Game_linux
 clean:
 	rm ../../obj/*.o
 exec:
