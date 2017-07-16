@@ -9,6 +9,8 @@ OBJ_FILES= ../../obj/IDevice.o\
 	  ../../obj/BufferTypes.o\
 	  ../../obj/GLDevice.o\
 	  ../../obj/Shader.o\
+	  ../../obj/Renderbuffer.o\
+	  ../../obj/Framebuffer.o\
 	  ../../obj/ShaderProgram.o\
 	  ../../obj/ShaderUniform.o\
 	  ../../obj/Texture.o\
@@ -30,6 +32,8 @@ all:
 	$(GCC) ../../src/vectors.cpp $(LIBS) $(FLAGS) -c -o ../../obj/vectors.o
 	$(GCC) ../../src/ShaderUniform.cpp $(LIBS) $(FLAGS) -c -o ../../obj/ShaderUniform.o
 	$(GCC) ../../src/Bitmap.cpp $(LIBS) $(FLAGS) -c -o ../../obj/Bitmap.o
+	$(GCC) ../../src/Renderbuffer.cpp $(LIBS) $(FLAGS) -c -o ../../obj/Renderbuffer.o
+	$(GCC) ../../src/Framebuffer.cpp $(LIBS) $(FLAGS) -c -o ../../obj/Framebuffer.o
 	$(GCC) ../../src/BitmapUtil.cpp $(LIBS) $(FLAGS) -c -o ../../obj/BitmapUtil.o
 	$(GCC) ../../src/sdl_surface_load_image_wrapper.cpp $(LIBS) $(FLAGS) -c -o ../../obj/sdl_surface_load_image_wrapper.o
 	$(GCC) ../../src/Texture.cpp $(LIBS) $(FLAGS) -c -o ../../obj/Texture.o
