@@ -35,6 +35,8 @@ class Buffer;
 class Shader;
 class ShaderProgram;
 class ShaderUniform;
+class Framebuffer;
+class Renderbuffer;
 class Texture;
 
 // class

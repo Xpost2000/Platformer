@@ -7,12 +7,15 @@
 #include "Shader.h"
 #include "ShaderProgram.h"
 #include "GLDevice.h"
+#include "Framebuffer.h"
+#include "Renderbuffer.h"
 #include "Bitmap.h"
 #include "ShaderUniform.h"
 #include "Texture.h"
 #include "sdl_surface_load_image_wrapper.h"
 #include "vector_typedef.h"
 #include "matrix_typedef.h"
+// Please don't do using namespace on this... Otherwise name conflicts and errors everywhere.
 namespace ptrs{
 	using Buffer = std::shared_ptr<Buffer>;
 	using VertexArray = std::shared_ptr<VertexArray>;
@@ -23,5 +26,7 @@ namespace ptrs{
 	using Texture = std::shared_ptr<Texture>;
 	using Bitmap = std::shared_ptr<Bitmap>;
 	using ImageSurface = std::shared_ptr<ImageSurface>;
+	using Renderbuffer = std::shared_ptr<Renderbuffer>;
+	using Framebuffer = std::shared_ptr<Framebuffer>;
 	};
 #endif
