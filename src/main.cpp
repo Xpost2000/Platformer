@@ -33,17 +33,40 @@ std::string frag(R"RW(
 	}
 )RW");
 
+
+std::string vert1 ( R"RW(
+	#version 330 core
+	layout(location=0) in vec3 pos;
+	layout(location=1) in vec2 clr;
+	out vec2 vClr;
+	void main(){
+		gl_Position = vec4(pos, 1.0f);
+		vClr = clr;
+	}
+)RW");
+std::string frag1(R"RW(
+	#version 330 core
+	uniform sampler2D tex;
+	in vec2 vClr;
+	out vec4 color;
+	void main(){
+		color = texture(tex, vClr);	
+		color -= vec4(0.0, 0.4, 0.3, 0.5);
+	}
+)RW");
 std::string array[] ={
 	"grass", "stone"
 };
 
+#define WIDTH 1280
+#define HEIGHT 720
 int main(int argc, char** argv){
 	SDL_Window* window;
 	SDL_Event ev;
 	SDL_Init(SDL_INIT_VIDEO);
 	IMG_Init(IMG_INIT_PNG);
 	window = SDL_CreateWindow("Test Letter X OGL Wrapper", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-			1024, 768, SDL_WINDOW_OPENGL);
+			WIDTH, HEIGHT, SDL_WINDOW_OPENGL);
 	gl_info_struct_t info = {
 		3,
 		3,
@@ -87,6 +110,12 @@ int main(int argc, char** argv){
 		-1.0, -1.0, 0.0, 1.0, 1.0, 1.0,
 		 1.0, 1.0, 0.0, 0.0, 0.0, 1.0,
 		 1.0, -1.0, 0.0, 1.0, 1.0, 1.0
+	};
+	GLfloat screen[] = {
+		-1.0, 1.0, 0.0, 0.0, 1.0,
+		-1.0, -1.0, 0.0, 0.0, 0.0,
+		 1.0, 1.0, 0.0, 1.0, 1.0,
+		 1.0, -1.0, 0.0, 1.0, 0.0
 	};
 
 	int index = 0;
@@ -185,6 +214,46 @@ int main(int argc, char** argv){
 	m.insert(std::pair< std::string, ptrs::Texture > (array[1], tex1));
 	m.insert(std::pair< std::string, ptrs::Texture > (array[0], tex));	
 	ctx->unbindTexture( TextureTarget::TEXTURE2D );
+
+	ptrs::Shader pVs = ctx->createShader(ctx, ShaderType::VERTEX), pFs = ctx->createShader(ctx, ShaderType::FRAGMENT);
+	ptrs::Texture pp = ctx->createTexture(ctx);
+	ptrs::Framebuffer fbo = ctx->createFramebuffer(ctx);
+	ptrs::Renderbuffer rbo = ctx->createRenderbuffer(ctx);
+	ptrs::Buffer scrVbo = ctx->genBuffer(ctx);
+	ptrs::VertexArray scrVao = ctx->genVertexArray(ctx);
+
+	ctx->bindFramebuffer( FrameBufferTarget::FRAMEBUFFER , *fbo );
+	ctx->bindRenderbuffer( *rbo );
+	ctx->bindTexture(TextureTarget::TEXTURE2D, *pp);
+	ctx->textureParameter(TextureTarget::TEXTURE2D , TextureParameter::MAG_FILTER , ParamValue::LINEAR);
+	ctx->textureParameter(TextureTarget::TEXTURE2D , TextureParameter::MIN_FILTER , ParamValue::LINEAR);
+	pp->texImage2D(TextureTarget::TEXTURE2D, 0, GL_RGBA, WIDTH, HEIGHT, 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL);	
+	ctx->frameBufferTexture(FrameBufferTarget::FRAMEBUFFER, FrameBufferAttachment::COLOR_ATTACHMENT0, TextureTarget::TEXTURE2D, *pp, 0);
+	ctx->unbindTexture(TextureTarget::TEXTURE2D);
+	ctx->renderBufferStorage( RenderBufferInternalFormat::DEFAULT, WIDTH, HEIGHT );
+	ctx->frameBufferRenderbuffer( FrameBufferAttachment::DEPTH_STENCIL_ATTACHMENT , *rbo );
+
+
+	scrVbo->bind(BufferTypes::ARRAY_BUFFER);
+	scrVao->bind();
+	scrVbo->bufferData( BufferTypes::ARRAY_BUFFER, sizeof(screen), screen, BufferUsage::STATIC_DRAW );
+	scrVao->attribPointer(0, 3, GL_FLOAT, false, sizeof(float)*5, (const void*)0);
+	scrVao->attribPointer(1, 2, GL_FLOAT, false, sizeof(float)*5, (const void*)(sizeof(float)*3));
+	scrVao->enableAttribute(1);
+	scrVao->enableAttribute(0);
+	scrVao->unbind();
+	scrVbo->unbind(BufferTypes::ARRAY_BUFFER);
+
+	pVs->source(1, vert1, 0);
+	pFs->source(1, frag1, 0);
+	pVs->compile();
+	pFs->compile();
+	
+	ptrs::ShaderProgram pSp = ctx->createProgram(ctx, *pVs, *pFs);
+	pSp->link();
+
+
+
 	Matrix4f model;
 	while(true){
 		while(SDL_PollEvent(&ev)){
@@ -198,11 +267,12 @@ int main(int argc, char** argv){
 				index = 0;
 			}
 		}
+		ctx->bindFramebuffer( FrameBufferTarget::FRAMEBUFFER, *fbo );
 		sp->use();
 		ctx->setLineWidth(80);
 		ctx->clearColor(0.5, 0.2, 0.3);
 		ctx->clear(BufferClear::COLOR_DEPTH_BUFFERS);
-		ctx->viewport(0, 0, 1024, 768);
+		ctx->viewport(0, 0, WIDTH, HEIGHT);
 
 		model = Matrix4f::Identity();
 		matrix->uniformMatrix4(1, false, model.data());
@@ -251,6 +321,15 @@ int main(int argc, char** argv){
 		ctx->drawArrays(DrawMode::TRIANGLE_STRIPS, 0, 4);
 
 		ctx->unbindVertexArray();
+		ctx->unbindTexture(TextureTarget::TEXTURE2D);
+		ctx->unbindFramebuffer(FrameBufferTarget::FRAMEBUFFER);
+
+
+		pSp->use();
+		ctx->bindTexture(TextureTarget::TEXTURE2D, *pp);
+		scrVao->bind();
+		ctx->drawArrays(DrawMode::TRIANGLE_STRIPS, 0, 4);
+		scrVao->unbind();
 		ctx->unbindTexture(TextureTarget::TEXTURE2D);
 
 
