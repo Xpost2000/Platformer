@@ -53,6 +53,7 @@ public:
 	void drawElements( DrawMode m, GLint first, GLint count, const GLvoid* indices );
 
 	void bufferData(const BufferTypes target, size_t size, const GLvoid* data, const BufferUsage usage);
+	void bufferSubData(const BufferTypes target, GLintptr offset, GLsizeiptr size, const GLvoid* data);
 	void vertexAttribPointer(GLuint index, GLint size, GLenum type, bool normalized, GLsizei stride, const GLvoid* offsetPtr);
 	void enableAttribute(GLint index);
 

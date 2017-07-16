@@ -40,7 +40,9 @@ void Texture::texImage2D(TextureTarget t, Bitmap& bm, GLint level, GLint border,
 	try{
 	if(device == nullptr)
 		throw std::runtime_error("Device is nullptr");
+	bindTexture(t);
 	texImage2D(t, level, bm.get_format(), bm.get_width(), bm.get_height(), border, bm.get_format(), type, bm.get_data());
+	unbindTexture(t);
 	}catch(const std::exception& e ){
 		std::cout << " Texture :: Exception : " << e.what() << std::endl;
 	}

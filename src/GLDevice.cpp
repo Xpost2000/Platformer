@@ -123,6 +123,10 @@ void GLDevice::bufferData( const BufferTypes target, size_t size, const GLvoid* 
 	glBufferData(static_cast<int>(target), size, data, static_cast<int>(usage));
 }
 
+void GLDevice::bufferSubData( const BufferTypes target, GLintptr offset, GLsizeiptr count, const GLvoid* data ){
+	glBufferSubData(static_cast<int>(target), offset, count, data);
+}
+
 void GLDevice::vertexAttribPointer(GLuint index, GLint size, GLenum type, bool normalized, GLsizei stride, const GLvoid* offsetPtr){
 	
 	glVertexAttribPointer(index, size, type, normalized, stride, offsetPtr);

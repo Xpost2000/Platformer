@@ -81,6 +81,7 @@ class IDevice{
 		virtual void genMipmaps(TextureTarget targ) = 0;
 		// Data init functions
 		virtual void bufferData(const BufferTypes target, size_t size, const GLvoid* data, const BufferUsage usage) = 0;
+		virtual void bufferSubData( const BufferTypes target, GLintptr offset, GLsizeiptr size, const GLvoid* data) = 0;
 		virtual void vertexAttribPointer(GLuint index, GLint size, GLenum type, bool normalized, GLsizei stride, const GLvoid* offsetPtr) = 0;
 		virtual void enableAttribute(GLint index) = 0;
 		virtual void shaderSource(Shader&, GLsizei, std::string , const GLint*) = 0;
