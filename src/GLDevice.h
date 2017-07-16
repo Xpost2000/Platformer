@@ -70,7 +70,7 @@ public:
 	void shaderSource(Shader&m, GLsizei, std::string , const GLint*);
 	void compileShader(Shader&);
 
-	 void renderBufferStorage( RenderBufferInternalFormat fmt ) ;
+	 void renderBufferStorage( RenderBufferInternalFormat fmt, int w, int h ) ;
 	// 2D
 	 void frameBufferTexture(FrameBufferTarget rb, FrameBufferAttachment attach, TextureTarget tt, Texture& tex, GLint evel );
 	 void frameBufferRenderbuffer( FrameBufferAttachment attach, Renderbuffer& rbo );

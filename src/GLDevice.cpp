@@ -259,13 +259,15 @@ void GLDevice::unbindFramebuffer( FrameBufferTarget fbt){
 void GLDevice::unbindRenderbuffer(){
 	glBindRenderbuffer( GL_RENDERBUFFER, 0 );
 }
-void GLDevice::renderBufferStorage( RenderBufferInternalFormat fmt ){
-
+void GLDevice::renderBufferStorage( RenderBufferInternalFormat fmt, int w, int h ){
+	glRenderbufferStorage( GL_RENDERBUFFER, static_cast<int>(fmt), w, h );
 }
 // 2D
 void GLDevice::frameBufferTexture(FrameBufferTarget rb, FrameBufferAttachment attach, TextureTarget tt, Texture& tex, GLint level ){
+	glFramebufferTexture2D( static_cast<int>(rb), static_cast<int>(attach), static_cast<int>(tt), tex.get_handle(), level );
 }
 void GLDevice::frameBufferRenderbuffer( FrameBufferAttachment attach, Renderbuffer& rbo ){
+	glFramebufferRenderbuffer( GL_FRAMEBUFFER, static_cast<int>(attach), GL_RENDERBUFFER, rbo.get_handle() );
 }
 
 

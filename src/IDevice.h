@@ -106,7 +106,7 @@ class IDevice{
 		virtual void linkProgram(ShaderProgram&) = 0;
 		virtual void unuseProgram() = 0;
 
-		virtual void renderBufferStorage( RenderBufferInternalFormat fmt ) = 0;
+		virtual void renderBufferStorage( RenderBufferInternalFormat fmt, int w, int h ) = 0;
 		// 2D
 		virtual void frameBufferTexture(FrameBufferTarget rb, FrameBufferAttachment attach, TextureTarget tt, Texture& tex, GLint evel ) = 0;
 		virtual void frameBufferRenderbuffer( FrameBufferAttachment attach, Renderbuffer& rbo ) = 0;
