@@ -4,35 +4,7 @@
 #include "mat4.hpp"
 #include "BitmapUtil.h"
 #include "typedefs.h"
-
-std::string vert ( R"RW(
-	#version 330 core
-	layout(location=0) in vec3 pos;
-	layout(location=1) in vec2 clr;
-	layout(location=2) in vec3 fst;
-	out vec2 vClr;
-	out vec3 vFst;
-	uniform mat4 model;
-	void main(){
-		gl_Position = model*vec4(pos, 1.0f);
-		vClr = clr;
-		vFst = fst;
-	}
-)RW");
-std::string frag(R"RW(
-	#version 330 core
-	uniform sampler2D tex;
-	in vec2 vClr;
-	in vec3 vFst;
-	out vec4 color;
-	uniform float d;
-	void main(){
-		color = texture(tex, vClr);	
-		color *= vec4(d);
-		color += vec4(vFst, 1.0f);
-	}
-)RW");
-
+#include "TestShader.h"
 
 std::string vert1 ( R"RW(
 	#version 330 core
@@ -87,11 +59,6 @@ int main(int argc, char** argv){
 	ptrs::Buffer vbo2;
 	ptrs::VertexArray vao2;
 	ptrs::VertexArray vao;
-	ptrs::Shader vs, fs;
-	ptrs::ShaderProgram sp;
-	ptrs::ShaderUniform d;
-	ptrs::ShaderUniform rlD;
-	ptrs::ShaderUniform matrix;
 	std::map<std::string, ptrs::Texture> m;
 	ptrs::Texture tex, tex1;
 	GLfloat vertices[] ={
@@ -134,24 +101,8 @@ int main(int argc, char** argv){
 	vbo3 = ctx->genBuffer(ctx);
 	vao3 = ctx->genVertexArray(ctx);
 
-	vs = ctx->createShader(ctx, ShaderType::VERTEX);
-	fs = ctx->createShader(ctx, ShaderType::FRAGMENT);
 	tex = ctx->createTexture(ctx);
 	tex1 = ctx->createTexture(ctx);
-
-	vs->source(1, vert, 0);
-	fs->source(1, frag, 0);
-	vs->compile();
-	fs->compile();
-	
-	sp = ctx->createProgram(ctx, *vs, *fs);
-	sp->link();
-	d = ctx->createUniform("tex", sp); 
-	matrix = ctx->createUniform("model", sp);
-	rlD = ctx->createUniform("d", sp);
-
-	std::cout << fs->get_log() << std::endl;
-	std::cout << vs->get_log() << std::endl;
 
 	vbo->bind(BufferTypes::ARRAY_BUFFER);
 	vao->bind();
@@ -251,9 +202,7 @@ int main(int argc, char** argv){
 	
 	ptrs::ShaderProgram pSp = ctx->createProgram(ctx, *pVs, *pFs);
 	pSp->link();
-
-
-
+	TestShader t(ctx);
 	Matrix4f model;
 	while(true){
 		while(SDL_PollEvent(&ev)){
@@ -268,38 +217,38 @@ int main(int argc, char** argv){
 			}
 		}
 		ctx->bindFramebuffer( FrameBufferTarget::FRAMEBUFFER, *fbo );
-		sp->use();
+		t.use();
 		ctx->setLineWidth(80);
 		ctx->clearColor(0.5, 0.2, 0.3);
 		ctx->clear(BufferClear::COLOR_DEPTH_BUFFERS);
 		ctx->viewport(0, 0, WIDTH, HEIGHT);
 
 		model = Matrix4f::Identity();
-		matrix->uniformMatrix4(1, false, model.data());
+		t.setMatrix(model);
 		ctx->bindVertexArray(*vao3);
 		ctx->drawArrays(DrawMode::TRIANGLE_STRIPS, 0, 4);
 		
 		ctx->bindVertexArray(*vao);
-		d->uniformi(0);
+		t.setTex(0);
 		
 		ctx->bindTexture(TextureTarget::TEXTURE2D, *m[array[index]]);
 		model = Matrix4f::Identity();
 		model = Matrix4f::translate( model, Vec3( 0.5, 0.0, 0.0 ) );
 		model = Matrix4f::rotate( model, 0.0f, Vec3( 0.0, 0.0, 1.0 ) );
-		matrix->uniformMatrix4(1, false, model.data());
-		rlD->uniformf(0.25);
+		t.setMatrix(model);
+		t.setD(0.25);
 		ctx->drawArrays(DrawMode::TRIANGLES, 0, 3);
 
 		model = Matrix4f::Identity();
 		model = Matrix4f::translate( model, Vec3( -0.5, 0.0, 0.0 ) );
 		model = Matrix4f::rotate( model, 0.0f, Vec3( 0.0, 0.0, 1.0 ) );
-		matrix->uniformMatrix4(1, false, model.data());
-		rlD->uniformf(0.5);
+		t.setMatrix(model);
+		t.setD(0.5);
 		ctx->drawArrays(DrawMode::TRIANGLES, 0, 3);
 		
 		model = Matrix4f::Identity();
-		matrix->uniformMatrix4(1, false, model.data());	
-		rlD->uniformf(0.7f);
+		t.setMatrix(model);
+		t.setD(0.7);
 		glActiveTexture(GL_TEXTURE0);
 		ctx->bindVertexArray(*vao);
 		ctx->drawArrays(DrawMode::TRIANGLES, 0, 3);
@@ -307,8 +256,8 @@ int main(int argc, char** argv){
 		model = Matrix4f::Identity();
 		model = Matrix4f::translate(model, Vec3(0, -0.5, 0.0));
 		model = Matrix4f::scale( model, Vec3(2.67, 0.7, 1.0) );
-		matrix->uniformMatrix4(1, false, model.data());	
-		rlD->uniformf(0.8f);
+		t.setMatrix(model);
+		t.setD(0.8);
 		glActiveTexture(GL_TEXTURE0);
 		ctx->drawArrays(DrawMode::TRIANGLES, 0, 3);
 
@@ -316,21 +265,23 @@ int main(int argc, char** argv){
 		model = Matrix4f::Identity();
 		model = Matrix4f::translate(model, Vec3(0, -.5, 0.0));
 		model = Matrix4f::scale(model, Vec3(1.0, 0.5, 1.0));
-		rlD->uniformf(1);
-		matrix->uniformMatrix4(1, false, model.data());	
+		t.setD(1);
+		t.setMatrix(model);
 		ctx->drawArrays(DrawMode::TRIANGLE_STRIPS, 0, 4);
-
+		t.unuse();
 		ctx->unbindVertexArray();
 		ctx->unbindTexture(TextureTarget::TEXTURE2D);
 		ctx->unbindFramebuffer(FrameBufferTarget::FRAMEBUFFER);
 
 
+	
 		pSp->use();
 		ctx->bindTexture(TextureTarget::TEXTURE2D, *pp);
 		scrVao->bind();
 		ctx->drawArrays(DrawMode::TRIANGLE_STRIPS, 0, 4);
 		scrVao->unbind();
 		ctx->unbindTexture(TextureTarget::TEXTURE2D);
+		
 
 
 		SDL_GL_SwapWindow(window);

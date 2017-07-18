@@ -9,6 +9,8 @@ OBJ_FILES= ../../obj/IDevice.o\
 	  ../../obj/BufferTypes.o\
 	  ../../obj/GLDevice.o\
 	  ../../obj/Shader.o\
+	  ../../obj/IShaderSet.o\
+	  ../../obj/TestShader.o\
 	  ../../obj/Renderbuffer.o\
 	  ../../obj/Framebuffer.o\
 	  ../../obj/ShaderProgram.o\
@@ -28,6 +30,8 @@ all:
 	$(GCC) ../../src/BufferTypes.cpp $(LIBS) $(FLAGS) -c -o ../../obj/BufferTypes.o
 	$(GCC) ../../src/GLDevice.cpp $(LIBS) $(FLAGS) -c -o ../../obj/GLDevice.o
 	$(GCC) ../../src/Shader.cpp $(LIBS) $(FLAGS) -c -o ../../obj/Shader.o
+	$(GCC) ../../src/IShaderSet.cpp $(LIBS) $(FLAGS) -c -o ../../obj/IShaderSet.o
+	$(GCC) ../../src/TestShader.cpp $(LIBS) $(FLAGS) -c -o ../../obj/TestShader.o
 	$(GCC) ../../src/ShaderProgram.cpp $(LIBS) $(FLAGS) -c -o ../../obj/ShaderProgram.o
 	$(GCC) ../../src/vectors.cpp $(LIBS) $(FLAGS) -c -o ../../obj/vectors.o
 	$(GCC) ../../src/ShaderUniform.cpp $(LIBS) $(FLAGS) -c -o ../../obj/ShaderUniform.o
