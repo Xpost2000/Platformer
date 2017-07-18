@@ -5,27 +5,7 @@
 #include "BitmapUtil.h"
 #include "typedefs.h"
 #include "TestShader.h"
-
-std::string vert1 ( R"RW(
-	#version 330 core
-	layout(location=0) in vec3 pos;
-	layout(location=1) in vec2 clr;
-	out vec2 vClr;
-	void main(){
-		gl_Position = vec4(pos, 1.0f);
-		vClr = clr;
-	}
-)RW");
-std::string frag1(R"RW(
-	#version 330 core
-	uniform sampler2D tex;
-	in vec2 vClr;
-	out vec4 color;
-	void main(){
-		color = texture(tex, vClr);	
-		color -= vec4(0.0, 0.4, 1., 1.0);
-	}
-)RW");
+#include "PostProcessorShader.h"
 std::string array[] ={
 	"grass", "stone"
 };
@@ -166,7 +146,6 @@ int main(int argc, char** argv){
 	m.insert(std::pair< std::string, ptrs::Texture > (array[0], tex));	
 	ctx->unbindTexture( TextureTarget::TEXTURE2D );
 
-	ptrs::Shader pVs = ctx->createShader(ctx, ShaderType::VERTEX), pFs = ctx->createShader(ctx, ShaderType::FRAGMENT);
 	ptrs::Texture pp = ctx->createTexture(ctx);
 	ptrs::Framebuffer fbo = ctx->createFramebuffer(ctx);
 	ptrs::Renderbuffer rbo = ctx->createRenderbuffer(ctx);
@@ -195,14 +174,8 @@ int main(int argc, char** argv){
 	scrVao->unbind();
 	scrVbo->unbind(BufferTypes::ARRAY_BUFFER);
 
-	pVs->source(1, vert1, 0);
-	pFs->source(1, frag1, 0);
-	pVs->compile();
-	pFs->compile();
-	
-	ptrs::ShaderProgram pSp = ctx->createProgram(ctx, *pVs, *pFs);
-	pSp->link();
 	TestShader t(ctx);
+	PostProcessorShader ps(ctx);
 	Matrix4f model;
 	while(true){
 		while(SDL_PollEvent(&ev)){
@@ -275,13 +248,13 @@ int main(int argc, char** argv){
 
 
 	
-		pSp->use();
+		ps.use();
 		ctx->bindTexture(TextureTarget::TEXTURE2D, *pp);
 		scrVao->bind();
 		ctx->drawArrays(DrawMode::TRIANGLE_STRIPS, 0, 4);
 		scrVao->unbind();
 		ctx->unbindTexture(TextureTarget::TEXTURE2D);
-		
+		ps.unuse();	
 
 
 		SDL_GL_SwapWindow(window);
