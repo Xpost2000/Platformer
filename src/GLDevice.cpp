@@ -221,11 +221,14 @@ void GLDevice::attachShader(ShaderProgram& sp, Shader& s){
 }
 void GLDevice::useProgram(ShaderProgram& sp){
 	glUseProgram(sp.get_handle());
+	sp.set_used(true);
 }
 void GLDevice::linkProgram(ShaderProgram& sp){
 	glLinkProgram(sp.get_handle());
 	sp.set_linked(true);
 }
+// Please prefer to use the visitor interfaces.
+// TODO: Fix this.
 void GLDevice::unuseProgram(){
 	glUseProgram(0);
 }

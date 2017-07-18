@@ -16,12 +16,14 @@ class ShaderProgram : public IObjectHandle, public Comparable<ShaderProgram>{
 
 		const HandleType is_type() const{ return HandleType::HANDLE_SHADERPROGRAM; }
 		void set_linked(bool val) { linked = val; }
+		void set_used(bool val) { used = val; }
 		void use();
 		void unuse();
 		void link();
 		void attach(Shader&);
 		void detach(Shader&);
 		bool is_linked() { return linked; }
+		bool is_used() { return used; }
 
 		bool operator > ( ShaderProgram rhs ) { return true;}
 		bool operator < ( ShaderProgram rhs ) { return true;}
@@ -31,6 +33,7 @@ class ShaderProgram : public IObjectHandle, public Comparable<ShaderProgram>{
 	private:
 		std::shared_ptr<IDevice> device = nullptr;
 		bool linked = false;
+		bool used = false;
 };
 
 #endif

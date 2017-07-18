@@ -27,7 +27,10 @@ void ShaderProgram::use(){
 	try{
 		if(device == nullptr)
 			throw std::runtime_error("Device is nullptr");
+		if(!used){
 		device->useProgram(*this);
+		used = true;
+		}
 	}catch(std::exception const & e){
 		std::cout << "ShaderProgram Exception :: " << e.what() << std::endl;
 	}
@@ -37,7 +40,10 @@ void ShaderProgram::unuse(){
 	try{
 		if(device == nullptr)
 			throw std::runtime_error("Device is nullptr");
+		if(used){
 		device->unuseProgram();
+		used = false;
+		}
 	}catch(std::exception const & e){
 		std::cout << "ShaderProgram Exception :: " << e.what() << std::endl;
 	}
