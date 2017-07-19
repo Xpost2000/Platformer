@@ -15,8 +15,10 @@ OBJ_FILES= ../../obj/IDevice.o\
 	  ../../obj/BitmapUtil.o\
 	  ../../obj/Framebuffer.o\
 	  ../../obj/Renderbuffer.o\
-	  ../../obj/IShaderSet.o\
 	  ../../obj/TestShader.o\
+	  ../../obj/SpriteBatcher.o\
+	  ../../obj/DefaultShader.o\
+	  ../../obj/IShaderSet.o\
 	  ../../obj/PostProcessorShader.o\
 	  ../../obj/sdl_surface_load_image_wrapper.o\
 	  ../../obj/vectors.o\
@@ -31,8 +33,10 @@ all:
 	$(GCC) ../../src/GLDevice.cpp $(LIBS) $(FLAGS) -c -o ../../obj/GLDevice.o
 	$(GCC) ../../src/Shader.cpp $(LIBS) $(FLAGS) -c -o ../../obj/Shader.o
 	$(GCC) ../../src/IShaderSet.cpp $(LIBS) $(FLAGS) -c -o ../../obj/IShaderSet.o
+	$(GCC) ../../src/DefaultShader.cpp $(LIBS) $(FLAGS) -c -o ../../obj/DefaultShader.o
 	$(GCC) ../../src/TestShader.cpp $(LIBS) $(FLAGS) -c -o ../../obj/TestShader.o
 	$(GCC) ../../src/PostProcessorShader.cpp $(LIBS) $(FLAGS) -c -o ../../obj/PostProcessorShader.o
+	$(GCC) ../../src/SpriteBatcher.cpp $(LIBS) $(FLAGS) -c -o ../../obj/SpriteBatcher.o
 	$(GCC) ../../src/Renderbuffer.cpp $(LIBS) $(FLAGS) -c -o ../../obj/Renderbuffer.o
 	$(GCC) ../../src/Framebuffer.cpp $(LIBS) $(FLAGS) -c -o ../../obj/Framebuffer.o
 	$(GCC) ../../src/ShaderProgram.cpp $(LIBS) $(FLAGS) -c -o ../../obj/ShaderProgram.o

@@ -196,6 +196,7 @@ int main(int argc, char** argv){
 		ctx->clear(BufferClear::COLOR_DEPTH_BUFFERS);
 		ctx->viewport(0, 0, WIDTH, HEIGHT);
 
+
 		model = Matrix4f::Identity();
 		t.setMatrix(model);
 		ctx->bindVertexArray(*vao3);
