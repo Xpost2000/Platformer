@@ -8,10 +8,6 @@
 #include "DefaultShader.h"
 #include "SpriteBatcher.h"
 #include "Postprocessor.h"
-std::string array[] ={
-	"grass", "stone"
-};
-
 #define WIDTH 1280
 #define HEIGHT 720
 int main(int argc, char** argv){
