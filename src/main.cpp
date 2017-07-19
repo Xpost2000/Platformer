@@ -35,31 +35,8 @@ int main(int argc, char** argv){
 		CORE_CONTEXT
 	};
 	ptrs::IDevice ctx = std::make_shared<GLDevice>(window, info);
-	ptrs::Buffer vbo;
-	ptrs::Buffer vbo3;
-	ptrs::VertexArray vao3;
-	ptrs::Buffer vbo2;
-	ptrs::VertexArray vao2;
-	ptrs::VertexArray vao;
 	std::map<std::string, ptrs::Texture> m;
 	ptrs::Texture tex, tex1;
-	GLfloat vertices[] ={
-		-.5, -.5, 0.0, 0.0, 0.0, 0.2, 0.0, 0.0,
-		.5, -.5, 0.0, 1.0, 1.0, 0.0, 0.0, 0.2,
-		0., .5, 0.0, 1.0, 0.0, 1.0, 1.0, 1.0
-	};
-	GLfloat rect[] = {
-		-1.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, 1.0,
-		-1.0, -1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-		1.0, 0.0, 0.0, 1, 1, 1.0, 1.0, 1.0,
-		1.0, -1.0, 0.0,  1.0, 0.0, 0.0, 0.0, 0.0
-	};
-	GLfloat gradient[] = {
-		-1.0, 1.0, 0.0, 0.0, 0.0, 1.0,
-		-1.0, -1.0, 0.0, 1.0, 1.0, 1.0,
-		 1.0, 1.0, 0.0, 0.0, 0.0, 1.0,
-		 1.0, -1.0, 0.0, 1.0, 1.0, 1.0
-	};
 	GLfloat screen[] = {
 		-1.0, 1.0, 0.0, 0.0, 1.0,
 		-1.0, -1.0, 0.0, 0.0, 0.0,
@@ -74,55 +51,6 @@ int main(int argc, char** argv){
 	std::cout << "MAJOR : " << ctx->getInteger(GetParam::MAJOR_VERSION) << std::endl;
 	std::cout << "MINOR : " << ctx->getInteger(GetParam::MINOR_VERSION) << std::endl;
 	
-	vbo = ctx->genBuffer(ctx);
-	vao = ctx->genVertexArray(ctx);
-
-	vbo2 = ctx->genBuffer(ctx);
-	vao2 = ctx->genVertexArray(ctx);
-	
-	vbo3 = ctx->genBuffer(ctx);
-	vao3 = ctx->genVertexArray(ctx);
-
-	tex = ctx->createTexture(ctx);
-	tex1 = ctx->createTexture(ctx);
-
-	vbo->bind(BufferTypes::ARRAY_BUFFER);
-	vao->bind();
-
-	vbo->bufferData( BufferTypes::ARRAY_BUFFER, sizeof(vertices), vertices, BufferUsage::STATIC_DRAW );
-	vao->attribPointer(0, 3, GL_FLOAT, false, sizeof(float)*8, (const void*)0);
-	vao->attribPointer(1, 2, GL_FLOAT, false, sizeof(float)*8, (const void*)(sizeof(float)*3));
-	vao->attribPointer(2, 3, GL_FLOAT, false, sizeof(float)*8, (const void*)(sizeof(float)*5));
-	vao->enableAttribute(2);
-	vao->enableAttribute(1);
-	vao->enableAttribute(0);
-
-	vbo->unbind(BufferTypes::ARRAY_BUFFER);
-	vao->unbind();
-
-	vbo2->bind(BufferTypes::ARRAY_BUFFER);
-	vao2->bind();
-	vbo2->bufferData( BufferTypes::ARRAY_BUFFER, sizeof(rect), rect, BufferUsage::STATIC_DRAW );
-	vao2->attribPointer(0, 3, GL_FLOAT, false, sizeof(float)*8, (const void*)0);
-	vao2->attribPointer(1, 2, GL_FLOAT, false, sizeof(float)*8, (const void*)(sizeof(float)*3));
-	vao2->attribPointer(2, 3, GL_FLOAT, false, sizeof(float)*8, (const void*)(sizeof(float)*5));
-	vao2->enableAttribute(2);
-	vao2->enableAttribute(1);
-	vao2->enableAttribute(0);
-	vao2->unbind();
-	vbo2->unbind(BufferTypes::ARRAY_BUFFER);
-
-
-	vbo3->bind(BufferTypes::ARRAY_BUFFER);
-	vao3->bind();
-	vbo3->bufferData( BufferTypes::ARRAY_BUFFER, sizeof(gradient), gradient, BufferUsage::STATIC_DRAW );
-	vao3->attribPointer(0, 3, GL_FLOAT, false, sizeof(float)*6, (const void*)0);
-	vao3->attribPointer(2, 3, GL_FLOAT, false, sizeof(float)*6, (const void*)(sizeof(float)*3));
-	vao3->enableAttribute(2);
-	vao3->enableAttribute(0);
-	vao3->unbind();
-	vbo3->unbind(BufferTypes::ARRAY_BUFFER);
-
 	// using delegated constructor
 	ImageSurface es("grass.png");
 	ImageSurface s ("stone.png");
