@@ -1,6 +1,6 @@
 #include "DefaultShader.h"
-#include "mat4.hpp"
 #include "ShaderUniform.h"
+#include "mat4.hpp"
 
 DefaultShader::DefaultShader(const std::shared_ptr<IDevice>& dev) : device(dev){
 	vs = new Shader(device, ShaderType::VERTEX);
@@ -15,7 +15,7 @@ DefaultShader::DefaultShader(const std::shared_ptr<IDevice>& dev) : device(dev){
 		out vec2 uvCoords;
 		out vec4 vColor;
 		void main(){
-			gl_Position = proj*view*vec4(position, 1.0f);
+			gl_Position = proj*view*vec4(position.xy, 0.0 , 1.0);
 			uvCoords = uv;
 			vColor = color;
 		}
@@ -27,8 +27,7 @@ DefaultShader::DefaultShader(const std::shared_ptr<IDevice>& dev) : device(dev){
 		in vec4 vColor;
 		out vec4 color;
 		void main(){
-			color = texture(tex, uvCoords);
-			color *= vColor;	
+			color = vColor*texture(tex, uvCoords);
 		}
 	)RW");
 	vs->source(1, vert, 0);
@@ -57,4 +56,8 @@ void DefaultShader::setTex(int v){
 void DefaultShader::setMatrices(Matrix4f p, Matrix4f v){
 	projMat->uniformMatrix4(1, false, p.data());
 	viewMat->uniformMatrix4(1, false, v.data());
+}
+void DefaultShader::setMatrices(glm::mat4 p, glm::mat4 v){
+	projMat->uniformMatrix4(1, false, glm::value_ptr(p));
+	viewMat->uniformMatrix4(1, false, glm::value_ptr(v));
 }

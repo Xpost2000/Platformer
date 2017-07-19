@@ -5,6 +5,8 @@
 #include "BitmapUtil.h"
 #include "typedefs.h"
 #include "TestShader.h"
+#include "DefaultShader.h"
+#include "SpriteBatcher.h"
 #include "PostProcessorShader.h"
 std::string array[] ={
 	"grass", "stone"
@@ -173,78 +175,34 @@ int main(int argc, char** argv){
 	scrVao->enableAttribute(0);
 	scrVao->unbind();
 	scrVbo->unbind(BufferTypes::ARRAY_BUFFER);
-
-	TestShader t(ctx);
+	
+	SpriteBatcher sb(ctx);
+	DefaultShader ds(ctx);
 	PostProcessorShader ps(ctx);
-	Matrix4f model;
+	glm::mat4 proj = glm::ortho(0.0f, 1280.0f, 720.0f, 0.0f, -1.0f, 1.0f);
+	glm::mat4 view = glm::mat4();
+	ds.setMatrices(proj, view);
 	while(true){
 		while(SDL_PollEvent(&ev)){
 			if(ev.type== SDL_QUIT){
 				return 0;
 			}
 			if(ev.type == SDL_KEYDOWN){
-				index = 1;
 			}
 			else{
-				index = 0;
 			}
 		}
 		ctx->bindFramebuffer( FrameBufferTarget::FRAMEBUFFER, *fbo );
-		t.use();
-		ctx->setLineWidth(80);
 		ctx->clearColor(0.5, 0.2, 0.3);
 		ctx->clear(BufferClear::COLOR_DEPTH_BUFFERS);
 		ctx->viewport(0, 0, WIDTH, HEIGHT);
+		ds.use();
+	
+		ctx->bindTexture(TextureTarget::TEXTURE2D, *tex);
+		sb.draw(Vec2(200, 150), Vec4(0, 0, 1, 1), Vec2(500, 300), Vec3(1));
+		sb.render();
 
-
-		model = Matrix4f::Identity();
-		t.setMatrix(model);
-		ctx->bindVertexArray(*vao3);
-		ctx->drawArrays(DrawMode::TRIANGLE_STRIPS, 0, 4);
-		
-		ctx->bindVertexArray(*vao);
-		t.setTex(0);
-		
-		ctx->bindTexture(TextureTarget::TEXTURE2D, *m[array[index]]);
-		model = Matrix4f::Identity();
-		model = Matrix4f::translate( model, Vec3( 0.5, 0.0, 0.0 ) );
-		model = Matrix4f::rotate( model, 0.0f, Vec3( 0.0, 0.0, 1.0 ) );
-		t.setMatrix(model);
-		t.setD(0.25);
-		ctx->drawArrays(DrawMode::TRIANGLES, 0, 3);
-
-		model = Matrix4f::Identity();
-		model = Matrix4f::translate( model, Vec3( -0.5, 0.0, 0.0 ) );
-		model = Matrix4f::rotate( model, 0.0f, Vec3( 0.0, 0.0, 1.0 ) );
-		t.setMatrix(model);
-		t.setD(0.5);
-		ctx->drawArrays(DrawMode::TRIANGLES, 0, 3);
-		
-		model = Matrix4f::Identity();
-		t.setMatrix(model);
-		t.setD(0.7);
-		glActiveTexture(GL_TEXTURE0);
-		ctx->bindVertexArray(*vao);
-		ctx->drawArrays(DrawMode::TRIANGLES, 0, 3);
-
-		model = Matrix4f::Identity();
-		model = Matrix4f::translate(model, Vec3(0, -0.5, 0.0));
-		model = Matrix4f::scale( model, Vec3(2.67, 0.7, 1.0) );
-		t.setMatrix(model);
-		t.setD(0.8);
-		glActiveTexture(GL_TEXTURE0);
-		ctx->drawArrays(DrawMode::TRIANGLES, 0, 3);
-
-		vao2->bind();
-		model = Matrix4f::Identity();
-		model = Matrix4f::translate(model, Vec3(0, -.5, 0.0));
-		model = Matrix4f::scale(model, Vec3(1.0, 0.5, 1.0));
-		t.setD(1);
-		t.setMatrix(model);
-		ctx->drawArrays(DrawMode::TRIANGLE_STRIPS, 0, 4);
-		t.unuse();
-		ctx->unbindVertexArray();
-		ctx->unbindTexture(TextureTarget::TEXTURE2D);
+		ds.unuse();
 		ctx->unbindFramebuffer(FrameBufferTarget::FRAMEBUFFER);
 
 

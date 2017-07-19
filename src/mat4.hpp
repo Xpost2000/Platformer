@@ -1,5 +1,10 @@
 #ifndef MAT4_INC
 #include <cmath>
+// Just so I can spend more time fixing this.
+// Use GLM for now...
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 #include "math_etc.hpp"
 #include "vec3.hpp"
 #include "vec2.hpp"
@@ -173,18 +178,28 @@ class Matrix4{
 			return subSelf(other);
 		}
 
-		const static Matrix4 orthographic(const auto left, const auto right, const auto bottom, const auto top, const auto near = -1, const auto far = 1){
+		const static Matrix4 orthographic(const t left, const t right, const t bottom, const t top, const t near , const t far ){
 			Matrix4 mat = Matrix4::Identity();
-			mat.m00 = 2 / right - left;
-			mat.m11 = 2 / top - bottom;
-			mat.m22 = 2 / near - far;
-			mat.m03 = left+right/left-right;
-			mat.m13 = bottom+top/bottom-top;
-			mat.m23 = far+near/far-near;
+		//	mat.m00 = 2 / right - left;
+		//	mat.m11 = 2 / top - bottom;
+		//	mat.m22 = 2 / near - far;
+		//	mat.m03 = left+right/left-right;
+		//	mat.m13 = bottom+top/bottom-top;
+		//	mat.m23 = far+near/far-near;
+			mat.d[0 + 0 * 4] = 2.0f / (right - left);
+
+			mat.d[1 + 1 * 4] = 2.0f / (top - bottom);
+	
+			mat.d[2 + 2 * 4] = 2.0f / (near - far);
+
+			mat.d[3 + 0 * 4] = (left + right) / (left - right);
+			mat.d[3 + 1 * 4] = (bottom + top) / (bottom - top);
+			mat.d[3 + 2 * 4] = (far + near) / (far - near);
+			mat.m33 = 1;
 			return mat;
 		}
 
-		const static Matrix4 perspective(const auto fov, const auto aspectRatio, const auto near = -1, const auto far = 1000){
+		const static Matrix4 perspective(const t fov, const t aspectRatio, const t near, const t far ){
 			Matrix4 mat = Matrix4::Identity();
 			t q = 1.0 / tan(toRadians(0.5*fov));
 			t a = q / aspectRatio;

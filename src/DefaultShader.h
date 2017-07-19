@@ -1,6 +1,7 @@
 #ifndef DEFAULT_SHADER_H
 #define DEFAULT_SHADER_H
 #include "IDevice.h"
+#include <glm/glm.hpp>
 #include "IShaderSet.h"
 #include "matrix_typedef.h"
 /*
@@ -15,6 +16,7 @@ class DefaultShader : public IShaderSet{
 	void setTex(int);
 	// proj, view
 	void setMatrices( Matrix4f, Matrix4f );
+	void setMatrices( glm::mat4, glm::mat4 );
 	private:
 	ShaderUniform *tex = nullptr;
 	ShaderUniform *projMat = nullptr;
