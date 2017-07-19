@@ -8,10 +8,56 @@
 #include "DefaultShader.h"
 #include "SpriteBatcher.h"
 #include "Postprocessor.h"
+#include <vector>
 #define WIDTH 1280
 #define HEIGHT 720
-float x = 200;
-float y = 0;
+
+struct Sprite{
+	Sprite(float x, float y, float w, float h, float uX, float uY, float uW, float uH, float brns) : x(x), y(y), w(w), h(h), uX(uX), uY(uY), uW(uW), uH(uH), brns(brns) {}
+	float x, y;
+	float w, h;
+	float uX, uY;
+	float uW, uH;
+	float brns;
+};
+std::vector<Sprite> sprites;
+#define MAX_TM_SZ 18
+#define TL_SZ 90
+int tilemap[MAX_TM_SZ][MAX_TM_SZ] = {
+	{3, 3, 3, 3, 3},
+	{3, 5, 5, 5, 3},
+	{3, 5, 5, 5, 5},
+	{1, 1, 1, 1, 1, 3,},
+	{2, 2, 2, 2, 2, 3,3},
+	{2, 2, 2, 2, 2, 3,3,1,1,1,1,1,1,1, 1, 1, 1},
+	{2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
+	{2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
+	{2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2}
+};
+
+void process_tm(){
+	for(int y = 0; y < MAX_TM_SZ; y++){
+		for(int x = 0; x < MAX_TM_SZ; x++){
+			switch(tilemap[y][x]){
+				case 3:
+					sprites.push_back(Sprite(x*TL_SZ, y*TL_SZ, TL_SZ, TL_SZ, 0, 514.0f/2048.0f, 420.0f/2048.0f, 934.0f/2048.0f, 1));	
+					break;
+				case 2:
+					sprites.push_back(Sprite(x*TL_SZ, y*TL_SZ, TL_SZ, TL_SZ, 0, 0, 512.0f/2048.0f, 512.0f/2048.0f, 1));	
+					break;
+				case 1:
+					sprites.push_back(Sprite(x*TL_SZ, y*TL_SZ, TL_SZ, TL_SZ, 514.0f/2048.0f, 0, 1026.0f/2048.0f, 512.0f/2048.0f, 1));	
+					break;
+				case 5:
+					sprites.push_back(Sprite(x*TL_SZ, y*TL_SZ, TL_SZ, TL_SZ, 0, 514.0f/2048.0f, 420.0f/2048.0f, 934.0f/2048.0f, 0.5));	
+					break;
+				default:
+					break;
+			};
+		}
+	}
+}
+
 int main(int argc, char** argv){
 	SDL_Window* window;
 	SDL_Event ev;
@@ -62,18 +108,18 @@ int main(int argc, char** argv){
 	glm::mat4 proj = glm::ortho(0.0f, 1280.0f, 720.0f, 0.0f, -1.0f, 1.0f);
 	glm::mat4 view = glm::mat4();
 	ds.setMatrices(proj, view);
+	process_tm();
 	while(true){
 		while(SDL_PollEvent(&ev)){
 			if(ev.type== SDL_QUIT){
 				return 0;
 			}
 			if(ev.type == SDL_KEYDOWN){
-				x += 10;
 			}
 			else{
 			}
 		}
-		ctx->clearColor(0.0, 0.0, 0.3);
+		ctx->clearColor(0.0, 0.0, 0.8);
 		ctx->clear(BufferClear::COLOR_DEPTH_BUFFERS);
 		ctx->viewport(0, 0, WIDTH, HEIGHT);
 		pp.begin();
@@ -81,7 +127,9 @@ int main(int argc, char** argv){
 	
 		ds.setTextured(true);
 		ctx->bindTexture(TextureTarget::TEXTURE2D, *tex);
-		sb.draw(Vec2(x, 500), Vec4(0.0f, 0.0f, 512.0f/2048.0f, 512.0f/2048.0f), Vec2(300, 300), Vec3(1));
+		for( auto& sp : sprites ){
+			sb.draw(Vec2(sp.x, sp.y), Vec4(sp.uX, sp.uY, sp.uW, sp.uH), Vec2(sp.w, sp.h), Vec3(sp.brns));
+		}
 		sb.render();
 
 		ds.unuse();
