@@ -1,4 +1,5 @@
 #include "DefaultShader.h"
+#include <iostream>
 #include "ShaderUniform.h"
 #include "mat4.hpp"
 
@@ -26,8 +27,12 @@ DefaultShader::DefaultShader(const std::shared_ptr<IDevice>& dev) : device(dev){
 		in vec2 uvCoords;
 		in vec4 vColor;
 		out vec4 color;
+		uniform bool textured;
 		void main(){
+			if(textured)
 			color = vColor*texture(tex, uvCoords);
+			else
+			color = vColor;
 		}
 	)RW");
 	vs->source(1, vert, 0);
@@ -39,6 +44,9 @@ DefaultShader::DefaultShader(const std::shared_ptr<IDevice>& dev) : device(dev){
 	projMat = new ShaderUniform("proj", *sp);
 	viewMat = new ShaderUniform("view", *sp);
 	tex = new ShaderUniform("tex", *sp);
+	textured = new ShaderUniform("textured", *sp);
+	std::cout << vs->get_log() << std::endl;
+	std::cout << fs->get_log() << std::endl;
 }
 
 DefaultShader::~DefaultShader(){
@@ -46,8 +54,14 @@ DefaultShader::~DefaultShader(){
 	delete vs;
 	delete fs;
 	delete tex;
+	delete textured;
 	delete projMat;
         delete viewMat;	
+}
+
+
+void DefaultShader::setTextured(bool v){
+	textured->uniformi(v);
 }
 
 void DefaultShader::setTex(int v){

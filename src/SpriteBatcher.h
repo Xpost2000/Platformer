@@ -23,6 +23,8 @@ class SpriteBatcher{
 		SpriteBatcher(const std::shared_ptr<IDevice>& dev);
 		~SpriteBatcher();
 		void draw(Vec2 pos, Vec4 uvs, Vec2 size, Vec3 color);
+		// manually set a color for each corner.
+		void draw(Vec2 pos, Vec4 uvs, Vec2 size, Vec3 tl, Vec3 tr, Vec3 bl, Vec3 br);
 		void render();
 	private:
 		std::vector<Vertex> vertices;

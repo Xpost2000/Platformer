@@ -15,6 +15,7 @@ OBJ_FILES= ../../obj/IDevice.o\
 	  ../../obj/BitmapUtil.o\
 	  ../../obj/Framebuffer.o\
 	  ../../obj/Renderbuffer.o\
+	  ../../obj/Postprocessor.o\
 	  ../../obj/TestShader.o\
 	  ../../obj/SpriteBatcher.o\
 	  ../../obj/DefaultShader.o\
@@ -39,6 +40,7 @@ all:
 	$(GCC) ../../src/SpriteBatcher.cpp $(LIBS) $(FLAGS) -c -o ../../obj/SpriteBatcher.o
 	$(GCC) ../../src/Renderbuffer.cpp $(LIBS) $(FLAGS) -c -o ../../obj/Renderbuffer.o
 	$(GCC) ../../src/Framebuffer.cpp $(LIBS) $(FLAGS) -c -o ../../obj/Framebuffer.o
+	$(GCC) ../../src/Postprocessor.cpp $(LIBS) $(FLAGS) -c -o ../../obj/Postprocessor.o
 	$(GCC) ../../src/ShaderProgram.cpp $(LIBS) $(FLAGS) -c -o ../../obj/ShaderProgram.o
 	$(GCC) ../../src/vectors.cpp $(LIBS) $(FLAGS) -c -o ../../obj/vectors.o
 	$(GCC) ../../src/ShaderUniform.cpp $(LIBS) $(FLAGS) -c -o ../../obj/ShaderUniform.o

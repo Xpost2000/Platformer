@@ -14,10 +14,12 @@ class DefaultShader : public IShaderSet{
 	DefaultShader(const std::shared_ptr<IDevice>& dev);
 	~DefaultShader();
 	void setTex(int);
+	void setTextured(bool);
 	// proj, view
 	void setMatrices( Matrix4f, Matrix4f );
 	void setMatrices( glm::mat4, glm::mat4 );
 	private:
+	ShaderUniform *textured = nullptr;
 	ShaderUniform *tex = nullptr;
 	ShaderUniform *projMat = nullptr;
 	ShaderUniform *viewMat = nullptr;

@@ -30,6 +30,25 @@ void SpriteBatcher::draw(Vec2 pos, Vec4 uvs, Vec2 size, Vec3 color){
 	vertices.push_back(Vertex(Vec3(pos.x() + size.x(), pos.y() + size.y(), 1.0), Vec2(uvs.w, uvs.y), color));
 }
 
+void SpriteBatcher::draw(Vec2 pos, Vec4 uvs, Vec2 size, Vec3 tl, Vec3 tr, Vec3 bl, Vec3 br){
+	/*
+	 * 	v.push_back(Vertex(r.x, r.y));
+		v.push_back(Vertex(r.x, r.y+r.y1));
+		v.push_back(Vertex(r.x+r.x1, r.y));
+		v.push_back(Vertex(r.x+r.x1, r.y));
+		v.push_back(Vertex(r.x, r.y+r.y1));
+		v.push_back(Vertex(r.x+r.x1, r.y+r.y1));
+
+		I'm hoping I setup the UVs correctly...
+	 */
+	vertices.push_back(Vertex(Vec3(pos.x(), pos.y(), 1.0), Vec2(uvs.x, uvs.h), tl));
+	vertices.push_back(Vertex(Vec3(pos.x(), pos.y() + size.y(), 1.0), Vec2(uvs.x, uvs.y), bl));
+	vertices.push_back(Vertex(Vec3(pos.x()+size.x(), pos.y(), 1.0), Vec2(uvs.w, uvs.h), tr));
+	vertices.push_back(Vertex(Vec3(pos.x()+size.x(), pos.y(), 1.0), Vec2(uvs.w, uvs.h), tr));
+	vertices.push_back(Vertex(Vec3(pos.x(), pos.y() + size.y(), 1.0), Vec2(uvs.x, uvs.y), bl));
+	vertices.push_back(Vertex(Vec3(pos.x() + size.x(), pos.y() + size.y(), 1.0), Vec2(uvs.w, uvs.y), br));
+}
+
 void SpriteBatcher::render(){
 	vbo->bind(BufferTypes::ARRAY_BUFFER);
 	vao->bind();
