@@ -10,6 +10,8 @@
 #include "Postprocessor.h"
 #define WIDTH 1280
 #define HEIGHT 720
+float x = 200;
+float y = 0;
 int main(int argc, char** argv){
 	SDL_Window* window;
 	SDL_Event ev;
@@ -66,6 +68,7 @@ int main(int argc, char** argv){
 				return 0;
 			}
 			if(ev.type == SDL_KEYDOWN){
+				x += 10;
 			}
 			else{
 			}
@@ -78,7 +81,7 @@ int main(int argc, char** argv){
 	
 		ds.setTextured(true);
 		ctx->bindTexture(TextureTarget::TEXTURE2D, *tex);
-		sb.draw(Vec2(0, 500), Vec4(0.0f, 0.0f, 512.0f/2048.0f, 512.0f/2048.0f), Vec2(1280, 300), Vec3(1));
+		sb.draw(Vec2(x, 500), Vec4(0.0f, 0.0f, 512.0f/2048.0f, 512.0f/2048.0f), Vec2(300, 300), Vec3(1));
 		sb.render();
 
 		ds.unuse();

@@ -50,6 +50,7 @@ PostProcessor::~PostProcessor(){
 
 void PostProcessor::begin(){
 	device->bindFramebuffer( FrameBufferTarget::FRAMEBUFFER , *fbo);
+	device->clear(BufferClear::COLOR_DEPTH_BUFFERS);
 }
 void PostProcessor::end(){
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
