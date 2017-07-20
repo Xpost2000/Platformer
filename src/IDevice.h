@@ -110,7 +110,7 @@ class IDevice{
 		// 2D
 		virtual void frameBufferTexture(FrameBufferTarget rb, FrameBufferAttachment attach, TextureTarget tt, Texture& tex, GLint evel ) = 0;
 		virtual void frameBufferRenderbuffer( FrameBufferAttachment attach, Renderbuffer& rbo ) = 0;
-		virtual void enableAlpha(); // TODO: Implement blendFunc seperately.	
+		virtual void enableAlpha() = 0; // TODO: Implement blendFunc seperately.	
 
 		// Get
 		
