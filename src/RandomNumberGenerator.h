@@ -9,32 +9,33 @@
 #include <random>
 #include <functional>
 
-class RandomNumberInt{
+class RandomInt{
 	public:
-		RandomNumberInt(int max, int min) : max(max), min(min){
-		}
-		int getNumber(){
-			std::random_device rd;
-			std::mt19937 gen(rd());
-			std::uniform_int_distribution<int> roll(min, max);
-			return roll(gen);
-		}
+	RandomInt( int min, int max ) : rng(std::random_device()()), dis(min, max) {
+	}
+	int get(){
+		return dis(rng);
+	}
+	int operator()(){	
+		return get();
+	}
 	private:
-		int max, min;
-		
+	std::mt19937 rng;
+	std::uniform_int_distribution<int> dis;
+};
+class RandomFloat{
+	public:
+	RandomFloat ( float min , float max ) : rng(std::random_device()()), dis(min, max) {
+	}
+	float get(){
+		return dis(rng);
+	}
+	float operator()(){
+		return get();
+	}
+	private:
+	std::mt19937 rng;
+	std::uniform_real_distribution<float> dis;
 };
 
-class RandomNumberFloat{
-	public:
-		RandomNumberFloat(float max, float min) : max(max), min(min){
-		}
-		float getNumber(){
-			std::random_device rd;
-			std::mt19937 gen(rd());
-			std::uniform_real_distribution<float> roll(min, max);
-			return roll(gen);
-		}
-	private:
-		float max, min;
-};
 #endif

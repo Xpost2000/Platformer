@@ -9,6 +9,7 @@
 #include "TestShader.h"
 #include "DefaultShader.h"
 #include "SpriteBatcher.h"
+#include "RandomNumberGenerator.h"
 #include "Postprocessor.h"
 #include <vector>
 #define WIDTH 1280
@@ -81,6 +82,7 @@ int main(int argc, char** argv){
 	SDL_Event ev;
 	SDL_Init(SDL_INIT_VIDEO);
 	IMG_Init(IMG_INIT_PNG);
+	RandomInt test(0, 10);
 	window = SDL_CreateWindow("Test Letter X OGL Wrapper", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
 			WIDTH, HEIGHT, SDL_WINDOW_OPENGL);
 	gl_info_struct_t info = {
@@ -119,7 +121,6 @@ int main(int argc, char** argv){
 	ctx->genMipmaps( TextureTarget::TEXTURE2D );
 	
 	ctx->unbindTexture( TextureTarget::TEXTURE2D );
-
 	SpriteBatcher sb(ctx);
 	DefaultShader ds(ctx);
 	PostProcessor pp (ctx, WIDTH, HEIGHT);
@@ -127,6 +128,11 @@ int main(int argc, char** argv){
 	glm::mat4 view = glm::mat4();
 	ds.setMatrices(proj, view);
 	process_tm();
+	std::cout << test() << std::endl;
+	std::cout << test() << std::endl;
+	std::cout << test() << std::endl;
+	std::cout << test() << std::endl;
+	std::cout << test() << std::endl;
 	while(true){
 		while(SDL_PollEvent(&ev)){
 			if(ev.type== SDL_QUIT){
