@@ -21,6 +21,7 @@ PostProcessorShader::PostProcessorShader(const std::shared_ptr<IDevice>& dev) : 
 		out vec4 color;
 		void main(){
 			color = texture(tex, texCoords);
+			color -= vec4(0.0, 0.15, 0.10, 0.0);
 		}
 	)RW");
 	vs->source(1, vert, 0);
