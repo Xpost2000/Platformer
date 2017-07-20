@@ -91,6 +91,10 @@ public:
 	float getFloat(GetParam);
 	int getShaderInteger(Shader&, ShaderInfo);
 	
+	void enableAlpha(){
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	}
 	void viewport(GLuint x, GLuint y, GLuint w, GLuint h);
 	void setLineWidth(GLuint size);
 	void setPointSize(GLuint size);

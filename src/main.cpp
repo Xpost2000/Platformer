@@ -109,6 +109,7 @@ int main(int argc, char** argv){
 		}
 		ctx->clearColor(0.0, 0.0, 0.2);
 		ctx->clear(BufferClear::COLOR_DEPTH_BUFFERS);
+		ctx->enableAlpha();
 		ctx->viewport(0, 0, WIDTH, HEIGHT);
 		pp.begin();
 		ds.use();	
