@@ -115,7 +115,7 @@ int main(int argc, char** argv){
 		ds.setTextured(true);
 		tex->bind();
 		for( auto& sp : sprites ){
-			sb.draw(Vec2(sp.x, sp.y), Vec4(sp.uX, sp.uY, sp.uW, sp.uH), Vec2(sp.w, sp.h), Vec3(sp.brns));
+			sb.draw(Vec2(sp.x, sp.y), Vec4(sp.uX, sp.uY, sp.uW, sp.uH), Vec2(sp.w, sp.h), Vec4(sp.brns, sp.brns, sp.brns, 1.0f));
 		}
 		sb.render();
 		ds.unuse();

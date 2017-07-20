@@ -11,7 +11,7 @@ SpriteBatcher::~SpriteBatcher(){
 	delete vao;
 }
 
-void SpriteBatcher::draw(Vec2 pos, Vec4 uvs, Vec2 size, Vec3 color){
+void SpriteBatcher::draw(Vec2 pos, Vec4 uvs, Vec2 size, Vec4 color){
 	/*
 	 * 	v.push_back(Vertex(r.x, r.y));
 		v.push_back(Vertex(r.x, r.y+r.y1));
@@ -30,7 +30,7 @@ void SpriteBatcher::draw(Vec2 pos, Vec4 uvs, Vec2 size, Vec3 color){
 	vertices.push_back(Vertex(Vec3(pos.x() + size.x(), pos.y() + size.y(), 1.0), Vec2(uvs.z(), uvs.y()), color));
 }
 
-void SpriteBatcher::draw(Vec2 pos, Vec4 uvs, Vec2 size, Vec3 tl, Vec3 tr, Vec3 bl, Vec3 br){
+void SpriteBatcher::draw(Vec2 pos, Vec4 uvs, Vec2 size, Vec4 tl, Vec4 tr, Vec4 bl, Vec4 br){
 	/*
 	 * 	v.push_back(Vertex(r.x, r.y));
 		v.push_back(Vertex(r.x, r.y+r.y1));
@@ -55,7 +55,7 @@ void SpriteBatcher::render(){
 	vbo->bufferData(BufferTypes::ARRAY_BUFFER, vertices.size() * sizeof(Vertex), vertices.data(), BufferUsage::DYNAMIC_DRAW);
 	vao->attribPointer(0, 3, GL_FLOAT, false, sizeof(Vertex), (const void*)offsetof(Vertex, pos));
 	vao->attribPointer(1, 2, GL_FLOAT, false, sizeof(Vertex), (const void*)offsetof(Vertex, uv));
-	vao->attribPointer(2, 3, GL_FLOAT, false, sizeof(Vertex), (const void*)offsetof(Vertex, color));
+	vao->attribPointer(2, 4, GL_FLOAT, false, sizeof(Vertex), (const void*)offsetof(Vertex, color));
 	vao->enableAttribute(0);
 	vao->enableAttribute(1);
 	vao->enableAttribute(2);

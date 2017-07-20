@@ -7,10 +7,10 @@
 
 // a vertex data struct.
 struct Vertex{
-	Vertex(Vec3 pos, Vec2 uv, Vec3 color) : pos(pos), uv(uv), color(color){}
+	Vertex(Vec3 pos, Vec2 uv, Vec4 color) : pos(pos), uv(uv), color(color){}
 	Vec3 pos;
 	Vec2 uv;
-	Vec3 color;
+	Vec4 color;
 };
 
 #endif
