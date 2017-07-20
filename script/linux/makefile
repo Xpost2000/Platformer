@@ -12,6 +12,7 @@ OBJ_FILES= ../../obj/IDevice.o\
 	  ../../obj/ShaderUniform.o\
 	  ../../obj/Texture.o\
 	  ../../obj/Bitmap.o\
+	  ../../obj/RandomNumberGenerator.o\
 	  ../../obj/BitmapUtil.o\
 	  ../../obj/Framebuffer.o\
 	  ../../obj/Renderbuffer.o\
@@ -43,6 +44,7 @@ all:
 	$(GCC) ../../src/Postprocessor.cpp $(LIBS) $(FLAGS) -c -o ../../obj/Postprocessor.o
 	$(GCC) ../../src/ShaderProgram.cpp $(LIBS) $(FLAGS) -c -o ../../obj/ShaderProgram.o
 	$(GCC) ../../src/vectors.cpp $(LIBS) $(FLAGS) -c -o ../../obj/vectors.o
+	$(GCC) ../../src/RandomNumberGenerator.cpp $(LIBS) $(FLAGS) -c -o ../../obj/RandomNumberGenerator.o
 	$(GCC) ../../src/ShaderUniform.cpp $(LIBS) $(FLAGS) -c -o ../../obj/ShaderUniform.o
 	$(GCC) ../../src/Bitmap.cpp $(LIBS) $(FLAGS) -c -o ../../obj/Bitmap.o
 	$(GCC) ../../src/BitmapUtil.cpp $(LIBS) $(FLAGS) -c -o ../../obj/BitmapUtil.o

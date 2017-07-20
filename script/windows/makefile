@@ -15,6 +15,7 @@ OBJ_FILES= ../../obj/IDevice.o\
 	  ../../obj/PostProcessorShader.o\
 	  ../../obj/PostProcessor.o\
 	  ../../obj/Renderbuffer.o\
+	  ../../obj/RandomNumberGenerator.o\
 	  ../../obj/Framebuffer.o\
 	  ../../obj/ShaderProgram.o\
 	  ../../obj/SpriteBatcher.o\
@@ -46,6 +47,7 @@ all:
 	$(GCC) ../../src/Renderbuffer.cpp $(LIBS) $(FLAGS) -c -o ../../obj/Renderbuffer.o
 	$(GCC) ../../src/Framebuffer.cpp $(LIBS) $(FLAGS) -c -o ../../obj/Framebuffer.o
 	$(GCC) ../../src/Postprocessor.cpp $(LIBS) $(FLAGS) -c -o ../../obj/Postprocessor.o
+	$(GCC) ../../src/RandomNumberGenerator.cpp $(LIBS) $(FLAGS) -c -o ../../obj/RandomNumberGenerator.o
 	$(GCC) ../../src/BitmapUtil.cpp $(LIBS) $(FLAGS) -c -o ../../obj/BitmapUtil.o
 	$(GCC) ../../src/sdl_surface_load_image_wrapper.cpp $(LIBS) $(FLAGS) -c -o ../../obj/sdl_surface_load_image_wrapper.o
 	$(GCC) ../../src/Texture.cpp $(LIBS) $(FLAGS) -c -o ../../obj/Texture.o
