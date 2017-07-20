@@ -14,7 +14,8 @@
 #define WIDTH 1280
 #define HEIGHT 720
 
-float y = 500.0;
+float y = 300.0;
+float delay = 0.0f;
 struct Sprite{
 	Sprite(float x, float y, float w, float h, float uX, float uY, float uW, float uH, float brns) : x(x), y(y), w(w), h(h), uX(uX), uY(uY), uW(uW), uH(uH), brns(brns) {}
 	float x, y;
@@ -25,7 +26,12 @@ struct Sprite{
 };
 struct Particle{
 	Particle(float x, float y, float w, float h, float r, float g, float b) : x(x), y(y), w(w), h(h), r(r), g(g), b(b){}
-	void update(){ x+=12.0f+spread; y+=2.5f+spread;}
+	void update(){ 
+		x+=32.0f+spread; 
+		y+=2.5f+spread;
+		lifeTime--;
+	}
+	float lifeTime = 100;
 	float x, y;
 	float spread;
 	float w, h;
@@ -136,9 +142,20 @@ int main(int argc, char** argv){
 		ctx->clear(BufferClear::COLOR_DEPTH_BUFFERS);
 		ctx->viewport(0, 0, WIDTH, HEIGHT);
 		pp.begin();
-		ds.use();
-	
-		particles.push_back(Particle(200, y, 30, 30, 0, 0.2, 0.8));
+		ds.use();	
+		if(delay <= 0 ){
+			particles.push_back(Particle(240, y-5, 15, 15, 0.8, 0.0, 0.0));
+			particles.push_back(Particle(220, y-20, 19, 19, 0.8, 0.0, 0.0));
+			particles.push_back(Particle(200, y+15, 19, 19, 0.8, 0.0, 0.0));
+			particles.push_back(Particle(200, y-15, 10, 10, 0.8, 0.0, 0.0));
+			particles.push_back(Particle(200, y+10, 20, 20, 0.8, 0.0, 0.0));
+			particles.push_back(Particle(200, y-10, 20, 20, 0.8, 0.0, 0.0));
+			delay = 50;
+			std::cout << delay << std::endl;	
+		}
+		else{
+			delay--;
+		}
 		particles.back().spread = rand() % 15+1;
 		ds.setTextured(true);
 		ctx->bindTexture(TextureTarget::TEXTURE2D, *tex);
@@ -148,6 +165,9 @@ int main(int argc, char** argv){
 		sb.render();
 		ds.setTextured(false);
 		for( auto& p : particles ){
+			if(p.lifeTime < 0){
+				// would mark as dead.	
+			}
 			p.update();
 			sb.draw(Vec2(p.x, p.y), Vec4(0, 0, 0, 0), Vec2(p.w, p.h), Vec3(p.r, p.g, p.b));
 		}
