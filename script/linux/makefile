@@ -17,6 +17,7 @@ OBJ_FILES= ../../obj/IDevice.o\
 	  ../../obj/Framebuffer.o\
 	  ../../obj/Renderbuffer.o\
 	  ../../obj/Postprocessor.o\
+	  ../../obj/ImageTexture.o\
 	  ../../obj/TestShader.o\
 	  ../../obj/SpriteBatcher.o\
 	  ../../obj/DefaultShader.o\
@@ -43,6 +44,7 @@ all:
 	$(GCC) ../../src/Framebuffer.cpp $(LIBS) $(FLAGS) -c -o ../../obj/Framebuffer.o
 	$(GCC) ../../src/Postprocessor.cpp $(LIBS) $(FLAGS) -c -o ../../obj/Postprocessor.o
 	$(GCC) ../../src/ShaderProgram.cpp $(LIBS) $(FLAGS) -c -o ../../obj/ShaderProgram.o
+	$(GCC) ../../src/ImageTexture.cpp $(LIBS) $(FLAGS) -c -o ../../obj/ImageTexture.o
 	$(GCC) ../../src/vectors.cpp $(LIBS) $(FLAGS) -c -o ../../obj/vectors.o
 	$(GCC) ../../src/RandomNumberGenerator.cpp $(LIBS) $(FLAGS) -c -o ../../obj/RandomNumberGenerator.o
 	$(GCC) ../../src/ShaderUniform.cpp $(LIBS) $(FLAGS) -c -o ../../obj/ShaderUniform.o

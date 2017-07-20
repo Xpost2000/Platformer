@@ -25,21 +25,7 @@ struct Sprite{
 	float uW, uH;
 	float brns;
 };
-struct Particle{
-	Particle(float x, float y, float w, float h, float r, float g, float b) : x(x), y(y), w(w), h(h), r(r), g(g), b(b){}
-	void update(){ 
-		x+=32.0f+spread; 
-		y+=2.5f+spread;
-		lifeTime--;
-	}
-	float lifeTime = 100;
-	float x, y;
-	float spread;
-	float w, h;
-	float r, g, b;
-};
 std::vector<Sprite> sprites;
-std::vector<Particle> particles;
 #define MAX_TM_SZ 18
 #define TL_SZ 90
 int tilemap[MAX_TM_SZ][MAX_TM_SZ] = {
@@ -82,7 +68,6 @@ int main(int argc, char** argv){
 	SDL_Event ev;
 	SDL_Init(SDL_INIT_VIDEO);
 	IMG_Init(IMG_INIT_PNG);
-	RandomInt test(0, 10);
 	window = SDL_CreateWindow("Test Letter X OGL Wrapper", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
 			WIDTH, HEIGHT, SDL_WINDOW_OPENGL);
 	gl_info_struct_t info = {
@@ -99,8 +84,6 @@ int main(int argc, char** argv){
 		CORE_CONTEXT
 	};
 	ptrs::IDevice ctx = std::make_shared<GLDevice>(window, info);
-	std::map<std::string, ptrs::Texture> m;
-	ptrs::Texture tex;
 	int index = 0;
 
 	std::cout << "According to the OpenGL context \n";
@@ -108,19 +91,7 @@ int main(int argc, char** argv){
 	std::cout << "MAJOR : " << ctx->getInteger(GetParam::MAJOR_VERSION) << std::endl;
 	std::cout << "MINOR : " << ctx->getInteger(GetParam::MINOR_VERSION) << std::endl;
 	
-	tex = ctx->createTexture(ctx);
-	// using delegated constructor
-	ImageSurface es("grass.png");
-	Bitmap bm (es.surf, PixelFormat::RGBA);
-	ctx->bindTexture(TextureTarget::TEXTURE2D, *tex);
-	ctx->textureParameter(TextureTarget::TEXTURE2D , TextureParameter::WRAP_T , ParamValue::REPEAT);
-	ctx->textureParameter(TextureTarget::TEXTURE2D , TextureParameter::WRAP_S , ParamValue::REPEAT);
-	ctx->textureParameter(TextureTarget::TEXTURE2D , TextureParameter::MAG_FILTER , ParamValue::LINEAR);
-	ctx->textureParameter(TextureTarget::TEXTURE2D , TextureParameter::MIN_FILTER , ParamValue::LINEAR);
-	tex->texImage2D(TextureTarget::TEXTURE2D, bm, 0, 0, GL_UNSIGNED_BYTE);	
-	ctx->genMipmaps( TextureTarget::TEXTURE2D );
-	
-	ctx->unbindTexture( TextureTarget::TEXTURE2D );
+	ptrs::ImageTexture tex = std::make_shared<ImageTexture>(ctx,"grass.png");
 	SpriteBatcher sb(ctx);
 	DefaultShader ds(ctx);
 	PostProcessor pp (ctx, WIDTH, HEIGHT);
@@ -128,11 +99,6 @@ int main(int argc, char** argv){
 	glm::mat4 view = glm::mat4();
 	ds.setMatrices(proj, view);
 	process_tm();
-	std::cout << test() << std::endl;
-	std::cout << test() << std::endl;
-	std::cout << test() << std::endl;
-	std::cout << test() << std::endl;
-	std::cout << test() << std::endl;
 	while(true){
 		while(SDL_PollEvent(&ev)){
 			if(ev.type== SDL_QUIT){
@@ -143,39 +109,15 @@ int main(int argc, char** argv){
 			else{
 			}
 		}
-		srand(time(0));
 		ctx->clearColor(0.0, 0.0, 0.2);
 		ctx->clear(BufferClear::COLOR_DEPTH_BUFFERS);
 		ctx->viewport(0, 0, WIDTH, HEIGHT);
 		pp.begin();
 		ds.use();	
-		if(delay <= 0 ){
-			particles.push_back(Particle(240, y-5, 15, 15, 0.8, 0.0, 0.0));
-			particles.push_back(Particle(220, y-20, 19, 19, 0.8, 0.0, 0.0));
-			particles.push_back(Particle(200, y+15, 19, 19, 0.8, 0.0, 0.0));
-			particles.push_back(Particle(200, y-15, 10, 10, 0.8, 0.0, 0.0));
-			particles.push_back(Particle(200, y+10, 20, 20, 0.8, 0.0, 0.0));
-			particles.push_back(Particle(200, y-10, 20, 20, 0.8, 0.0, 0.0));
-			delay = 50;
-			std::cout << delay << std::endl;	
-		}
-		else{
-			delay--;
-		}
-		particles.back().spread = rand() % 15+1;
 		ds.setTextured(true);
-		ctx->bindTexture(TextureTarget::TEXTURE2D, *tex);
+		tex->bind();
 		for( auto& sp : sprites ){
 			sb.draw(Vec2(sp.x, sp.y), Vec4(sp.uX, sp.uY, sp.uW, sp.uH), Vec2(sp.w, sp.h), Vec3(sp.brns));
-		}
-		sb.render();
-		ds.setTextured(false);
-		for( auto& p : particles ){
-			if(p.lifeTime < 0){
-				// would mark as dead.	
-			}
-			p.update();
-			sb.draw(Vec2(p.x, p.y), Vec4(0, 0, 0, 0), Vec2(p.w, p.h), Vec3(p.r, p.g, p.b));
 		}
 		sb.render();
 		ds.unuse();

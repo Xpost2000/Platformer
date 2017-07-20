@@ -1,9 +1,8 @@
 @echo off
-color 2
+
 echo "Windows Build Script"
 cd script/windows
 make
 make link
-cls
-color 1
+pause
 echo "build hopefully complete. have a nice day"

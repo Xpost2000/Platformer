@@ -15,6 +15,7 @@
 #include "sdl_surface_load_image_wrapper.h"
 #include "vector_typedef.h"
 #include "matrix_typedef.h"
+#include "ImageTexture.h"
 // Please don't do using namespace on this... Otherwise name conflicts and errors everywhere.
 namespace ptrs{
 	using Buffer = std::shared_ptr<Buffer>;
@@ -28,5 +29,6 @@ namespace ptrs{
 	using ImageSurface = std::shared_ptr<ImageSurface>;
 	using Renderbuffer = std::shared_ptr<Renderbuffer>;
 	using Framebuffer = std::shared_ptr<Framebuffer>;
+	using ImageTexture = std::shared_ptr<ImageTexture>;
 	};
 #endif

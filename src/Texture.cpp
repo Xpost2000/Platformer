@@ -40,9 +40,7 @@ void Texture::texImage2D(TextureTarget t, Bitmap& bm, GLint level, GLint border,
 	try{
 	if(device == nullptr)
 		throw std::runtime_error("Device is nullptr");
-	bindTexture(t);
 	texImage2D(t, level, bm.get_format(), bm.get_width(), bm.get_height(), border, bm.get_format(), type, bm.get_data());
-	unbindTexture(t);
 	}catch(const std::exception& e ){
 		std::cout << " Texture :: Exception : " << e.what() << std::endl;
 	}
@@ -52,7 +50,20 @@ void Texture::texImage2D(TextureTarget t, GLint level, GLint inFmt, GLsizei widt
 	try{
 	if(device == nullptr)
 		throw std::runtime_error("Device is nullptr");
+	bindTexture(t);
 	device->texImage2D(t, level, inFmt, width, height, border, format, type, data);
+	unbindTexture(t);
+	}catch (const std::exception& e){
+		std::cout << "Texture :: Exception : " << e.what() << std::endl;
+	}
+}
+
+void Texture::textureParameter(TextureTarget targ, TextureParameter param, ParamValue val){
+	try{
+	if(device == nullptr)
+		throw std::runtime_error("Device is nullptr");
+	bindTexture(targ);
+	device->textureParameter(targ, param, val);
 	}catch (const std::exception& e){
 		std::cout << "Texture :: Exception : " << e.what() << std::endl;
 	}
