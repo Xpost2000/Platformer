@@ -178,6 +178,9 @@ class Vector3{
 		const Vector3 operator/=(const Vector3& other){
 			return divideSelf(other);
 		}
+		/*
+		 * I here just realized... I didn't finish this...
+		 */
 		const Vector3 operator-(const Vector3& other){
 		}
 		friend std::ostream& operator<<(std::ostream &os, const Vector3& other){

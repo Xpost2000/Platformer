@@ -22,12 +22,12 @@ void SpriteBatcher::draw(Vec2 pos, Vec4 uvs, Vec2 size, Vec3 color){
 
 		I'm hoping I setup the UVs correctly...
 	 */
-	vertices.push_back(Vertex(Vec3(pos.x(), pos.y(), 1.0), Vec2(uvs.x, uvs.h), color));
-	vertices.push_back(Vertex(Vec3(pos.x(), pos.y() + size.y(), 1.0), Vec2(uvs.x, uvs.y), color));
-	vertices.push_back(Vertex(Vec3(pos.x()+size.x(), pos.y(), 1.0), Vec2(uvs.w, uvs.h), color));
-	vertices.push_back(Vertex(Vec3(pos.x()+size.x(), pos.y(), 1.0), Vec2(uvs.w, uvs.h), color));
-	vertices.push_back(Vertex(Vec3(pos.x(), pos.y() + size.y(), 1.0), Vec2(uvs.x, uvs.y), color));
-	vertices.push_back(Vertex(Vec3(pos.x() + size.x(), pos.y() + size.y(), 1.0), Vec2(uvs.w, uvs.y), color));
+	vertices.push_back(Vertex(Vec3(pos.x(), pos.y(), 1.0), Vec2(uvs.x(), uvs.w()), color));
+	vertices.push_back(Vertex(Vec3(pos.x(), pos.y() + size.y(), 1.0), Vec2(uvs.x(), uvs.y()), color));
+	vertices.push_back(Vertex(Vec3(pos.x()+size.x(), pos.y(), 1.0), Vec2(uvs.z(), uvs.w()), color));
+	vertices.push_back(Vertex(Vec3(pos.x()+size.x(), pos.y(), 1.0), Vec2(uvs.z(), uvs.w()), color));
+	vertices.push_back(Vertex(Vec3(pos.x(), pos.y() + size.y(), 1.0), Vec2(uvs.x(), uvs.y()), color));
+	vertices.push_back(Vertex(Vec3(pos.x() + size.x(), pos.y() + size.y(), 1.0), Vec2(uvs.z(), uvs.y()), color));
 }
 
 void SpriteBatcher::draw(Vec2 pos, Vec4 uvs, Vec2 size, Vec3 tl, Vec3 tr, Vec3 bl, Vec3 br){
@@ -41,12 +41,12 @@ void SpriteBatcher::draw(Vec2 pos, Vec4 uvs, Vec2 size, Vec3 tl, Vec3 tr, Vec3 b
 
 		I'm hoping I setup the UVs correctly...
 	 */
-	vertices.push_back(Vertex(Vec3(pos.x(), pos.y(), 1.0), Vec2(uvs.x, uvs.h), tl));
-	vertices.push_back(Vertex(Vec3(pos.x(), pos.y() + size.y(), 1.0), Vec2(uvs.x, uvs.y), bl));
-	vertices.push_back(Vertex(Vec3(pos.x()+size.x(), pos.y(), 1.0), Vec2(uvs.w, uvs.h), tr));
-	vertices.push_back(Vertex(Vec3(pos.x()+size.x(), pos.y(), 1.0), Vec2(uvs.w, uvs.h), tr));
-	vertices.push_back(Vertex(Vec3(pos.x(), pos.y() + size.y(), 1.0), Vec2(uvs.x, uvs.y), bl));
-	vertices.push_back(Vertex(Vec3(pos.x() + size.x(), pos.y() + size.y(), 1.0), Vec2(uvs.w, uvs.y), br));
+	vertices.push_back(Vertex(Vec3(pos.x(), pos.y(), 1.0), Vec2(uvs.x(), uvs.w()), tl));
+	vertices.push_back(Vertex(Vec3(pos.x(), pos.y() + size.y(), 1.0), Vec2(uvs.x(), uvs.y()), bl));
+	vertices.push_back(Vertex(Vec3(pos.x()+size.x(), pos.y(), 1.0), Vec2(uvs.z(), uvs.w()), tr));
+	vertices.push_back(Vertex(Vec3(pos.x()+size.x(), pos.y(), 1.0), Vec2(uvs.z(), uvs.w()), tr));
+	vertices.push_back(Vertex(Vec3(pos.x(), pos.y() + size.y(), 1.0), Vec2(uvs.x(), uvs.y()), bl));
+	vertices.push_back(Vertex(Vec3(pos.x() + size.x(), pos.y() + size.y(), 1.0), Vec2(uvs.z(), uvs.y()), br));
 }
 
 void SpriteBatcher::render(){

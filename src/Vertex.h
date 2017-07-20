@@ -1,6 +1,7 @@
 #ifndef VERTEX_STRUCT_H
 #define VERTEX_STRUCT_H
 #include "vector_typedef.h"
+#include "vec4.hpp"
 #include "vec3.hpp"
 #include "vec2.hpp"
 

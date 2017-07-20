@@ -7,14 +7,6 @@
 #include "VertexArray.h"
 #include "Buffer.h"
 
-struct Vec4{
-	Vec4( float x, float y, float w, float h ):
-		x(x), y(y), w(w), h(h){}
-	float x, y, w, h;
-	// I had to cheat this...
-	// TODO : Make a proper vec4 class so I don't cheat this.
-};
-
 /*
  * A simple sprite batcher that does all it needs to fit my needs.
  */

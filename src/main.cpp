@@ -15,8 +15,6 @@
 #define WIDTH 1280
 #define HEIGHT 720
 
-float y = 300.0;
-float delay = 0.0f;
 struct Sprite{
 	Sprite(float x, float y, float w, float h, float uX, float uY, float uW, float uH, float brns) : x(x), y(y), w(w), h(h), uX(uX), uY(uY), uW(uW), uH(uH), brns(brns) {}
 	float x, y;
