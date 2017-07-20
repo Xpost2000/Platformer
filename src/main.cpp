@@ -1,4 +1,6 @@
 #include <iostream>
+#include <time.h>
+
 #include <map>
 #include <SDL2/SDL_image.h>
 #include "mat4.hpp"
@@ -12,6 +14,7 @@
 #define WIDTH 1280
 #define HEIGHT 720
 
+float y = 500.0;
 struct Sprite{
 	Sprite(float x, float y, float w, float h, float uX, float uY, float uW, float uH, float brns) : x(x), y(y), w(w), h(h), uX(uX), uY(uY), uW(uW), uH(uH), brns(brns) {}
 	float x, y;
@@ -20,7 +23,16 @@ struct Sprite{
 	float uW, uH;
 	float brns;
 };
+struct Particle{
+	Particle(float x, float y, float w, float h, float r, float g, float b) : x(x), y(y), w(w), h(h), r(r), g(g), b(b){}
+	void update(){ x+=12.0f+spread; y+=2.5f+spread;}
+	float x, y;
+	float spread;
+	float w, h;
+	float r, g, b;
+};
 std::vector<Sprite> sprites;
+std::vector<Particle> particles;
 #define MAX_TM_SZ 18
 #define TL_SZ 90
 int tilemap[MAX_TM_SZ][MAX_TM_SZ] = {
@@ -119,19 +131,27 @@ int main(int argc, char** argv){
 			else{
 			}
 		}
-		ctx->clearColor(0.0, 0.0, 0.8);
+		srand(time(0));
+		ctx->clearColor(0.0, 0.0, 0.2);
 		ctx->clear(BufferClear::COLOR_DEPTH_BUFFERS);
 		ctx->viewport(0, 0, WIDTH, HEIGHT);
 		pp.begin();
 		ds.use();
 	
+		particles.push_back(Particle(200, y, 30, 30, 0, 0.2, 0.8));
+		particles.back().spread = rand() % 15+1;
 		ds.setTextured(true);
 		ctx->bindTexture(TextureTarget::TEXTURE2D, *tex);
 		for( auto& sp : sprites ){
 			sb.draw(Vec2(sp.x, sp.y), Vec4(sp.uX, sp.uY, sp.uW, sp.uH), Vec2(sp.w, sp.h), Vec3(sp.brns));
 		}
 		sb.render();
-
+		ds.setTextured(false);
+		for( auto& p : particles ){
+			p.update();
+			sb.draw(Vec2(p.x, p.y), Vec4(0, 0, 0, 0), Vec2(p.w, p.h), Vec3(p.r, p.g, p.b));
+		}
+		sb.render();
 		ds.unuse();
 		pp.end();
 
