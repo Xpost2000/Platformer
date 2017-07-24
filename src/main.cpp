@@ -12,6 +12,7 @@
 #include "SpriteBatcher.h"
 #include "RandomNumberGenerator.h"
 #include "ParticleGenerator.h"
+#include "LightShader.h"
 #include "Postprocessor.h"
 #include <vector>
 #define WIDTH 1280
@@ -103,11 +104,14 @@ int main(int argc, char** argv){
 	ptrs::ImageTexture tex = std::make_shared<ImageTexture>(ctx,"grass.png");
 	SpriteBatcher sb(ctx);
 	DefaultShader ds(ctx);
+	LightShader ls(ctx);
 	PostProcessor pp (ctx, WIDTH, HEIGHT);
 	glm::mat4 proj = glm::ortho(0.0f, 1280.0f, 720.0f, 0.0f, -1.0f, 1.0f);
 	glm::mat4 view = glm::mat4();
 	view = glm::scale(view, glm::vec3(0.6, 0.6, 1.0));
 	ds.setMatrices(proj, view);
+	ls.setView(view);
+	ls.setProj(proj);
 	process_tm();
 	ParticleGenerator pg(Vec2(1280/2, 720/2), Vec2(800, -400), Vec2(80, -10), Vec2(40), Vec4(0.1, 0.1, 0.1, 0.5), 100, Vec2(-10, 40), Vec2(-30, 30), Vec2(-30, 50), 1200);
 	while(true){
@@ -126,8 +130,9 @@ int main(int argc, char** argv){
 		ctx->enableAlpha();
 		ctx->viewport(0, 0, WIDTH, HEIGHT);
 		pp.begin();
-		ds.use();	
-		ds.setTextured(true);
+		ls.use();	
+		ls.setTextured(true);
+		ls.setLightPos(0, Vec2(200, 500));
 		tex->bind();
 		for( auto& sp : sprites ){
 			sb.draw(Vec2(sp.x, sp.y), Vec4(sp.uX, sp.uY, sp.uW, sp.uH), Vec2(sp.w, sp.h), Vec4(sp.brns, sp.brns, sp.brns, 1.0f));

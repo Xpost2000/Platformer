@@ -4,6 +4,7 @@ LIBS_LINUX=-lSDL2main -lSDL2 -lGLEW -lGL
 FLAGS=-std=gnu++14 -Wall -O2
 OBJ_FILES= ../../obj/IDevice.o\
 	  ../../obj/IObjectHandle.o\
+	  ../../obj/LightShader.o\
 	  ../../obj/Buffer.o\
 	  ../../obj/ParticleGenerator.o\
 	  ../../obj/VertexArray.o\
@@ -32,6 +33,7 @@ OBJ_FILES= ../../obj/IDevice.o\
 all:
 	$(GCC) ../../src/main.cpp $(LIBS) $(FLAGS) -c -o ../../obj/main.o
 	$(GCC) ../../src/IObjectHandle.cpp $(LIBS) $(FLAGS) -c -o ../../obj/IObjectHandle.o
+	$(GCC) ../../src/LightShader.cpp $(LIBS) $(FLAGS) -c -o ../../obj/LightShader.o
 	$(GCC) ../../src/Buffer.cpp $(LIBS) $(FLAGS) -c -o ../../obj/Buffer.o
 	$(GCC) ../../src/VertexArray.cpp $(LIBS) $(FLAGS) -c -o ../../obj/VertexArray.o
 	$(GCC) ../../src/IDevice.cpp $(LIBS) $(FLAGS) -c -o ../../obj/IDevice.o
