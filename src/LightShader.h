@@ -6,6 +6,7 @@
 #include "vec2.hpp"
 #include "vector_typedef.h"
 #include "matrix_typedef.h"
+#include "LightStruct.h"
 #include <glm/glm.hpp>
 class LightShader : public IShaderSet{
 	public:
@@ -15,9 +16,7 @@ class LightShader : public IShaderSet{
 		void setTextured(bool);
 		void setView(glm::mat4);
 		void setProj(glm::mat4);
-		void setLightPos(int index, Vec2 val){
-			lightPos[index].uniformf(val.x(), val.y());
-		}
+		void setLight(int index, Light l);
 	private:
 		std::shared_ptr<IDevice> device = nullptr;
 		ShaderUniform* textured = nullptr;
@@ -25,5 +24,7 @@ class LightShader : public IShaderSet{
 		ShaderUniform* projMat = nullptr;
 		ShaderUniform* viewMat = nullptr;
 		ShaderUniform lightPos [10];
+		ShaderUniform lightColor [10];
+		ShaderUniform lightPower [10];
 };
 #endif

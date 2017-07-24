@@ -78,7 +78,7 @@ int main(int argc, char** argv){
 	SDL_Event ev;
 	SDL_Init(SDL_INIT_EVERYTHING);
 	IMG_Init(IMG_INIT_PNG);
-	window = SDL_CreateWindow("Test Letter X OGL Wrapper", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
+	window = SDL_CreateWindow("Test Letter X Game Engine", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
 			WIDTH, HEIGHT, SDL_WINDOW_OPENGL);
 	gl_info_struct_t info = {
 		3,
@@ -114,6 +114,10 @@ int main(int argc, char** argv){
 	ls.setProj(proj);
 	process_tm();
 	ParticleGenerator pg(Vec2(1280/2, 720/2), Vec2(800, -400), Vec2(80, -10), Vec2(40), Vec4(0.1, 0.1, 0.1, 0.5), 100, Vec2(-10, 40), Vec2(-30, 30), Vec2(-30, 50), 1200);
+	ParticleGenerator pa(Vec2(1280/2+400, 720/2), Vec2(800, 160), Vec2(80, 20), Vec2(20), Vec4(0.1, 0.4, 1.0, 0.5), 110, Vec2(-10, 40), Vec2(-10, 10), Vec2(-30, 50), 1700);
+	Light l[10];
+	l[0] = Light(600,  Vec3(1, 0, 0), Vec2(300, 500));
+	l[1] = Light(200,  Vec3(0, 0, 1), Vec2(600, 500));
 	while(true){
 		ClockTimer::Tick();
 		while(SDL_PollEvent(&ev)){
@@ -132,8 +136,10 @@ int main(int argc, char** argv){
 		pp.begin();
 		ls.use();	
 		ls.setTextured(true);
-		ls.setLightPos(0, Vec2(200, 500));
 		tex->bind();
+		for(int i = 0; i < 10; ++i){
+			ls.setLight(i, l[i]);
+		}
 		for( auto& sp : sprites ){
 			sb.draw(Vec2(sp.x, sp.y), Vec4(sp.uX, sp.uY, sp.uW, sp.uH), Vec2(sp.w, sp.h), Vec4(sp.brns, sp.brns, sp.brns, 1.0f));
 		}
@@ -143,7 +149,12 @@ int main(int argc, char** argv){
 			sb.draw(p.pos, Vec4(0), p.size, p.color);
 		}
 		sb.render();
+		for(auto& p : pa.get_particles()){
+			sb.draw(p.pos, Vec4(0), p.size, p.color);
+		}
+		sb.render();
 		pg.update(ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS));
+		pa.update(ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS));
 		ds.unuse();
 		pp.end();
 

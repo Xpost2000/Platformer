@@ -33,6 +33,8 @@ LightShader::LightShader(const std::shared_ptr<IDevice>& dev) :device(dev){
 
 		const int MAX_LIGHTS = 10;
 		uniform vec2 lightPos[MAX_LIGHTS];
+		uniform vec3 lightColor[MAX_LIGHTS];
+		uniform float power[MAX_LIGHTS];
 		vec3 ambient;
 
 		void main(){
@@ -46,8 +48,7 @@ LightShader::LightShader(const std::shared_ptr<IDevice>& dev) :device(dev){
 			for(int i = 0; i < MAX_LIGHTS; i++){
 				vec4 t = vec4(ambient, 1.0);
 				float intensity = 0.8/length(pos-lightPos[i]);
-				//t *= vec4((intensity*lightColor[i].x)*power[i], (intensity*lightColor[i].y)*power[i], (intensity*lightColor[i].z)*power[i], 1);
-				t *= vec4((intensity*1)*400, (intensity*1)*400, (intensity*1)*400, 1);
+				t *= vec4((intensity*lightColor[i].x)*power[i], (intensity*lightColor[i].y)*power[i], (intensity*lightColor[i].z)*power[i], 1);
 				res += t; // add the result ( do each lighting pass individually then add back on. )
 			}
 				color *= res;
@@ -69,6 +70,8 @@ LightShader::LightShader(const std::shared_ptr<IDevice>& dev) :device(dev){
 
 	for(int i = 0; i < 10; ++i){
 		lightPos[i] = ShaderUniform("lightPos[" + std::to_string(i) + "]", *sp);
+		lightColor[i] = ShaderUniform("lightColor[" + std::to_string(i) + "]", *sp);
+		lightPower[i] = ShaderUniform("power[" + std::to_string(i) + "]", *sp);
 	}
 
 }
@@ -95,4 +98,10 @@ void LightShader::setView(glm::mat4 m){
 }
 void LightShader::setProj(glm::mat4 m){
 	projMat->uniformMatrix4(1, false, glm::value_ptr(m));
+}
+
+void LightShader::setLight(int index, Light l){
+	lightPos[index].uniformf( l.pos.x(), l.pos.y() );
+	lightColor[index].uniformf(l.color.r(), l.color.b(), l.color.g());
+	lightPower[index].uniformf( l.strength ); 
 }
