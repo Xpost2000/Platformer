@@ -14,6 +14,7 @@ OBJ_FILES= ../../obj/IDevice.o\
 	  ../../obj/Bitmap.o\
 	  ../../obj/RandomNumberGenerator.o\
 	  ../../obj/ParticleGenerator.o\
+	  ../../obj/ParticleRenderer.o\
 	  ../../obj/BitmapUtil.o\
 	  ../../obj/Framebuffer.o\
 	  ../../obj/Renderbuffer.o\
@@ -42,6 +43,7 @@ all:
 	$(GCC) ../../src/IShaderSet.cpp $(LIBS) $(FLAGS) -c -o ../../obj/IShaderSet.o
 	$(GCC) ../../src/Shader.cpp $(LIBS) $(FLAGS) -c -o ../../obj/Shader.o
 	$(GCC) ../../src/ParticleGenerator.cpp $(LIBS) $(FLAGS) -c -o ../../obj/ParticleGenerator.o
+	$(GCC) ../../src/ParticleRenderer.cpp $(LIBS) $(FLAGS) -c -o ../../obj/ParticleRenderer.o
 	$(GCC) ../../src/DefaultShader.cpp $(LIBS) $(FLAGS) -c -o ../../obj/DefaultShader.o
 	$(GCC) ../../src/TestShader.cpp $(LIBS) $(FLAGS) -c -o ../../obj/TestShader.o
 	$(GCC) ../../src/PostProcessorShader.cpp $(LIBS) $(FLAGS) -c -o ../../obj/PostProcessorShader.o
