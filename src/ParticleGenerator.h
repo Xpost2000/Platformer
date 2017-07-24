@@ -2,6 +2,7 @@
 #define PARTICLE_GEN_H
 #include <vector>
 #include "ParticleStruct.h"
+#include "RandomNumberGenerator.h"
 /*
  * Let's just generically create a particle generator.
  * I'm going to have slight problems making a good generator...
@@ -13,12 +14,15 @@
  */
 class ParticleGenerator{
 	public:
-		ParticleGenerator(Vec2 origin){
-		}
+		ParticleGenerator(Vec2 origin, Vec2 velocity, Vec2 acceleration);
 		~ParticleGenerator(){}
 		std::vector<Particle>& get_particles() { return particles; }
-		void update(float dt){}
+		void update(float dt);
 	private:
+		void respawnParticle(Particle&);
+		Vec2 origin;
+		Vec2 velocity;
+		Vec2 acceleration;
 		std::vector<Particle> particles;
 };
 #endif

@@ -1,5 +1,6 @@
 #include <iostream>
 #include <time.h>
+#include "ClockTimer.h"
 
 #include <map>
 #include <SDL2/SDL_image.h>
@@ -10,6 +11,7 @@
 #include "DefaultShader.h"
 #include "SpriteBatcher.h"
 #include "RandomNumberGenerator.h"
+#include "ParticleGenerator.h"
 #include "Postprocessor.h"
 #include <vector>
 #define WIDTH 1280
@@ -73,7 +75,7 @@ void process_tm(){
 int main(int argc, char** argv){
 	SDL_Window* window;
 	SDL_Event ev;
-	SDL_Init(SDL_INIT_VIDEO);
+	SDL_Init(SDL_INIT_EVERYTHING);
 	IMG_Init(IMG_INIT_PNG);
 	window = SDL_CreateWindow("Test Letter X OGL Wrapper", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
 			WIDTH, HEIGHT, SDL_WINDOW_OPENGL);
@@ -106,10 +108,10 @@ int main(int argc, char** argv){
 	glm::mat4 view = glm::mat4();
 	view = glm::scale(view, glm::vec3(0.6, 0.6, 1.0));
 	ds.setMatrices(proj, view);
-	RandomInt b(-15, 15);
-	std::cout << b() << std::endl;
 	process_tm();
+	ParticleGenerator pg( Vec2(400, 300), Vec2(100, 100), Vec2(15) );
 	while(true){
+		ClockTimer::Tick();
 		while(SDL_PollEvent(&ev)){
 			if(ev.type== SDL_QUIT){
 				return 0;
@@ -127,13 +129,14 @@ int main(int argc, char** argv){
 		ds.use();	
 		ds.setTextured(true);
 		tex->bind();
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE);
 		for( auto& sp : sprites ){
-			sb.draw(Vec2(sp.x, sp.y), Vec4(sp.uX, sp.uY, sp.uW, sp.uH), Vec2(sp.w, sp.h), Vec4(sp.brns, sp.brns, sp.brns, 0.4f));
+			sb.draw(Vec2(sp.x, sp.y), Vec4(sp.uX, sp.uY, sp.uW, sp.uH), Vec2(sp.w, sp.h), Vec4(sp.brns, sp.brns, sp.brns, 1.0f));
 		}
 		sb.render();
-		for( auto& sp : sprites ){
-			sb.draw(Vec2(sp.x+150, sp.y-150), Vec4(sp.uX, sp.uY, sp.uW, sp.uH), Vec2(sp.w, sp.h), Vec4(sp.brns, sp.brns, sp.brns, 1.0f));
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE);
+		pg.update(ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS)/5);
+		for( auto& p : pg.get_particles() ){
+			sb.draw(Vec2(p.pos), Vec4(0), p.size, p.color);
 		}
 		sb.render();
 		ds.unuse();

@@ -166,11 +166,11 @@ class Vector2{
 		 *
 		 * These functions return a respective component of the union they are in
 		 */
-		inline auto constexpr const x() const { return X; }
-		inline auto constexpr const y() const { return Y; }
-		inline auto constexpr const u() const { x(); }; // u and v are the same as x and y.
+		inline auto &x() { return X; }
+		inline auto &y() { return Y; }
+		inline auto &u() { x(); }; // u and v are the same as x and y.
 		inline auto constexpr const magnitude() const{ return sqrt(X*X + Y*Y);}
-		inline auto constexpr const v() const { y(); }; //
+		inline auto &v() { y(); }; //
 		// return the greater of two components
 		inline auto constexpr const max() const { return X > Y ? X : Y;}
 		// return the lesser of two components

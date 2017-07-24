@@ -207,14 +207,14 @@ class Vector4{
 			return Vector4(X / magnitude(), Y / magnitude(), Z / magnitude(), W / magnitude());
 		}
 		inline auto constexpr const magnitude() const { return sqrt(X*X+Y*Y+Z*Z+W*W); }
-		inline auto constexpr const x() const { return X; }
-		inline auto constexpr const y() const { return Y; }
-		inline auto constexpr const z() const { return Z; }
-		inline auto constexpr const w() const { return W; }
-		inline auto constexpr const r() const { return x(); }
-		inline auto constexpr const g() const { return y(); }
-		inline auto constexpr const b() const { return z(); }
-		inline auto constexpr const a() const { return w(); }
+		inline auto& x() { return X; }
+		inline auto& y() { return Y; }
+		inline auto& z() { return Z; }
+		inline auto& w() { return W; }
+		inline auto& r() { return x(); }
+		inline auto& g() { return y(); }
+		inline auto& b() { return z(); }
+		inline auto& a() { return w(); }
 		inline constexpr auto* data() { return d; }
 		inline size_t constexpr const components() const { return C; }
 		inline size_t constexpr const c() const { return C; }

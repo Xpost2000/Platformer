@@ -9,6 +9,7 @@ OBJ_FILES= ../../obj/IDevice.o\
 	  ../../obj/VertexArray.o\
 	  ../../obj/BufferTypes.o\
 	  ../../obj/GLDevice.o\
+	  ../../obj/ClockTimer.o\
 	  ../../obj/Shader.o\
 	  ../../obj/IShaderSet.o\
 	  ../../obj/ImageTexture.o\
@@ -55,6 +56,7 @@ all:
 	$(GCC) ../../src/sdl_surface_load_image_wrapper.cpp $(LIBS) $(FLAGS) -c -o ../../obj/sdl_surface_load_image_wrapper.o
 	$(GCC) ../../src/Texture.cpp $(LIBS) $(FLAGS) -c -o ../../obj/Texture.o
 	$(GCC) ../../src/ParticleGenerator.cpp $(LIBS) $(FLAGS) -c -o ../../obj/ParticleGenerator.o
+	$(GCC) ../../src/ClockTimer.cpp $(LIBS) $(FLAGS) -c -o ../../obj/ClockTimer.o
 link:
 	$(GCC) $(OBJ_FILES) $(LIBS) $(FLAGS) -o ../../bin/Game.exe
 clean:
