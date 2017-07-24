@@ -109,7 +109,7 @@ int main(int argc, char** argv){
 	view = glm::scale(view, glm::vec3(0.6, 0.6, 1.0));
 	ds.setMatrices(proj, view);
 	process_tm();
-	ParticleGenerator pg( Vec2(400, 300), Vec2(100, 100), Vec2(15) );
+	ParticleGenerator pg(Vec2(1280/2, 720/2), Vec2(800, -400), Vec2(80, -10), Vec2(40), Vec4(0.1, 0.1, 0.1, 0.5), 100, Vec2(-10, 40), Vec2(-30, 30), Vec2(-30, 50), 1200);
 	while(true){
 		ClockTimer::Tick();
 		while(SDL_PollEvent(&ev)){
@@ -134,11 +134,11 @@ int main(int argc, char** argv){
 		}
 		sb.render();
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE);
-		pg.update(ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS)/5);
-		for( auto& p : pg.get_particles() ){
-			sb.draw(Vec2(p.pos), Vec4(0), p.size, p.color);
+		for(auto& p : pg.get_particles()){
+			sb.draw(p.pos, Vec4(0), p.size, p.color);
 		}
 		sb.render();
+		pg.update(ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS));
 		ds.unuse();
 		pp.end();
 
