@@ -1,5 +1,5 @@
 GCC=g++
-LIBS=-lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lglew32 -lOpenGL32
+LIBS=-lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lglew32 -lOpenGL32 -lboost_random-mgw51-1_60
 LIBS_LINUX=-lSDL2main -lSDL2 -lGLEW -lGL
 FLAGS=-std=gnu++14 -Wall -O2
 OBJ_FILES= ../../obj/IDevice.o\

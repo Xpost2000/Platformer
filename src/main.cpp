@@ -106,6 +106,8 @@ int main(int argc, char** argv){
 	glm::mat4 view = glm::mat4();
 	view = glm::scale(view, glm::vec3(0.6, 0.6, 1.0));
 	ds.setMatrices(proj, view);
+	RandomInt b(-15, 15);
+	std::cout << b() << std::endl;
 	process_tm();
 	while(true){
 		while(SDL_PollEvent(&ev)){
