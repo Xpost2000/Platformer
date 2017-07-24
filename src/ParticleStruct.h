@@ -13,6 +13,10 @@ struct Particle{
 	Particle() : Particle(Vec2(0.0), Vec2(0.0), Vec2(0.0), Vec2(0.0), Vec4(1.0), 0.0, 0.0){}
 	~Particle(){}
 	bool isAlive() { return (lifetime < 0); }
+	// implementing this for proper sorting and proper rendering.
+	bool operator<(const Particle& other){
+		return this->lifetime > other.lifetime;
+	}
 	// TODO: ADD UPDATE FUNCTION
 	// Or just make emitters that handle the properties for me??
 	// I'll just make different generators that handle based on the type.

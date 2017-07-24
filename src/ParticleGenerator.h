@@ -24,6 +24,7 @@ class ParticleGenerator{
 		void setBothDirections(bool a) { bothDir = a; }
 		void setOrigin(Vec2 pos) { origin = pos; }
 		void update(float dt);
+		void sort();
 	private:
 		bool active=true;
 		bool bothDir=true;

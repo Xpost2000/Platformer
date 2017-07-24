@@ -5,6 +5,7 @@
 #include <map>
 #include <SDL2/SDL_image.h>
 #include "mat4.hpp"
+#include "ParticleRenderer.h"
 #include "BitmapUtil.h"
 #include "typedefs.h"
 #include "TestShader.h"
@@ -102,6 +103,7 @@ int main(int argc, char** argv){
 	std::cout << "MINOR : " << ctx->getInteger(GetParam::MINOR_VERSION) << std::endl;
 	
 	ptrs::ImageTexture tex = std::make_shared<ImageTexture>(ctx,"grass.png");
+	ptrs::ImageTexture blob = std::make_shared<ImageTexture>(ctx,"blob.png");
 	SpriteBatcher sb(ctx);
 	DefaultShader ds(ctx);
 	LightShader ls(ctx);
@@ -118,6 +120,7 @@ int main(int argc, char** argv){
 	Light l[10];
 	l[0] = Light(600,  Vec3(1, 0, 0), Vec2(300, 500));
 	l[1] = Light(200,  Vec3(0, 0, 1), Vec2(600, 500));
+	ParticleRenderer pr(ctx);
 	while(true){
 		ClockTimer::Tick();
 		while(SDL_PollEvent(&ev)){
@@ -144,15 +147,10 @@ int main(int argc, char** argv){
 			sb.draw(Vec2(sp.x, sp.y), Vec4(sp.uX, sp.uY, sp.uW, sp.uH), Vec2(sp.w, sp.h), Vec4(sp.brns, sp.brns, sp.brns, 1.0f));
 		}
 		sb.render();
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE);
-		for(auto& p : pg.get_particles()){
-			sb.draw(p.pos, Vec4(0), p.size, p.color);
-		}
-		sb.render();
-		for(auto& p : pa.get_particles()){
-			sb.draw(p.pos, Vec4(0), p.size, p.color);
-		}
-		sb.render();
+
+		pr.render( pg, blob->get(), Vec4(0,0,1,1));
+		pr.render( pa, blob->get(), Vec4(0,0,1,1));
+
 		pg.update(ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS));
 		pa.update(ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS));
 		ds.unuse();

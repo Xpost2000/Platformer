@@ -1,4 +1,5 @@
 #include "ParticleGenerator.h"
+#include <algorithm>
 /*
 
 ParticleGenerator::ParticleGenerator(Vec2 origin, Vec2 velocity, Vec2 acceleration) : origin(origin), velocity(velocity), acceleration(acceleration){
@@ -86,6 +87,7 @@ void ParticleGenerator::update(float dt){
 				}
 			}
 		}	
+		sort();
 	}
 }
 
@@ -95,4 +97,8 @@ void ParticleGenerator::respawnParticle(Particle& par){
 	RandomFloat spOffset(speedVariance.x(), speedVariance.y());
 	RandomFloat lf(-10, 10);
 	par = Particle(origin+Vec2(pOffset(), pOffset()), velocity+Vec2(spOffset(), spOffset()), acceleration, size+Vec2(sOffset(), sOffset()), color, 0, lifetime+lf());
+}
+
+void ParticleGenerator::sort(){
+	std::sort( particles.begin(), particles.end() );
 }

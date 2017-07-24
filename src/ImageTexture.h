@@ -14,7 +14,7 @@ class ImageTexture{
 	public:
 		ImageTexture( const std::shared_ptr<IDevice>& dev , const char* fPath );
 		~ImageTexture();
-		Texture* get() { return tex; } // incase you actually want to manually do something
+		Texture& get() { return *tex; } // incase you actually want to manually do something
 		void bind();
 		void unbind();
 	private:
