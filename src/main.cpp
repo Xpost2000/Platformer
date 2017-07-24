@@ -119,7 +119,7 @@ int main(int argc, char** argv){
 			else{
 			}
 		}
-		ctx->clearColor(0.0, 0.0, 0.2);
+		ctx->clearColor(0.0, 0.0, 0.0);
 		ctx->clear(BufferClear::COLOR_DEPTH_BUFFERS);
 		ctx->enableAlpha();
 		ctx->viewport(0, 0, WIDTH, HEIGHT);
@@ -127,8 +127,13 @@ int main(int argc, char** argv){
 		ds.use();	
 		ds.setTextured(true);
 		tex->bind();
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE);
 		for( auto& sp : sprites ){
-			sb.draw(Vec2(sp.x, sp.y), Vec4(sp.uX, sp.uY, sp.uW, sp.uH), Vec2(sp.w, sp.h), Vec4(sp.brns, sp.brns, sp.brns, 1.0f));
+			sb.draw(Vec2(sp.x, sp.y), Vec4(sp.uX, sp.uY, sp.uW, sp.uH), Vec2(sp.w, sp.h), Vec4(sp.brns, sp.brns, sp.brns, 0.4f));
+		}
+		sb.render();
+		for( auto& sp : sprites ){
+			sb.draw(Vec2(sp.x+150, sp.y-150), Vec4(sp.uX, sp.uY, sp.uW, sp.uH), Vec2(sp.w, sp.h), Vec4(sp.brns, sp.brns, sp.brns, 1.0f));
 		}
 		sb.render();
 		ds.unuse();
