@@ -177,7 +177,7 @@ class Vector2{
 		inline auto constexpr const min() const { return X < Y ? X : Y;}
 		inline size_t constexpr const components() const { return C;}
 		inline size_t constexpr const c() const { return C; }
-		inline constexpr auto* data() { return d ; }	
+		inline auto* data() { return d ; }	
 	private:
 	/*
 	 * The problem was just me temporarily being dumb. That took btw 10 seconds to figure out.

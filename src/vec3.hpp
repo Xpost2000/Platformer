@@ -213,13 +213,13 @@ class Vector3{
 	private:
 	public:
 		inline auto constexpr const magnitude() const { return sqrt(X*X + Y*Y + Z*Z);}
-		inline auto constexpr const x() const{ return X;}
-		inline auto constexpr const y() const{ return Y;}
-		inline auto constexpr const z() const{ return Z;}
-		inline auto constexpr const r() const{ return x();}
-		inline auto constexpr const g() const{ return y();}
-		inline auto constexpr const b() const{ return z();}
-		inline constexpr auto* data() { return d; }
+		inline auto& x() { return X;}
+		inline auto& y() { return Y;}
+		inline auto& z() { return Z;}
+		inline auto& r() { return x();}
+		inline auto& g() { return y();}
+		inline auto& b() { return z();}
+		inline auto* data() { return d; }
 		inline size_t constexpr const components() const{ return C; }
 		inline size_t constexpr const c() const { return C; }
 		inline auto constexpr max() const{

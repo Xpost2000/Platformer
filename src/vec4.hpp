@@ -215,7 +215,7 @@ class Vector4{
 		inline auto& g() { return y(); }
 		inline auto& b() { return z(); }
 		inline auto& a() { return w(); }
-		inline constexpr auto* data() { return d; }
+		inline auto* data() { return d; }
 		inline size_t constexpr const components() const { return C; }
 		inline size_t constexpr const c() const { return C; }
 		inline auto constexpr max() const{
