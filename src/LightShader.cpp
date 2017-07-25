@@ -102,6 +102,6 @@ void LightShader::setProj(glm::mat4 m){
 
 void LightShader::setLight(int index, Light l){
 	lightPos[index].uniformf( l.pos.x(), l.pos.y() );
-	lightColor[index].uniformf(l.color.r(), l.color.b(), l.color.g());
+	lightColor[index].uniformf(l.color.r(), l.color.g(), l.color.b());
 	lightPower[index].uniformf( l.strength ); 
 }

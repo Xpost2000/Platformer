@@ -120,6 +120,8 @@ int main(int argc, char** argv){
 	Light l[10];
 	l[0] = Light(600,  Vec3(1, 0, 0), Vec2(300, 500));
 	l[1] = Light(200,  Vec3(0, 0, 1), Vec2(600, 500));
+	l[2] = Light(500, Vec3(0, 1, 0), Vec2(800, 600));
+	auto flash_delay = 0;
 	ParticleRenderer pr(ctx);
 	while(true){
 		ClockTimer::Tick();
@@ -140,6 +142,17 @@ int main(int argc, char** argv){
 		ls.use();	
 		ls.setTextured(true);
 		tex->bind();
+		if(flash_delay < 0){
+			flash_delay=100;
+			l[2].strength=500;
+		}
+		else{
+			if(flash_delay < 30)
+			l[2].strength=0;
+
+			flash_delay--;
+		}
+		l[2].color = Vec3(0.0, sin(SDL_GetTicks()*ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS) / 10.0f), cos(SDL_GetTicks()*ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS)/15.0f));
 		for(int i = 0; i < 10; ++i){
 			ls.setLight(i, l[i]);
 		}

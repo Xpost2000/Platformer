@@ -18,7 +18,7 @@ public:
 	//IObjectHandle();
 	//virtual ~IObjectHandle() = 0;
 	virtual const HandleType is_type() const = 0;
-	GLuint& get_handle() { return obj; }
+	auto& get_handle() { return obj; }
 
 protected:
 	GLuint obj = 0;

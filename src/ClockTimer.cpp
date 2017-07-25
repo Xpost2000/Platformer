@@ -19,7 +19,7 @@ ClockTimer::~ClockTimer()
 	Call every frame possible.
 */
 void ClockTimer::Tick(){
-	uint32_t tickTime = SDL_GetTicks();
+	auto tickTime = SDL_GetTicks();
 	delta = tickTime - last;
 	last = tickTime;
 	curFrame++;
