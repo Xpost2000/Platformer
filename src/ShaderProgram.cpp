@@ -25,7 +25,7 @@ ShaderProgram::~ShaderProgram(){
 
 void ShaderProgram::use(){
 	try{
-		if(device == nullptr)
+		if(std::is_null_pointer<decltype(device)>::value)
 			throw std::runtime_error("Device is nullptr");
 		device->useProgram(*this);
 	}catch(std::exception const & e){
@@ -35,7 +35,7 @@ void ShaderProgram::use(){
 
 void ShaderProgram::unuse(){
 	try{
-		if(device == nullptr)
+		if(std::is_null_pointer<decltype(device)>::value)
 			throw std::runtime_error("Device is nullptr");
 		device->unuseProgram();
 	}catch(std::exception const & e){
@@ -45,7 +45,7 @@ void ShaderProgram::unuse(){
 
 void ShaderProgram::link(){
 	try{
-		if(device == nullptr)
+		if(std::is_null_pointer<decltype(device)>::value)
 			throw std::runtime_error("Device is nullptr");
 		device->linkProgram(*this);
 	}catch(std::exception const & e){
@@ -55,7 +55,7 @@ void ShaderProgram::link(){
 
 void ShaderProgram::attach(Shader& s){
 	try{
-		if(device == nullptr)
+		if(std::is_null_pointer<decltype(device)>::value)
 			throw std::runtime_error("Device is nullptr");
 		device->attachShader(*this, s);
 	}catch(std::exception const & e){
@@ -65,7 +65,7 @@ void ShaderProgram::attach(Shader& s){
 
 void ShaderProgram::detach(Shader& s){
 	try{
-		if(device == nullptr)
+		if(std::is_null_pointer<decltype(device)>::value)
 			throw std::runtime_error("Device is nullptr");
 		device->detachShader(*this, s);
 	}catch(std::exception const & e){

@@ -2,6 +2,7 @@
 #include "IDevice.h"
 #include <iostream>
 
+// I only used the not keyword for readability and also cause it's a gimmick :)
 Shader::Shader( const std::shared_ptr<IDevice>& dev, ShaderType type) : device(dev), compiled(false){
 	obj = glCreateShader(static_cast<int>(type));
 }
@@ -17,7 +18,7 @@ Shader::~Shader(){
 void Shader::compile(){
 	if(not compiled){
 	try{
-		if(device==nullptr){
+		if(std::is_null_pointer< decltype(device) >::value){
 			throw std::runtime_error("Device is nullptr");
 		}
 		device->compileShader(*this);
@@ -32,7 +33,7 @@ void Shader::compile(){
 void Shader::source(GLsizei sz, std::string str, const GLint* len){
 	if(not compiled){
 	try{
-		if(device==nullptr){
+		if(std::is_null_pointer< decltype(device) >::value){
 			throw std::runtime_error("Device is nullptr");
 		}
 		device->shaderSource(*this, sz, str, len);
@@ -47,7 +48,7 @@ std::string Shader::get_log(){
 	std::string res = std::string("Compilation status is perfect.");
 	if(compiled){
 		try{
-			if(device==nullptr){
+			if(std::is_null_pointer< decltype(device) >::value){
 				throw std::runtime_error("Device is nullptr");
 			}
 			GLint log_size = 0;
@@ -59,6 +60,7 @@ std::string Shader::get_log(){
 		}
 		catch(std::exception const & e){
 			std::cout << "Shader Exception :: " << e.what() << std::endl;
+			return std::string(e.what());
 		}
 	}
 	return res;

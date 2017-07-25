@@ -30,7 +30,7 @@ void VertexArray::set_device(const std::shared_ptr<IDevice> &dev){
 
 void VertexArray::attribPointer(GLuint index, GLint size, GLenum type, bool normalized, GLsizei stride, const GLvoid* offsetPtr){
 	try{
-		if(device == nullptr){
+		if(std::is_null_pointer< decltype(device) >::value){
 			throw std::runtime_error("IDevice is nullptr");
 		}
 		device->vertexAttribPointer(index, size, type, normalized, stride, offsetPtr);
@@ -42,7 +42,7 @@ void VertexArray::attribPointer(GLuint index, GLint size, GLenum type, bool norm
 
 void VertexArray::enableAttribute(GLint index){
 	try{
-		if(device == nullptr){
+		if(std::is_null_pointer< decltype(device) >::value){
 			throw std::runtime_error("IDevice is nullptr");
 		}
 		device->enableAttribute(index);

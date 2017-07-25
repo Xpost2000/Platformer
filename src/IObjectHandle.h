@@ -1,6 +1,7 @@
 #ifndef OBJECT_HANDLE_HPP
 #define OBJECT_HANDLE_HPP
 #include <GL/glew.h> // For the typedefs.
+#include <type_traits>
 #include "ObjectTypes.h"
 
 /*
