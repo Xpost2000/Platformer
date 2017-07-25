@@ -21,6 +21,7 @@ OBJ_FILES= ../../obj/IDevice.o\
 	  ../../obj/Postprocessor.o\
 	  ../../obj/ImageTexture.o\
 	  ../../obj/TestShader.o\
+	  ../../obj/Game.o\
 	  ../../obj/SpriteBatcher.o\
 	  ../../obj/DefaultShader.o\
 	  ../../obj/IShaderSet.o\
@@ -60,6 +61,7 @@ all:
 	$(GCC) ../../src/ParticleGenerator.cpp $(LIBS) $(FLAGS) -c -o ../../obj/ParticleGenerator.o 2> ../../logs/linux/particlegen.log
 	$(GCC) ../../src/ParticleRenderer.cpp $(LIBS) $(FLAGS) -c -o ../../obj/ParticleRenderer.o 2> ../../logs/linux/particlerender.log
 	$(GCC) ../../src/ClockTimer.cpp $(LIBS) $(FLAGS) -c -o ../../obj/ClockTimer.o 2> ../../logs/linux/clocktimer.log
+	$(GCC) ../../src/Game.cpp $(LIBS) $(FLAGS) -c -o ../../obj/Game.o 2> ../../logs/linux/game.log
 link:
 	$(GCC) $(OBJ_FILES) $(LIBS) $(FLAGS) -o ../../bin/Game_linux 2> ../../logs/linker_linux.log
 clean:

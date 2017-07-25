@@ -1,0 +1,492 @@
+commit 2aa5388e3bca0ce1ceb88ac8458ed93057b0d3a1
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Tue Jul 25 10:55:50 2017 -0400
+
+    trying to optimize.
+
+commit 835c2a6238fd258756b92745864c1223e21b538a
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Tue Jul 25 10:40:18 2017 -0400
+
+    readibility reasons
+
+commit 115685e7397dc6fec3806d2bae701a6b513443fa
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Tue Jul 25 10:08:24 2017 -0400
+
+    I laugh at RBG see(LightShader.cpp)
+
+commit 7fb6e7f08b7b62939fd5054c96f11021edbef1b3
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Mon Jul 24 23:40:59 2017 -0400
+
+    each os logs into own folder
+    ear Please enter the commit message for your changes. Lines starting
+
+commit d41825244b7a5b5f94f084434233110cca1729d8
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Mon Jul 24 23:35:18 2017 -0400
+
+    builds now log output to file. Get git logs
+
+commit 73c23b94a590cdf8ae164e99627c0f8913e5082e
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Mon Jul 24 23:13:37 2017 -0400
+
+    Commenting comments.
+
+commit 7ca39a08f8d7259eebc0fc48ce0c9239bf59a467
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Mon Jul 24 22:57:39 2017 -0400
+
+    completed the vector classes.
+
+commit 47bc27d3ab53c96d9989b9ee44808593a27408d1
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Mon Jul 24 22:50:51 2017 -0400
+
+    made vectors more modifable.
+
+commit 8aa3ff6ecf46c6ac565e8af26e8dd6519abf044a
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Mon Jul 24 22:48:21 2017 -0400
+
+    Rebuilt for linux. Fixed line endings(linux script)
+
+commit 6ec122521d297a1f6114ce8cdfe481acb8cc3b33
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Mon Jul 24 18:37:53 2017 -0400
+
+    Rebuilt for linux
+
+commit 827b2c87928488885b61fba7982e1bab7d4c5386
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Mon Jul 24 18:07:19 2017 -0400
+
+    Particle Renderer added.
+
+commit 9fe52cef361dbb0057ae133dd987ef07142fd515
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Mon Jul 24 17:49:00 2017 -0400
+
+    10/10 demo. Lags pc sort of
+
+commit d2358858ad6e56d2f9d6d0da483a1c85d8392eb6
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Mon Jul 24 17:25:54 2017 -0400
+
+    Lighting shader added
+
+commit acc74fab596bf752af77e6c15751eef18f7495c6
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Mon Jul 24 16:45:50 2017 -0400
+
+    Particle (Simple) Complete
+
+commit 9be06d5c01260797e5ad30c820381fc37fb96525
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Mon Jul 24 15:43:06 2017 -0400
+
+    Prototype particle gen
+
+commit 33cf6d914369a31ce3af972f0fa06df5b8836315
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Sun Jul 23 22:43:12 2017 -0400
+
+    testing additive blending. TODO: FUNC ADD
+
+commit 2fb55e0ea9e35f47bc18cd31f7ad7c82e3914778
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Sun Jul 23 22:28:41 2017 -0400
+
+    for rng. Boost is used on windows. standard for lx
+
+commit a7d74e8de0799c9ff2cb43c72c816e8b590d5391
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Sun Jul 23 21:51:44 2017 -0400
+
+    preparing for boost random.
+
+commit 72960c64035573e5402cdf9d0858c651b94daf94
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Thu Jul 20 14:55:38 2017 -0400
+
+    post processor tihgn
+
+commit a471ad84604d1acedf6e4e247a35ef8bc9846d7c
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Thu Jul 20 14:53:41 2017 -0400
+
+    rebuilt current demo for linux
+
+commit 714f0ae4cc6bb50765bff621b64d52745963faa3
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Thu Jul 20 13:46:29 2017 -0400
+
+    Changed demo slightly
+
+commit c2ad689ffadbdacb153beccf4f5938f554e78b83
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Thu Jul 20 13:24:13 2017 -0400
+
+    lazily added alpha blending.
+
+commit 53f527454346f59f5228372acc4140e0170046e7
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Thu Jul 20 13:14:38 2017 -0400
+
+    Spritebatcher now takes vec4 for color.
+
+commit 9d0782a50885243acc09f0ebb65737803f81e680
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Thu Jul 20 13:11:57 2017 -0400
+
+    Vec4 is now a class + painless convert.
+
+commit ee5d443ca3203b3c675033677d8a5d9685916fa0
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Thu Jul 20 12:40:43 2017 -0400
+
+    ImageTexture : loads images into a bitmap to tex
+
+commit 7acf7b38b04ab044ac6ed41e9643d25e4debdd37
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Thu Jul 20 11:46:42 2017 -0400
+
+    I just found out about a mingw bug... f**k.
+
+commit e32c26bf0213ab2ce0e47db1613bd1a891633f97
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Thu Jul 20 10:58:32 2017 -0400
+
+    adds random number class.
+
+commit 3e3e2dc64c85b2010f46d87aab2ea4cb0cbc84f3
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Wed Jul 19 23:55:01 2017 -0400
+
+    Added delay to prototype.
+
+commit cb1ba6281d31af8b42fdeaa56160dbf6f5f2d355
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Wed Jul 19 23:40:55 2017 -0400
+
+    particle prototype
+
+commit 0bb4926fb356df1c751572f78a78c6d45ecb67a3
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Wed Jul 19 18:14:19 2017 -0400
+
+    Minecraft style demo
+
+commit 04656cdacec1d285bb0cc63c1e34540c8205a3d3
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Wed Jul 19 17:06:16 2017 -0400
+
+    fixed postprocessor bug
+
+commit c36e5b9559a73a632ad2c46a205440f8abb921cb
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Wed Jul 19 16:45:47 2017 -0400
+
+    removes unnecessary thing
+
+commit 96b9f0f2e5da1cf521d65bbce47997159017d9d5
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Wed Jul 19 16:45:19 2017 -0400
+
+    Postprocessor class added.
+
+commit 293735913519514c31be5dcd1988bc218c4dfd1e
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Wed Jul 19 16:02:14 2017 -0400
+
+    Shortened demo.
+
+commit cbf3492dd61b3ee52915dd144499846ccbb1d172
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Wed Jul 19 16:00:38 2017 -0400
+
+    Sprite Batcher added and using glm..
+
+commit 4b8f01ae79c1f0364c4d2dcd075d83adcaaf0734
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Wed Jul 19 14:23:31 2017 -0400
+
+    DefaultShader Added.
+
+commit 2a270398fa233ae6802a111eca6ddb360473516d
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Tue Jul 18 15:50:23 2017 -0400
+
+    added post processor shader interface.
+
+commit 71caffe55860d33f061ec54a82c3c95c5be7e9d1
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Tue Jul 18 15:29:34 2017 -0400
+
+    Convience and readability stuff.
+
+commit cf311f80381a1d32561800c62400d02baf89a8a7
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Tue Jul 18 14:26:37 2017 -0400
+
+    TODO: Fix state changes.
+
+commit d482ec07c7ac790a817aef85e74fb5f00e463a78
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Sun Jul 16 18:24:32 2017 -0400
+
+    Linux build updated with latest demo
+
+commit 87d9ea46616db18887800f3da9e62835544dfffc
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Sun Jul 16 18:24:02 2017 -0400
+
+    Last linux makefile fix.
+
+commit a89b1e5919fe9ce3d240f4e06b7512e07f50b16c
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Sun Jul 16 13:46:58 2017 -0400
+
+    FBO test. Works. TODO: Visitor pattern
+
+commit c15cc06dc60cc88acad0631a6517d20c0570dcdd
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Sun Jul 16 13:11:50 2017 -0400
+
+    Framebuffer hopefully complete ???
+
+commit 76fbaad172a674021bdb51f50a0806fc8eeb71fa
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Sun Jul 16 13:07:44 2017 -0400
+
+    implementing more fbo and rbo funcs
+
+commit 16e5c5a7ecb50e2a99e0b4f8daf99b88c87a854a
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Sun Jul 16 12:19:10 2017 -0400
+
+    Added device constructors for Framebuffer and rbo
+
+commit 8b68d3085ed7e43434a2fcd9984ccb0a2ec3393d
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Sun Jul 16 12:12:31 2017 -0400
+
+    Framebuffer and Renderbuffer / Postprocess part 1.
+
+commit 580c603dc27bbe44da34fc612e4c6019e2e78bd8
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Sun Jul 16 11:56:23 2017 -0400
+
+    ensuring correctness.
+
+commit 6388d5dc7c22de8ac64b6659181d389413d014d5
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Sat Jul 15 19:05:07 2017 -0400
+
+    mountainy mountain with skies
+
+commit 0912daaa00097b87bcd9076d0ce5ab637612f83e
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Sat Jul 15 18:33:02 2017 -0400
+
+    mountainy mountain scene for testing.
+
+commit eafeade299dc8b8dea0e9a902380f1d75aaedd1d
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Sat Jul 15 15:03:12 2017 -0400
+
+    update?
+
+commit 19100a4722fce13dc3851e0dc730c4eac45528ef
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Sat Jul 15 10:33:48 2017 -0400
+
+    Fixed linux makefile.
+
+commit 693f805ffb4887ee12b4c91a97a664291d5d30b8
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Sat Jul 15 10:32:14 2017 -0400
+
+    Visitor Textures
+
+commit 7722fadc2c5d9e5ac10f7ba54acfd03e93bd57e6
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Fri Jul 14 21:32:04 2017 -0400
+
+    Easier constructor overload.
+
+commit 47c7af8b4421a747df0c72561d210ce11061ef4f
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Fri Jul 14 19:55:49 2017 -0400
+
+    Fixed error in typedef headers.
+
+commit d716314fc24769883da061b89fb5437fd36c3ae4
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Fri Jul 14 19:52:41 2017 -0400
+
+    Commented and more clear files.
+
+commit 80cff05a6cfa18ddcb589feaf7f9055cab8c5207
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Fri Jul 14 19:35:49 2017 -0400
+
+    testing std maps with std::string.
+
+commit 49a3b21bcbe80565cfea7ecbd0204fc0553df815
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Fri Jul 14 19:21:45 2017 -0400
+
+    SDL surface image raii wrapper cause I'm lazy
+
+commit d45c337cd4064f473905625876c8de1c3896d9a4
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Fri Jul 14 18:58:19 2017 -0400
+
+    Bitmap test
+
+commit 46ad37d9d594d53508790680152160bc2210688d
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Fri Jul 14 18:53:57 2017 -0400
+
+    Texture class added.
+
+commit e313d593c4f1746195629f00b38bc527804dcd67
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Fri Jul 14 17:56:51 2017 -0400
+
+    Bitmap class created.
+
+commit 805843017297428c3b22a1eb3f93b6b8d3c1b318
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Fri Jul 14 14:42:20 2017 -0400
+
+    Radians and degrees functions are C linked.
+
+commit f265990c6c533ce7ec56a7bfd57ba3bb44852eff
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Fri Jul 14 14:37:06 2017 -0400
+
+    Comment
+
+commit e48a334e159790cbbdc0b6b78b46fe393d25367b
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Fri Jul 14 14:34:15 2017 -0400
+
+    Addded my own math library. C++14 mode enabled.
+
+commit 8b1e9c313869c5f84a07005610ce0b8e22291e34
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Thu Jul 13 16:24:38 2017 -0400
+
+    Added typedef header for smrtpointer typedefs
+
+commit 24ebd44ef9ef59c136c8990f9ba3d80c30341972
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Thu Jul 13 16:02:02 2017 -0400
+
+    Added ShaderUniform class. Surprisingly works...
+
+commit bf427d85b5273dbef6f5bfc65e280596b53aa6ce
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Thu Jul 13 15:18:43 2017 -0400
+
+    Triangle Demo 2.0 Colors Edition
+
+commit ac2bd16b6c8ca3ac522c6e6db220f5427406b82f
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Thu Jul 13 15:10:49 2017 -0400
+
+    Shader Program finished and hopefully works.
+
+commit e9a94f028d00f7cde55f64228026bb76d3415c96
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Thu Jul 13 15:02:57 2017 -0400
+
+    ShaderProgram class added in.
+
+commit 7ce4394999ded7f431e70a4227faefb8a480b51a
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Thu Jul 13 14:30:56 2017 -0400
+
+    You may ask for an info log from the shader
+
+commit bb41d073c6b0a99ab3cb9f800886ff65b55172c8
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Thu Jul 13 14:04:54 2017 -0400
+
+    Shader standalone complete
+
+commit a7c2bd6b9eda2719b48ab4ba79e50da802db640a
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Thu Jul 13 13:58:27 2017 -0400
+
+    Changed Shader to take std::string so it may work with raw literals
+
+commit bdb46e3cf7f4e19c69967758c8271547114ae641
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Thu Jul 13 13:56:55 2017 -0400
+
+    Shaders part 1.
+
+commit 497387909b524f40c9dafac8306347912e215c1f
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Thu Jul 13 13:21:57 2017 -0400
+
+    Derived Objects implement Comparable.
+
+commit 5b469d4d23112027d32897051db4409544b0faa5
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Thu Jul 13 00:23:54 2017 -0400
+
+    Make all derived objects comparable TODO:
+
+commit 1c2c34244a6311e637a94990d0c9b525d2343589
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Thu Jul 13 00:11:30 2017 -0400
+
+    More consistent naming style
+
+commit 35f65197d4f266ee7bfff1d7d4f1e0c51b4d05f7
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Thu Jul 13 00:02:31 2017 -0400
+
+    Fixed GetInteger64 ( diff typedef for lin and win)
+
+commit e5a43a58780ffbc6c43d63aff8f24c0cb112b56d
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Wed Jul 12 19:25:58 2017 -0400
+
+    New Triangle (LINUX)Demo
+
+commit 89b8df59d07885259c7fb1701dde3c8806c8f1d0
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Wed Jul 12 19:24:56 2017 -0400
+
+    Twin Tris demo
+
+commit 152de61157fabbad0f3a2fd4cb014803d8741d3a
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Wed Jul 12 18:50:27 2017 -0400
+
+    Added convient shell scripts
+
+commit a817b837c50ab6e21266b1958823cfccf29838c0
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Wed Jul 12 18:47:59 2017 -0400
+
+    Added windows build-script
+
+commit 5e93757d870fbd69accb185b73f43a74cf5fb522
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Wed Jul 12 18:46:58 2017 -0400
+
+    Added Linux Build Script
+
+commit 542629f6d6c4d6211fc3d2518fa0f074d6747f52
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Wed Jul 12 18:39:09 2017 -0400
+
+    inital commit. Linux + Windows 1.0
