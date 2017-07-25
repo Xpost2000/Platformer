@@ -1,0 +1,1 @@
+g++ std=gnu++14 -lmingw32 -lSDL2main -lSDL2 -fWall
