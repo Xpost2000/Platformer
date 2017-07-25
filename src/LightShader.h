@@ -8,6 +8,10 @@
 #include "matrix_typedef.h"
 #include "LightStruct.h"
 #include <glm/glm.hpp>
+/*
+ * This is the equivalent of the default shader but the core difference
+ * being that it supports 2D lighting.
+ */
 class LightShader : public IShaderSet{
 	public:
 		LightShader(const std::shared_ptr<IDevice>& dev);

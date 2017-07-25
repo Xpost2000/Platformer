@@ -6,7 +6,7 @@
 
 /*
  * contains a sprite batcher to render
- * particle generators :)
+ * particle generators. Really just saves a few lines of code.
  */
 class SpriteBatcher;
 class ParticleGenerator;

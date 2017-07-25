@@ -2,6 +2,10 @@
 #define SHADER_INFO_H
 #include <GL/glew.h>
 
+/*
+ * Strongly typed enums for Shader related functions
+ */
+
 enum class ShaderInfo : int{
 	COMPILE_STATUS = GL_COMPILE_STATUS,
 	INFO_LOG_SIZE = GL_INFO_LOG_LENGTH,

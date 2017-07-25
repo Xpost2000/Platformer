@@ -6,6 +6,11 @@
 
 class IDevice;
 class Shader;
+/*
+ * OpenGL wrapper class.
+ * It is a GPU program for a shader.
+ * It's really that simple.
+ */
 class ShaderProgram : public IObjectHandle, public Comparable<ShaderProgram>{
 	public:
 		ShaderProgram(const ShaderProgram& other) = default;	

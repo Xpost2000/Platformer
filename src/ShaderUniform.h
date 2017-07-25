@@ -5,6 +5,16 @@
 #include "Comparable.h"
 
 class ShaderProgram;
+/*
+ * This class is a CPU representation of what is a
+ * Shader Variable / Shader Uniform.
+ *
+ * It will gather the location of itself from the name specified
+ * and can set it's GPU value to any of your choosing.
+ *
+ * It just here for abstraction purposes cause it makes more sense to me
+ * for many reasons.
+ */
 class ShaderUniform : public IObjectHandle , public Comparable<ShaderUniform>{
 	public:
 		ShaderUniform(const ShaderUniform& other) = default;

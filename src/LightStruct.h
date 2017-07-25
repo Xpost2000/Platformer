@@ -3,6 +3,10 @@
 #include "vector_typedef.h"
 #include "vec2.hpp"
 #include "vec3.hpp"
+/*
+ * A structure that defines all the properties of a light.
+ * Used effectively with the light shader.
+ */
 struct Light{
 	Light() : Light(1, Vec3(1), Vec2(0)){}
 	Light(const Light& other) = default;

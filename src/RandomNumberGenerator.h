@@ -5,12 +5,15 @@
  * it just uses the built in mt19937 and random_distrub
  * functions and classes featured in C++11.
  * for windows use the boost implementation.
+ *
+ * Thanks to boost I spend virtually no effort in the code base.
  */
 #include <time.h>
 #ifdef __linux__ // The C++11 random library works on linux. Or so I'm told. I'll test it myself later.
-#include <random>
+#include <random> // Include the C++11 random library
 #endif 
 #ifdef __WIN32__ // My windows compiler atm is TDM GCC 5.1.0, which works on my windows machine.
+// Include Boost random library on Windows.
 #include <boost/random/mersenne_twister.hpp>
 #include <boost/random/random_device.hpp>
 #include <boost/random/uniform_int_distribution.hpp>

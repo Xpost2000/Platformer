@@ -4,6 +4,9 @@
 /*
  * I didn't want to deallocate memory myself. So I made 
  * a RAII wrapper to do it for me.
+ *
+ * It quickly loads an image to an SDL struct and allows easy access
+ * to the pixels.
  */
 
 #include <SDL2/SDL_image.h>

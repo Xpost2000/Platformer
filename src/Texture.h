@@ -7,6 +7,12 @@
 #include <memory>
 class Bitmap;
 class IDevice;
+/*
+ * A openGL texture wrapper.
+ * All similar classes require a IDevice ( preferred GLDevice type ).
+ * It again like it's other siblings are Comparable and also 
+ * has visitor pattern functions for convience.
+ */
 class Texture : public IObjectHandle, public Comparable<Texture> {
 	public:
 	Texture();

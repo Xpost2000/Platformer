@@ -8,6 +8,8 @@
  * Like many other things this is a convience wrapper.
  * Loads an image to a bitmap.
  * Sets up a texture and completes the texture with the bitmap.
+ *
+ * It will load an image surface and put the pixels on a bitmap
  */
 class IDevice;
 class ImageTexture{

@@ -9,6 +9,10 @@
 
 /*
  * A simple sprite batcher that does all it needs to fit my needs.
+ * Which includes. Batching all vertices into a single VBO.
+ *
+ * TODO : Add index / element based rendering to increase performance
+ * 	  especially on more intense scenes.
  */
 class SpriteBatcher{
 	public:

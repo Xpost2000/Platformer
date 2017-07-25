@@ -4,6 +4,14 @@
 #include "IShaderSet.h"
 #include "matrix_typedef.h"
 class ShaderUniform;
+/*
+ * This is the test shader I used for 
+ * "Mountainy Mountains".
+ *
+ * I used this to test the IShaderSet interface
+ * to (technically) reduce the amount of code written
+ * in the main function.
+ */
 class TestShader : public IShaderSet{
 	public:
 	TestShader(const std::shared_ptr<IDevice> &dev);

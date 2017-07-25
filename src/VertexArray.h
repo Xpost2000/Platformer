@@ -6,6 +6,13 @@
 #include "IObjectHandle.h"
 
 class IDevice;
+/*
+ * A OpenGL Vertex Array wrapper.
+ * All similar classes require a IDevice ( of type GLDevice preferred since this was primarily made for OpenGL rendering. )
+ *
+ * I have a few drawing helpers but it's not really needed.
+ * All similar classes of this type are also comparable.
+ */
 class VertexArray : public IObjectHandle, public Comparable<VertexArray>{
 	public:
 		VertexArray(const VertexArray&) = default;

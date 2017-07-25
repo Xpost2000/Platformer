@@ -6,6 +6,11 @@
 #include <memory>
 
 class IDevice;
+/*
+ * A shader class.
+ * Takes in a std::string for source code.
+ * That's really it.
+ */
 class Shader : public IObjectHandle, public Comparable<Shader>{
 	public:
 	Shader(const Shader& other) = default;

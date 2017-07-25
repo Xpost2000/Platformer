@@ -1,6 +1,5 @@
 /*
- * Structure to be used
- * when I implement a particle system.
+ * A structure that will define all the properties of a particle.
  */
 #ifndef PARTICLE_STRUCT_H
 #define PARTICLE_STRUCT_H

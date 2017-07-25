@@ -14,6 +14,8 @@
  *
  * This particle generator is extremely simple and just enough to create fire-ish looking effects.
  * Not very flexible for anything else.
+ *
+ * But certainly enough for me :)
  */
 class ParticleGenerator{
 	public:

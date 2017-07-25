@@ -12,6 +12,7 @@ ParticleRenderer::~ParticleRenderer(){
 }
 
 void ParticleRenderer::render( ParticleGenerator& pg ){
+	// manually enable additive blending
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE);
 
@@ -23,6 +24,7 @@ void ParticleRenderer::render( ParticleGenerator& pg ){
 	device->enableAlpha(); // re-enable alpha blending
 }
 void ParticleRenderer::render( ParticleGenerator& pg, Texture& tex, Vec4 uv ){
+	// enable additive blending
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE);
 

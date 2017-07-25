@@ -13,6 +13,8 @@
 /*
  * Templated Matrix4 class.
  * Header only implementation.
+ *
+ * It's currently a work in progress ( Projection Matrices may not work as planned. )
  */
 
 template<typename t>

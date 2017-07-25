@@ -10,6 +10,7 @@ enum class TimeMeasure{
 /*
 	ClockTimer for delta time
 	--- From SomethingToCryAbout1 ---
+	--- and from SomthingToCryAbout2 ---
 
 	This is a Clock/Timer class that can do the following.
 	- Return Delta Time ( in either milliseconds or seconds )

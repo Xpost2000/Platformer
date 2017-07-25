@@ -2,6 +2,11 @@
 #define TEX_PARAM_H
 #include <GL/glew.h>
 
+/*
+ * Contains strongly typed enums
+ * for usage in IDevice texture related classes.
+ */
+
 enum class TextureTarget : int {
 	TEXTURE1D = GL_TEXTURE_1D,
 	TEXTURE2D = GL_TEXTURE_2D,
