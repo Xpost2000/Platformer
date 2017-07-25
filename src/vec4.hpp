@@ -190,6 +190,30 @@ class Vector4{
 		const Vector4 operator/=(const auto scalar){
 			return divideScalarSelf(scalar);
 		}
+		const Vector4 operator+(const Vector4& other){
+			return add(other);
+		}
+		const Vector4 operator+=(const Vector4& other){
+			return addSelf(other);
+		}
+		const Vector4 operator-(const Vector4& other){
+			return sub(other);
+		}
+		const Vector4 operator-=(const Vector4& other){
+			return subSelf(other);
+		}
+		const Vector4 operator+(const auto scalar){
+			return addScalar(scalar);
+		}
+		const Vector4 operator+=(const auto scalar){
+			return addScalarSelf(scalar);
+		}
+		const Vector4 operator-(const auto scalar){
+			return subScalar(scalar);
+		}
+		const Vector4 operator-=(const auto scalar){
+			return subScalarSelf(scalar);
+		}
 		/*
 		 * TODO : Finish this class
 		 */
@@ -207,6 +231,9 @@ class Vector4{
 			return Vector4(X / magnitude(), Y / magnitude(), Z / magnitude(), W / magnitude());
 		}
 		inline auto constexpr const magnitude() const { return sqrt(X*X+Y*Y+Z*Z+W*W); }
+		/*
+		 * I return references that are not const. Cause I realized I need to modify these. Except for the ones that should obviously stay constant.
+		 */
 		inline auto& x() { return X; }
 		inline auto& y() { return Y; }
 		inline auto& z() { return Z; }
@@ -218,12 +245,12 @@ class Vector4{
 		inline auto* data() { return d; }
 		inline size_t constexpr const components() const { return C; }
 		inline size_t constexpr const c() const { return C; }
-		inline auto constexpr max() const{
+		inline auto constexpr const max() const{
 			std::array<t, C> arr = {d[0], d[1], d[2], d[3]};
 			std::sort(arr.begin(), arr.end(), std::greater<t>());
 			return arr[0];
 		}
-		inline auto constexpr min() const{
+		inline auto constexpr const min() const{
 			std::array<t, C> arr = {d[0], d[1], d[2], d[3]};
 			std::sort(arr.begin(), arr.end(), std::less<t>());
 			return arr[0];

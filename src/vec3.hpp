@@ -182,6 +182,30 @@ class Vector3{
 		 * I here just realized... I didn't finish this...
 		 */
 		const Vector3 operator-(const Vector3& other){
+			return sub(other);
+		}
+		const Vector3 operator-=(const Vector3& other){
+			return subSelf(other);
+		}
+
+		const Vector3 operator+(const Vector3& other){
+			return add(other);
+		}
+		const Vector3 operator+=(const Vector3& other){
+			return addSelf(other);
+		}
+		const Vector3 operator-(const auto scalar){
+			return subScalar(scalar);
+		}
+		const Vector3 operator-=(const auto scalar){
+			return subScalarSelf(scalar);
+		}
+
+		const Vector3 operator+(const auto scalar){
+			return addScalar(scalar);
+		}
+		const Vector3 operator+=(const auto scalar){
+			return addScalarSelf(scalar);
 		}
 		friend std::ostream& operator<<(std::ostream &os, const Vector3& other){
 			os << "(" << other.x() << "," << other.y() << "," << other.z() << ")";
