@@ -87,7 +87,6 @@ void ParticleGenerator::update(float dt){
 				}
 			}
 		}	
-		sort();
 	}
 }
 

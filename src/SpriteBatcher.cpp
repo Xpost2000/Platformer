@@ -52,7 +52,8 @@ void SpriteBatcher::draw(Vec2 pos, Vec4 uvs, Vec2 size, Vec4 tl, Vec4 tr, Vec4 b
 void SpriteBatcher::render(){
 	vbo->bind(BufferTypes::ARRAY_BUFFER);
 	vao->bind();
-	vbo->bufferData(BufferTypes::ARRAY_BUFFER, vertices.size() * sizeof(Vertex), vertices.data(), BufferUsage::DYNAMIC_DRAW);
+	vbo->bufferData(BufferTypes::ARRAY_BUFFER, vertices.size() * sizeof(Vertex), NULL, BufferUsage::DYNAMIC_DRAW);
+	device->bufferSubData(BufferTypes::ARRAY_BUFFER, 0, vertices.size()*sizeof(Vertex), vertices.data());
 	vao->attribPointer(0, 3, GL_FLOAT, false, sizeof(Vertex), (const void*)offsetof(Vertex, pos));
 	vao->attribPointer(1, 2, GL_FLOAT, false, sizeof(Vertex), (const void*)offsetof(Vertex, uv));
 	vao->attribPointer(2, 4, GL_FLOAT, false, sizeof(Vertex), (const void*)offsetof(Vertex, color));
