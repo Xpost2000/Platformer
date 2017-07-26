@@ -3,10 +3,17 @@
 
 
 struct player{
-	player() : pos (250, 520-95), size(23, 75), velocity(100, 100){ }
+	player( const player& other ) = default;
+	player() : pos (250, 520-605), size(23, 75), velocity(100, 100){ }
 	Vec2 pos;
 	Vec2 size;
 	Vec2 velocity;
+	bool ground;
+	enum state{
+		walking,
+		standing,
+		jumping
+	}pState;
 }p;
 struct block{
 	block(Vec2 pos, Vec2 size) : pos(pos), size(size){}
@@ -65,12 +72,43 @@ void Game::update(){
 		}
 	}
 	const Uint8* keys=SDL_GetKeyboardState(NULL);
+	p.velocity.x() = 0;
 	if(keys[SDL_SCANCODE_A]){
-		p.pos.x() -= p.velocity.x() * ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS);
+		p.velocity.x() = -150;
 	}
 	if(keys[SDL_SCANCODE_D]){
-		p.pos.x() += p.velocity.x() * ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS);
+		p.velocity.x() = 150;
 	}
+	if(keys[SDL_SCANCODE_SPACE]){
+		p.velocity.y() -= 280.0f * ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS);
+	}
+	
+	// re apply gravity
+	p.velocity.y() += 200.0f * ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS);
+
+	player pred = p; // make clone.
+	pred.pos.x() += p.velocity.x() * ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS);
+	for(auto &b : blocks){
+		// simulate movement
+		if(aabb( b, pred )){
+			p.velocity.x() = 0;
+			//p.pos.x() += -(p.velocity.x()) * ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS);
+			break;
+		}
+	}
+	pred = p; // make clone.
+	pred.pos.y() += p.velocity.y() * ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS);
+	for(auto &b : blocks){
+		// simulate movement
+		if(aabb( b, pred )){
+			//p.pos.y() += -(p.velocity.y()) * ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS);
+			p.velocity.y() = 0;
+			break;
+		}
+	}
+	p.pos.y() += p.velocity.y()*ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS);
+	p.pos.x() += p.velocity.x() * ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS);
+	// pseudo stuff. I'm glued to the floor.
 }
 
 Light lights[10] ={
