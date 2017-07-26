@@ -55,32 +55,7 @@ bool aabb( block& b, player& p ){
 	return (p.pos.x() < b.pos.x() + b.size.x() && p.pos.x() + p.size.x() > b.pos.x())&&
 	       (p.pos.y() < b.pos.y() + b.size.y() && p.pos.y() + p.size.y() > b.pos.y());
 }
-void blockCollide( block& b, player& p, float dt ){
-		float pBottom = p.pos.y() + p.size.y();
-		float oBottom = b.pos.y() + b.size.y();
-		float pRight = p.pos.x() + p.size.x();
-		float oRight = b.pos.x() + b.size.x();
 
-		// our bottom to their top
-		float tCollide = pBottom - b.pos.y();
-		// their bottom to our top
-		float bCollide = oBottom - p.pos.y();
-		float rCollide = oRight - p.pos.x();
-		float lCollide = pRight - b.pos.x();
-
-		if (tCollide < bCollide && tCollide < lCollide && tCollide < rCollide){
-			p.pos.y() -= p.velocity.y()*dt;
-		}
-		if (bCollide < tCollide && bCollide < lCollide && bCollide < rCollide){
-			p.pos.y() += p.velocity.y()*dt;
-		}
-		if (lCollide < rCollide && lCollide < tCollide && lCollide < bCollide){
-			p.pos.x() -= abs(p.velocity.x())*dt;
-		}
-		if (rCollide < lCollide && rCollide < tCollide && rCollide < bCollide){
-			p.pos.x() += abs(p.velocity.x())*dt;
-		}
-}
 void Game::update(){
 	ClockTimer::Tick();
 	while(SDL_PollEvent(&ev)){
@@ -109,12 +84,9 @@ void Game::update(){
 	if(keys[SDL_SCANCODE_SPACE]){
 		p.velocity.y() += -780*ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS);
 	}
-	for(auto &b: blocks){
-		if(aabb(b, p))
-		blockCollide(b, p, ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS));
-	}
-
+	
 	p.pos.y() += p.velocity.y() * ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS);
+	p.pos.y() = floor(p.pos.y());
 }
 
 Light lights[10] ={
