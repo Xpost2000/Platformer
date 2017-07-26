@@ -4,11 +4,11 @@
 
 struct player{
 	player( const player& other ) = default;
-	player() : pos (250, 520-605), size(23, 75), velocity(100, 100){ }
+	player() : pos (250, 520-205), size(23, 75), velocity(100, 100){ }
 	Vec2 pos;
 	Vec2 size;
 	Vec2 velocity;
-	bool ground;
+	bool ground=false;
 	enum state{
 		walking,
 		standing,
@@ -47,8 +47,10 @@ Game::Game(){
 	ls->setView(view);
 	ls->setProj(proj);
 	blocks.push_back(block(Vec2(0, 620), Vec2(1280, 100)));
+	blocks.push_back(block(Vec2(0, 0), Vec2(1280, 100)));
 	blocks.push_back(block(Vec2(300, 520), Vec2(100)));
 	blocks.push_back(block(Vec2(600, 320), Vec2(100, 30)));
+	blocks.push_back(block(Vec2(400, 400), Vec2(100, 10)));
 }
 Game::~Game(){
 	SDL_DestroyWindow(win);
@@ -72,6 +74,7 @@ void Game::update(){
 		}
 	}
 	const Uint8* keys=SDL_GetKeyboardState(NULL);
+	// reset velocity every frame so we don't move in one direction forever.
 	p.velocity.x() = 0;
 	if(keys[SDL_SCANCODE_A]){
 		p.velocity.x() = -150;
@@ -80,7 +83,10 @@ void Game::update(){
 		p.velocity.x() = 150;
 	}
 	if(keys[SDL_SCANCODE_SPACE]){
-		p.velocity.y() -= 280.0f * ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS);
+		if(p.ground == true){
+		p.velocity.y() = -380.0f ;
+			p.ground = false;
+		}
 	}
 	
 	// re apply gravity
@@ -100,15 +106,19 @@ void Game::update(){
 	pred.pos.y() += p.velocity.y() * ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS);
 	for(auto &b : blocks){
 		// simulate movement
+		// by predicating what will happen in the next frame.
 		if(aabb( b, pred )){
-			//p.pos.y() += -(p.velocity.y()) * ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS);
+			// if my prediction frame touchs something we cannot move.
 			p.velocity.y() = 0;
+			p.ground = true;
 			break;
 		}
 	}
+	/*
+	 * I calculate gravity at the very end :)
+	 */
 	p.pos.y() += p.velocity.y()*ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS);
 	p.pos.x() += p.velocity.x() * ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS);
-	// pseudo stuff. I'm glued to the floor.
 }
 
 Light lights[10] ={
