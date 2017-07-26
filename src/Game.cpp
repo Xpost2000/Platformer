@@ -110,7 +110,12 @@ void Game::update(){
 		if(aabb( b, pred )){
 			// if my prediction frame touchs something we cannot move.
 			p.velocity.y() = 0;
+			// check if I hit the bottom
+			// of the block since pos.y + size.y = bottom in a traditional orthographic matrix.
+			if( b.pos.y() + b.size.y() < p.pos.y() ){
+			}else{
 			p.ground = true;
+			}
 			break;
 		}
 	}
