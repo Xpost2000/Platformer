@@ -9,11 +9,7 @@ struct player{
 	Vec2 size;
 	Vec2 velocity;
 	bool ground=false;
-	enum state{
-		walking,
-		standing,
-		jumping
-	}pState;
+	bool jetpack=false;
 }p;
 struct block{
 	block(Vec2 pos, Vec2 size) : pos(pos), size(size){}
@@ -82,15 +78,21 @@ void Game::update(){
 	if(keys[SDL_SCANCODE_D]){
 		p.velocity.x() = 150;
 	}
+	if(keys[SDL_SCANCODE_W]){
+		p.jetpack = !p.jetpack;
+	}
 	if(keys[SDL_SCANCODE_SPACE]){
-		if(p.ground == true){
-		p.velocity.y() = -380.0f ;
+		if(p.ground == true && !p.jetpack){
+			p.velocity.y() = -275.0f ;
 			p.ground = false;
+		}
+		else if (p.jetpack){
+			p.velocity.y() -= 300.0f * ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS);
 		}
 	}
 	
 	// re apply gravity
-	p.velocity.y() += 200.0f * ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS);
+	p.velocity.y() += 250.0f * ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS);
 
 	player pred = p; // make clone.
 	pred.pos.x() += p.velocity.x() * ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS);
