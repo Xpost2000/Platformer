@@ -3,7 +3,7 @@
 
 
 struct player{
-	player() : pos (0, 520-95), size(23, 75), velocity(100, 100){ }
+	player() : pos (250, 520-95), size(23, 75), velocity(100, 100){ }
 	Vec2 pos;
 	Vec2 size;
 	Vec2 velocity;
@@ -39,6 +39,7 @@ Game::Game(){
 	pp = std::make_shared<PostProcessor>(ctx, 1280, 720);
 	ls->setView(view);
 	ls->setProj(proj);
+	blocks.push_back(block(Vec2(0, 620), Vec2(1280, 100)));
 	blocks.push_back(block(Vec2(300, 520), Vec2(100)));
 	blocks.push_back(block(Vec2(600, 320), Vec2(100, 30)));
 }
@@ -64,29 +65,12 @@ void Game::update(){
 		}
 	}
 	const Uint8* keys=SDL_GetKeyboardState(NULL);
-	if(p.pos.y() >= 620-75){
-		p.velocity.y() = 0;
-		p.velocity.x() = 150;
-	}
-	else{
-		p.velocity.y() += 320*ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS);
-	}
 	if(keys[SDL_SCANCODE_A]){
-		if(p.pos.x() > 0){
 		p.pos.x() -= p.velocity.x() * ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS);
-		}
 	}
 	if(keys[SDL_SCANCODE_D]){
-		if(p.pos.x()+p.size.x() < 1280){
 		p.pos.x() += p.velocity.x() * ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS);
-		}
 	}
-	if(keys[SDL_SCANCODE_SPACE]){
-		p.velocity.y() += -780*ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS);
-	}
-	
-	p.pos.y() += p.velocity.y() * ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS);
-	p.pos.y() = floor(p.pos.y());
 }
 
 Light lights[10] ={
@@ -112,7 +96,6 @@ void Game::draw(){
 			ls->setLight(i, lights[i]);
 		}
 		sb->draw(Vec2(0),Vec4(0),Vec2(1280, 720), Vec4(0.0, 0.0, 0.1, 1.0));
-		sb->draw(Vec2(0, 620), Vec4(0), Vec2(1280, 100), Vec4(0.3));
 		for(auto &b: blocks){
 			sb->draw(b.pos, Vec4(0), b.size, Vec4(0.3));
 		}
