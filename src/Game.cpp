@@ -8,6 +8,7 @@ struct player{
 	Vec2 pos;
 	Vec2 size;
 	Vec2 velocity;
+	float jmpDelay = 10;
 	bool ground=false;
 	bool jetpack=false;
 }p;
@@ -82,8 +83,15 @@ void Game::update(){
 		p.jetpack = !p.jetpack;
 	}
 	if(keys[SDL_SCANCODE_SPACE]){
+		/*
+		 * enhances the platformy feel by having variable jumps :)
+		 */
+		if(p.ground == false && p.jmpDelay > 0){
+			p.velocity.y() -= 105 * ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS);
+			p.jmpDelay -= ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS);
+		}
 		if(p.ground == true && !p.jetpack){
-			p.velocity.y() = -275.0f ;
+			p.velocity.y() = -205.0f ;
 			p.ground = false;
 		}
 		else if (p.jetpack){
@@ -92,7 +100,7 @@ void Game::update(){
 	}
 	
 	// re apply gravity
-	p.velocity.y() += 250.0f * ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS);
+	p.velocity.y() += 266.0f * ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS);
 
 	player pred = p; // make clone.
 	pred.pos.x() += p.velocity.x() * ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS);
@@ -106,6 +114,7 @@ void Game::update(){
 	}
 	pred = p; // make clone.
 	pred.pos.y() += p.velocity.y() * ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS);
+
 	for(auto &b : blocks){
 		// simulate movement
 		// by predicating what will happen in the next frame.
@@ -121,6 +130,9 @@ void Game::update(){
 			break;
 		}
 	}
+	if(p.ground == true){
+		p.jmpDelay = 10;
+	}
 	/*
 	 * I calculate gravity at the very end :)
 	 */
@@ -129,7 +141,7 @@ void Game::update(){
 }
 
 Light lights[10] ={
-	Light(5000, Vec3(1), Vec2(500)),
+	Light(3000, Vec3(1), Vec2(500)),
 	Light(),
 	Light(),
 	Light(),
