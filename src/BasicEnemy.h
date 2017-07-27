@@ -25,9 +25,11 @@ class BasicEnemy{
 		Vec2 getVelocity(){ return velocity; }
 		Vec2 getSize(){ return size; }
 		Vec4 getColor(){ return color; }
+		bool isDead() { return dead ; }
+		void kill() { dead = true; }
 	private:
 		bool onGround;
-		int health = 100;
+		bool dead=0;
 		// 1 in 4 chance to jump every frame.
 		Vec2 pos;
 		Vec2 velocity;

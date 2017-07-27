@@ -66,8 +66,10 @@ void Player::update(float dt, std::vector<Block> &blocks, std::vector<BasicEnemy
 	for(auto& b : be){
 		if(aabb_basic_enemy(*this, b)){
 			if(b.getPos().y() < pos.y()+size.y()){
-				velocity.y() = -150;
+				velocity.y() = -250;
+				b.kill();
 			}
+			// else{ getHurt.... }
 		}
 	}
 }

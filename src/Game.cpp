@@ -61,6 +61,12 @@ void Game::update(){
 	}
 	for( auto& be : basicEnemies )
 	be.update(ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS), blocks);
+	for(int i = 0; i < basicEnemies.size(); ++i){
+		if(basicEnemies[i].isDead()){
+			basicEnemies.erase(basicEnemies.begin() + i);
+		}
+		basicEnemies[i].update(ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS), blocks);
+	}
 	p.update(ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS), blocks, basicEnemies);
 }
 
