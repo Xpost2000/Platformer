@@ -27,10 +27,10 @@ In file included from ../../src/typedefs.h:13:0,
                                  ^
 In file included from ../../src/Game.cpp:2:0:
 ../../src/BasicEnemy.h: In constructor 'BasicEnemy::BasicEnemy(Vec2, Vec2, Vec2, Vec4)':
-../../src/BasicEnemy.h:45:8: warning: 'BasicEnemy::size' will be initialized after [-Wreorder]
+../../src/BasicEnemy.h:48:8: warning: 'BasicEnemy::size' will be initialized after [-Wreorder]
    Vec2 size;
         ^
-../../src/BasicEnemy.h:44:8: warning:   'Vec2 BasicEnemy::velocity' [-Wreorder]
+../../src/BasicEnemy.h:47:8: warning:   'Vec2 BasicEnemy::velocity' [-Wreorder]
    Vec2 velocity;
         ^
 ../../src/BasicEnemy.h:20:3: warning:   when initialized here [-Wreorder]
