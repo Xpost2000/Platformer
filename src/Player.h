@@ -6,6 +6,7 @@
 #include "vec2.hpp"
 #include "vec4.hpp"
 #include "Block.h"
+class BasicEnemy;
 class Player{
 	public:
 		Player(const Player& other) = default;
@@ -13,7 +14,7 @@ class Player{
 		Player(Vec2 pos, Vec2 size, Vec2 velocity , Vec4 color)
 		: pos(pos), size(size), velocity(velocity), color(color){
 		}
-		void update(float dt, std::vector<Block> &blocks);
+		void update(float dt, std::vector<Block> &blocks, std::vector<BasicEnemy>& be);
 		Vec2 getPos() { return pos; }
 		Vec2 getVelocity() { return velocity; }
 		Vec2 getSize() { return size; }

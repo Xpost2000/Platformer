@@ -1,5 +1,10 @@
 #include "Player.h"
+#include "BasicEnemy.h"
 #include <SDL2/SDL.h>
+
+bool aabb_basic_enemy(Player& p, BasicEnemy& b){
+	return (p.getPos().x() < b.getPos().x() + b.getSize().x() && p.getPos().x() + p.getSize().x() > b.getPos().x())&&
+	       (p.getPos().y() < b.getPos().y() + b.getSize().y() && p.getPos().y() + p.getSize().y() > b.getPos().y());}
 
 bool aabb_block(Player& p, Block& b){
 	return (p.getPos().x() < b.getPos().x() + b.getSize().x() && p.getPos().x() + p.getSize().x() > b.getPos().x())&&
@@ -7,7 +12,7 @@ bool aabb_block(Player& p, Block& b){
 
 // TODO: add input handling.
 // and organize everything more.
-void Player::update(float dt, std::vector<Block> &blocks){
+void Player::update(float dt, std::vector<Block> &blocks, std::vector<BasicEnemy>& be){
 	const Uint8* keys = SDL_GetKeyboardState(NULL);	
 	velocity.x() = 0;
 	if(keys[SDL_SCANCODE_A]||keys[SDL_SCANCODE_LEFT]){
@@ -51,9 +56,18 @@ void Player::update(float dt, std::vector<Block> &blocks){
 		}
 	}
 
+
 	if(onGround==true){
 		jump_delay = 10;
 	}
 	pos.y() += velocity.y() * dt;
 	pos.x() += velocity.x() * dt;
+
+	for(auto& b : be){
+		if(aabb_basic_enemy(*this, b)){
+			if(b.getPos().y() < pos.y()+size.y()){
+				velocity.y() = -150;
+			}
+		}
+	}
 }
