@@ -30,6 +30,7 @@ OBJ_FILES= ../../obj/IDevice.o\
 	  ../../obj/BitmapUtil.o\
 	  ../../obj/sdl_surface_load_image_wrapper.o\
 	  ../../obj/vectors.o\
+	  ../../obj/Entity.o\
 	  ../../obj/Game.o\
 	  ../../obj/main.o
 all:
@@ -62,6 +63,7 @@ all:
 	$(GCC) ../../src/ParticleGenerator.cpp $(LIBS) $(FLAGS) -c -o ../../obj/ParticleGenerator.o 2> ../../logs/win/particlegen.log
 	$(GCC) ../../src/ParticleRenderer.cpp $(LIBS) $(FLAGS) -c -o ../../obj/ParticleRenderer.o 2> ../../logs/win/particlerender.log
 	$(GCC) ../../src/ClockTimer.cpp $(LIBS) $(FLAGS) -c -o ../../obj/ClockTimer.o 2> ../../logs/win/clocktimer.log
+	$(GCC) ../../src/Entity.cpp $(LIBS) $(FLAGS) -c -o ../../obj/Entity.o 2> ../../logs/win/entity.log
 	$(GCC) ../../src/Game.cpp $(LIBS) $(FLAGS) -c -o ../../obj/Game.o 2> ../../logs/win/game.log
 link:
 	$(GCC) $(OBJ_FILES) $(LIBS) $(FLAGS) -o ../../bin/Game.exe 2> ../../logs/linker_windows.log
