@@ -128,6 +128,8 @@ void Game::update(){
 			p.ground = true;
 			}
 			break;
+		}	else{
+			p.ground = false;
 		}
 	}
 	if(p.ground == true){
