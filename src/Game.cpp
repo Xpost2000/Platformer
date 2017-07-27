@@ -49,71 +49,7 @@ void Game::update(){
 			active = false;
 		}
 	}
-	const Uint8* keys=SDL_GetKeyboardState(NULL);
-	// reset velocity every frame so we don't move in one direction forever.
-	p.velocity.x() = 0;
-	if(keys[SDL_SCANCODE_A]){
-		p.velocity.x() = -150;
-	}
-	if(keys[SDL_SCANCODE_D]){
-		p.velocity.x() = 150;
-	}
-	if(keys[SDL_SCANCODE_SPACE]){
-		/*
-		 * enhances the platformy feel by having variable jumps :)
-		 */
-		if(p.onGround == false && p.jump_delay > 0){
-			p.velocity.y() -= 105 * ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS);
-			p.jump_delay -= ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS);
-		}
-		if(p.onGround == true ){
-			p.velocity.y() = -205.0f ;
-			p.onGround = false;
-		}
-	}
-	
 	p.update(ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS), blocks);
-	// re apply gravity
-	//p.velocity.y() += 266.0f * ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS);
-	/*
-	player pred = p; // make clone.
-	pred.pos.x() += p.velocity.x() * ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS);
-	for(auto &b : blocks){
-		// simulate movement
-		if(aabb( b, pred )){
-			p.velocity.x() = 0;
-			//p.pos.x() += -(p.velocity.x()) * ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS);
-			break;
-		}
-	}
-	pred = p; // make clone.
-	pred.pos.y() += p.velocity.y() * ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS);
-
-	for(auto &b : blocks){
-		// simulate movement
-		// by predicating what will happen in the next frame.
-		if(aabb( b, pred )){
-			// if my prediction frame touchs something we cannot move.
-			p.velocity.y() = 0;
-			// check if I hit the bottom
-			// of the block since pos.y + size.y = bottom in a traditional orthographic matrix.
-			if( b.pos.y() + b.size.y() < p.pos.y() ){
-			}else{
-			p.ground = true;
-			}
-			break;
-		}	else{
-			p.ground = false;
-		}
-	}
-	if(p.ground == true){
-		p.jmpDelay = 10;
-	}*/
-	/*
-	 * I calculate gravity at the very end :)
-	 */
-//	p.pos.y() += p.velocity.y()*ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS);
-//	p.pos.x() += p.velocity.x() * ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS);
 }
 
 Light lights[10] ={

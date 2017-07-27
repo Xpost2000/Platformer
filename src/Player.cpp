@@ -1,4 +1,5 @@
 #include "Player.h"
+#include <SDL2/SDL.h>
 
 bool aabb_block(Player& p, block& b){
 	return (p.pos.x() < b.pos.x() + b.size.x() && p.pos.x() + p.size.x() > b.pos.x())&&
@@ -7,7 +8,24 @@ bool aabb_block(Player& p, block& b){
 // TODO: add input handling.
 // and organize everything more.
 void Player::update(float dt, std::vector<block> &blocks){
-	
+	const Uint8* keys = SDL_GetKeyboardState(NULL);	
+	velocity.x() = 0;
+	if(keys[SDL_SCANCODE_A]){
+		velocity.x() = -150;
+	}
+	if(keys[SDL_SCANCODE_D]){
+		velocity.x() = 150;
+	}
+	if(keys[SDL_SCANCODE_SPACE]){
+		if(onGround == false && jump_delay > 0){
+			velocity.y() -= 105 * dt;
+			jump_delay -= dt;
+		}
+		if(onGround == true ){
+			velocity.y() = -205.0f ;
+			onGround = false;
+		}
+	}
 	velocity.y() += gravity * dt;
 	Player pred = *this;
 	pred.pos.x() += velocity.x() * dt;
