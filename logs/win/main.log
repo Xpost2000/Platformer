@@ -4,14 +4,12 @@ In file included from ../../src/mat4.hpp:8:0,
 ../../src/math_etc.hpp:3:0: warning: "M_PI" redefined
  #define M_PI 3.141592653589793238462643383279502884197169399375105820974944592307816406286208998628034825342117067982148086
  ^
-In file included from /usr/include/SDL2/SDL_stdinc.h:74:0,
-                 from /usr/include/SDL2/SDL_main.h:25,
-                 from /usr/include/SDL2/SDL.h:67,
-                 from ../../src/ClockTimer.h:2,
-                 from ../../src/Game.h:4,
+In file included from C:/TDM-GCC-32/lib/gcc/mingw32/5.1.0/include/c++/cmath:44:0,
+                 from ../../src/mat4.hpp:2,
+                 from ../../src/Game.h:5,
                  from ../../src/main.cpp:1:
-/usr/include/math.h:373:0: note: this is the location of the previous definition
- # define M_PI  3.14159265358979323846 /* pi */
+C:/TDM-GCC-32/include/math.h:58:0: note: this is the location of the previous definition
+ #define M_PI  3.14159265358979323846
  ^
 In file included from ../../src/vec3.hpp:4:0,
                  from ../../src/mat4.hpp:9,
@@ -23,7 +21,7 @@ In file included from ../../src/vec3.hpp:4:0,
 In file included from ../../src/typedefs.h:13:0,
                  from ../../src/Game.h:8,
                  from ../../src/main.cpp:1:
-../../src/ShaderUniform.h: In member function ‘bool ShaderUniform::is_valid()’:
+../../src/ShaderUniform.h: In member function 'bool ShaderUniform::is_valid()':
 ../../src/ShaderUniform.h:48:33: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
    bool is_valid() { return (obj != -1); } 
                                  ^

@@ -1,3 +1,105 @@
+commit e0ea90b676faf6cefc2a4ccc31d8bf3ecf65e10c
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Thu Jul 27 16:58:16 2017 -0400
+
+    rebuilt for linux
+
+commit a6e00c7aadb49ddb2048077ff09a005e8cd5b038
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Thu Jul 27 16:47:34 2017 -0400
+
+    Block class implemented.
+
+commit 42f0bb7b453db2c2b95f40648abda63c72c12bc1
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Thu Jul 27 16:24:51 2017 -0400
+
+    Player handles it's own input
+
+commit 3a9171238cde8dbd3cf0f8205bc7b1899cfff91d
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Thu Jul 27 16:21:10 2017 -0400
+
+    player is in it's own class.
+
+commit 5a20267b8398dad3c5a8090eee1bc98d02caf90b
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Thu Jul 27 15:53:36 2017 -0400
+
+    Do it manual without entity class.
+
+commit 00c7f4872948eb480536a8606d9518a79b66d618
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Thu Jul 27 11:48:33 2017 -0400
+
+    preparing for a huge entity class. I should learn component based stuff.
+
+commit 4ba02f93f7b0898831a8d4f856f4249768f1cae9
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Thu Jul 27 11:39:49 2017 -0400
+
+    fixed jumping in air if was previously touching ground
+
+commit 5e3bfda3b62f4e5326d2e81b1a66b51c7fd60b7a
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Wed Jul 26 22:58:32 2017 -0400
+
+    organizing game file hierachy
+
+commit 742059129225f5f317762b81aeb0186503047cbd
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Wed Jul 26 17:49:04 2017 -0400
+
+    Jumping enhanced
+
+commit 4037981d8302c91bbe690491e3cd69b7ca7787fe
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Wed Jul 26 14:00:30 2017 -0400
+
+    pass a glitch off as feature.
+
+commit 73f0f8e92544a5ecbfe30d62d09b21c39dc43e1e
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Wed Jul 26 13:51:46 2017 -0400
+
+    Proper jump implemented :)
+
+commit 7684f4b9655dd40364c0d786c0906596106e1be0
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Wed Jul 26 13:48:48 2017 -0400
+
+    jumping. Sort of.
+
+commit 6cd9dab8f7d8feb4cbc5c9d7e7e679d6d691d091
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Wed Jul 26 13:40:32 2017 -0400
+
+    using predictive movement I did it!
+
+commit 6eeb5a39c7dff28845dfcad42e6547f483011c06
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Wed Jul 26 12:50:59 2017 -0400
+
+    resets to blankslate
+
+commit bde3330f04165f258a075812bea38a09b4320b6a
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Tue Jul 25 20:10:24 2017 -0400
+
+    TODO: do physics.
+
+commit 0b26049c8eb7e52bea1ce53e5d00321ed0014a10
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Tue Jul 25 19:32:33 2017 -0400
+
+    physics. sort of working.
+
+commit a1fadaeb891f1b50847b0a1f6091202980c13013
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Tue Jul 25 18:24:34 2017 -0400
+
+    getting ready for game dev mode.
+
 commit 2aa5388e3bca0ce1ceb88ac8458ed93057b0d3a1
 Author: Xpost2000 <xpost2000cod@gmail.com>
 Date:   Tue Jul 25 10:55:50 2017 -0400

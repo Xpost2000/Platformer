@@ -1,8 +1,10 @@
 #include "Game.h"
+#include "BasicEnemy.h"
 #include "Block.h"
 #include "Player.h"
 
 std::vector<Block> blocks;
+BasicEnemy stan(Vec2(500, 300), Vec2(20, 50), Vec2(170), Vec4(1));
 Player p(Vec2(300, 300), Vec2(20, 50), Vec2(100), Vec4(0));
 Game::Game(){
 	SDL_Init(SDL_INIT_VIDEO);
@@ -31,7 +33,10 @@ Game::Game(){
 	// basic scene.
 	blocks.push_back(Block(Vec2(0, 620), Vec2(1280, 100), Vec4(0.4, 0.0, 0.0, 1.0)));
 	blocks.push_back(Block(Vec2(0, 0), Vec2(1280, 100), Vec4(0.4, 0.0, 0.0, 1.0)));
+	blocks.push_back(Block(Vec2(0, 0), Vec2(20, 720), Vec4(0.0, 0.0, 0.2, 1.0)));
+	blocks.push_back(Block(Vec2(1260, 0), Vec2(20, 720), Vec4(0.0, 0.0, 0.2, 1.0)));
 	blocks.push_back(Block(Vec2(300, 520), Vec2(100)));
+	blocks.push_back(Block(Vec2(900, 220), Vec2(100, 320)));
 	blocks.push_back(Block(Vec2(600, 320), Vec2(100, 30)));
 	blocks.push_back(Block(Vec2(400, 400), Vec2(100, 10)));
 }
@@ -51,6 +56,7 @@ void Game::update(){
 			active = false;
 		}
 	}
+	stan.update(ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS), blocks);
 	p.update(ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS), blocks);
 }
 
@@ -80,6 +86,7 @@ void Game::draw(){
 		for(auto &b: blocks){
 			sb->draw(b.getPos(), Vec4(0), b.getSize(), b.getColor());
 		}
+		sb->draw(stan.getPos(), Vec4(0), stan.getSize(), stan.getColor());
 		sb->draw(p.getPos(), Vec4(0), p.getSize(), Vec4(p.getColor().r(), p.getColor().g(), p.getColor().b(), 1.0));
 		sb->render();
 		ls->unuse();

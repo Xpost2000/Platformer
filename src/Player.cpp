@@ -10,10 +10,10 @@ bool aabb_block(Player& p, Block& b){
 void Player::update(float dt, std::vector<Block> &blocks){
 	const Uint8* keys = SDL_GetKeyboardState(NULL);	
 	velocity.x() = 0;
-	if(keys[SDL_SCANCODE_A]){
+	if(keys[SDL_SCANCODE_A]||keys[SDL_SCANCODE_LEFT]){
 		velocity.x() = -150;
 	}
-	if(keys[SDL_SCANCODE_D]){
+	if(keys[SDL_SCANCODE_D]||keys[SDL_SCANCODE_RIGHT]){
 		velocity.x() = 150;
 	}
 	if(keys[SDL_SCANCODE_SPACE]){
