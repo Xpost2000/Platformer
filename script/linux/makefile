@@ -9,6 +9,7 @@ OBJ_FILES= ../../obj/IDevice.o\
 	  ../../obj/GLDevice.o\
 	  ../../obj/Shader.o\
 	  ../../obj/Player.o\
+	  ../../obj/Block.o\
 	  ../../obj/ShaderProgram.o\
 	  ../../obj/ShaderUniform.o\
 	  ../../obj/Texture.o\
@@ -63,6 +64,7 @@ all:
 	$(GCC) ../../src/ParticleRenderer.cpp $(LIBS) $(FLAGS) -c -o ../../obj/ParticleRenderer.o 2> ../../logs/linux/particlerender.log
 	$(GCC) ../../src/ClockTimer.cpp $(LIBS) $(FLAGS) -c -o ../../obj/ClockTimer.o 2> ../../logs/linux/clocktimer.log
 	$(GCC) ../../src/Player.cpp $(LIBS) $(FLAGS) -c -o ../../obj/Player.o 2> ../../logs/linux/player.log
+	$(GCC) ../../src/Block.cpp $(LIBS) $(FLAGS) -c -o ../../obj/Block.o 2> ../../logs/linux/block.log
 	$(GCC) ../../src/Game.cpp $(LIBS) $(FLAGS) -c -o ../../obj/Game.o 2> ../../logs/linux/game.log
 link:
 	$(GCC) $(OBJ_FILES) $(LIBS) $(FLAGS) -o ../../bin/Game_linux 2> ../../logs/linker_linux.log

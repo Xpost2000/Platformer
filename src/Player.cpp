@@ -1,13 +1,13 @@
 #include "Player.h"
 #include <SDL2/SDL.h>
 
-bool aabb_block(Player& p, block& b){
-	return (p.pos.x() < b.pos.x() + b.size.x() && p.pos.x() + p.size.x() > b.pos.x())&&
-	       (p.pos.y() < b.pos.y() + b.size.y() && p.pos.y() + p.size.y() > b.pos.y());}
+bool aabb_block(Player& p, Block& b){
+	return (p.getPos().x() < b.getPos().x() + b.getSize().x() && p.getPos().x() + p.getSize().x() > b.getPos().x())&&
+	       (p.getPos().y() < b.getPos().y() + b.getSize().y() && p.getPos().y() + p.getSize().y() > b.getPos().y());}
 
 // TODO: add input handling.
 // and organize everything more.
-void Player::update(float dt, std::vector<block> &blocks){
+void Player::update(float dt, std::vector<Block> &blocks){
 	const Uint8* keys = SDL_GetKeyboardState(NULL);	
 	velocity.x() = 0;
 	if(keys[SDL_SCANCODE_A]){
@@ -40,7 +40,7 @@ void Player::update(float dt, std::vector<block> &blocks){
 	for(auto& b : blocks){
 		if(aabb_block(pred, b)){
 			velocity.y() = 0;
-			if(b.pos.y() + b.size.y() < pos.y()){
+			if(b.getPos().y() + b.getSize().y() < pos.y()){
 			}
 			else{
 				onGround = true;

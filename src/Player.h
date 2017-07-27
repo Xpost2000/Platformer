@@ -5,11 +5,7 @@
 #include "vector_typedef.h"
 #include "vec2.hpp"
 #include "vec4.hpp"
-struct block{
-	block(Vec2 pos, Vec2 size) : pos(pos), size(size){}
-	Vec2 pos;
-	Vec2 size;
-};
+#include "Block.h"
 class Player{
 	public:
 		Player(const Player& other) = default;
@@ -17,8 +13,13 @@ class Player{
 		Player(Vec2 pos, Vec2 size, Vec2 velocity , Vec4 color)
 		: pos(pos), size(size), velocity(velocity), color(color){
 		}
-		void update(float dt, std::vector<block> &blocks);
-		// make everything public for now.
+		void update(float dt, std::vector<Block> &blocks);
+		Vec2 getPos() { return pos; }
+		Vec2 getVelocity() { return velocity; }
+		Vec2 getSize() { return size; }
+		Vec4 getColor() { return color; }
+	private:
+		int health = 100;
 		float jump_delay = 10;
 		bool onGround = false;
 		Vec2 pos;
