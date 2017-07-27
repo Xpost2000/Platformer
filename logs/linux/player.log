@@ -4,11 +4,11 @@ In file included from ../../src/Player.h:6:0,
  #endif VEC2_CROSS_PRODUCT
         ^
 In file included from ../../src/Player.cpp:1:0:
-../../src/Player.h: In constructor 'Player::Player(Vec2, Vec2, Vec2, Vec4)':
-../../src/Player.h:27:8: warning: 'Player::size' will be initialized after [-Wreorder]
+../../src/Player.h: In constructor ‘Player::Player(Vec2, Vec2, Vec2, Vec4)’:
+../../src/Player.h:27:8: warning: ‘Player::size’ will be initialized after [-Wreorder]
    Vec2 size;
         ^
-../../src/Player.h:26:8: warning:   'Vec2 Player::velocity' [-Wreorder]
+../../src/Player.h:26:8: warning:   ‘Vec2 Player::velocity’ [-Wreorder]
    Vec2 velocity;
         ^
 ../../src/Player.h:13:3: warning:   when initialized here [-Wreorder]

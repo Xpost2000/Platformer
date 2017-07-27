@@ -28,6 +28,7 @@ Game::Game(){
 	pp = std::make_shared<PostProcessor>(ctx, 1280, 720);
 	ls->setView(view);
 	ls->setProj(proj);
+	// basic scene.
 	blocks.push_back(Block(Vec2(0, 620), Vec2(1280, 100), Vec4(0.4, 0.0, 0.0, 1.0)));
 	blocks.push_back(Block(Vec2(0, 0), Vec2(1280, 100), Vec4(0.4, 0.0, 0.0, 1.0)));
 	blocks.push_back(Block(Vec2(300, 520), Vec2(100)));

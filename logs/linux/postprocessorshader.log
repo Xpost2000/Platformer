@@ -1,0 +1,18 @@
+In file included from ../../src/PostProcessorShader.cpp:2:0:
+../../src/ShaderUniform.h: In member function ‘bool ShaderUniform::is_valid()’:
+../../src/ShaderUniform.h:48:33: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+   bool is_valid() { return (obj != -1); } 
+                                 ^
+../../src/PostProcessorShader.cpp: In destructor ‘PostProcessorShader::~PostProcessorShader()’:
+../../src/PostProcessorShader.cpp:36:9: warning: deleting object of polymorphic class type ‘Shader’ which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
+  delete vs;
+         ^
+../../src/PostProcessorShader.cpp:37:9: warning: deleting object of polymorphic class type ‘Shader’ which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
+  delete fs;
+         ^
+../../src/PostProcessorShader.cpp:38:9: warning: deleting object of polymorphic class type ‘ShaderProgram’ which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
+  delete sp;
+         ^
+../../src/PostProcessorShader.cpp:39:9: warning: deleting object of polymorphic class type ‘ShaderUniform’ which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
+  delete tex;
+         ^
