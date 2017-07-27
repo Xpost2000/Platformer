@@ -10,11 +10,7 @@ bool aabb_block(BasicEnemy& p, Block& b){
 * it practically has to be.
 */
 void BasicEnemy::update(float dt, std::vector<Block>& blocks){
-	RandomInt jump_decision(0, 100);
 	RandomInt walk(0, 5);
-	if((jump_decision() % 20 == 0)&&onGround){
-		velocity.y() = -330;
-	}
 	velocity.y() += gravity*dt;
 	BasicEnemy pred = *this;
 	if(walk() == 2)
