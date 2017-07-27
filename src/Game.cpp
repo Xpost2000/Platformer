@@ -4,7 +4,6 @@
 #include "Player.h"
 
 std::vector<Block> blocks;
-BasicEnemy stan(Vec2(500, 300), Vec2(20, 50), Vec2(170), Vec4(1));
 // I'm likely going to stre a different vector for different enemy types.
 std::vector<BasicEnemy> basicEnemies;
 Player p(Vec2(300, 300), Vec2(20, 50), Vec2(100), Vec4(0));
@@ -41,7 +40,8 @@ Game::Game(){
 	blocks.push_back(Block(Vec2(900, 220), Vec2(100, 320)));
 	blocks.push_back(Block(Vec2(600, 320), Vec2(100, 30)));
 	blocks.push_back(Block(Vec2(400, 400), Vec2(100, 10)));
-	basicEnemies.push_back(stan);
+	basicEnemies.push_back(BasicEnemy(Vec2(500, 300), Vec2(20, 50), Vec2(100), Vec4(1)));
+	basicEnemies.push_back(BasicEnemy(Vec2(700, 100), Vec2(50, 50), Vec2(100), Vec4(0.0, 1.0, 0.0, 1.0)));
 }
 Game::~Game(){
 	SDL_DestroyWindow(win);

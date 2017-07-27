@@ -29,10 +29,10 @@ class BasicEnemy{
 		// bool used to return whether finished or not.
 		bool DeathAnimation( float dt ) {
 			if(color.a() > 0.0f){
-				color.r() -= dt;
-				color.g() -= dt;
-				color.b() -= dt;
-				color.a() -= dt;
+				color.r() -= dt/2;
+				color.g() -= dt/2;
+				color.b() -= dt/2;
+				color.a() -= dt/2;
 				return false;
 			}else{
 				return true;
