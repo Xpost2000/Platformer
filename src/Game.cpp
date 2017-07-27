@@ -1,24 +1,8 @@
 #include "Game.h"
-
-
-
-struct player{
-	player( const player& other ) = default;
-	player() : pos (250, 520-205), size(23, 75), velocity(100, 100){ }
-	Vec2 pos;
-	Vec2 size;
-	Vec2 velocity;
-	float jmpDelay = 10;
-	bool ground=false;
-	bool jetpack=false;
-}p;
-struct block{
-	block(Vec2 pos, Vec2 size) : pos(pos), size(size){}
-	Vec2 pos;
-	Vec2 size;
-};
+#include "Player.h"
 
 std::vector<block> blocks;
+Player p(Vec2(300, 300), Vec2(20, 50), Vec2(100), Vec4(0));
 Game::Game(){
 	SDL_Init(SDL_INIT_VIDEO);
 	IMG_Init(IMG_INIT_PNG);
@@ -58,11 +42,6 @@ void Game::run(){
 		draw();
 	}
 }
-bool aabb( block& b, player& p ){
-	return (p.pos.x() < b.pos.x() + b.size.x() && p.pos.x() + p.size.x() > b.pos.x())&&
-	       (p.pos.y() < b.pos.y() + b.size.y() && p.pos.y() + p.size.y() > b.pos.y());
-}
-
 void Game::update(){
 	ClockTimer::Tick();
 	while(SDL_PollEvent(&ev)){
@@ -79,29 +58,24 @@ void Game::update(){
 	if(keys[SDL_SCANCODE_D]){
 		p.velocity.x() = 150;
 	}
-	if(keys[SDL_SCANCODE_W]){
-		p.jetpack = !p.jetpack;
-	}
 	if(keys[SDL_SCANCODE_SPACE]){
 		/*
 		 * enhances the platformy feel by having variable jumps :)
 		 */
-		if(p.ground == false && p.jmpDelay > 0){
+		if(p.onGround == false && p.jump_delay > 0){
 			p.velocity.y() -= 105 * ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS);
-			p.jmpDelay -= ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS);
+			p.jump_delay -= ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS);
 		}
-		if(p.ground == true && !p.jetpack){
+		if(p.onGround == true ){
 			p.velocity.y() = -205.0f ;
-			p.ground = false;
-		}
-		else if (p.jetpack){
-			p.velocity.y() -= 300.0f * ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS);
+			p.onGround = false;
 		}
 	}
 	
+	p.update(ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS), blocks);
 	// re apply gravity
-	p.velocity.y() += 266.0f * ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS);
-
+	//p.velocity.y() += 266.0f * ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS);
+	/*
 	player pred = p; // make clone.
 	pred.pos.x() += p.velocity.x() * ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS);
 	for(auto &b : blocks){
@@ -134,12 +108,12 @@ void Game::update(){
 	}
 	if(p.ground == true){
 		p.jmpDelay = 10;
-	}
+	}*/
 	/*
 	 * I calculate gravity at the very end :)
 	 */
-	p.pos.y() += p.velocity.y()*ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS);
-	p.pos.x() += p.velocity.x() * ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS);
+//	p.pos.y() += p.velocity.y()*ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS);
+//	p.pos.x() += p.velocity.x() * ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS);
 }
 
 Light lights[10] ={
@@ -168,7 +142,7 @@ void Game::draw(){
 		for(auto &b: blocks){
 			sb->draw(b.pos, Vec4(0), b.size, Vec4(0.3));
 		}
-		sb->draw(p.pos, Vec4(0), p.size, Vec4(1.0, 0.0, 0.0, 1.0));
+		sb->draw(p.pos, Vec4(0), p.size, Vec4(p.color.r(), p.color.g(), p.color.b(), 1.0));
 		sb->render();
 		ls->unuse();
 	pp->end();

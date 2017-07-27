@@ -13,6 +13,7 @@ OBJ_FILES= ../../obj/IDevice.o\
 	  ../../obj/GLDevice.o\
 	  ../../obj/ClockTimer.o\
 	  ../../obj/Shader.o\
+	  ../../obj/Player.o\
 	  ../../obj/IShaderSet.o\
 	  ../../obj/ImageTexture.o\
 	  ../../obj/DefaultShader.o\
@@ -62,6 +63,7 @@ all:
 	$(GCC) ../../src/ParticleGenerator.cpp $(LIBS) $(FLAGS) -c -o ../../obj/ParticleGenerator.o 2> ../../logs/win/particlegen.log
 	$(GCC) ../../src/ParticleRenderer.cpp $(LIBS) $(FLAGS) -c -o ../../obj/ParticleRenderer.o 2> ../../logs/win/particlerender.log
 	$(GCC) ../../src/ClockTimer.cpp $(LIBS) $(FLAGS) -c -o ../../obj/ClockTimer.o 2> ../../logs/win/clocktimer.log
+	$(GCC) ../../src/Player.cpp $(LIBS) $(FLAGS) -c -o ../../obj/Player.o 2> ../../logs/win/player.log
 	$(GCC) ../../src/Game.cpp $(LIBS) $(FLAGS) -c -o ../../obj/Game.o 2> ../../logs/win/game.log
 link:
 	$(GCC) $(OBJ_FILES) $(LIBS) $(FLAGS) -o ../../bin/Game.exe 2> ../../logs/linker_windows.log
