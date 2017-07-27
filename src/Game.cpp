@@ -63,6 +63,7 @@ void Game::update(){
 	be.update(ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS), blocks);
 	for(int i = 0; i < basicEnemies.size(); ++i){
 		if(basicEnemies[i].isDead()){
+			if(basicEnemies[i].DeathAnimation(ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS)))
 			basicEnemies.erase(basicEnemies.begin() + i);
 		}
 		basicEnemies[i].update(ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS), blocks);
@@ -84,9 +85,10 @@ Light lights[10] ={
 };
 
 void Game::draw(){
-	ctx->clearColor(0.0, 0.0, 0.1f);
+	ctx->clearColor(0.0, 0.0, 0.1f, 0.0);
 	ctx->clear(BufferClear::COLOR_DEPTH_BUFFERS);
 	ctx->viewport(0, 0, 1280, 720);
+	ctx->enableAlpha();
 	pp->begin();
 		ls->use();
 		for(int i = 0; i < 10; ++i){

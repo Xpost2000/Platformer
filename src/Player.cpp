@@ -1,4 +1,5 @@
 #include "Player.h"
+#include <iostream>
 #include "BasicEnemy.h"
 #include <SDL2/SDL.h>
 
@@ -62,14 +63,19 @@ void Player::update(float dt, std::vector<Block> &blocks, std::vector<BasicEnemy
 	}
 	pos.y() += velocity.y() * dt;
 	pos.x() += velocity.x() * dt;
-
+	
+	std::cout << onGround << std::endl;
 	for(auto& b : be){
-		if(aabb_basic_enemy(*this, b)){
+		if(aabb_basic_enemy(*this, b)&&!onGround){
 			if(b.getPos().y() < pos.y()+size.y()){
 				velocity.y() = -250;
 				b.kill();
 			}
-			// else{ getHurt.... }
+		}
+		else if ( aabb_basic_enemy(*this, b) ){
+			// get hurt
+			std::cout << "I should be bleeding\n";
 		}
 	}
+
 }

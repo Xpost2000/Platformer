@@ -25,7 +25,16 @@ class BasicEnemy{
 		Vec2 getVelocity(){ return velocity; }
 		Vec2 getSize(){ return size; }
 		Vec4 getColor(){ return color; }
-		bool isDead() { return dead ; }
+		bool isDead() { return dead; }
+		// bool used to return whether finished or not.
+		bool DeathAnimation( float dt ) {
+			if(color.a() > 0.0f){
+				color.a() -= dt*2.0f;
+				return false;
+			}else{
+				return true;
+			}
+		}
 		void kill() { dead = true; }
 	private:
 		bool onGround;

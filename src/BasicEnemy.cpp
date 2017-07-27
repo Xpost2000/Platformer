@@ -10,6 +10,7 @@ bool aabb_block(BasicEnemy& p, Block& b){
 * it practically has to be.
 */
 void BasicEnemy::update(float dt, std::vector<Block>& blocks){
+	if(!isDead()){
 	velocity.y() += gravity*dt;
 	BasicEnemy pred = *this;
 	pred.pos.x() += velocity.x() *dt;
@@ -38,4 +39,5 @@ void BasicEnemy::update(float dt, std::vector<Block>& blocks){
 	}
 	pos.x() += velocity.x() * dt;
 	pos.y() += velocity.y() * dt;
+}
 }
