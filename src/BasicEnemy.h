@@ -42,7 +42,6 @@ class BasicEnemy{
 	private:
 		bool onGround;
 		bool dead=0;
-		// 1 in 4 chance to jump every frame.
 		Vec2 pos;
 		Vec2 velocity;
 		Vec2 size;
