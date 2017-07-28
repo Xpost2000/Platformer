@@ -16,7 +16,18 @@ bool aabb_block(Player& p, Block& b){
 // and organize everything more.
 void Player::update(float dt, std::vector<Block> &blocks, std::vector<BasicEnemy>& be){
 	const Uint8* keys = SDL_GetKeyboardState(NULL);	
-	velocity.x() = 0;
+	if(onGround)
+	velocity.x() = 0; // cannot control your movements in air bro.
+	else{
+		if( velocity.x() < 0 ){
+			velocity.x() += 190*dt;
+			velocity.x() = std::min<float>(velocity.x(), 0);
+		}
+		else{
+			velocity.x() -= 190*dt;
+			velocity.x() = std::max<float>(velocity.x(), 0);
+		}
+	}
 	if(keys[SDL_SCANCODE_A]||keys[SDL_SCANCODE_LEFT]){
 		velocity.x() = -190;
 	}
