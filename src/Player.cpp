@@ -17,18 +17,18 @@ void Player::update(float dt, std::vector<Block> &blocks, std::vector<BasicEnemy
 	const Uint8* keys = SDL_GetKeyboardState(NULL);	
 	velocity.x() = 0;
 	if(keys[SDL_SCANCODE_A]||keys[SDL_SCANCODE_LEFT]){
-		velocity.x() = -150;
+		velocity.x() = -190;
 	}
 	if(keys[SDL_SCANCODE_D]||keys[SDL_SCANCODE_RIGHT]){
-		velocity.x() = 150;
+		velocity.x() = 190;
 	}
 	if(keys[SDL_SCANCODE_SPACE]){
 		if(onGround == false && jump_delay > 0){
-			velocity.y() -= 105 * dt;
+			velocity.y() -= 135 * dt;
 			jump_delay -= dt;
 		}
 		if(onGround == true ){
-			velocity.y() = -205.0f ;
+			velocity.y() = -262.0f ;
 			onGround = false;
 		}
 	}
@@ -68,13 +68,13 @@ void Player::update(float dt, std::vector<Block> &blocks, std::vector<BasicEnemy
 	for(auto& b : be){
 		if(aabb_basic_enemy(*this, b)&&!onGround){
 			if(b.getPos().y() < pos.y()+size.y()){
-				velocity.y() = -250;
+				velocity.y() = -200;
 				b.kill();
 			}
 		}
 		else if ( aabb_basic_enemy(*this, b) ){
-			// get hurt
-			std::cout << "I should be bleeding\n";
+			// basic idea of death
+			exit(0);
 		}
 	}
 
