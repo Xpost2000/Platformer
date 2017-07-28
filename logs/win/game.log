@@ -48,6 +48,6 @@ In file included from ../../src/Game.cpp:4:0:
    Player(Vec2 pos, Vec2 size, Vec2 velocity , Vec4 color)
    ^
 ../../src/Game.cpp: In member function 'void Game::update()':
-../../src/Game.cpp:66:19: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+../../src/Game.cpp:75:19: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
   for(int i = 0; i < basicEnemies.size(); ++i){
                    ^

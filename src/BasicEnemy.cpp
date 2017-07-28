@@ -1,4 +1,5 @@
 #include "BasicEnemy.h"
+#include <algorithm>
 
 bool aabb_block(BasicEnemy& p, Block& b){
 	return (p.getPos().x() < b.getPos().x() + b.getSize().x() && p.getPos().x() + p.getSize().x() > b.getPos().x())&&
@@ -38,6 +39,7 @@ void BasicEnemy::update(float dt, std::vector<Block>& blocks){
 		}
 	}
 	pos.x() += velocity.x() * dt;
+	velocity.y() = std::min<float>( velocity.y() , 330.0f );
 	pos.y() += velocity.y() * dt;
 }
 }

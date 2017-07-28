@@ -14,7 +14,7 @@ In file included from ../../src/Player.cpp:1:0:
 ../../src/Player.h:14:3: warning:   when initialized here [-Wreorder]
    Player(Vec2 pos, Vec2 size, Vec2 velocity , Vec4 color)
    ^
-In file included from ../../src/Player.cpp:3:0:
+In file included from ../../src/Player.cpp:4:0:
 ../../src/BasicEnemy.h: In constructor 'BasicEnemy::BasicEnemy(Vec2, Vec2, Vec2, Vec4)':
 ../../src/BasicEnemy.h:47:8: warning: 'BasicEnemy::size' will be initialized after [-Wreorder]
    Vec2 size;

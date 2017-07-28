@@ -1,4 +1,5 @@
 #include "Player.h"
+#include <algorithm>
 #include <iostream>
 #include "BasicEnemy.h"
 #include <SDL2/SDL.h>
@@ -61,21 +62,27 @@ void Player::update(float dt, std::vector<Block> &blocks, std::vector<BasicEnemy
 	if(onGround==true){
 		jump_delay = 10;
 	}
-	pos.y() += velocity.y() * dt;
-	pos.x() += velocity.x() * dt;
 	
-	std::cout << onGround << std::endl;
+	
+	std::cout << velocity.y() << std::endl;
 	for(auto& b : be){
-		if(aabb_basic_enemy(*this, b)&&!onGround){
-			if(b.getPos().y() < pos.y()+size.y()){
+		if(aabb_basic_enemy(*this, b)){
+			// cheating a little by adding "padding space"
+			// cause I realized the case won't execute since I'd be out of collision range and even
+			// if it would work the cpu steps to fast to ever check this.
+			if(b.getPos().y()+5 > pos.y() + size.y()){
 				velocity.y() = -200;
 				b.kill();
 			}
-		}
-		else if ( aabb_basic_enemy(*this, b) ){
-			// basic idea of death
-			exit(0);
+			else{
+				if(!b.isDead())
+				exit(0);
+			}
 		}
 	}
 
+	pos.y() += velocity.y() * dt;
+	// clamp gravity
+	velocity.y() = std::min<float>(velocity.y(), 330.0f);
+	pos.x() += velocity.x() * dt;
 }

@@ -40,10 +40,11 @@ Game::Game(){
 	blocks.push_back(Block(Vec2(900, 220), Vec2(100, 320)));
 	blocks.push_back(Block(Vec2(600, 320), Vec2(100, 30)));
 	blocks.push_back(Block(Vec2(400, 400), Vec2(100, 10)));
-	basicEnemies.push_back(BasicEnemy(Vec2(500, 300), Vec2(20, 50), Vec2(100), Vec4(1)));
-	basicEnemies.push_back(BasicEnemy(Vec2(800, 300), Vec2(20, 50), Vec2(180), Vec4(1)));
-	basicEnemies.push_back(BasicEnemy(Vec2(900, 300), Vec2(20, 50), Vec2(150), Vec4(1)));
+	basicEnemies.push_back(BasicEnemy(Vec2(480, 300), Vec2(20, 50), Vec2(100), Vec4(1)));
+//	basicEnemies.push_back(BasicEnemy(Vec2(800, 300), Vec2(20, 50), Vec2(180), Vec4(1)));
+//	basicEnemies.push_back(BasicEnemy(Vec2(900, 300), Vec2(20, 50), Vec2(150), Vec4(1)));
 	basicEnemies.push_back(BasicEnemy(Vec2(700, 100), Vec2(50, 50), Vec2(160), Vec4(0.0, 1.0, 0.0, 1.0)));
+	basicEnemies.push_back(BasicEnemy(Vec2(840, 100), Vec2(50, 120), Vec2(160), Vec4(0.0, 1.0, 0.0, 1.0)));
 }
 Game::~Game(){
 	SDL_DestroyWindow(win);
@@ -54,13 +55,21 @@ void Game::run(){
 		draw();
 	}
 }
+bool Simactive;
 void Game::update(){
 	ClockTimer::Tick();
 	while(SDL_PollEvent(&ev)){
 		if(ev.type==SDL_QUIT){
 			active = false;
 		}
+		if(ev.key.keysym.sym == SDLK_z){
+			Simactive = false;
+		}
+		if(ev.key.keysym.sym == SDLK_x){
+			Simactive = true;
+		}
 	}
+	if(Simactive){
 	for( auto& be : basicEnemies )
 	be.update(ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS), blocks);
 	for(int i = 0; i < basicEnemies.size(); ++i){
@@ -71,6 +80,7 @@ void Game::update(){
 		basicEnemies[i].update(ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS), blocks);
 	}
 	p.update(ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS), blocks, basicEnemies);
+	}
 }
 
 Light lights[10] ={
