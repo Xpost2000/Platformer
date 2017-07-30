@@ -4,40 +4,8 @@
 #include "BasicEnemy.h"
 #include "JumpingEnemy.h"
 #include <SDL2/SDL.h>
-
-// TODO: add input handling.
-// and organize everything more.
-void Player::update(float dt, std::vector<Block> &blocks, std::vector<BasicEnemy>& be, std::vector<JumpingEnemy>& je){
-	const Uint8* keys = SDL_GetKeyboardState(NULL);	
-	if(onGround)
-	velocity.x() = 0; // cannot control your movements in air bro.
-	else{
-		if( velocity.x() < 0 ){
-			velocity.x() += 190*dt;
-			velocity.x() = std::min<float>(velocity.x(), 0);
-		}
-		else{
-			velocity.x() -= 190*dt;
-			velocity.x() = std::max<float>(velocity.x(), 0);
-		}
-	}
-	if(keys[SDL_SCANCODE_A]||keys[SDL_SCANCODE_LEFT]){
-		velocity.x() = -190;
-	}
-	if(keys[SDL_SCANCODE_D]||keys[SDL_SCANCODE_RIGHT]){
-		velocity.x() = 190;
-	}
-	if(keys[SDL_SCANCODE_SPACE]){
-		if(onGround == false && jump_delay > 0){
-			velocity.y() -= 135 * dt;
-			jump_delay -= dt;
-		}
-		if(onGround == true ){
-			velocity.y() = -262.0f ;
-			onGround = false;
-		}
-	}
-	velocity.y() += gravity * dt;
+// moving functions for organization.
+void Player::collide_blocks( float dt, std::vector<Block>& blocks ){
 	Player pred = *this;
 	pred.pos.x() += velocity.x() * dt;
 	for(auto& b : blocks){	
@@ -61,7 +29,54 @@ void Player::update(float dt, std::vector<Block> &blocks, std::vector<BasicEnemy
 			onGround = false;
 		}
 	}
+}
+void Player::move_left(float dt){
+	velocity.x() = -190;
+}
+void Player::move_right(float dt){
+	velocity.x() = 190;
+}
+void Player::jump(float dt){
+	// the extended jump function.
+	if(!onGround && jump_delay > 0){
+		velocity.y() -= 135*dt;
+		jump_delay -= dt;
+	}else if(onGround){
+		velocity.y() = -262.0f;
+		onGround = false;
+	}
+}
+// this makes the moving controls feel floaty and more difficult in air.
+void Player::floaty_jump(float dt){
+		if( velocity.x() < 0 ){
+			velocity.x() += 190*dt;
+			velocity.x() = std::min<float>(velocity.x(), 0);
+		}
+		else{
+			velocity.x() -= 190*dt;
+			velocity.x() = std::max<float>(velocity.x(), 0);
+		}
+}
+// and organize everything more.
+void Player::update(float dt, std::vector<Block> &blocks, std::vector<BasicEnemy>& be, std::vector<JumpingEnemy>& je){
+	const Uint8* keys = SDL_GetKeyboardState(NULL);	
+	if(onGround)
+	velocity.x() = 0; // cannot control your movements in air bro.
+	else{
+		floaty_jump(dt);
+	}
+	if(keys[SDL_SCANCODE_A]||keys[SDL_SCANCODE_LEFT]){
+		move_left(dt);
+	}
+	if(keys[SDL_SCANCODE_D]||keys[SDL_SCANCODE_RIGHT]){
+		move_right(dt);
+	}
+	if(keys[SDL_SCANCODE_SPACE]){
+		jump(dt);
+	}
+	velocity.y() += gravity * dt;
 
+	collide_blocks( dt, blocks );
 
 	if(onGround==true){
 		jump_delay = 10;
@@ -84,9 +99,6 @@ void Player::update(float dt, std::vector<Block> &blocks, std::vector<BasicEnemy
 	}
 	for(auto& b : je){
 		if(intersect( b )){
-			// cheating a little by adding "padding space"
-			// cause I realized the case won't execute since I'd be out of collision range and even
-			// if it would work the cpu steps to fast to ever check this.
 			if(b.getPos().y()+5 > pos.y() + size.y()){
 				velocity.y() = -200;
 				b.kill();
