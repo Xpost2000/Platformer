@@ -4,6 +4,9 @@
 #include "Block.h"
 #include "Player.h"
 
+const int w = 1366;
+const int h = 768;
+
 std::vector<Block> blocks;
 // I'm likely going to stre a different vector for different enemy types.
 std::vector<BasicEnemy> basicEnemies;
@@ -12,7 +15,7 @@ Player p(Vec2(300, 300), Vec2(73, 73), Vec2(100), Vec4(1.0, 0.0, 0.0, 1.0));
 Game::Game(){
 	SDL_Init(SDL_INIT_VIDEO);
 	IMG_Init(IMG_INIT_PNG);
-	win = SDL_CreateWindow("Game Test", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 720, SDL_WINDOW_OPENGL);
+	win = SDL_CreateWindow("Game Test", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, w, h, SDL_WINDOW_OPENGL);
 	gl_info_struct_t info ={
 		3,
 		3,
@@ -30,7 +33,7 @@ Game::Game(){
 	pr = std::make_shared<ParticleRenderer>(ctx);
 	sb = std::make_shared<SpriteBatcher>(ctx);
 	ls = std::make_shared<LightShader>(ctx);
-	pp = std::make_shared<PostProcessor>(ctx, 1280, 720);
+	pp = std::make_shared<PostProcessor>(ctx, w, h);
 	player_texture = std::make_shared<ImageTexture>( ctx, "textures//test_player.png" );
 	wall_texture = std::make_shared<ImageTexture>( ctx, "textures//wall_test.png" );
 	ls->setProj(proj);
@@ -100,7 +103,7 @@ float camY=0;
 void Game::draw(){
 	ctx->clearColor(0.0, 0.0, 0.1f, 0.0);
 	ctx->clear(BufferClear::COLOR_DEPTH_BUFFERS);
-	ctx->viewport(0, 0, 1280, 720);
+	ctx->viewport(0, 0, w, h);
 	ctx->enableAlpha();
 	pp->begin();
 		view = glm::mat4();
@@ -132,11 +135,11 @@ void Game::draw(){
 		sb->render();
 		ls->unuse();
 
-		camX = -p.getPos().x() + 1280/2.0f;
-		camY = -p.getPos().y() + 720/2.0f;
+		camX = -p.getPos().x() + w/2.0f;
+		camY = -p.getPos().y() + h/2.0f;
 
-		if(camX < -2280+1280){
-			camX = -2280+1280;
+		if(camX < -2280+w){
+			camX = -2280+w;
 		}
 
 		view = glm::translate(view, glm::vec3(camX,camY,0));
