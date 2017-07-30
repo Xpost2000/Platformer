@@ -21,7 +21,7 @@ class BasicEnemy : public Entity{
 		BasicEnemy(Vec2 pos, Vec2 size, Vec2 velocity, Vec4 color)
 			: Entity(pos, size, velocity, color){
 		}
-		void update(float dt, std::vector<Block>& blocks);
+		virtual void update(float dt, std::vector<Block>& blocks);
 		// bool used to return whether finished or not.
 		bool DeathAnimation( float dt ) {
 			if(color.a() > 0.0f){
@@ -34,7 +34,8 @@ class BasicEnemy : public Entity{
 				return true;
 			}
 		}
-	private:
+	protected:
+		// 1 / 15 chance roughly.
 		bool onGround;
 };
 #endif

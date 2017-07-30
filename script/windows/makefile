@@ -15,6 +15,7 @@ OBJ_FILES= ../../obj/IDevice.o\
 	  ../../obj/Shader.o\
 	  ../../obj/Player.o\
 	  ../../obj/BasicEnemy.o\
+	  ../../obj/JumpingEnemy.o\
 	  ../../obj/IShaderSet.o\
 	  ../../obj/ImageTexture.o\
 	  ../../obj/DefaultShader.o\
@@ -70,6 +71,7 @@ all:
 	$(GCC) ../../src/Block.cpp $(LIBS) $(FLAGS) -c -o ../../obj/block.o 2> ../../logs/win/block.log
 	$(GCC) ../../src/Entity.cpp $(LIBS) $(FLAGS) -c -o ../../obj/Entity.o 2> ../../logs/win/entity.log
 	$(GCC) ../../src/BasicEnemy.cpp $(LIBS) $(FLAGS) -c -o ../../obj/BasicEnemy.o 2> ../../logs/win/basicenemy.log
+	$(GCC) ../../src/JumpingEnemy.cpp $(LIBS) $(FLAGS) -c -o ../../obj/JumpingEnemy.o 2> ../../logs/win/jumpingenemy.log
 	$(GCC) ../../src/Game.cpp $(LIBS) $(FLAGS) -c -o ../../obj/Game.o 2> ../../logs/win/game.log
 link:
 	$(GCC) $(OBJ_FILES) $(LIBS) $(FLAGS) -o ../../bin/Game.exe 2> ../../logs/linker_windows.log

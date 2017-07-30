@@ -42,6 +42,9 @@ In file included from ../../src/BasicEnemy.h:8:0,
    }
    ^
 ../../src/Game.cpp: In member function 'void Game::update()':
-../../src/Game.cpp:75:19: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+../../src/Game.cpp:74:19: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
   for(int i = 0; i < basicEnemies.size(); ++i){
+                   ^
+../../src/Game.cpp:81:19: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  for(int i = 0; i < jumpingEnemies.size(); ++i){
                    ^

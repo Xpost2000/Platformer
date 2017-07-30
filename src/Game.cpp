@@ -1,11 +1,13 @@
 #include "Game.h"
 #include "BasicEnemy.h"
+#include "JumpingEnemy.h"
 #include "Block.h"
 #include "Player.h"
 
 std::vector<Block> blocks;
 // I'm likely going to stre a different vector for different enemy types.
 std::vector<BasicEnemy> basicEnemies;
+std::vector<JumpingEnemy> jumpingEnemies;
 Player p(Vec2(300, 300), Vec2(20, 50), Vec2(100), Vec4(0));
 Game::Game(){
 	SDL_Init(SDL_INIT_VIDEO);
@@ -40,11 +42,10 @@ Game::Game(){
 	blocks.push_back(Block(Vec2(900, 220), Vec2(100, 320)));
 	blocks.push_back(Block(Vec2(600, 320), Vec2(100, 30)));
 	blocks.push_back(Block(Vec2(400, 400), Vec2(100, 10)));
-	basicEnemies.push_back(BasicEnemy(Vec2(480, 300), Vec2(20, 50), Vec2(100), Vec4(1)));
-//	basicEnemies.push_back(BasicEnemy(Vec2(800, 300), Vec2(20, 50), Vec2(180), Vec4(1)));
-//	basicEnemies.push_back(BasicEnemy(Vec2(900, 300), Vec2(20, 50), Vec2(150), Vec4(1)));
-	basicEnemies.push_back(BasicEnemy(Vec2(700, 100), Vec2(50, 50), Vec2(160), Vec4(0.0, 1.0, 0.0, 1.0)));
-	basicEnemies.push_back(BasicEnemy(Vec2(840, 100), Vec2(50, 120), Vec2(160), Vec4(0.0, 1.0, 0.0, 1.0)));
+	//basicEnemies.push_back(BasicEnemy(Vec2(480, 300), Vec2(20, 50), Vec2(100), Vec4(1)));
+	//basicEnemies.push_back(BasicEnemy(Vec2(700, 100), Vec2(50, 50), Vec2(160), Vec4(0.0, 1.0, 0.0, 1.0)));
+	jumpingEnemies.push_back(JumpingEnemy(Vec2(700, 300), Vec2(20, 100), Vec2(150), Vec4(1, 0, 0, 1)));
+//	basicEnemies.push_back(BasicEnemy(Vec2(840, 100), Vec2(50, 120), Vec2(160), Vec4(0.0, 1.0, 0.0, 1.0)));
 }
 Game::~Game(){
 	SDL_DestroyWindow(win);
@@ -70,8 +71,6 @@ void Game::update(){
 		}
 	}
 	if(Simactive){
-	for( auto& be : basicEnemies )
-	be.update(ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS), blocks);
 	for(int i = 0; i < basicEnemies.size(); ++i){
 		if(basicEnemies[i].isDead()){
 			if(basicEnemies[i].DeathAnimation(ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS)))
@@ -79,7 +78,14 @@ void Game::update(){
 		}
 		basicEnemies[i].update(ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS), blocks);
 	}
-	p.update(ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS), blocks, basicEnemies);
+	for(int i = 0; i < jumpingEnemies.size(); ++i){
+		if(jumpingEnemies[i].isDead()){
+			if(jumpingEnemies[i].DeathAnimation(ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS)))
+			jumpingEnemies.erase(jumpingEnemies.begin() + i);
+		}
+		jumpingEnemies[i].update(ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS), blocks);
+	}
+	p.update(ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS), blocks, basicEnemies, jumpingEnemies);
 	}
 }
 
@@ -112,6 +118,9 @@ void Game::draw(){
 		}
 		for(auto &be : basicEnemies)
 		sb->draw(be.getPos(), Vec4(0), be.getSize(), be.getColor());
+		for(auto &be : jumpingEnemies)
+		sb->draw(be.getPos(), Vec4(0), be.getSize(), be.getColor());
+
 		sb->draw(p.getPos(), Vec4(0), p.getSize(), Vec4(p.getColor().r(), p.getColor().g(), p.getColor().b(), 1.0));
 		sb->render();
 		ls->unuse();

@@ -8,6 +8,7 @@
 #include "Block.h"
 #include "Entity.h"
 class BasicEnemy;
+class JumpingEnemy;
 class Player : public Entity{
 	public:
 		Player(const Player& other) = default;
@@ -15,7 +16,7 @@ class Player : public Entity{
 		Player(Vec2 pos, Vec2 size, Vec2 velocity , Vec4 color)
 	 	: Entity(pos, size, velocity, color)	{
 		}
-		void update(float dt, std::vector<Block> &blocks, std::vector<BasicEnemy>& be);
+		void update(float dt, std::vector<Block> &blocks, std::vector<BasicEnemy>& be, std::vector<JumpingEnemy>& je);
 		bool death_check(){ return health < 0; }
 	private:
 		int health = 100;

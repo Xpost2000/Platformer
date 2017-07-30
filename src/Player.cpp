@@ -2,11 +2,12 @@
 #include <algorithm>
 #include <iostream>
 #include "BasicEnemy.h"
+#include "JumpingEnemy.h"
 #include <SDL2/SDL.h>
 
 // TODO: add input handling.
 // and organize everything more.
-void Player::update(float dt, std::vector<Block> &blocks, std::vector<BasicEnemy>& be){
+void Player::update(float dt, std::vector<Block> &blocks, std::vector<BasicEnemy>& be, std::vector<JumpingEnemy>& je){
 	const Uint8* keys = SDL_GetKeyboardState(NULL);	
 	if(onGround)
 	velocity.x() = 0; // cannot control your movements in air bro.
@@ -67,6 +68,21 @@ void Player::update(float dt, std::vector<Block> &blocks, std::vector<BasicEnemy
 	}
 	
 	for(auto& b : be){
+		if(intersect( b )){
+			// cheating a little by adding "padding space"
+			// cause I realized the case won't execute since I'd be out of collision range and even
+			// if it would work the cpu steps to fast to ever check this.
+			if(b.getPos().y()+5 > pos.y() + size.y()){
+				velocity.y() = -200;
+				b.kill();
+			}
+			else{
+				if(!b.isDead())
+				exit(0);
+			}
+		}
+	}
+	for(auto& b : je){
 		if(intersect( b )){
 			// cheating a little by adding "padding space"
 			// cause I realized the case won't execute since I'd be out of collision range and even
