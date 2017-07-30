@@ -57,5 +57,4 @@ void JumpingEnemy::update(float dt, std::vector<Block>& blocks){
 	pos.y() += velocity.y() * dt;
 	set_aabb(pos, size);
 	}
-	print_state();
 }

@@ -35,11 +35,11 @@ Game::Game(){
 	wall_texture = std::make_shared<ImageTexture>( ctx, "textures//wall_test.png" );
 	ls->setProj(proj);
 	// basic scene.
-	blocks.push_back(Block(Vec2(0, 620), Vec2(1280, 100), Vec4(0.4, 0.0, 0.0, 1.0), BlockTypes::Ceiling));
+	blocks.push_back(Block(Vec2(0, 620), Vec2(2280, 100), Vec4(0.4, 0.0, 0.0, 1.0), BlockTypes::Ceiling));
 	blocks.push_back(Block(Vec2(0, 0), Vec2(1280, 100), Vec4(0.4, 0.0, 0.0, 1.0)));
 	blocks.push_back(Block(Vec2(0, 0), Vec2(20, 720), Vec4(0.0, 0.0, 0.2, 1.0)));
 	blocks.push_back(Block(Vec2(500, 500), Vec2(80, 160), Vec4(.2), BlockTypes::Wall));
-	blocks.push_back(Block(Vec2(1260, 0), Vec2(20, 720), Vec4(0.0, 0.0, 0.2, 1.0)));
+	blocks.push_back(Block(Vec2(2260, 0), Vec2(20, 720), Vec4(0.0, 0.0, 0.2, 1.0)));
 	blocks.push_back(Block(Vec2(300, 520), Vec2(100)));
 	blocks.push_back(Block(Vec2(900, 220), Vec2(100, 320)));
 	blocks.push_back(Block(Vec2(600, 320), Vec2(100, 30)));
@@ -72,7 +72,6 @@ void Game::update(){
 			Simactive = true;
 		}
 	}
-	if(Simactive){
 	for(int i = 0; i < basicEnemies.size(); ++i){
 		if(basicEnemies[i].isDead()){
 			if(basicEnemies[i].DeathAnimation(ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS)))
@@ -88,7 +87,6 @@ void Game::update(){
 		jumpingEnemies[i].update(ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS), blocks);
 	}
 	p.update(ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS), blocks, basicEnemies, jumpingEnemies);
-	}
 }
 
 Light lights[10] ={
@@ -104,6 +102,8 @@ Light lights[10] ={
 	Light()
 };
 
+float camX=0;
+float camY=0;
 void Game::draw(){
 	ctx->clearColor(0.0, 0.0, 0.1f, 0.0);
 	ctx->clear(BufferClear::COLOR_DEPTH_BUFFERS);
@@ -138,6 +138,16 @@ void Game::draw(){
 		sb->draw(p.getPos(), p.getUvs(), p.getSize(), Vec4(p.getColor().r(), p.getColor().g(), p.getColor().b(), 1.0));
 		sb->render();
 		ls->unuse();
+		if(p.getVelocity().x() == 0){
+		camX += (-p.getVelocity().x()) * ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS);
+		}
+		else{	
+			if(camX < -388)
+			camX += (-p.getVelocity().x()) * ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS);
+			else
+			camX += (-p.getVelocity().x()+30) * ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS);
+		}
+		view = glm::translate(view, glm::vec3(camX,camY,0));
 	pp->end();
 	ls->setView(view);
 
