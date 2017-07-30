@@ -16,6 +16,9 @@ namespace BlockTypes{
 // This is a struct. pretty much.
 class Block : public Entity{
 	public:
+		// I know a block cannot really "die", but I can use it as a flag for active ness..
+		void revive(){dead=false;}
+		void kill(){dead=true;}
 		Block(Vec2 pos, Vec2 size, Vec4 color=Vec4(0.2), int type = BlockTypes::Floor)
 		 : Entity(pos, size, Vec2(0), color){
 			switch(type){

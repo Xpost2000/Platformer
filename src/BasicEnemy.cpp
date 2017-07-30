@@ -21,6 +21,9 @@ void BasicEnemy::print_state(){
 		case EnemyState::FALLING:
 			std::cout << "Falling" << std::endl;
 			break;
+		case EnemyState::DEAD:
+			std::cout << "Dead" << std::endl;
+			break;
 		default:
 			std::cout << "Unknown state" << std::endl;
 			break;
@@ -67,9 +70,9 @@ void BasicEnemy::update(float dt, std::vector<Block>& blocks){
 	}else{
 		dir = Direction::LEFT;
 	}
-	print_state();
 	pos.x() += velocity.x() * dt;
 	velocity.y() = std::min<float>( velocity.y() , 330.0f );
 	pos.y() += velocity.y() * dt;
 }
+	print_state();
 }

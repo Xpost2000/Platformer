@@ -28,7 +28,7 @@ class Entity{
 		Vec4 getColor(){ return color; }
 		// this is virtual because they may implement
 		// state changing on this.
-		virtual bool isDead() { return dead; }
+		bool isDead() { return dead; }
 		bool intersect( Entity &other )	{
 			return ( pos.x() < other.pos.x() + other.size.x() &&
 				 pos.x() + size.x() > other.pos.x() ) && 
@@ -37,8 +37,8 @@ class Entity{
 		}
 		virtual bool DeathAnimation( float dt ) {
 		}
-		void kill() { dead = true; }
-		void revive() { dead = false; }
+		virtual void kill() = 0;
+		virtual void revive() = 0;
 	protected:
 		bool dead=0;
 		Vec4 uvs;

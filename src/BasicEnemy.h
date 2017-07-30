@@ -30,7 +30,6 @@ class BasicEnemy : public Entity{
 			: Entity(pos, size, velocity, color){
 		}
 		virtual void update(float dt, std::vector<Block>& blocks);
-		bool isDead(){ if(dead) { eState = EnemyState::DEAD; } return dead; }
 		// bool used to return whether finished or not.
 		bool DeathAnimation( float dt ) {
 			if(color.a() > 0.0f){
@@ -43,6 +42,8 @@ class BasicEnemy : public Entity{
 				return true;
 			}
 		}
+		void kill(){dead = true; eState = EnemyState::DEAD;}
+		void revive(){dead = false;}
 	protected:
 		EnemyState eState;
 		Direction dir;

@@ -53,6 +53,6 @@ void JumpingEnemy::update(float dt, std::vector<Block>& blocks){
 	pos.x() += velocity.x() * dt;
 	velocity.y() = std::min<float>( velocity.y() , 330.0f );
 	pos.y() += velocity.y() * dt;
-	print_state();
 	}
+	print_state();
 }

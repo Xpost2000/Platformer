@@ -29,6 +29,8 @@ class Player : public Entity{
 		}
 		void update(float dt, std::vector<Block> &blocks, std::vector<BasicEnemy>& be, std::vector<JumpingEnemy>& je);
 		bool death_check(){ return health < 0; }
+		void kill(){ dead = true; pState = PlayerState::DEAD; }
+		void revive(){ dead = false; }
 	private:
 		void print_state();
 		void collide_blocks( float dt, std::vector<Block>& blocks );
