@@ -30,6 +30,7 @@ class Game{
 		std::shared_ptr<SpriteBatcher> sb = nullptr;
 		std::shared_ptr<LightShader> ls = nullptr;
 		std::shared_ptr<PostProcessor> pp = nullptr;
+		ptrs::ImageTexture player_texture;
 		glm::mat4 view=glm::mat4(), proj=glm::ortho(0.0f, 1280.0f, 720.0f, 0.0f, -1.0f, 1.0f);
 		ptrs::IDevice ctx = nullptr;
 };

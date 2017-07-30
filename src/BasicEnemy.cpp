@@ -34,8 +34,9 @@ void BasicEnemy::update(float dt, std::vector<Block>& blocks){
 	velocity.y() += gravity*dt;
 	BasicEnemy pred = *this;
 	pred.pos.x() += velocity.x() *dt;
+	set_aabb(pos, size);
 	for(auto& b : blocks){
-		if(pred.intersect(b)){
+		if(pred.intersect_aabb(b)){
 			// I make him go the other way if touching something.
 			// or I should use an enum with an int value...
 			velocity.x() = -velocity.x();
@@ -44,8 +45,9 @@ void BasicEnemy::update(float dt, std::vector<Block>& blocks){
 	}
 	pred = *this;
 	pred.pos.y() += velocity.y() * dt;
+	set_aabb(pos, size);
 	for( auto & b : blocks ){
-		if(pred.intersect(b)){
+		if(pred.intersect_aabb(b)){
 			velocity.y() = 0;
 			if(b.getPos().y() + b.getSize().y() < pos.y()){
 			}else{
@@ -73,6 +75,7 @@ void BasicEnemy::update(float dt, std::vector<Block>& blocks){
 	pos.x() += velocity.x() * dt;
 	velocity.y() = std::min<float>( velocity.y() , 330.0f );
 	pos.y() += velocity.y() * dt;
+	set_aabb(pos, size);
 }
 	print_state();
 }

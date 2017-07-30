@@ -26,12 +26,15 @@ class Player : public Entity{
 		Player(){}
 		Player(Vec2 pos, Vec2 size, Vec2 velocity , Vec4 color)
 	 	: Entity(pos, size, velocity, color)	{
+			set_aabb(Vec2(pos.x()+15, pos.y()+5), Vec2(40, 65));
 		}
 		void update(float dt, std::vector<Block> &blocks, std::vector<BasicEnemy>& be, std::vector<JumpingEnemy>& je);
 		bool death_check(){ return health < 0; }
 		void kill(){ dead = true; pState = PlayerState::DEAD; }
 		void revive(){ dead = false; }
 	private:
+		void reposition_aabb(){ bb.pos.x() = pos.x()+15; bb.pos.y() = pos.y()+5; }
+		void calculate_uvs();
 		void print_state();
 		void collide_blocks( float dt, std::vector<Block>& blocks );
 		void floaty_jump(float dt);

@@ -8,7 +8,7 @@ std::vector<Block> blocks;
 // I'm likely going to stre a different vector for different enemy types.
 std::vector<BasicEnemy> basicEnemies;
 std::vector<JumpingEnemy> jumpingEnemies;
-Player p(Vec2(300, 300), Vec2(20, 50), Vec2(100), Vec4(0));
+Player p(Vec2(300, 300), Vec2(73, 73), Vec2(100), Vec4(1.0, 0.0, 0.0, 1.0));
 Game::Game(){
 	SDL_Init(SDL_INIT_VIDEO);
 	IMG_Init(IMG_INIT_PNG);
@@ -31,6 +31,7 @@ Game::Game(){
 	sb = std::make_shared<SpriteBatcher>(ctx);
 	ls = std::make_shared<LightShader>(ctx);
 	pp = std::make_shared<PostProcessor>(ctx, 1280, 720);
+	player_texture = std::make_shared<ImageTexture>( ctx, "textures//test_player.png" );
 	ls->setView(view);
 	ls->setProj(proj);
 	// basic scene.
@@ -109,6 +110,8 @@ void Game::draw(){
 	ctx->enableAlpha();
 	pp->begin();
 		ls->use();
+		ls->setTex(0);
+		ls->setTextured(false);
 		for(int i = 0; i < 10; ++i){
 			ls->setLight(i, lights[i]);
 		}
@@ -120,8 +123,12 @@ void Game::draw(){
 		sb->draw(be.getPos(), Vec4(0), be.getSize(), be.getColor());
 		for(auto &be : jumpingEnemies)
 		sb->draw(be.getPos(), Vec4(0), be.getSize(), be.getColor());
+		sb->render();
 
-		sb->draw(p.getPos(), Vec4(0), p.getSize(), Vec4(p.getColor().r(), p.getColor().g(), p.getColor().b(), 1.0));
+		player_texture->unbind();
+		ls->setTextured(true);
+		player_texture->bind();
+		sb->draw(p.getPos(), p.getUvs(), p.getSize(), Vec4(p.getColor().r(), p.getColor().g(), p.getColor().b(), 1.0));
 		sb->render();
 		ls->unuse();
 	pp->end();
