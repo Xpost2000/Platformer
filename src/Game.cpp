@@ -42,10 +42,10 @@ Game::Game(){
 	blocks.push_back(Block(Vec2(900, 220), Vec2(100, 320)));
 	blocks.push_back(Block(Vec2(600, 320), Vec2(100, 30)));
 	blocks.push_back(Block(Vec2(400, 400), Vec2(100, 10)));
-	//basicEnemies.push_back(BasicEnemy(Vec2(480, 300), Vec2(20, 50), Vec2(100), Vec4(1)));
-	//basicEnemies.push_back(BasicEnemy(Vec2(700, 100), Vec2(50, 50), Vec2(160), Vec4(0.0, 1.0, 0.0, 1.0)));
-	jumpingEnemies.push_back(JumpingEnemy(Vec2(700, 300), Vec2(20, 100), Vec2(150), Vec4(1, 0, 0, 1)));
-//	basicEnemies.push_back(BasicEnemy(Vec2(840, 100), Vec2(50, 120), Vec2(160), Vec4(0.0, 1.0, 0.0, 1.0)));
+	basicEnemies.push_back(BasicEnemy(Vec2(480, 300), Vec2(20, 50), Vec2(100), Vec4(1)));
+	basicEnemies.push_back(BasicEnemy(Vec2(700, 100), Vec2(50, 50), Vec2(160), Vec4(0.0, 1.0, 0.0, 1.0)));
+	jumpingEnemies.push_back(JumpingEnemy(Vec2(500, 300), Vec2(20, 100), Vec2(150), Vec4(1, 0, 0, 1)));
+	basicEnemies.push_back(BasicEnemy(Vec2(840, 100), Vec2(50, 120), Vec2(160), Vec4(0.0, 1.0, 0.0, 1.0)));
 }
 Game::~Game(){
 	SDL_DestroyWindow(win);
