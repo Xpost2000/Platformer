@@ -19,6 +19,7 @@ int main(int argc, char** argv){
 		std::vector<block> blocks;
 		std::ifstream input(argv[1]);
 		std::string identifier;
+		bool found_player_spawn=false;
 		while( input >> identifier ){
 			if(identifier == "block"){
 				int w ;
@@ -30,12 +31,15 @@ int main(int argc, char** argv){
 				input >> x;
 				input >> y;
 				blocks.push_back(block(x, y, w, h));
-				std::cout << "Block(w, h, x, y) : " << w << "," << h << "," << x << "," << y << std::endl;
 			}
 			if(identifier == "player_spawn"){
+				if(found_player_spawn){
+					std::cout << "Warning(C1):: More than one player spawn found.\n";
+				}else{
 				input >> player_spawnX;
 				input >> player_spawnY;
-				std::cout << "Player spawns at :: " << player_spawnX << ", " << player_spawnY << std::endl; 
+				found_player_spawn = 1;
+				}
 			}
 		}
 		input.close();
