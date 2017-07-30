@@ -132,10 +132,12 @@ void Game::draw(){
 		sb->render();
 		ls->unuse();
 
-		std::cout << "CamX: " << camX << std::endl;
-		std::cout << "CamY: " << camY << std::endl;
 		camX = -p.getPos().x() + 1280/2.0f;
 		camY = -p.getPos().y() + 720/2.0f;
+
+		if(camX < -2280+1280){
+			camX = -2280+1280;
+		}
 
 		view = glm::translate(view, glm::vec3(camX,camY,0));
 	pp->end();
