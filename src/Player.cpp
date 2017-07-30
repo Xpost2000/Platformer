@@ -65,7 +65,7 @@ void Player::collide_blocks( float dt, std::vector<Block>& blocks ){
 	for(auto& b : blocks){
 		if(pred.intersect_aabb(b)){
 			velocity.y() = 0;
-			if(b.getPos().y() + b.getSize().y() < pos.y()){
+			if(b.get_aabb().pos.y() + b.get_aabb().size.y() < bb.pos.y()){
 			}
 			else{
 				onGround = true;
@@ -146,25 +146,37 @@ void Player::update(float dt, std::vector<Block> &blocks, std::vector<BasicEnemy
 			// cheating a little by adding "padding space"
 			// cause I realized the case won't execute since I'd be out of collision range and even
 			// if it would work the cpu steps to fast to ever check this.
-			if(b.getPos().y()+5 > pos.y() + size.y()){
+			if(b.get_aabb().pos.y()+10 > bb.pos.y() + bb.size.y()){
 				velocity.y() = -200;
 				b.kill();
 			}
 			else{
 				if(!b.isDead())
-				exit(0);
+					if(playerDir == Direction::RIGHT){
+						velocity.x() = -190;
+					}
+					if(playerDir == Direction::LEFT){
+						velocity.x() = 190;
+					}
 			}
 		}
 	}
 	for(auto& b : je){
 		if(intersect_aabb( b )){
-			if(b.getPos().y()+5 > pos.y() + size.y()){
+			if(b.get_aabb().pos.y()+10 > bb.pos.y() + bb.size.y()){
 				velocity.y() = -200;
 				b.kill();
 			}
 			else{
 				if(!b.isDead())
-				exit(0);
+					if(playerDir == Direction::RIGHT){
+						velocity.x() = -190;
+						velocity.y() = -200;
+					}
+					if(playerDir == Direction::LEFT){
+						velocity.x() = 190;
+						velocity.y() = -200;
+					}
 			}
 		}
 	}
@@ -175,5 +187,4 @@ void Player::update(float dt, std::vector<Block> &blocks, std::vector<BasicEnemy
 	pos.x() += velocity.x() * dt;
 	calculate_uvs();
 	reposition_aabb();
-//	print_state();
 }

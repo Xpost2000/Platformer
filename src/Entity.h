@@ -38,7 +38,7 @@ class Entity{
 		Vec2 getVelocity(){ return velocity; }
 		// for animations and stuff like that
 		// I plan to have the objects calculate their own uvs.
-		Vec4 getUvs()  { return uvs; }
+		virtual Vec4 getUvs()  { return uvs; }
 		Vec2 getSize(){ return size; }
 		Vec4 getColor(){ return color; }
 		// this is virtual because they may implement

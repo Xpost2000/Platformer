@@ -18,3 +18,39 @@ In file included from ../../src/vec3.hpp:4:0,
 ../../src/vec2.hpp:156:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
  #endif VEC2_CROSS_PRODUCT
         ^
+In file included from ../../src/typedefs.h:13:0,
+                 from ../../src/Game.h:8,
+                 from ../../src/Game.cpp:1:
+../../src/ShaderUniform.h: In member function 'bool ShaderUniform::is_valid()':
+../../src/ShaderUniform.h:48:33: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+   bool is_valid() { return (obj != -1); } 
+                                 ^
+In file included from ../../src/BasicEnemy.h:8:0,
+                 from ../../src/Game.cpp:2:
+../../src/Entity.h: In constructor 'Entity::Entity(Vec2, Vec2, Vec2, Vec4)':
+../../src/Entity.h:71:8: warning: 'Entity::size' will be initialized after [-Wreorder]
+   Vec2 size;
+        ^
+../../src/Entity.h:70:8: warning:   'Vec2 Entity::velocity' [-Wreorder]
+   Vec2 velocity;
+        ^
+../../src/Entity.h:31:3: warning:   when initialized here [-Wreorder]
+   Entity(Vec2 pos, Vec2 size, Vec2 velocity, Vec4 color)
+   ^
+../../src/Entity.h: In member function 'virtual bool Entity::DeathAnimation(float)':
+../../src/Entity.h:61:3: warning: no return statement in function returning non-void [-Wreturn-type]
+   }
+   ^
+../../src/Game.cpp: In member function 'void Game::update()':
+../../src/Game.cpp:76:19: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  for(int i = 0; i < basicEnemies.size(); ++i){
+                   ^
+../../src/Game.cpp:83:19: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  for(int i = 0; i < jumpingEnemies.size(); ++i){
+                   ^
+In file included from ../../src/BasicEnemy.h:9:0,
+                 from ../../src/Game.cpp:2:
+../../src/Block.h: In member function 'virtual Vec4 Block::getUvs()':
+../../src/Block.h:36:3: warning: control reaches end of non-void function [-Wreturn-type]
+   }
+   ^

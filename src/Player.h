@@ -33,7 +33,7 @@ class Player : public Entity{
 		void kill(){ dead = true; pState = PlayerState::DEAD; }
 		void revive(){ dead = false; }
 	private:
-		void reposition_aabb(){ bb.pos.x() = pos.x()+15; bb.pos.y() = pos.y()+5; }
+		void reposition_aabb(){ bb.pos.x() = pos.x()+15; bb.pos.y() = pos.y()+8; }
 		void calculate_uvs();
 		void print_state();
 		void collide_blocks( float dt, std::vector<Block>& blocks );

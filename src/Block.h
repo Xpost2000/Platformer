@@ -19,19 +19,25 @@ class Block : public Entity{
 		// I know a block cannot really "die", but I can use it as a flag for active ness..
 		void revive(){dead=false;}
 		void kill(){dead=true;}
-		Block(Vec2 pos, Vec2 size, Vec4 color=Vec4(0.2), int type = BlockTypes::Floor)
-		 : Entity(pos, size, Vec2(0), color){
+		Vec4 getUvs(){
 			switch(type){
-				// calculate the uvs based on where it is on a texture atlas.
 				case BlockTypes::Floor:
+					return Vec4(0, 31/64.0f, 30/64.0f, 61/64.0f);
 					break;
 				case BlockTypes::Wall:
+					return Vec4(0, 0, 30/64.0f, 30/64.0f);
 					break;
 				case BlockTypes::Ceiling:
+					return Vec4(31/64.0f, 0, 61/64.0f, 30/64.0f);
 					break;
 				default:
 					break;
-			}	
+			}
 		}
+		Block(Vec2 pos, Vec2 size, Vec4 color=Vec4(0.2), int type = BlockTypes::Floor)
+		 : Entity(pos, size, Vec2(0), color), type(type){
+		}
+	private:
+	int type;
 };
 #endif

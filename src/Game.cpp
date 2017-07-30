@@ -32,21 +32,22 @@ Game::Game(){
 	ls = std::make_shared<LightShader>(ctx);
 	pp = std::make_shared<PostProcessor>(ctx, 1280, 720);
 	player_texture = std::make_shared<ImageTexture>( ctx, "textures//test_player.png" );
-	ls->setView(view);
+	wall_texture = std::make_shared<ImageTexture>( ctx, "textures//wall_test.png" );
 	ls->setProj(proj);
 	// basic scene.
-	blocks.push_back(Block(Vec2(0, 620), Vec2(1280, 100), Vec4(0.4, 0.0, 0.0, 1.0)));
+	blocks.push_back(Block(Vec2(0, 620), Vec2(1280, 100), Vec4(0.4, 0.0, 0.0, 1.0), BlockTypes::Ceiling));
 	blocks.push_back(Block(Vec2(0, 0), Vec2(1280, 100), Vec4(0.4, 0.0, 0.0, 1.0)));
 	blocks.push_back(Block(Vec2(0, 0), Vec2(20, 720), Vec4(0.0, 0.0, 0.2, 1.0)));
+	blocks.push_back(Block(Vec2(500, 500), Vec2(80, 160), Vec4(.2), BlockTypes::Wall));
 	blocks.push_back(Block(Vec2(1260, 0), Vec2(20, 720), Vec4(0.0, 0.0, 0.2, 1.0)));
 	blocks.push_back(Block(Vec2(300, 520), Vec2(100)));
 	blocks.push_back(Block(Vec2(900, 220), Vec2(100, 320)));
 	blocks.push_back(Block(Vec2(600, 320), Vec2(100, 30)));
 	blocks.push_back(Block(Vec2(400, 400), Vec2(100, 10)));
-//	basicEnemies.push_back(BasicEnemy(Vec2(480, 300), Vec2(20, 50), Vec2(100), Vec4(1)));
-//	basicEnemies.push_back(BasicEnemy(Vec2(700, 100), Vec2(50, 50), Vec2(160), Vec4(0.0, 1.0, 0.0, 1.0)));
-	jumpingEnemies.push_back(JumpingEnemy(Vec2(500, 300), Vec2(20, 100), Vec2(150), Vec4(1, 0, 0, 1)));
-//	basicEnemies.push_back(BasicEnemy(Vec2(840, 100), Vec2(50, 120), Vec2(160), Vec4(0.0, 1.0, 0.0, 1.0)));
+	basicEnemies.push_back(BasicEnemy(Vec2(480, 300), Vec2(20, 50), Vec2(100), Vec4(1)));
+	basicEnemies.push_back(BasicEnemy(Vec2(700, 100), Vec2(50, 50), Vec2(160), Vec4(0.0, 1.0, 0.0, 1.0)));
+	jumpingEnemies.push_back(JumpingEnemy(Vec2(500, 300), Vec2(20, 40), Vec2(150), Vec4(1, 0, 0, 1)));
+	basicEnemies.push_back(BasicEnemy(Vec2(840, 100), Vec2(50, 120), Vec2(160), Vec4(0.0, 1.0, 0.0, 1.0)));
 }
 Game::~Game(){
 	SDL_DestroyWindow(win);
@@ -109,6 +110,7 @@ void Game::draw(){
 	ctx->viewport(0, 0, 1280, 720);
 	ctx->enableAlpha();
 	pp->begin();
+		view = glm::mat4();
 		ls->use();
 		ls->setTex(0);
 		ls->setTextured(false);
@@ -116,22 +118,28 @@ void Game::draw(){
 			ls->setLight(i, lights[i]);
 		}
 		sb->draw(Vec2(0),Vec4(0),Vec2(5000, 5000), Vec4(0.1, 0.1, 0.1, 1.0));
+		sb->render();
+		ls->setTextured(true);
+		wall_texture->bind();
 		for(auto &b: blocks){
-			sb->draw(b.getPos(), Vec4(0), b.getSize(), b.getColor());
+			sb->draw(b.getPos(), b.getUvs(), b.getSize(), b.getColor());
 		}
+		sb->render();
+
+		ls->setTextured(false);
 		for(auto &be : basicEnemies)
 		sb->draw(be.getPos(), Vec4(0), be.getSize(), be.getColor());
 		for(auto &be : jumpingEnemies)
 		sb->draw(be.getPos(), Vec4(0), be.getSize(), be.getColor());
 		sb->render();
 
-		player_texture->unbind();
 		ls->setTextured(true);
 		player_texture->bind();
 		sb->draw(p.getPos(), p.getUvs(), p.getSize(), Vec4(p.getColor().r(), p.getColor().g(), p.getColor().b(), 1.0));
 		sb->render();
 		ls->unuse();
 	pp->end();
+	ls->setView(view);
 
 	SDL_GL_SwapWindow(win);
 }
