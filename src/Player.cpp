@@ -4,14 +4,6 @@
 #include "BasicEnemy.h"
 #include <SDL2/SDL.h>
 
-bool aabb_basic_enemy(Player& p, BasicEnemy& b){
-	return (p.getPos().x() < b.getPos().x() + b.getSize().x() && p.getPos().x() + p.getSize().x() > b.getPos().x())&&
-	       (p.getPos().y() < b.getPos().y() + b.getSize().y() && p.getPos().y() + p.getSize().y() > b.getPos().y());}
-
-bool aabb_block(Player& p, Block& b){
-	return (p.getPos().x() < b.getPos().x() + b.getSize().x() && p.getPos().x() + p.getSize().x() > b.getPos().x())&&
-	       (p.getPos().y() < b.getPos().y() + b.getSize().y() && p.getPos().y() + p.getSize().y() > b.getPos().y());}
-
 // TODO: add input handling.
 // and organize everything more.
 void Player::update(float dt, std::vector<Block> &blocks, std::vector<BasicEnemy>& be){
@@ -48,7 +40,7 @@ void Player::update(float dt, std::vector<Block> &blocks, std::vector<BasicEnemy
 	Player pred = *this;
 	pred.pos.x() += velocity.x() * dt;
 	for(auto& b : blocks){	
-		if(aabb_block(pred, b)){
+		if(pred.intersect(b)){
 			velocity.x() = 0;
 			break;
 		}
@@ -56,7 +48,7 @@ void Player::update(float dt, std::vector<Block> &blocks, std::vector<BasicEnemy
 	pred = *this;
 	pred.pos.y() += velocity.y() * dt;
 	for(auto& b : blocks){
-		if(aabb_block(pred, b)){
+		if(pred.intersect(b)){
 			velocity.y() = 0;
 			if(b.getPos().y() + b.getSize().y() < pos.y()){
 			}
@@ -74,10 +66,8 @@ void Player::update(float dt, std::vector<Block> &blocks, std::vector<BasicEnemy
 		jump_delay = 10;
 	}
 	
-	
-	std::cout << velocity.y() << std::endl;
 	for(auto& b : be){
-		if(aabb_basic_enemy(*this, b)){
+		if(intersect( b )){
 			// cheating a little by adding "padding space"
 			// cause I realized the case won't execute since I'd be out of collision range and even
 			// if it would work the cpu steps to fast to ever check this.

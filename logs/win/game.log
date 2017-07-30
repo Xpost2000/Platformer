@@ -25,27 +25,21 @@ In file included from ../../src/typedefs.h:13:0,
 ../../src/ShaderUniform.h:48:33: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
    bool is_valid() { return (obj != -1); } 
                                  ^
-In file included from ../../src/Game.cpp:2:0:
-../../src/BasicEnemy.h: In constructor 'BasicEnemy::BasicEnemy(Vec2, Vec2, Vec2, Vec4)':
-../../src/BasicEnemy.h:47:8: warning: 'BasicEnemy::size' will be initialized after [-Wreorder]
+In file included from ../../src/BasicEnemy.h:8:0,
+                 from ../../src/Game.cpp:2:
+../../src/Entity.h: In constructor 'Entity::Entity(Vec2, Vec2, Vec2, Vec4)':
+../../src/Entity.h:41:8: warning: 'Entity::size' will be initialized after [-Wreorder]
    Vec2 size;
         ^
-../../src/BasicEnemy.h:46:8: warning:   'Vec2 BasicEnemy::velocity' [-Wreorder]
+../../src/Entity.h:40:8: warning:   'Vec2 Entity::velocity' [-Wreorder]
    Vec2 velocity;
         ^
-../../src/BasicEnemy.h:20:3: warning:   when initialized here [-Wreorder]
-   BasicEnemy(Vec2 pos, Vec2 size, Vec2 velocity, Vec4 color)
+../../src/Entity.h:18:3: warning:   when initialized here [-Wreorder]
+   Entity(Vec2 pos, Vec2 size, Vec2 velocity, Vec4 color)
    ^
-In file included from ../../src/Game.cpp:4:0:
-../../src/Player.h: In constructor 'Player::Player(Vec2, Vec2, Vec2, Vec4)':
-../../src/Player.h:28:8: warning: 'Player::size' will be initialized after [-Wreorder]
-   Vec2 size;
-        ^
-../../src/Player.h:27:8: warning:   'Vec2 Player::velocity' [-Wreorder]
-   Vec2 velocity;
-        ^
-../../src/Player.h:14:3: warning:   when initialized here [-Wreorder]
-   Player(Vec2 pos, Vec2 size, Vec2 velocity , Vec4 color)
+../../src/Entity.h: In member function 'virtual bool Entity::DeathAnimation(float)':
+../../src/Entity.h:34:3: warning: no return statement in function returning non-void [-Wreturn-type]
+   }
    ^
 ../../src/Game.cpp: In member function 'void Game::update()':
 ../../src/Game.cpp:75:19: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]

@@ -1,20 +1,14 @@
 #ifndef BLOCK_H
 #define BLOCK_H
+#include "Entity.h"
 #include "vector_typedef.h"
 #include "vec2.hpp"
 #include "vec4.hpp"
 // This is a struct. pretty much.
-class Block{
+class Block : public Entity{
 	public:
 		Block(Vec2 pos, Vec2 size, Vec4 color=Vec4(0.2))
-		:pos(pos), size(size), color(color){
+		 : Entity(pos, size, Vec2(0), color){
 		}
-		Vec2 getPos() { return pos; }
-		Vec2 getSize() { return size; }
-		Vec4 getColor() { return color; }
-	private:
-		Vec2 pos;
-		Vec2 size;
-		Vec4 color;
 };
 #endif
