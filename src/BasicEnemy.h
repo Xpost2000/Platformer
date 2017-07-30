@@ -13,7 +13,15 @@
 #include "vector_typedef.h"
 #include "vec2.hpp"
 #include "vec4.hpp"
-// #include "Player.h"
+#include "direction.h"
+enum class EnemyState{
+	JUMPING,
+	STANDING,
+	WALKING,
+	DEAD,
+	HURT,
+	FALLING
+};
 class BasicEnemy : public Entity{
 	public:
 		BasicEnemy(){}
@@ -22,6 +30,7 @@ class BasicEnemy : public Entity{
 			: Entity(pos, size, velocity, color){
 		}
 		virtual void update(float dt, std::vector<Block>& blocks);
+		bool isDead(){ if(dead) { eState = EnemyState::DEAD; } return dead; }
 		// bool used to return whether finished or not.
 		bool DeathAnimation( float dt ) {
 			if(color.a() > 0.0f){
@@ -35,6 +44,9 @@ class BasicEnemy : public Entity{
 			}
 		}
 	protected:
+		EnemyState eState;
+		Direction dir;
+		void print_state();
 		// 1 / 15 chance roughly.
 		bool onGround;
 };

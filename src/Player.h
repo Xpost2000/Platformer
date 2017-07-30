@@ -5,10 +5,21 @@
 #include "vector_typedef.h"
 #include "vec2.hpp"
 #include "vec4.hpp"
+#include "direction.h"
 #include "Block.h"
 #include "Entity.h"
 class BasicEnemy;
 class JumpingEnemy;
+
+enum class PlayerState{
+	WALKING,
+	STANDING,
+	JUMPING,
+	FALLING,
+	HURT,
+	DEAD
+};
+
 class Player : public Entity{
 	public:
 		Player(const Player& other) = default;
@@ -19,6 +30,7 @@ class Player : public Entity{
 		void update(float dt, std::vector<Block> &blocks, std::vector<BasicEnemy>& be, std::vector<JumpingEnemy>& je);
 		bool death_check(){ return health < 0; }
 	private:
+		void print_state();
 		void collide_blocks( float dt, std::vector<Block>& blocks );
 		void floaty_jump(float dt);
 		void move_left(float dt);
@@ -27,5 +39,7 @@ class Player : public Entity{
 		int health = 100;
 		float jump_delay = 10;
 		bool onGround = false;
+		Direction playerDir;
+		PlayerState pState;
 };
 #endif

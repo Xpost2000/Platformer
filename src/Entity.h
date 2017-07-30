@@ -23,7 +23,9 @@ class Entity{
 		Vec2 getVelocity(){ return velocity; }
 		Vec2 getSize(){ return size; }
 		Vec4 getColor(){ return color; }
-		bool isDead() { return dead; }
+		// this is virtual because they may implement
+		// state changing on this.
+		virtual bool isDead() { return dead; }
 		bool intersect( Entity &other )	{
 			return ( pos.x() < other.pos.x() + other.size.x() &&
 				 pos.x() + size.x() > other.pos.x() ) && 

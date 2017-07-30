@@ -9,9 +9,11 @@ void JumpingEnemy::update(float dt, std::vector<Block>& blocks){
 		if(onGround){
 		velocity.y() = -350.0f;
 		onGround = false;
+		eState = EnemyState::JUMPING;
 		}
 	}
 	velocity.y() += gravity*dt;
+
 	JumpingEnemy pred = *this;
 	pred.pos.x() += velocity.x() *dt;
 	for(auto& b : blocks){
@@ -37,8 +39,20 @@ void JumpingEnemy::update(float dt, std::vector<Block>& blocks){
 			onGround = false;
 		}
 	}
+	if(velocity.x() != 0 && onGround){
+		eState = EnemyState::WALKING;
+	}
+	if ( velocity.y() > 0 && !onGround ){
+		eState = EnemyState::FALLING;
+	}
+	if(velocity.x() > 0){
+		dir = Direction::RIGHT;
+	}else{
+		dir = Direction::LEFT;
+	}
 	pos.x() += velocity.x() * dt;
 	velocity.y() = std::min<float>( velocity.y() , 330.0f );
 	pos.y() += velocity.y() * dt;
+	print_state();
 	}
 }
