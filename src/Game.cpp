@@ -58,18 +58,11 @@ void Game::run(){
 		draw();
 	}
 }
-bool Simactive;
 void Game::update(){
 	ClockTimer::Tick();
 	while(SDL_PollEvent(&ev)){
 		if(ev.type==SDL_QUIT){
 			active = false;
-		}
-		if(ev.key.keysym.sym == SDLK_z){
-			Simactive = false;
-		}
-		if(ev.key.keysym.sym == SDLK_x){
-			Simactive = true;
 		}
 	}
 	for(int i = 0; i < basicEnemies.size(); ++i){
@@ -138,15 +131,12 @@ void Game::draw(){
 		sb->draw(p.getPos(), p.getUvs(), p.getSize(), Vec4(p.getColor().r(), p.getColor().g(), p.getColor().b(), 1.0));
 		sb->render();
 		ls->unuse();
-		if(p.getVelocity().x() == 0){
-		camX += (-p.getVelocity().x()) * ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS);
-		}
-		else{	
-			if(camX < -388)
-			camX += (-p.getVelocity().x()) * ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS);
-			else
-			camX += (-p.getVelocity().x()+30) * ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS);
-		}
+
+		std::cout << "CamX: " << camX << std::endl;
+		std::cout << "CamY: " << camY << std::endl;
+		camX = -p.getPos().x() + 1280/2.0f;
+		camY = -p.getPos().y() + 720/2.0f;
+
 		view = glm::translate(view, glm::vec3(camX,camY,0));
 	pp->end();
 	ls->setView(view);
