@@ -21,6 +21,9 @@ class Entity{
 		virtual void update(float dt, std::vector<Block>& blocks){}
 		Vec2 getPos(){ return pos; }
 		Vec2 getVelocity(){ return velocity; }
+		// for animations and stuff like that
+		// I plan to have the objects calculate their own uvs.
+		Vec4 getUvs()  { return uvs; }
 		Vec2 getSize(){ return size; }
 		Vec4 getColor(){ return color; }
 		// this is virtual because they may implement
@@ -38,6 +41,7 @@ class Entity{
 		void revive() { dead = false; }
 	protected:
 		bool dead=0;
+		Vec4 uvs;
 		Vec2 pos;
 		Vec2 velocity;
 		Vec2 size;
