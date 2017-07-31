@@ -5,7 +5,7 @@ void EntityManager::create_block(const Block b){
 	blocks.push_back(b);
 }
 void EntityManager::create_enemy(const JumpingEnemy je){
-	basicEnemies.push_back(je);
+	jumpingEnemies.push_back(je);
 }
 void EntityManager::create_enemy(const BasicEnemy be){
 	basicEnemies.push_back(be);

@@ -1,4 +1,5 @@
 #include "Player.h"
+#include "EntityManager.h"
 #include <algorithm>
 #include <iostream>
 #include "BasicEnemy.h"
@@ -109,6 +110,9 @@ void Player::floaty_jump(float dt){
 			velocity.x() -= 190*dt;
 			velocity.x() = std::max<float>(velocity.x(), 0);
 		}
+}
+void Player::update(float dt, EntityManager& em){
+	update(dt, em.get_blocks(), em.get_basic_enemies(), em.get_jumping_enemies());
 }
 // and organize everything more.
 void Player::update(float dt, std::vector<Block> &blocks, std::vector<BasicEnemy>& be, std::vector<JumpingEnemy>& je){

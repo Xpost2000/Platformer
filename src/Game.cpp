@@ -44,10 +44,10 @@ Game::Game(){
 	em.create_block(Block(Vec2(900, 220), Vec2(100, 320)));
 	em.create_block(Block(Vec2(600, 320), Vec2(100, 30)));
 	em.create_block(Block(Vec2(400, 400), Vec2(100, 10)));
-	em.create_enemy(BasicEnemy(Vec2(480, 300), Vec2(20, 50), Vec2(100), Vec4(1)));
+	em.create_enemy(BasicEnemy(Vec2(880, 300), Vec2(20, 50), Vec2(100), Vec4(1)));
 	em.create_enemy(BasicEnemy(Vec2(700, 100), Vec2(50, 50), Vec2(160), Vec4(0.0, 1.0, 0.0, 1.0)));
 	em.create_enemy(JumpingEnemy(Vec2(500, 300), Vec2(20, 40), Vec2(150), Vec4(1, 0, 0, 1)));
-	em.create_enemy(BasicEnemy(Vec2(840, 100), Vec2(50, 120), Vec2(160), Vec4(0.0, 1.0, 0.0, 1.0)));
+	em.create_enemy(BasicEnemy(Vec2(2000, 100), Vec2(50, 120), Vec2(160), Vec4(0.0, 1.0, 0.0, 1.0)));
 }
 Game::~Game(){
 	SDL_Quit();
@@ -70,7 +70,7 @@ void Game::update(){
 	 *
 	 */
 	em.update(ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS));
-	p.update(ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS), em.get_blocks(), em.get_basic_enemies(), em.get_jumping_enemies());
+	p.update(ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS), em);
 }
 
 Light lights[10] ={

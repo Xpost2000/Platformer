@@ -19,7 +19,7 @@ enum class PlayerState{
 	HURT,
 	DEAD
 };
-
+class EntityManager;
 class Player : public Entity{
 	public:
 		Player(const Player& other) = default;
@@ -28,6 +28,7 @@ class Player : public Entity{
 	 	: Entity(pos, size, velocity, color)	{
 			set_aabb(Vec2(pos.x()+15, pos.y()+5), Vec2(40, 65));
 		}
+		void update(float dt, EntityManager& em);
 		void update(float dt, std::vector<Block> &blocks, std::vector<BasicEnemy>& be, std::vector<JumpingEnemy>& je);
 		bool death_check(){ return health < 0; }
 		void kill(){ dead = true; pState = PlayerState::DEAD; }
