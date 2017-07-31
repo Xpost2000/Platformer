@@ -16,6 +16,7 @@ OBJ_FILES= ../../obj/IDevice.o\
 	  ../../obj/ClockTimer.o\
 	  ../../obj/Shader.o\
 	  ../../obj/Player.o\
+	  ../../obj/TextureManager.o\
 	  ../../obj/BasicEnemy.o\
 	  ../../obj/JumpingEnemy.o\
 	  ../../obj/IShaderSet.o\
@@ -79,6 +80,7 @@ all:
 	$(GCC) ../../src/Game.cpp $(LIBS) $(FLAGS) -c -o ../../obj/Game.o 2> ../../logs/win/game.log
 	$(GCC) ../../src/Config.cpp $(LIBS) $(FLAGS) -c -o ../../obj/Config.o 2> ../../logs/win/config.log
 	$(GCC) ../../src/Window.cpp $(LIBS) $(FLAGS) -c -o ../../obj/Window.o 2> ../../logs/win/window.log
+	$(GCC) ../../src/TextureManager.cpp $(LIBS) $(FLAGS) -c -o ../../obj/TextureManager.o 2> ../../logs/win/texturemanager.log
 	$(GCC) ../../src/LevelList.cpp $(LIBS) $(FLAGS) -c -o ../../obj/LevelList.o 2> ../../logs/win/levellist.log
 	$(GCC) ../../src/EntityManager.cpp $(LIBS) $(FLAGS) -c -o ../../obj/EntityManager.o 2> ../../logs/win/EntityManager.log
 link:

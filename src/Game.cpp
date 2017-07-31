@@ -44,12 +44,9 @@ Game::Game(){
 	sb = std::make_shared<SpriteBatcher>(ctx);
 	ls = std::make_shared<LightShader>(ctx);
 	pp = std::make_shared<PostProcessor>(ctx, w, h);
-	// TODO: also make manager
-	player_texture = std::make_shared<ImageTexture>( ctx, "textures//test_player.png" );
-	wall_texture = std::make_shared<ImageTexture>( ctx, "textures//wall_test.png" );
+	tm.add_texture("wall", "textures//wall_test.png", ctx);
+	tm.add_texture("player", "textures//test_player.png", ctx);
 	ls->setProj(proj);
-	// basic scene.
-	// definitely use a manager so it's less weird and messy.
 	em.create_block(Block(Vec2(0, 620), Vec2(2280, 100), Vec4(0.4, 0.0, 0.0, 1.0)));
 	em.create_block(Block(Vec2(0, 0), Vec2(1280,100), Vec4(0.4, 0.0, 0.0, 1.0)));
 	em.create_block(Block(Vec2(0,0), Vec2(20, 720), Vec4(0.0, 0.0, 0.2, 1.0)));
@@ -108,14 +105,14 @@ void Game::draw(){
 		view = glm::mat4();
 		ls->use();
 		ls->setTex(0);
-		ls->setTextured(false);
 		for(int i = 0; i < 10; ++i){
 			ls->setLight(i, lights[i]);
 		}
 		sb->draw(Vec2(0),Vec4(0),Vec2(5000, 5000), Vec4(0.1, 0.1, 0.1, 1.0));
+		ls->setTextured(false);
 		sb->render();
 		ls->setTextured(true);
-		wall_texture->bind();
+		tm.get_tex("wall")->bind();
 		em.draw_blocks( *sb );
 
 		ls->setTextured(false);
@@ -123,7 +120,7 @@ void Game::draw(){
 		em.draw_basic_enemies(*sb);
 
 		ls->setTextured(true);
-		player_texture->bind();
+		tm.get_tex("player")->bind();
 		sb->draw(p.getPos(), p.getUvs(), p.getSize(), Vec4(p.getColor().r(), p.getColor().g(), p.getColor().b(), 1.0));
 		sb->render();
 		ls->unuse();

@@ -14,6 +14,7 @@ OBJ_FILES= ../../obj/IDevice.o\
 	  ../../obj/ShaderProgram.o\
 	  ../../obj/ShaderUniform.o\
 	  ../../obj/Texture.o\
+	  ../../obj/TextureManager.o\
 	  ../../obj/JumpingEnemy.o\
 	  ../../obj/BasicEnemy.o\
 	  ../../obj/Bitmap.o\
@@ -67,6 +68,7 @@ all:
 	$(GCC) ../../src/BitmapUtil.cpp $(LIBS) $(FLAGS) -c -o ../../obj/BitmapUtil.o 2> ../../logs/linux/bitmaputil.log
 	$(GCC) ../../src/sdl_surface_load_image_wrapper.cpp $(LIBS) $(FLAGS) -c -o ../../obj/sdl_surface_load_image_wrapper.o 2> ../../logs/linux/imagesurface.log
 	$(GCC) ../../src/Texture.cpp $(LIBS) $(FLAGS) -c -o ../../obj/Texture.o 2> ../../logs/linux/texture.log
+	$(GCC) ../../src/TextureManager.cpp $(LIBS) $(FLAGS) -c -o ../../obj/TextureManager.o 2> ../../logs/linux/texturemanager.log
 	$(GCC) ../../src/ParticleGenerator.cpp $(LIBS) $(FLAGS) -c -o ../../obj/ParticleGenerator.o 2> ../../logs/linux/particlegen.log
 	$(GCC) ../../src/ParticleRenderer.cpp $(LIBS) $(FLAGS) -c -o ../../obj/ParticleRenderer.o 2> ../../logs/linux/particlerender.log
 	$(GCC) ../../src/ClockTimer.cpp $(LIBS) $(FLAGS) -c -o ../../obj/ClockTimer.o 2> ../../logs/linux/clocktimer.log
