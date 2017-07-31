@@ -1,0 +1,1 @@
+g++ main.cpp -std=gnu++11 -o test-cfg
