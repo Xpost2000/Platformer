@@ -4,9 +4,6 @@
 #include "Block.h"
 #include "Player.h"
 
-const int w = 1366;
-const int h = 768;
-
 std::vector<Block> blocks;
 // I'm likely going to stre a different vector for different enemy types.
 std::vector<BasicEnemy> basicEnemies;

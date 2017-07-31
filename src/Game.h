@@ -14,6 +14,9 @@
 #include "LightShader.h"
 #include "Postprocessor.h"
 
+const float w = 1024.0f;
+const float h = 768.0f;
+
 class Game{
 	public:
 		Game();
@@ -32,7 +35,7 @@ class Game{
 		std::shared_ptr<PostProcessor> pp = nullptr;
 		ptrs::ImageTexture player_texture;
 		ptrs::ImageTexture wall_texture;
-		glm::mat4 view=glm::mat4(), proj=glm::ortho(0.0f, 1280.0f, 720.0f, 0.0f, -1.0f, 1.0f);
+		glm::mat4 view=glm::mat4(), proj=glm::ortho(0.0f, w, h, 0.0f, -1.0f, 1.0f);
 		ptrs::IDevice ctx = nullptr;
 };
 
