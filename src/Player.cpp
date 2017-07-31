@@ -163,12 +163,12 @@ void Player::update(float dt, std::vector<Block> &blocks, std::vector<BasicEnemy
 	}
 	for(auto& b : je){
 		if(intersect_aabb( b )){
-			if(b.get_aabb().pos.y()+10 > bb.pos.y() + bb.size.y()){
+			if((b.get_aabb().pos.y()+10 > bb.pos.y() + bb.size.y())&& !b.isDead()){
 				velocity.y() = -200;
 				b.kill();
 			}
 			else{
-				if(!b.isDead())
+				if(!b.isDead()){
 					if(playerDir == Direction::RIGHT){
 						velocity.x() = -190;
 						velocity.y() = -200;
@@ -177,6 +177,7 @@ void Player::update(float dt, std::vector<Block> &blocks, std::vector<BasicEnemy
 						velocity.x() = 190;
 						velocity.y() = -200;
 					}
+				}
 			}
 		}
 	}

@@ -143,5 +143,6 @@ void Game::draw(){
 	pp->end();
 	ls->setView(view);
 
+	SDL_GL_SetSwapInterval(0);
 	SDL_GL_SwapWindow(win);
 }
