@@ -15,6 +15,7 @@ class Window{
 		void set_fullscreen(bool);
 		void set_should_close(bool);
 		void set_title(const char*);
+		void set_vsync(bool);
 		void set_dimensions(int , int );
 		const bool should_close() const;
 		void spawn();
@@ -23,6 +24,7 @@ class Window{
 		SDL_Window* get_handle() { return window; }
 	private:
 		std::string title;
+		bool vsync;
 		uint32_t flags=SDL_WINDOW_SHOWN|SDL_WINDOW_OPENGL;
 		int w, h;
 		bool shld_close=false;

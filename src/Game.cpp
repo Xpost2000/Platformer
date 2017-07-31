@@ -9,8 +9,14 @@ Player p(Vec2(300, 300), Vec2(73, 73), Vec2(100), Vec4(1.0, 0.0, 0.0, 1.0));
 Game::Game(){
 	SDL_Init(SDL_INIT_VIDEO);
 	IMG_Init(IMG_INIT_PNG);
-	window = std::make_shared<Window>(w, h, "Game Test");
+	cfg.read_config();
+	w = cfg.get_window_width();
+	h = cfg.get_window_height();
+	game_name = cfg.get_game_name();
+	proj = glm::ortho(0.0f, w, h, 0.0f, -1.0f, 1.0f);
+	window = std::make_shared<Window>(w, h, game_name);
 	window->spawn();
+	window->set_vsync(cfg.get_vsync_flag());
 	gl_info_struct_t info ={
 		3,
 		3,

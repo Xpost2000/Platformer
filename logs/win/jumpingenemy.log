@@ -1,0 +1,22 @@
+In file included from ../../src/Entity.h:10:0,
+                 from ../../src/JumpingEnemy.h:6,
+                 from ../../src/JumpingEnemy.cpp:1:
+../../src/vec2.hpp:156:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
+ #endif VEC2_CROSS_PRODUCT
+        ^
+In file included from ../../src/JumpingEnemy.h:6:0,
+                 from ../../src/JumpingEnemy.cpp:1:
+../../src/Entity.h: In constructor 'Entity::Entity(Vec2, Vec2, Vec2, Vec4)':
+../../src/Entity.h:71:8: warning: 'Entity::size' will be initialized after [-Wreorder]
+   Vec2 size;
+        ^
+../../src/Entity.h:70:8: warning:   'Vec2 Entity::velocity' [-Wreorder]
+   Vec2 velocity;
+        ^
+../../src/Entity.h:31:3: warning:   when initialized here [-Wreorder]
+   Entity(Vec2 pos, Vec2 size, Vec2 velocity, Vec4 color)
+   ^
+../../src/Entity.h: In member function 'virtual bool Entity::DeathAnimation(float)':
+../../src/Entity.h:61:3: warning: no return statement in function returning non-void [-Wreturn-type]
+   }
+   ^

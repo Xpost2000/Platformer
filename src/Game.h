@@ -1,5 +1,6 @@
 #ifndef GAME_H
 #define GAME_H
+#include "Config.h"
 #include <iostream>
 #include "ClockTimer.h"
 #include "mat4.hpp"
@@ -16,8 +17,6 @@
 #include "Postprocessor.h"
 #include "Window.h"
 
-const float w = 1366.0f;
-const float h = 768.0f;
 
 class Game{
 	public:
@@ -27,7 +26,11 @@ class Game{
 	private:
 		void update();
 		void draw();
+		float w ;
+		float h ;
+		std::string game_name;
 	private:
+		Config cfg;
 		EntityManager em;
 		std::shared_ptr<Window> window = nullptr;
 		SDL_Event ev;
@@ -37,7 +40,7 @@ class Game{
 		std::shared_ptr<PostProcessor> pp = nullptr;
 		ptrs::ImageTexture player_texture;
 		ptrs::ImageTexture wall_texture;
-		glm::mat4 view=glm::mat4(), proj=glm::ortho(0.0f, w, h, 0.0f, -1.0f, 1.0f);
+		glm::mat4 view=glm::mat4(), proj;
 		ptrs::IDevice ctx = nullptr;
 };
 

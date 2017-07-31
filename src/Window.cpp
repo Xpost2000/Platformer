@@ -16,6 +16,9 @@ void Window::set_dimensions(int w, int h){
 	this->w = w;
 	this->h = h;
 }
+void Window::set_vsync(bool val){
+	vsync = val;
+}
 void Window::spawn(){
 	window = SDL_CreateWindow(title.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, w , h , flags);
 }
@@ -24,6 +27,6 @@ void Window::update(){
 	SDL_SetWindowSize(window, w, h);	
 }
 void Window::refresh(){
-	SDL_GL_SetSwapInterval(1);
+	SDL_GL_SetSwapInterval(vsync);
 	SDL_GL_SwapWindow(window);
 }

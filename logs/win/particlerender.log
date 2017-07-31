@@ -1,0 +1,7 @@
+In file included from ../../src/vec3.hpp:4:0,
+                 from ../../src/Vertex.h:5,
+                 from ../../src/SpriteBatcher.h:4,
+                 from ../../src/ParticleRenderer.cpp:3:
+../../src/vec2.hpp:156:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
+ #endif VEC2_CROSS_PRODUCT
+        ^
