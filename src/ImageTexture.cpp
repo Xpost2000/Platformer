@@ -1,7 +1,7 @@
 #include "ImageTexture.h"
 #include "IDevice.h"
 
-ImageTexture::ImageTexture(const std::shared_ptr<IDevice>& dev, const char* path) : device(dev), tex(new Texture(dev)), is(new ImageSurface(path)){
+ImageTexture::ImageTexture(const std::shared_ptr<IDevice>& dev, std::string path) : device(dev), tex(new Texture(dev)), is(new ImageSurface(path.c_str())){
 	bm = new Bitmap( is->surf, PixelFormat::RGBA );
 	tex->texImage2D(TextureTarget::TEXTURE2D, *bm, 0, 0, GL_UNSIGNED_BYTE);
 	tex->textureParameter(TextureTarget::TEXTURE2D, TextureParameter::WRAP_T, ParamValue::REPEAT);

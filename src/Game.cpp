@@ -80,10 +80,6 @@ void Game::update(){
 			window->set_should_close(true);
 		}
 	}
-	/*
-	 * TODO: Make manager that makes this less messy.
-	 *
-	 */
 	em.update(ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS));
 	p.update(ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS), em);
 }

@@ -1,23 +1,23 @@
 In file included from ../../src/ImageTexture.cpp:1:0:
-../../src/ImageTexture.h: In constructor 'ImageTexture::ImageTexture(const std::shared_ptr<IDevice>&, const char*)':
-../../src/ImageTexture.h:26:37: warning: 'ImageTexture::device' will be initialized after [-Wreorder]
+../../src/ImageTexture.h: In constructor 'ImageTexture::ImageTexture(const std::shared_ptr<IDevice>&, std::__cxx11::string)':
+../../src/ImageTexture.h:27:37: warning: 'ImageTexture::device' will be initialized after [-Wreorder]
    std::shared_ptr<IDevice> device = nullptr;
                                      ^
-../../src/ImageTexture.h:25:18: warning:   'Texture* ImageTexture::tex' [-Wreorder]
+../../src/ImageTexture.h:26:18: warning:   'Texture* ImageTexture::tex' [-Wreorder]
    Texture* tex = nullptr;
                   ^
 ../../src/ImageTexture.cpp:4:1: warning:   when initialized here [-Wreorder]
- ImageTexture::ImageTexture(const std::shared_ptr<IDevice>& dev, const char* path) : device(dev), tex(new Texture(dev)), is(new ImageSurface(path)){
+ ImageTexture::ImageTexture(const std::shared_ptr<IDevice>& dev, std::string path) : device(dev), tex(new Texture(dev)), is(new ImageSurface(path.c_str())){
  ^
 In file included from ../../src/ImageTexture.cpp:1:0:
-../../src/ImageTexture.h:25:18: warning: 'ImageTexture::tex' will be initialized after [-Wreorder]
+../../src/ImageTexture.h:26:18: warning: 'ImageTexture::tex' will be initialized after [-Wreorder]
    Texture* tex = nullptr;
                   ^
-../../src/ImageTexture.h:23:22: warning:   'ImageSurface* ImageTexture::is' [-Wreorder]
+../../src/ImageTexture.h:24:22: warning:   'ImageSurface* ImageTexture::is' [-Wreorder]
    ImageSurface* is = nullptr;
                       ^
 ../../src/ImageTexture.cpp:4:1: warning:   when initialized here [-Wreorder]
- ImageTexture::ImageTexture(const std::shared_ptr<IDevice>& dev, const char* path) : device(dev), tex(new Texture(dev)), is(new ImageSurface(path)){
+ ImageTexture::ImageTexture(const std::shared_ptr<IDevice>& dev, std::string path) : device(dev), tex(new Texture(dev)), is(new ImageSurface(path.c_str())){
  ^
 ../../src/ImageTexture.cpp: In destructor 'ImageTexture::~ImageTexture()':
 ../../src/ImageTexture.cpp:16:9: warning: deleting object of polymorphic class type 'Texture' which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]

@@ -1,5 +1,6 @@
 #ifndef COMPLETE_IMAGE_TEXTURE_WRAPPER_H
 #define COMPLETE_IMAGE_TEXTURE_WRAPPER_H
+#include <string>
 #include "Texture.h"
 #include "Bitmap.h"
 #include "sdl_surface_load_image_wrapper.h"
@@ -14,7 +15,7 @@
 class IDevice;
 class ImageTexture{
 	public:
-		ImageTexture( const std::shared_ptr<IDevice>& dev , const char* fPath );
+		ImageTexture( const std::shared_ptr<IDevice>& dev , std::string fPath );
 		~ImageTexture();
 		Texture& get() { return *tex; } // incase you actually want to manually do something
 		void bind();
