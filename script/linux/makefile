@@ -26,6 +26,7 @@ OBJ_FILES= ../../obj/IDevice.o\
 	  ../../obj/ImageTexture.o\
 	  ../../obj/TestShader.o\
 	  ../../obj/Game.o\
+	  ../../obj/EntityManager.o\
 	  ../../obj/Window.o\
 	  ../../obj/SpriteBatcher.o\
 	  ../../obj/DefaultShader.o\
@@ -73,6 +74,7 @@ all:
 	$(GCC) ../../src/BasicEnemy.cpp $(LIBS) $(FLAGS) -c -o ../../obj/BasicEnemy.o 2> ../../logs/linux/BasicEnemy.log
 	$(GCC) ../../src/JumpingEnemy.cpp $(LIBS) $(FLAGS) -c -o ../../obj/JumpingEnemy.o 2> ../../logs/linux/JumpingEnemy.log
 	$(GCC) ../../src/Window.cpp $(LIBS) $(FLAGS) -c -o ../../obj/Window.o 2> ../../logs/linux/Window.log
+	$(GCC) ../../src/EntityManager.cpp $(LIBS) $(FLAGS) -c -o ../../obj/EntityManager.o 2> ../../logs/linux/entitymanager..log
 	$(GCC) ../../src/Game.cpp $(LIBS) $(FLAGS) -c -o ../../obj/Game.o 2> ../../logs/linux/game.log
 link:
 	$(GCC) $(OBJ_FILES) $(LIBS) $(FLAGS) -o ../../bin/Game_linux 2> ../../logs/linker_linux.log

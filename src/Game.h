@@ -11,6 +11,7 @@
 #include "SpriteBatcher.h"
 #include "RandomNumberGenerator.h"
 #include "ParticleGenerator.h"
+#include "EntityManager.h"
 #include "LightShader.h"
 #include "Postprocessor.h"
 #include "Window.h"
@@ -27,7 +28,7 @@ class Game{
 		void update();
 		void draw();
 	private:
-		bool active = true;
+		EntityManager em;
 		std::shared_ptr<Window> window = nullptr;
 		SDL_Event ev;
 		std::shared_ptr<ParticleRenderer> pr = nullptr;
