@@ -25,6 +25,18 @@ In file included from ../../src/typedefs.h:13:0,
 ../../src/ShaderUniform.h:48:33: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
    bool is_valid() { return (obj != -1); } 
                                  ^
+In file included from ../../src/Game.h:16:0,
+                 from ../../src/Game.cpp:1:
+../../src/Window.h: In constructor 'Window::Window(int, int, std::__cxx11::string, bool)':
+../../src/Window.h:27:10: warning: 'Window::h' will be initialized after [-Wreorder]
+   int w, h;
+          ^
+../../src/Window.h:25:15: warning:   'std::__cxx11::string Window::title' [-Wreorder]
+   std::string title;
+               ^
+../../src/Window.h:7:3: warning:   when initialized here [-Wreorder]
+   Window(int w, int h, std::string title, bool fullscreen=false): w(w), h(h), title(title), fullscreen(fullscreen){
+   ^
 In file included from ../../src/BasicEnemy.h:8:0,
                  from ../../src/Game.cpp:2:
 ../../src/Entity.h: In constructor 'Entity::Entity(Vec2, Vec2, Vec2, Vec4)':
@@ -42,10 +54,10 @@ In file included from ../../src/BasicEnemy.h:8:0,
    }
    ^
 ../../src/Game.cpp: In member function 'void Game::update()':
-../../src/Game.cpp:68:19: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+../../src/Game.cpp:69:19: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
   for(int i = 0; i < basicEnemies.size(); ++i){
                    ^
-../../src/Game.cpp:75:19: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+../../src/Game.cpp:76:19: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
   for(int i = 0; i < jumpingEnemies.size(); ++i){
                    ^
 In file included from ../../src/BasicEnemy.h:9:0,

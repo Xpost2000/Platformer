@@ -146,18 +146,21 @@ void Player::update(float dt, std::vector<Block> &blocks, std::vector<BasicEnemy
 			// cheating a little by adding "padding space"
 			// cause I realized the case won't execute since I'd be out of collision range and even
 			// if it would work the cpu steps to fast to ever check this.
-			if(b.get_aabb().pos.y()+10 > bb.pos.y() + bb.size.y()){
+			if((b.get_aabb().pos.y()+10 > bb.pos.y() + bb.size.y())&& !b.isDead()){
 				velocity.y() = -200;
 				b.kill();
 			}
 			else{
-				if(!b.isDead())
+				if(!b.isDead()){
 					if(playerDir == Direction::RIGHT){
 						velocity.x() = -190;
+						velocity.y() = -200;
 					}
 					if(playerDir == Direction::LEFT){
 						velocity.x() = 190;
+						velocity.y() = -200;
 					}
+				}
 			}
 		}
 	}

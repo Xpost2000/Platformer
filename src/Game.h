@@ -13,8 +13,9 @@
 #include "ParticleGenerator.h"
 #include "LightShader.h"
 #include "Postprocessor.h"
+#include "Window.h"
 
-const float w = 1024.0f;
+const float w = 1366.0f;
 const float h = 768.0f;
 
 class Game{
@@ -27,7 +28,7 @@ class Game{
 		void draw();
 	private:
 		bool active = true;
-		SDL_Window* win = nullptr;
+		std::shared_ptr<Window> window = nullptr;
 		SDL_Event ev;
 		std::shared_ptr<ParticleRenderer> pr = nullptr;
 		std::shared_ptr<SpriteBatcher> sb = nullptr;

@@ -4,15 +4,16 @@
 #include "Block.h"
 #include "Player.h"
 
-std::vector<Block> blocks;
 // I'm likely going to stre a different vector for different enemy types.
+std::vector<Block> blocks;
 std::vector<BasicEnemy> basicEnemies;
 std::vector<JumpingEnemy> jumpingEnemies;
 Player p(Vec2(300, 300), Vec2(73, 73), Vec2(100), Vec4(1.0, 0.0, 0.0, 1.0));
 Game::Game(){
 	SDL_Init(SDL_INIT_VIDEO);
 	IMG_Init(IMG_INIT_PNG);
-	win = SDL_CreateWindow("Game Test", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, w, h, SDL_WINDOW_OPENGL);
+	window = std::make_shared<Window>(w, h, "Game Test");
+	window->spawn();
 	gl_info_struct_t info ={
 		3,
 		3,
@@ -26,7 +27,7 @@ Game::Game(){
 		true,
 		CORE_CONTEXT
 	};
-	ctx = std::make_shared<GLDevice>(win, info);
+	ctx = std::make_shared<GLDevice>(window->get_handle(), info);
 	pr = std::make_shared<ParticleRenderer>(ctx);
 	sb = std::make_shared<SpriteBatcher>(ctx);
 	ls = std::make_shared<LightShader>(ctx);
@@ -50,10 +51,10 @@ Game::Game(){
 	basicEnemies.push_back(BasicEnemy(Vec2(840, 100), Vec2(50, 120), Vec2(160), Vec4(0.0, 1.0, 0.0, 1.0)));
 }
 Game::~Game(){
-	SDL_DestroyWindow(win);
+	SDL_Quit();
 }
 void Game::run(){
-	while(active){
+	while(!window->should_close()){
 		update();
 		draw();
 	}
@@ -62,7 +63,7 @@ void Game::update(){
 	ClockTimer::Tick();
 	while(SDL_PollEvent(&ev)){
 		if(ev.type==SDL_QUIT){
-			active = false;
+			window->set_should_close(true);
 		}
 	}
 	for(int i = 0; i < basicEnemies.size(); ++i){
@@ -142,7 +143,5 @@ void Game::draw(){
 		view = glm::translate(view, glm::vec3(camX,camY,0));
 	pp->end();
 	ls->setView(view);
-
-	SDL_GL_SetSwapInterval(0);
-	SDL_GL_SwapWindow(win);
+	window->refresh();
 }
