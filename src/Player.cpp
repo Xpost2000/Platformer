@@ -157,12 +157,14 @@ void Player::update(float dt, std::vector<Block> &blocks, std::vector<BasicEnemy
 			else{
 				if(!b.isDead()){
 					if(playerDir == Direction::RIGHT){
-						velocity.x() = -190;
-						velocity.y() = -200;
+						velocity.x() = -290;
+						velocity.y() = -300;
+						health -= 20;
 					}
 					if(playerDir == Direction::LEFT){
-						velocity.x() = 190;
-						velocity.y() = -200;
+						velocity.x() = 290;
+						velocity.y() = -300;
+						health -= 20;
 					}
 				}
 			}
@@ -177,12 +179,14 @@ void Player::update(float dt, std::vector<Block> &blocks, std::vector<BasicEnemy
 			else{
 				if(!b.isDead()){
 					if(playerDir == Direction::RIGHT){
-						velocity.x() = -190;
-						velocity.y() = -200;
+						velocity.x() = -290;
+						velocity.y() = -300;
+						health -= 20;
 					}
 					if(playerDir == Direction::LEFT){
-						velocity.x() = 190;
-						velocity.y() = -200;
+						velocity.x() = 290;
+						velocity.y() = -300;
+						health -= 20;
 					}
 				}
 			}

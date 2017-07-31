@@ -8,6 +8,7 @@
 #include "direction.h"
 #include "Block.h"
 #include "Entity.h"
+#include "GameState.h"
 class BasicEnemy;
 class JumpingEnemy;
 
@@ -30,9 +31,24 @@ class Player : public Entity{
 		}
 		void update(float dt, EntityManager& em);
 		void update(float dt, std::vector<Block> &blocks, std::vector<BasicEnemy>& be, std::vector<JumpingEnemy>& je);
-		bool death_check(){ return health < 0; }
+		bool death_check(){ if(health < 0){ kill(); } return dead; }
+		bool DeathAnimation( float dt, GameState& gs ) {
+			if(color.a() > 0.0f){
+				color.r() -= dt/2;
+				color.g() -= dt/2;
+				color.b() -= dt/2;
+				color.a() -= dt/2;
+				return false;
+			}else{
+				gs = GameState::Menu;
+				color = Vec4(1.0);
+				revive();
+
+				return true;
+			}
+		}
 		void kill(){ dead = true; pState = PlayerState::DEAD; }
-		void revive(){ dead = false; }
+		void revive(){ dead = false; health=100;}
 	private:
 		void reposition_aabb(){ bb.pos.x() = pos.x()+15; bb.pos.y() = pos.y()+8; }
 		void calculate_uvs();

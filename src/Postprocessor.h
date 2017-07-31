@@ -13,6 +13,7 @@ class PostProcessor{
 		~PostProcessor();
 		void begin();
 		void end();
+		PostProcessorShader* get() { return shader; }
 	private:
 		std::shared_ptr<IDevice> device = nullptr;
 		PostProcessorShader* shader = nullptr;

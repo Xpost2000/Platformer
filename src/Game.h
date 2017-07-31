@@ -15,10 +15,11 @@
 #include "ParticleGenerator.h"
 #include "EntityManager.h"
 #include "LightShader.h"
+#include "uiButton.h"
 #include "Postprocessor.h"
 #include "Window.h"
 #include "TextureManager.h"
-
+#include "GameState.h"
 
 class Game{
 	public:
@@ -32,6 +33,12 @@ class Game{
 		float h ;
 		std::string game_name;
 	private:
+		uiButton start;
+		uiButton option;
+		uiButton quit;
+		uiButton credits;
+	private:
+		GameState state = GameState::Menu;
 		Config cfg;
 		LevelListFile lst;
 		EntityManager em;
