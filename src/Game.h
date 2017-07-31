@@ -1,5 +1,6 @@
 #ifndef GAME_H
 #define GAME_H
+#include "LevelList.h"
 #include "Config.h"
 #include <iostream>
 #include "ClockTimer.h"
@@ -32,6 +33,7 @@ class Game{
 	private:
 		Config cfg;
 		EntityManager em;
+		LevelListFile lst;
 		std::shared_ptr<Window> window = nullptr;
 		SDL_Event ev;
 		std::shared_ptr<ParticleRenderer> pr = nullptr;

@@ -3,11 +3,9 @@
 
 ImageSurface::ImageSurface(const char* path){
 	loadImage(path);
-	std::cout << "constructor of ImageSurface" << std::endl;
 }
 
 ImageSurface::~ImageSurface(){
-	std::cout << "Destructor of ImageSurface" << std::endl;
 	SDL_FreeSurface(surf);
 }
 

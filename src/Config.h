@@ -10,6 +10,8 @@ class Config{
 		std::string get_texture_dir() { return texture_dir; }
 		std::string get_level_dir() { return level_dir; }
 		std::string get_sounds_dir() { return sounds_dir; }
+		std::string get_lvl_list_dir() { return lvllist_dir; }
+		std::string get_lvl_list_file() { return lvllist_file; }
 		int get_vsync_flag() { return vsync; }
 		int get_window_width() { return window_width; }
 		int get_window_height() { return window_height; }
@@ -21,6 +23,8 @@ class Config{
 		int vsync=1;
 		int window_width=1024;
 		int window_height=768;
+		std::string lvllist_dir="";
+		std::string lvllist_file="";
 		std::string texture_dir="";
 		std::string level_dir="";
 		std::string sounds_dir="";

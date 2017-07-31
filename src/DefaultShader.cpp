@@ -45,8 +45,6 @@ DefaultShader::DefaultShader(const std::shared_ptr<IDevice>& dev) : device(dev){
 	viewMat = new ShaderUniform("view", *sp);
 	tex = new ShaderUniform("tex", *sp);
 	textured = new ShaderUniform("textured", *sp);
-	std::cout << vs->get_log() << std::endl;
-	std::cout << fs->get_log() << std::endl;
 }
 
 DefaultShader::~DefaultShader(){

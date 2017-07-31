@@ -38,6 +38,12 @@ void Config::read_config(){
 			if(token == "vsync-mode=" || token == "vsync-mode"){
 				config >> vsync;
 			}
+			if(token=="levellist-dir=" || token=="levellist-dir"){
+				config >> lvllist_dir;
+			}
+			if(token=="levellist-file=" || token=="levellist-file"){
+				config >> lvllist_file;
+			}
 		}
 	}
 }

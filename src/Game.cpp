@@ -13,6 +13,15 @@ Game::Game(){
 	w = cfg.get_window_width();
 	h = cfg.get_window_height();
 	game_name = cfg.get_game_name();
+	std::cout << "Level List Directory ::" << cfg.get_lvl_list_dir() + cfg.get_lvl_list_file() << std::endl;
+	std::cout << "Texture Files Directory ::" << cfg.get_texture_dir() << std::endl;
+	std::cout << "Level Files Directory ::" << cfg.get_level_dir() << std::endl;
+	std::cout << "Sound Files Directory ::" << cfg.get_sounds_dir() << std::endl;
+	std::cout << "\n\nEntries in the level list\n";
+	lst.read(cfg.get_lvl_list_dir() + cfg.get_lvl_list_file());
+	for( auto &ent : lst.entries ){
+		std::cout << ent << std::endl;
+	}
 	proj = glm::ortho(0.0f, w, h, 0.0f, -1.0f, 1.0f);
 	window = std::make_shared<Window>(w, h, game_name);
 	window->spawn();

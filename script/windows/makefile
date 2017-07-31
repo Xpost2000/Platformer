@@ -6,6 +6,7 @@ OBJ_FILES= ../../obj/IDevice.o\
 	  ../../obj/IObjectHandle.o\
 	  ../../obj/LightShader.o\
 	  ../../obj/Buffer.o\
+	  ../../obj/LevelList.o\
 	  ../../obj/Config.o\
 	  ../../obj/ParticleGenerator.o\
 	  ../../obj/ParticleRenderer.o\
@@ -78,6 +79,7 @@ all:
 	$(GCC) ../../src/Game.cpp $(LIBS) $(FLAGS) -c -o ../../obj/Game.o 2> ../../logs/win/game.log
 	$(GCC) ../../src/Config.cpp $(LIBS) $(FLAGS) -c -o ../../obj/Config.o 2> ../../logs/win/config.log
 	$(GCC) ../../src/Window.cpp $(LIBS) $(FLAGS) -c -o ../../obj/Window.o 2> ../../logs/win/window.log
+	$(GCC) ../../src/LevelList.cpp $(LIBS) $(FLAGS) -c -o ../../obj/LevelList.o 2> ../../logs/win/levellist.log
 	$(GCC) ../../src/EntityManager.cpp $(LIBS) $(FLAGS) -c -o ../../obj/EntityManager.o 2> ../../logs/win/EntityManager.log
 link:
 	$(GCC) $(OBJ_FILES) $(LIBS) $(FLAGS) -o ../../bin/Game.exe 2> ../../logs/linker_windows.log

@@ -64,10 +64,6 @@ LightShader::LightShader(const std::shared_ptr<IDevice>& dev) :device(dev){
 	viewMat = new ShaderUniform("view", *sp);
 	tex = new ShaderUniform("tex", *sp);
 	textured = new ShaderUniform("textured", *sp);
-	std::cout << vs->get_log() << std::endl;
-	std::cout << "FS\n";
-	std::cout << fs->get_log() << std::endl;
-
 	for(int i = 0; i < 10; ++i){
 		lightPos[i] = ShaderUniform("lightPos[" + std::to_string(i) + "]", *sp);
 		lightColor[i] = ShaderUniform("lightColor[" + std::to_string(i) + "]", *sp);

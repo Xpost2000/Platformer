@@ -29,6 +29,7 @@ OBJ_FILES= ../../obj/IDevice.o\
 	  ../../obj/Game.o\
 	  ../../obj/EntityManager.o\
 	  ../../obj/Window.o\
+	  ../../obj/LevelList.o\
 	  ../../obj/SpriteBatcher.o\
 	  ../../obj/DefaultShader.o\
 	  ../../obj/IShaderSet.o\
@@ -77,6 +78,7 @@ all:
 	$(GCC) ../../src/Window.cpp $(LIBS) $(FLAGS) -c -o ../../obj/Window.o 2> ../../logs/linux/Window.log
 	$(GCC) ../../src/EntityManager.cpp $(LIBS) $(FLAGS) -c -o ../../obj/EntityManager.o 2> ../../logs/linux/entitymanager..log
 	$(GCC) ../../src/Config.cpp $(LIBS) $(FLAGS) -c -o ../../obj/Config.o 2> ../../logs/linux/config.log
+	$(GCC) ../../src/LevelList.cpp $(LIBS) $(FLAGS) -c -o ../../obj/LevelList.o 2> ../../logs/linux/levellist.log
 	$(GCC) ../../src/Game.cpp $(LIBS) $(FLAGS) -c -o ../../obj/Game.o 2> ../../logs/linux/game.log
 link:
 	$(GCC) $(OBJ_FILES) $(LIBS) $(FLAGS) -o ../../bin/Game_linux 2> ../../logs/linker_linux.log

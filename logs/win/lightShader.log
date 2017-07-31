@@ -22,24 +22,24 @@ In file included from ../../src/LightShader.h:5:0,
    bool is_valid() { return (obj != -1); } 
                                  ^
 ../../src/LightShader.cpp: In destructor 'LightShader::~LightShader()':
-../../src/LightShader.cpp:80:9: warning: deleting object of polymorphic class type 'ShaderUniform' which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
+../../src/LightShader.cpp:76:9: warning: deleting object of polymorphic class type 'ShaderUniform' which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
   delete tex;
          ^
-../../src/LightShader.cpp:81:9: warning: deleting object of polymorphic class type 'ShaderUniform' which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
+../../src/LightShader.cpp:77:9: warning: deleting object of polymorphic class type 'ShaderUniform' which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
   delete projMat;
          ^
-../../src/LightShader.cpp:82:9: warning: deleting object of polymorphic class type 'ShaderUniform' which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
+../../src/LightShader.cpp:78:9: warning: deleting object of polymorphic class type 'ShaderUniform' which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
   delete viewMat;
          ^
-../../src/LightShader.cpp:83:9: warning: deleting object of polymorphic class type 'ShaderUniform' which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
+../../src/LightShader.cpp:79:9: warning: deleting object of polymorphic class type 'ShaderUniform' which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
   delete textured;
          ^
-../../src/LightShader.cpp:84:9: warning: deleting object of polymorphic class type 'Shader' which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
+../../src/LightShader.cpp:80:9: warning: deleting object of polymorphic class type 'Shader' which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
   delete vs;
          ^
-../../src/LightShader.cpp:85:9: warning: deleting object of polymorphic class type 'Shader' which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
+../../src/LightShader.cpp:81:9: warning: deleting object of polymorphic class type 'Shader' which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
   delete fs;
          ^
-../../src/LightShader.cpp:86:9: warning: deleting object of polymorphic class type 'ShaderProgram' which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
+../../src/LightShader.cpp:82:9: warning: deleting object of polymorphic class type 'ShaderProgram' which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
   delete sp;
          ^
