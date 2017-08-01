@@ -3,6 +3,9 @@
 void EntityManager::create_block(const Block b){
 	blocks.push_back(b);
 }
+void EntityManager::create_block(const BackgroundBlock b){
+	bs.push_back(b);
+}
 void EntityManager::create_enemy(const JumpingEnemy je){
 	jumpingEnemies.push_back(je);
 }
@@ -20,16 +23,26 @@ void EntityManager::draw_blocks( SpriteBatcher& sb ){
 	}
 	sb.render();
 }
+void EntityManager::draw_progressor( SpriteBatcher& sb ){
+	sb.draw(p.getPos(), p.getUvs(), p.getSize(), p.getColor());
+	sb.render();
+}
 
 void EntityManager::draw_jumping_enemies( SpriteBatcher& sb ){
 	for(auto &je : jumpingEnemies)	{
-		sb.draw(je.getPos(), Vec4(0), je.getSize(), je.getColor());
+		sb.draw(je.getPos(), je.getUvs(), je.getSize(), je.getColor());
 	}
 	sb.render();
 }
 void EntityManager::draw_basic_enemies( SpriteBatcher& sb ){
 	for(auto &be : basicEnemies)	{
-		sb.draw(be.getPos(), Vec4(0), be.getSize(), be.getColor());
+		sb.draw(be.getPos(), be.getUvs(), be.getSize(), be.getColor());
+	}
+	sb.render();
+}
+void EntityManager::draw_background_props( Vec2 camPos, SpriteBatcher& sb ){
+	for(auto &e : bs){
+		sb.draw(Vec2(-camPos.x()*e.scrollFactor.x()+e.pos.x(), -camPos.y()*e.scrollFactor.y()+e.pos.y()), e.getUvs(), e.size, e.color);
 	}
 	sb.render();
 }

@@ -61,8 +61,8 @@ class Entity{
 		virtual void reposition_aabb() { bb = aabb( pos , bb.size); }
 		virtual bool DeathAnimation( float dt ) {
 		}
-		virtual void kill() = 0;
-		virtual void revive() = 0;
+		virtual void kill() {}
+		virtual void revive() {}
 		aabb& get_aabb() { return bb; }
 	protected:
 		aabb bb;

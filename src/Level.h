@@ -17,7 +17,9 @@ class Level{
 		void load( Player& p, EntityManager& em){
 			p.setPos(playerSpawnPos);
 			em = this->em;
+			loaded = true;
 		}
+		bool loaded=false;
 	private:
 		Vec2 playerSpawnPos;
 		EntityManager em;

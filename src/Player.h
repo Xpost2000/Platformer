@@ -2,6 +2,7 @@
 #define PLAYER_H
 #include "gravity.h"
 #include <vector>
+#include "Progressor.h"
 #include "vector_typedef.h"
 #include "vec2.hpp"
 #include "vec4.hpp"
@@ -30,7 +31,7 @@ class Player : public Entity{
 			set_aabb(Vec2(pos.x()+15, pos.y()+5), Vec2(40, 65));
 		}
 		void update(float dt, EntityManager& em);
-		void update(float dt, std::vector<Block> &blocks, std::vector<BasicEnemy>& be, std::vector<JumpingEnemy>& je);
+		void update(float dt, std::vector<Block> &blocks, std::vector<BasicEnemy>& be, std::vector<JumpingEnemy>& je, Progressor& p);
 		bool death_check(){ if(health < 0){ kill(); } return dead; }
 		bool DeathAnimation( float dt, GameState& gs ) {
 			if(color.a() > 0.0f){

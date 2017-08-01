@@ -7,6 +7,7 @@
 // I'm likely going to stre a different vector for different enemy types.
 Player p(Vec2(300, 300), Vec2(73, 73), Vec2(100), Vec4(1.0, 1.0, 1.0, 1.0));
 std::vector<Level> levels;
+int currentLevel=0;
 Game::Game(){
 	SDL_Init(SDL_INIT_VIDEO);
 	IMG_Init(IMG_INIT_PNG);
@@ -53,23 +54,6 @@ Game::Game(){
 	tm.add_texture("player", "textures//test_player.png", ctx);
 	tm.add_texture("ui-menu", "textures//ui//ui_atlas.png", ctx);
 	ls->setProj(proj);
-	/*
-	em.create_block(Block(Vec2(0, 620), Vec2(2280, 100), Vec4(0.4, 0.0, 0.0, 1.0)));
-	em.create_block(Block(Vec2(0, 0), Vec2(1280,100), Vec4(0.4, 0.0, 0.0, 1.0)));
-	em.create_block(Block(Vec2(0,0), Vec2(20, 720), Vec4(0.0, 0.0, 0.2, 1.0)));
-	em.create_block(Block(Vec2(500), Vec2(80, 160), Vec4(.2), BlockTypes::Wall));
-	em.create_block(Block(Vec2(2260, 0), Vec2(20, 720), Vec4(0.0, 0.0, 0.2, 1.0)));
-	em.create_block(Block(Vec2(300, 520), Vec2(100)));
-	em.create_block(Block(Vec2(900, 220), Vec2(100, 320)));
-	em.create_block(Block(Vec2(600, 320), Vec2(100, 30)));
-	em.create_block(Block(Vec2(400, 400), Vec2(100, 10)));
-	em.create_enemy(BasicEnemy(Vec2(880, 300), Vec2(20, 50), Vec2(100), Vec4(1)));
-	em.create_enemy(BasicEnemy(Vec2(700, 100), Vec2(50, 50), Vec2(160), Vec4(0.0, 1.0, 0.0, 1.0)));
-	em.create_enemy(JumpingEnemy(Vec2(500, 300), Vec2(20, 40), Vec2(150), Vec4(1, 0, 0, 1)));
-	em.create_enemy(BasicEnemy(Vec2(2000, 100), Vec2(50, 120), Vec2(160), Vec4(0.0, 1.0, 0.0, 1.0)));
-	bs.push_back(BackgroundBlock(Vec2(300, 400), Vec2(100), Vec4(1), Vec2(0.7, 0.3)));
-	*/
-	levels[0].load(p, em);
 }
 Game::~Game(){
 	SDL_Quit();
@@ -111,6 +95,9 @@ void Game::update(){
 		}
 	}
 	if(state == GameState::Playing){
+		if(levels[currentLevel].loaded == false){
+			levels[currentLevel].load(p, em);
+		}
 		em.update(ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS));
 		if(!p.death_check()){
 			p.update(ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS), em);
@@ -121,6 +108,10 @@ void Game::update(){
 			p.DeathAnimation(ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS), state);
 			pp->get()->setDt(ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS));
 			
+		}
+		if(em.get_progressor().can_go_next_level()){
+			currentLevel++;
+			em.get_progressor().recall();
 		}
 	}else{
 		start.update(mX, mY);
@@ -167,14 +158,12 @@ void Game::draw(){
 		for(int i = 0; i < 10; ++i){
 			ls->setLight(i, lights[i]);
 		}
-		sb->draw(Vec2(0),Vec4(0),Vec2(5000, 5000), Vec4(0.1, 0.1, 0.1, 1.0));
-		for(auto &e : bs){
-			sb->draw(Vec2(-camX*e.scrollFactor.x()+e.pos.x(), -camY*e.scrollFactor.y()+e.pos.y()), e.getUvs(), e.size, e.color);
-		}
 		ls->setTextured(false);
-		sb->render();
+		sb->draw(Vec2(-5000), Vec4(0), Vec2(10000), Vec4(0.1, 0.1, 0.1, 1.0));
+		em.draw_background_props( Vec2(camX, camY), *sb );
 		ls->setTextured(true);
 		tm.get_tex("wall")->bind();
+		em.draw_progressor(*sb);
 		em.draw_blocks( *sb );
 
 		ls->setTextured(false);
