@@ -1,5 +1,4 @@
 #include "EntityManager.h"
-#include "Spritebatcher.h"
 
 void EntityManager::create_block(const Block b){
 	blocks.push_back(b);

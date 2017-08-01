@@ -162,7 +162,8 @@ void Game::draw(){
 			ls->setLight(i, lights[i]);
 		}
 		sb->draw(Vec2(0),Vec4(0),Vec2(5000, 5000), Vec4(0.1, 0.1, 0.1, 1.0));
-		sb->draw(Vec2(-camX*0.53+300, -camY*0.4+100),Vec4(0),Vec2(300, 300), Vec4(1.0, 1.0, 1.0, 1.0));
+		sb->draw(Vec2(-camX*0.53+500, -camY*0.4+100),Vec4(0),Vec2(300, 300), Vec4(1.0, 1.0, 1.0, 1.0));
+		sb->draw(Vec2(-camX*0.63+420, -camY*0.7+140),Vec4(0),Vec2(100, 100), Vec4(0.2, 0.2, 0.2, 1.0));
 		ls->setTextured(false);
 		sb->render();
 		ls->setTextured(true);
