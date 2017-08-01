@@ -22,7 +22,7 @@ class LevelListFile{
 					entries.push_back(temp);
 				}
 			}else{
-				SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "File error", "Level list not found.", NULL);
+				SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Fatal Error : Game couldn't find level list.", "Level list not found.", NULL);
 				return;
 			}
 		}

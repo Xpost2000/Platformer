@@ -8,6 +8,7 @@
 Player p(Vec2(300, 300), Vec2(73, 73), Vec2(100), Vec4(1.0, 1.0, 1.0, 1.0));
 std::vector<Level> levels;
 int currentLevel=0;
+float amnt;
 Game::Game(){
 	SDL_Init(SDL_INIT_VIDEO);
 	IMG_Init(IMG_INIT_PNG);
@@ -46,6 +47,11 @@ Game::Game(){
 		CORE_CONTEXT
 	};
 	ctx = std::make_shared<GLDevice>(window->get_handle(), info);
+	if(GLEW_VERSION_3_3){
+	}else{
+		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Fatal Error : OpenGL 3.3 not supported", "Please update your video drivers.", NULL);
+		exit(-1);
+	}
 	pr = std::make_shared<ParticleRenderer>(ctx);
 	sb = std::make_shared<SpriteBatcher>(ctx);
 	ls = std::make_shared<LightShader>(ctx);
@@ -72,6 +78,9 @@ void Game::update(){
 	while(SDL_PollEvent(&ev)){
 		if(ev.type==SDL_QUIT){
 			window->set_should_close(true);
+		}
+		if(ev.key.keysym.sym == SDLK_RETURN){
+			p.kill();
 		}
 		if(ev.type == SDL_MOUSEBUTTONDOWN){
 			if(start.mouse_inside(mX, mY)){
@@ -102,12 +111,15 @@ void Game::update(){
 		if(!p.death_check()){
 			p.update(ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS), em);
 			pp->get()->setFade(false);
+			amnt = 1;
 		}
 		else{
 			pp->get()->setFade(true);
-			p.DeathAnimation(ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS), state);
-			pp->get()->setDt(ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS));
-			
+			if(p.DeathAnimation(ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS), state)){
+				levels[currentLevel].load(p, em);
+			}
+			amnt -= ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS)/2;
+			pp->get()->setDt(amnt);			
 		}
 		if(em.get_progressor().can_go_next_level()){
 			currentLevel++;
@@ -137,7 +149,7 @@ Light lights[10] ={
 float camX=0;
 float camY=0;
 void Game::draw(){
-	ctx->clearColor(0.0, 0.0, 0.1f, 0.0);
+	ctx->clearColor(0.0, 0.0, 0.0, 1.0);
 	ctx->clear(BufferClear::COLOR_DEPTH_BUFFERS);
 	ctx->viewport(0, 0, w, h);
 	ctx->enableAlpha();
@@ -146,15 +158,6 @@ void Game::draw(){
 		view = glm::mat4();
 	if(state == GameState::Playing || state == GameState::Pause){
 		ls->setTex(0);
-		if(state == GameState::Pause){
-			tm.get_tex("ui-menu")->bind();
-			ls->setTextured(true);	
-			sb->draw(Vec2(0+100, h/2.0f - 161*2), Vec4(0, 310.0f/512.0f, 250.0f/512.0f, 471.0f/512.0f), Vec2(251*2, 161*2), Vec4(1.0));
-			sb->draw(start.getPos(), start.getUvs(), start.getSize(), Vec4(start.getColor().x(), start.getColor().y(), start.getColor().z(), 1.0));
-			sb->draw(option.getPos(), option.getUvs(), option.getSize(), Vec4(option.getColor().x(), option.getColor().y(), option.getColor().z(), 1.0));
-			sb->draw(quit.getPos(), quit.getUvs(), quit.getSize(), Vec4(quit.getColor().x(), quit.getColor().y(), quit.getColor().z(), 1.0));
-			sb->render();
-		}
 		for(int i = 0; i < 10; ++i){
 			ls->setLight(i, lights[i]);
 		}

@@ -25,10 +25,8 @@ PostProcessorShader::PostProcessorShader(const std::shared_ptr<IDevice>& dev) : 
 			color = texture(tex, texCoords);
 			if(shouldFade){
 				if(color.r > 0){
-					color -= vec4(dt*20);
+					color = vec4(dt);
 				}
-			}else{
-				color = texture(tex, texCoords);
 			}
 		}
 	)RW");

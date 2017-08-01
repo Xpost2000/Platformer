@@ -6,8 +6,9 @@ void Config::read_config(){
 	if(!config.good()){
 		SDL_ShowSimpleMessageBox(
 				SDL_MESSAGEBOX_ERROR,
-				"Config doesn't exist",
+				"Fatal error : Game could not find configuration file.",
 				"Please reinstall this game for the configuration file.", NULL);	
+		exit(-1);
 		return;
 	}else{
 		std::string token;

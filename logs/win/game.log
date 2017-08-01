@@ -70,7 +70,7 @@ In file included from ../../src/Game.h:20:0,
    Window(int w, int h, std::string title, bool fullscreen=false): w(w), h(h), title(title), fullscreen(fullscreen){
    ^
 ../../src/Game.cpp: In member function 'void Game::update()':
-../../src/Game.cpp:92:12: warning: statement has no effect [-Wunused-value]
+../../src/Game.cpp:101:12: warning: statement has no effect [-Wunused-value]
       state == GameState::Menu;
             ^
 In file included from ../../src/EntityManager.h:4:0,

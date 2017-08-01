@@ -41,7 +41,7 @@ class Player : public Entity{
 				color.a() -= dt/2;
 				return false;
 			}else{
-				gs = GameState::Menu;
+			//	gs = GameState::Menu;
 				color = Vec4(1.0);
 				revive();
 

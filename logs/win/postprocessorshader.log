@@ -4,21 +4,21 @@ In file included from ../../src/PostProcessorShader.cpp:2:0:
    bool is_valid() { return (obj != -1); } 
                                  ^
 ../../src/PostProcessorShader.cpp: In destructor 'PostProcessorShader::~PostProcessorShader()':
-../../src/PostProcessorShader.cpp:48:9: warning: deleting object of polymorphic class type 'Shader' which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
+../../src/PostProcessorShader.cpp:46:9: warning: deleting object of polymorphic class type 'Shader' which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
   delete vs;
          ^
-../../src/PostProcessorShader.cpp:49:9: warning: deleting object of polymorphic class type 'Shader' which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
+../../src/PostProcessorShader.cpp:47:9: warning: deleting object of polymorphic class type 'Shader' which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
   delete fs;
          ^
-../../src/PostProcessorShader.cpp:50:9: warning: deleting object of polymorphic class type 'ShaderProgram' which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
+../../src/PostProcessorShader.cpp:48:9: warning: deleting object of polymorphic class type 'ShaderProgram' which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
   delete sp;
          ^
-../../src/PostProcessorShader.cpp:51:9: warning: deleting object of polymorphic class type 'ShaderUniform' which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
+../../src/PostProcessorShader.cpp:49:9: warning: deleting object of polymorphic class type 'ShaderUniform' which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
   delete tex;
          ^
-../../src/PostProcessorShader.cpp:52:9: warning: deleting object of polymorphic class type 'ShaderUniform' which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
+../../src/PostProcessorShader.cpp:50:9: warning: deleting object of polymorphic class type 'ShaderUniform' which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
   delete dt;
          ^
-../../src/PostProcessorShader.cpp:53:9: warning: deleting object of polymorphic class type 'ShaderUniform' which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
+../../src/PostProcessorShader.cpp:51:9: warning: deleting object of polymorphic class type 'ShaderUniform' which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
   delete shouldFade;
          ^
