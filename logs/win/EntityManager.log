@@ -23,10 +23,10 @@ In file included from ../../src/Block.h:3:0,
    }
    ^
 ../../src/EntityManager.cpp: In member function 'void EntityManager::update(float)':
-../../src/EntityManager.cpp:39:19: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+../../src/EntityManager.cpp:38:19: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
   for(int i = 0; i < basicEnemies.size(); ++i){
                    ^
-../../src/EntityManager.cpp:46:19: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+../../src/EntityManager.cpp:45:19: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
   for(int i = 0; i < jumpingEnemies.size(); ++i){
                    ^
 In file included from ../../src/EntityManager.h:4:0,

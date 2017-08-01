@@ -64,6 +64,7 @@ Game::Game(){
 	em.create_enemy(BasicEnemy(Vec2(700, 100), Vec2(50, 50), Vec2(160), Vec4(0.0, 1.0, 0.0, 1.0)));
 	em.create_enemy(JumpingEnemy(Vec2(500, 300), Vec2(20, 40), Vec2(150), Vec4(1, 0, 0, 1)));
 	em.create_enemy(BasicEnemy(Vec2(2000, 100), Vec2(50, 120), Vec2(160), Vec4(0.0, 1.0, 0.0, 1.0)));
+	bs.push_back(BackgroundBlock(Vec2(300, 400), Vec2(100), Vec4(1), Vec2(0.7, 0.3)));
 }
 Game::~Game(){
 	SDL_Quit();
@@ -162,8 +163,9 @@ void Game::draw(){
 			ls->setLight(i, lights[i]);
 		}
 		sb->draw(Vec2(0),Vec4(0),Vec2(5000, 5000), Vec4(0.1, 0.1, 0.1, 1.0));
-		sb->draw(Vec2(-camX*0.53+500, -camY*0.4+100),Vec4(0),Vec2(300, 300), Vec4(1.0, 1.0, 1.0, 1.0));
-		sb->draw(Vec2(-camX*0.63+420, -camY*0.7+140),Vec4(0),Vec2(100, 100), Vec4(0.2, 0.2, 0.2, 1.0));
+		for(auto &e : bs){
+			sb->draw(Vec2(-camX*e.scrollFactor.x()+e.pos.x(), -camY*e.scrollFactor.y()+e.pos.y()), e.getUvs(), e.size, e.color);
+		}
 		ls->setTextured(false);
 		sb->render();
 		ls->setTextured(true);

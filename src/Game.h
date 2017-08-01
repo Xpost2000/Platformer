@@ -10,6 +10,7 @@
 #include "typedefs.h"
 #include "TestShader.h"
 #include "DefaultShader.h"
+#include "BackgroundSprites.h"
 #include "SpriteBatcher.h"
 #include "RandomNumberGenerator.h"
 #include "ParticleGenerator.h"
@@ -43,6 +44,7 @@ class Game{
 		LevelListFile lst;
 		EntityManager em;
 		TextureManager tm;
+		std::vector<BackgroundBlock> bs;
 		std::shared_ptr<Window> window = nullptr;
 		SDL_Event ev;
 		std::shared_ptr<ParticleRenderer> pr = nullptr;

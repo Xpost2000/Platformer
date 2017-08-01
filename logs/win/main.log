@@ -27,7 +27,7 @@ In file included from ../../src/typedefs.h:13:0,
                                  ^
 In file included from ../../src/Block.h:3:0,
                  from ../../src/EntityManager.h:4,
-                 from ../../src/Game.h:16,
+                 from ../../src/Game.h:17,
                  from ../../src/main.cpp:1:
 ../../src/Entity.h: In constructor 'Entity::Entity(Vec2, Vec2, Vec2, Vec4)':
 ../../src/Entity.h:71:8: warning: 'Entity::size' will be initialized after [-Wreorder]
@@ -43,7 +43,7 @@ In file included from ../../src/Block.h:3:0,
 ../../src/Entity.h:61:3: warning: no return statement in function returning non-void [-Wreturn-type]
    }
    ^
-In file included from ../../src/Game.h:18:0,
+In file included from ../../src/Game.h:19:0,
                  from ../../src/main.cpp:1:
 ../../src/uiButton.h: In constructor 'uiButton::uiButton(Vec2, Vec2, Vec3, Vec3, ButtonType)':
 ../../src/uiButton.h:70:7: warning: 'uiButton::highlightColor' will be initialized after [-Wreorder]
@@ -52,12 +52,12 @@ In file included from ../../src/Game.h:18:0,
 ../../src/uiButton.h:66:13: warning:   'ButtonType uiButton::id' [-Wreorder]
   ButtonType id;
              ^
-In file included from ../../src/Game.h:18:0,
+In file included from ../../src/Game.h:19:0,
                  from ../../src/main.cpp:1:
 ../../src/uiButton.h:18:3: warning:   when initialized here [-Wreorder]
    uiButton( Vec2 pos, Vec2 size, Vec3 color, Vec3 highlightColor, ButtonType id ) : pos(pos), size(size), color(color), highlightColor(highlightColor), id(id){
    ^
-In file included from ../../src/Game.h:20:0,
+In file included from ../../src/Game.h:21:0,
                  from ../../src/main.cpp:1:
 ../../src/Window.h: In constructor 'Window::Window(int, int, std::__cxx11::string, bool)':
 ../../src/Window.h:29:10: warning: 'Window::h' will be initialized after [-Wreorder]

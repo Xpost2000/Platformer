@@ -27,7 +27,7 @@ In file included from ../../src/typedefs.h:13:0,
                                  ^
 In file included from ../../src/Block.h:3:0,
                  from ../../src/EntityManager.h:4,
-                 from ../../src/Game.h:16,
+                 from ../../src/Game.h:17,
                  from ../../src/Game.cpp:1:
 ../../src/Entity.h: In constructor 'Entity::Entity(Vec2, Vec2, Vec2, Vec4)':
 ../../src/Entity.h:71:8: warning: 'Entity::size' will be initialized after [-Wreorder]
@@ -43,7 +43,7 @@ In file included from ../../src/Block.h:3:0,
 ../../src/Entity.h:61:3: warning: no return statement in function returning non-void [-Wreturn-type]
    }
    ^
-In file included from ../../src/Game.h:18:0,
+In file included from ../../src/Game.h:19:0,
                  from ../../src/Game.cpp:1:
 ../../src/uiButton.h: In constructor 'uiButton::uiButton(Vec2, Vec2, Vec3, Vec3, ButtonType)':
 ../../src/uiButton.h:70:7: warning: 'uiButton::highlightColor' will be initialized after [-Wreorder]
@@ -52,12 +52,12 @@ In file included from ../../src/Game.h:18:0,
 ../../src/uiButton.h:66:13: warning:   'ButtonType uiButton::id' [-Wreorder]
   ButtonType id;
              ^
-In file included from ../../src/Game.h:18:0,
+In file included from ../../src/Game.h:19:0,
                  from ../../src/Game.cpp:1:
 ../../src/uiButton.h:18:3: warning:   when initialized here [-Wreorder]
    uiButton( Vec2 pos, Vec2 size, Vec3 color, Vec3 highlightColor, ButtonType id ) : pos(pos), size(size), color(color), highlightColor(highlightColor), id(id){
    ^
-In file included from ../../src/Game.h:20:0,
+In file included from ../../src/Game.h:21:0,
                  from ../../src/Game.cpp:1:
 ../../src/Window.h: In constructor 'Window::Window(int, int, std::__cxx11::string, bool)':
 ../../src/Window.h:29:10: warning: 'Window::h' will be initialized after [-Wreorder]
@@ -70,17 +70,17 @@ In file included from ../../src/Game.h:20:0,
    Window(int w, int h, std::string title, bool fullscreen=false): w(w), h(h), title(title), fullscreen(fullscreen){
    ^
 ../../src/Game.cpp: In member function 'void Game::update()':
-../../src/Game.cpp:102:12: warning: statement has no effect [-Wunused-value]
+../../src/Game.cpp:103:12: warning: statement has no effect [-Wunused-value]
       state == GameState::Menu;
             ^
 In file included from ../../src/EntityManager.h:4:0,
-                 from ../../src/Game.h:16,
+                 from ../../src/Game.h:17,
                  from ../../src/Game.cpp:1:
 ../../src/Block.h: In member function 'virtual Vec4 Block::getUvs()':
 ../../src/Block.h:36:3: warning: control reaches end of non-void function [-Wreturn-type]
    }
    ^
-In file included from ../../src/Game.h:18:0,
+In file included from ../../src/Game.h:19:0,
                  from ../../src/Game.cpp:1:
 ../../src/uiButton.h: In member function 'Vec4 uiButton::getUvs()':
 ../../src/uiButton.h:63:3: warning: control reaches end of non-void function [-Wreturn-type]
