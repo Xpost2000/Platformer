@@ -32,12 +32,15 @@ int main (int argc, char** argv){
 			for(int j = 0; j < level[i].size(); ++j){
 				switch(level[i][j]){
 					case '#':
-						out << "block 20 20 " << std::to_string(j*20) << " " << std::to_string(i*20) << std::endl; 
+						out << "block 20 20 " << std::to_string(j*20) << " " << std::to_string(i*20) << " 1 1 1 1 " << std::endl; 
 						break;
 					case '@':
 						out << "player_spawn " << std::to_string(j*20) << " " << std::to_string(i*20) << std::endl;
 						break;
 					default:
+						break;
+					case '?':
+						out << "bgrnd 20 20 " << std::to_string(j*20) << " " << std::to_string(i*20) << " 0.5 0.5" << " 1 1 1 1 " << std::endl;
 						break;
 				}
 			}

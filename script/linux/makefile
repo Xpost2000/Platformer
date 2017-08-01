@@ -5,6 +5,7 @@ OBJ_FILES= ../../obj/IDevice.o\
 	  ../../obj/IObjectHandle.o\
 	  ../../obj/Buffer.o\
 	  ../../obj/Config.o\
+	  ../../obj/Level.o\
 	  ../../obj/VertexArray.o\
 	  ../../obj/BufferTypes.o\
 	  ../../obj/GLDevice.o\
@@ -81,6 +82,7 @@ all:
 	$(GCC) ../../src/EntityManager.cpp $(LIBS) $(FLAGS) -c -o ../../obj/EntityManager.o 2> ../../logs/linux/entitymanager..log
 	$(GCC) ../../src/Config.cpp $(LIBS) $(FLAGS) -c -o ../../obj/Config.o 2> ../../logs/linux/config.log
 	$(GCC) ../../src/LevelList.cpp $(LIBS) $(FLAGS) -c -o ../../obj/LevelList.o 2> ../../logs/linux/levellist.log
+	$(GCC) ../../src/Level.cpp $(LIBS) $(FLAGS) -c -o ../../obj/Level.o 2> ../../logs/linux/level.log
 	$(GCC) ../../src/Game.cpp $(LIBS) $(FLAGS) -c -o ../../obj/Game.o 2> ../../logs/linux/game.log
 link:
 	$(GCC) $(OBJ_FILES) $(LIBS) $(FLAGS) -o ../../bin/Game_linux 2> ../../logs/linker_linux.log

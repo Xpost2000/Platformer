@@ -3,9 +3,10 @@
 #include "JumpingEnemy.h"
 #include "Block.h"
 #include "Player.h"
-
+#include "Level.h"
 // I'm likely going to stre a different vector for different enemy types.
 Player p(Vec2(300, 300), Vec2(73, 73), Vec2(100), Vec4(1.0, 1.0, 1.0, 1.0));
+std::vector<Level> levels;
 Game::Game(){
 	SDL_Init(SDL_INIT_VIDEO);
 	IMG_Init(IMG_INIT_PNG);
@@ -24,6 +25,7 @@ Game::Game(){
 	lst.read(cfg.get_lvl_list_dir() + cfg.get_lvl_list_file());
 	for( auto &ent : lst.entries ){
 		std::cout << ent << std::endl;
+		levels.push_back(Level(ent));
 	}
 	proj = glm::ortho(0.0f, w, h, 0.0f, -1.0f, 1.0f);
 	window = std::make_shared<Window>(w, h, game_name);
@@ -51,6 +53,7 @@ Game::Game(){
 	tm.add_texture("player", "textures//test_player.png", ctx);
 	tm.add_texture("ui-menu", "textures//ui//ui_atlas.png", ctx);
 	ls->setProj(proj);
+	/*
 	em.create_block(Block(Vec2(0, 620), Vec2(2280, 100), Vec4(0.4, 0.0, 0.0, 1.0)));
 	em.create_block(Block(Vec2(0, 0), Vec2(1280,100), Vec4(0.4, 0.0, 0.0, 1.0)));
 	em.create_block(Block(Vec2(0,0), Vec2(20, 720), Vec4(0.0, 0.0, 0.2, 1.0)));
@@ -65,6 +68,8 @@ Game::Game(){
 	em.create_enemy(JumpingEnemy(Vec2(500, 300), Vec2(20, 40), Vec2(150), Vec4(1, 0, 0, 1)));
 	em.create_enemy(BasicEnemy(Vec2(2000, 100), Vec2(50, 120), Vec2(160), Vec4(0.0, 1.0, 0.0, 1.0)));
 	bs.push_back(BackgroundBlock(Vec2(300, 400), Vec2(100), Vec4(1), Vec2(0.7, 0.3)));
+	*/
+	levels[0].load(p, em);
 }
 Game::~Game(){
 	SDL_Quit();

@@ -41,6 +41,8 @@ class Entity{
 		virtual Vec4 getUvs()  { return uvs; }
 		Vec2 getSize(){ return size; }
 		Vec4 getColor(){ return color; }
+		void setPos(Vec2 pos) { this->pos = pos; }
+		void setVelocity(Vec2 velocity) { this->velocity = velocity; }
 		// this is virtual because they may implement
 		// state changing on this.
 		bool isDead() { return dead; }

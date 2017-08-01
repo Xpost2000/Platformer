@@ -8,6 +8,7 @@
 class EntityManager{
 	public:
 		EntityManager(){}
+		EntityManager(const EntityManager& other) = default;
 		~EntityManager(){}
 		void create_block(const Block)	;
 		void create_enemy(const JumpingEnemy) ;
