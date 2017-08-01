@@ -162,6 +162,7 @@ void Game::draw(){
 			ls->setLight(i, lights[i]);
 		}
 		sb->draw(Vec2(0),Vec4(0),Vec2(5000, 5000), Vec4(0.1, 0.1, 0.1, 1.0));
+		sb->draw(Vec2(-camX*0.53+300, -camY*0.4+100),Vec4(0),Vec2(300, 300), Vec4(1.0, 1.0, 1.0, 1.0));
 		ls->setTextured(false);
 		sb->render();
 		ls->setTextured(true);
@@ -176,6 +177,7 @@ void Game::draw(){
 		tm.get_tex("player")->bind();
 		sb->draw(p.getPos(), p.getUvs(), p.getSize(), Vec4(p.getColor().r(), p.getColor().g(), p.getColor().b(), 1.0));
 		sb->render();
+		ls->setTextured(false);
 
 		camX = -p.getPos().x() + w/2.0f;
 		camY = -p.getPos().y() + h/2.0f;
