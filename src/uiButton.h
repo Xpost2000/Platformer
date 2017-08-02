@@ -19,9 +19,7 @@ class uiButton{
 		}
 		void update( int x, int y ){
 			if(mouse_inside(x, y)){
-				color.x() = highlightColor.x();
-				color.y() = highlightColor.y();
-				color.z() = highlightColor.z();
+				color = highlightColor;
 			}else{
 				color = Vec3(1.0);	
 			}

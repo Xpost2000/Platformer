@@ -46,10 +46,10 @@ In file included from ../../src/Block.h:3:0,
 In file included from ../../src/Game.h:18:0,
                  from ../../src/main.cpp:1:
 ../../src/uiButton.h: In constructor 'uiButton::uiButton(Vec2, Vec2, Vec3, Vec3, ButtonType)':
-../../src/uiButton.h:70:7: warning: 'uiButton::highlightColor' will be initialized after [-Wreorder]
+../../src/uiButton.h:68:7: warning: 'uiButton::highlightColor' will be initialized after [-Wreorder]
   Vec3 highlightColor;
        ^
-../../src/uiButton.h:66:13: warning:   'ButtonType uiButton::id' [-Wreorder]
+../../src/uiButton.h:64:13: warning:   'ButtonType uiButton::id' [-Wreorder]
   ButtonType id;
              ^
 In file included from ../../src/Game.h:18:0,
