@@ -14,6 +14,7 @@ class EntityManager{
 		~EntityManager(){}
 		void create_block(const Block)	;
 		void create_block(const BackgroundBlock) ;
+		void create_block(const BackgroundBlockStatic) ;
 		void create_enemy(const JumpingEnemy) ;
 		void create_enemy(const BasicEnemy) ;
 		void set_progressor(const Progressor other) { p = other; }
@@ -30,6 +31,7 @@ class EntityManager{
 		void update( float dt );
 	private:
 		std::vector<BackgroundBlock> bs;
+		std::vector<BackgroundBlockStatic> bss;
 		std::vector<JumpingEnemy> jumpingEnemies;
 		std::vector<Block> blocks;
 		std::vector<BasicEnemy> basicEnemies;

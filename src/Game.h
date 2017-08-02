@@ -20,6 +20,7 @@
 #include "Window.h"
 #include "TextureManager.h"
 #include "GameState.h"
+#include "GameCamera.h"
 
 class Game{
 	public:
@@ -41,6 +42,7 @@ class Game{
 		GameState state = GameState::Menu;
 		Config cfg;
 		LevelListFile lst;
+		GameCamera gc;
 		EntityManager em;
 		TextureManager tm;
 		std::shared_ptr<Window> window = nullptr;
@@ -49,7 +51,7 @@ class Game{
 		std::shared_ptr<SpriteBatcher> sb = nullptr;
 		std::shared_ptr<LightShader> ls = nullptr;
 		std::shared_ptr<PostProcessor> pp = nullptr;
-		glm::mat4 view=glm::mat4(), proj;
+		glm::mat4 proj;
 		ptrs::IDevice ctx = nullptr;
 };
 

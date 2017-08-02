@@ -69,8 +69,22 @@ In file included from ../../src/Game.h:20:0,
 ../../src/Window.h:7:3: warning:   when initialized here [-Wreorder]
    Window(int w, int h, std::string title, bool fullscreen=false): w(w), h(h), title(title), fullscreen(fullscreen){
    ^
+In file included from ../../src/Game.h:23:0,
+                 from ../../src/Game.cpp:1:
+../../src/GameCamera.h: In constructor 'GameCamera::GameCamera(Vec2, Vec2, Vec2, Vec2)':
+../../src/GameCamera.h:23:8: warning: 'GameCamera::lowerLimits' will be initialized after [-Wreorder]
+   Vec2 lowerLimits;
+        ^
+../../src/GameCamera.h:19:8: warning:   'Vec2 GameCamera::screenResolution' [-Wreorder]
+   Vec2 screenResolution;
+        ^
+In file included from ../../src/Game.h:23:0,
+                 from ../../src/Game.cpp:1:
+../../src/GameCamera.h:12:3: warning:   when initialized here [-Wreorder]
+   GameCamera(Vec2 pos, Vec2 screenResolution, Vec2 limits, Vec2 lowerLimits) : pos(pos), limits(limits), lowerLimits(lowerLimits), screenResolution(screenResolution) {}
+   ^
 ../../src/Game.cpp: In member function 'void Game::update()':
-../../src/Game.cpp:101:12: warning: statement has no effect [-Wunused-value]
+../../src/Game.cpp:103:12: warning: statement has no effect [-Wunused-value]
       state == GameState::Menu;
             ^
 In file included from ../../src/EntityManager.h:4:0,

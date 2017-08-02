@@ -19,6 +19,7 @@ Game::Game(){
 	option = uiButton(Vec2(0+100, h/2.0f + 120), Vec2(300, 60), Vec3(1.0), Vec3(0.0, 1.0, 0.0), ButtonType::Options);
 	quit = uiButton(Vec2(0+100, h/2.0f + 180), Vec2(300, 60), Vec3(1.0), Vec3(0.0, 0.0, 1.0), ButtonType::Quit);
 	game_name = cfg.get_game_name();
+	std::cout << "Game Name :: " << game_name << std::endl;
 	std::cout << "Level List Directory ::" << cfg.get_lvl_list_dir() + cfg.get_lvl_list_file() << std::endl;
 	std::cout << "Texture Files Directory ::" << cfg.get_texture_dir() << std::endl;
 	std::cout << "Level Files Directory ::" << cfg.get_level_dir() << std::endl;
@@ -59,6 +60,7 @@ Game::Game(){
 	tm.add_texture("wall", "textures//wall_test.png", ctx);
 	tm.add_texture("player", "textures//test_player.png", ctx);
 	tm.add_texture("ui-menu", "textures//ui//ui_atlas.png", ctx);
+	gc = GameCamera(Vec2(0, 0), Vec2(w, h), Vec2(-3000, -3000), Vec2(3000, 3000));
 	ls->setProj(proj);
 }
 Game::~Game(){
@@ -155,7 +157,6 @@ void Game::draw(){
 	ctx->enableAlpha();
 	pp->begin();
 		ls->use();
-		view = glm::mat4();
 	if(state == GameState::Playing || state == GameState::Pause){
 		ls->setTex(0);
 		for(int i = 0; i < 10; ++i){
@@ -179,14 +180,7 @@ void Game::draw(){
 		sb->render();
 		ls->setTextured(false);
 
-		camX = -p.getPos().x() + w/2.0f;
-		camY = -p.getPos().y() + h/2.0f;
-
-		if(camX < -2280+w){
-			camX = -2280+w;
-		}
-
-		view = glm::translate(view, glm::vec3(camX,camY,0));
+		gc.update(p);
 	}else{
 		pp->get()->setFade(false);
 		ls->setTex(0);
@@ -206,6 +200,6 @@ void Game::draw(){
 	}
 		ls->unuse();
 	pp->end();
-	ls->setView(view);
+	ls->setView(gc.get_matrix());
 	window->refresh();
 }

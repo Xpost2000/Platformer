@@ -20,4 +20,17 @@ struct BackgroundBlock{
 		Vec4 color;
 		Vec2 scrollFactor;
 };
+struct BackgroundBlockStatic{
+	public:
+		Vec4 getUvs(){
+			return Vec4(0);
+		}
+		BackgroundBlockStatic(){}
+		BackgroundBlockStatic(Vec2 pos, Vec2 size, Vec4 color)
+		: pos(pos), size(size), color(color){
+		}
+		Vec2 pos;
+		Vec2 size;
+		Vec4 color;
+};
 #endif

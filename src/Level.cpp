@@ -41,6 +41,17 @@ Level::Level(std::string path){
 			file >> b;
 			em.create_block(BackgroundBlock(Vec2(x,y),Vec2(w,h),Vec4(r, g, b, 1.0), Vec2(sx, sy)));
 		}
+		if(token == "bgrnd-static"){
+			float w, h, x, y, r, g, b;
+			file >> w;
+			file >> h;
+			file >> x;
+			file >> y;
+			file >> r;
+			file >> g;
+			file >> b;
+			em.create_block(BackgroundBlockStatic(Vec2(x,y),Vec2(w,h),Vec4(r, g, b, 1.0)));
+		}
 		if(token == "player_spawn"){
 			file >> playerSpawnPos.x();
 			file >> playerSpawnPos.y();

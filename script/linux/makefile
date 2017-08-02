@@ -19,6 +19,7 @@ OBJ_FILES= ../../obj/IDevice.o\
 	  ../../obj/JumpingEnemy.o\
 	  ../../obj/BasicEnemy.o\
 	  ../../obj/Bitmap.o\
+	  ../../obj/GameCamera.o\
 	  ../../obj/RandomNumberGenerator.o\
 	  ../../obj/ParticleGenerator.o\
 	  ../../obj/ParticleRenderer.o\
@@ -75,6 +76,7 @@ all:
 	$(GCC) ../../src/ClockTimer.cpp $(LIBS) $(FLAGS) -c -o ../../obj/ClockTimer.o 2> ../../logs/linux/clocktimer.log
 	$(GCC) ../../src/Player.cpp $(LIBS) $(FLAGS) -c -o ../../obj/Player.o 2> ../../logs/linux/player.log
 	$(GCC) ../../src/Block.cpp $(LIBS) $(FLAGS) -c -o ../../obj/Block.o 2> ../../logs/linux/block.log
+	$(GCC) ../../src/GameCamera.cpp $(LIBS) $(FLAGS) -c -o ../../obj/GameCamera.o 2> ../../logs/linux/gamecamera.log
 	$(GCC) ../../src/Entity.cpp $(LIBS) $(FLAGS) -c -o ../../obj/Entity.o 2> ../../logs/linux/Entity.log
 	$(GCC) ../../src/BasicEnemy.cpp $(LIBS) $(FLAGS) -c -o ../../obj/BasicEnemy.o 2> ../../logs/linux/BasicEnemy.log
 	$(GCC) ../../src/JumpingEnemy.cpp $(LIBS) $(FLAGS) -c -o ../../obj/JumpingEnemy.o 2> ../../logs/linux/JumpingEnemy.log
