@@ -5,6 +5,14 @@ Level::Level(std::string path){
 	std::ifstream file(path.c_str());
 	std::string token;
 	while(file >> token){
+		if(token == "camera_limits"){
+			float lX, lY, hX, hY;
+			file >> lX;
+			file >> lY;
+			file >> hX;
+			file >> hY;
+			// camera == Camera( lowerLimits(lX, lY), Limits(hX, hY) );
+		}
 		if(token == "block"){
 			float w, h, x, y, r, g, b, type;
 			file >> w;
