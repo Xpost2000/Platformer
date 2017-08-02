@@ -2,6 +2,8 @@ GCC=g++
 LIBS=-lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lglew32 -lOpenGL32 -lboost_random-mgw51-1_60
 LIBS_LINUX=-lSDL2main -lSDL2 -lGLEW -lGL
 FLAGS=-std=gnu++14 -Wall -O2
+GAME_OBJ_FILES= ../../obj/Game.o\
+		../../obj/main.o
 OBJ_FILES= ../../obj/IDevice.o\
 	  ../../obj/IObjectHandle.o\
 	  ../../obj/LightShader.o\
@@ -41,9 +43,9 @@ OBJ_FILES= ../../obj/IDevice.o\
 	  ../../obj/sdl_surface_load_image_wrapper.o\
 	  ../../obj/vectors.o\
 	  ../../obj/Window.o\
-	  ../../obj/EntityManager.o\
-	  ../../obj/Game.o\
-	  ../../obj/main.o
+	  ../../obj/EntityManager.o
+##	  ../../obj/Game.o\
+##	  ../../obj/main.o
 all:
 	$(GCC) ../../src/main.cpp $(LIBS) $(FLAGS) -c -o ../../obj/main.o 2> ../../logs/win/main.log
 	$(GCC) ../../src/IObjectHandle.cpp $(LIBS) $(FLAGS) -c -o ../../obj/IObjectHandle.o 2> ../../logs/win/objHandle.log
@@ -87,8 +89,8 @@ all:
 	$(GCC) ../../src/Level.cpp $(LIBS) $(FLAGS) -c -o ../../obj/Level.o 2> ../../logs/win/Level.log
 	$(GCC) ../../src/GameCamera.cpp $(LIBS) $(FLAGS) -c -o ../../obj/GameCamera.o 2> ../../logs/win/GameCamera.log
 	$(GCC) ../../src/EntityManager.cpp $(LIBS) $(FLAGS) -c -o ../../obj/EntityManager.o 2> ../../logs/win/EntityManager.log
-link:
-	$(GCC) $(OBJ_FILES) $(LIBS) $(FLAGS) -o ../../bin/Game.exe 2> ../../logs/linker_windows.log
+link-game:
+	$(GCC) $(OBJ_FILES) $(GAME_OBJ_FILES) $(LIBS) $(FLAGS) -o ../../bin/Game.exe 2> ../../logs/linker_windows.log
 clean:
 	rm ../../obj/*.o
 exec:
