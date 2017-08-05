@@ -137,7 +137,7 @@ void Game::update(){
 
 Light lights[10] ={
 	Light(2000, Vec3(1), Vec2(500)),
-	Light(5000, Vec3(0.9, 0.5, 0.2), Vec2(800, 500)),
+	Light(),
 	Light(),
 	Light(),
 	Light(),

@@ -1,3 +1,305 @@
+commit a9cf70ee1b880b18bebe312e3cbb9394a198e264
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Wed Aug 2 00:43:54 2017 -0400
+
+    fixed my nonsensical multiple statements into one.
+
+commit 2b2096b8c3f3e3e3a3a71150ebd6cf77c078e765
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Tue Aug 1 23:42:51 2017 -0400
+
+    preparing setup for editor.
+
+commit 2f33781ea428353474c7f13829c1045b4bcc3327
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Tue Aug 1 23:36:00 2017 -0400
+
+    changing windows makefile to prepare for editor. ( in a few weeks. )
+
+commit 61c295ae2b261d07188dbaf6a1325c2fb95e13dc
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Tue Aug 1 23:20:02 2017 -0400
+
+    removed rect file. It's useless.
+
+commit 2eadc93f37d5cc8fa7846c14eb942c8b0e9577e7
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Tue Aug 1 23:18:34 2017 -0400
+
+    Made a camera class.
+
+commit 1c66e6aaf1074b9ca7f989b994250e2d6673a042
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Tue Aug 1 17:08:59 2017 -0400
+
+    the fade to black is correct this time.
+
+commit e188cf0309371c8b5a01224b4064cdfd80ed269b
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Tue Aug 1 16:37:32 2017 -0400
+
+    yay for working level loading
+
+commit eb8201bc9d4dac41db5122731bc10fba4102cc80
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Tue Aug 1 15:51:02 2017 -0400
+
+    Level loading actually worked.
+
+commit a245526dca218aebf43df3fbdcc213cee0fadcab
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Tue Aug 1 15:20:14 2017 -0400
+
+    parallax scrolling objects made.
+
+commit 662c5f5e668a62352c8b737e3c2121ca2e749b0d
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Mon Jul 31 23:58:57 2017 -0400
+
+    Recompiled on linux
+
+commit ec3d964eef7f6baa151134ac6fe8bf245927a227
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Mon Jul 31 22:57:26 2017 -0400
+
+    trying parallax scrolling
+
+commit 1cfe45e629d74c4dc1504d3d63efa04f403cd2c2
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Mon Jul 31 18:30:17 2017 -0400
+
+    at least it feels like a game.
+
+commit d7b8c6a567d136a5fd1c5a6165e341e15f42269a
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Mon Jul 31 16:31:18 2017 -0400
+
+    texture manager also working
+
+commit 8d7a72ba8aec3b09c1225af7486a44454f6d727e
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Mon Jul 31 16:12:58 2017 -0400
+
+    update
+
+commit 840a22436f45bd84a0514fd7a39dcc8bf9899492
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Mon Jul 31 15:58:36 2017 -0400
+
+    confirming level list readings.
+
+commit 14a084fb723e97c02e6f603243a09c4a41d2f9bf
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Mon Jul 31 15:32:07 2017 -0400
+
+    Config reader working as intended.
+
+commit 90ad7f0fcfb3b0383e5522a8386c3f77d8375846
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Mon Jul 31 14:55:53 2017 -0400
+
+    Entity Manager.
+
+commit 058e0bef55e173016da49e4b84e6ff87ff581ac9
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Mon Jul 31 14:45:57 2017 -0400
+
+    EntityManager created.
+
+commit 2a8ff8c2ecf5809c72d9a0f9b6cedd5b3905f185
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Mon Jul 31 14:05:46 2017 -0400
+
+    Window class.
+
+commit f49f4c093da77dbfe0e318b75efb4063d0df3036
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Mon Jul 31 13:09:14 2017 -0400
+
+    Singletons that work.
+
+commit 8a89e3288005392f726417ec789677789c7f6a3c
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Sun Jul 30 20:46:36 2017 -0400
+
+    disable vsync for benchmarking purposes.
+
+commit eacba664aaf84495ec1669f07e6315c357894fa5
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Sun Jul 30 20:12:43 2017 -0400
+
+    camera now works 100% correctly on many more resolutions :)
+
+commit 333b467d593c181e0644deb014c2fcbba891008f
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Sun Jul 30 20:04:03 2017 -0400
+
+    Testing how I would read configs.
+
+commit ab4e090a94be6b7d87c8dd2f4fd55d02eeb1fdaf
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Sun Jul 30 19:49:20 2017 -0400
+
+    stuff.
+
+commit 5059b8e06224d934e2f20b467ba8cf26387495af
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Sun Jul 30 19:47:41 2017 -0400
+
+    checking if window resolution affects anything.
+
+commit 3700810fe860dc09c58c762cfa8c2441cc16c82f
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Sun Jul 30 19:41:27 2017 -0400
+
+    camera works properly with limits.
+
+commit 59543d9d878d22e5ef8680ac6d4084667bb852dc
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Sun Jul 30 19:31:59 2017 -0400
+
+    camera
+
+commit 15320d4bad141adc32c623aaab312b2d94175513
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Sun Jul 30 18:42:45 2017 -0400
+
+    2D Camera prototype done well.
+
+commit 33894ae9d7333395e06975cc1940b45a4f5c2178
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Sun Jul 30 18:08:49 2017 -0400
+
+    stuff
+
+commit 3a7ad1b7d35b74c3a6cdf04ea340923cd1468da2
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Sun Jul 30 17:02:10 2017 -0400
+
+    AABBs can now be explicitly set. Instead of being entirely dependent on
+    base properties.
+
+commit b500d4e692b6395f06cd88ed53c247f8f00d19f9
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Sun Jul 30 15:53:03 2017 -0400
+
+    enemy state logging complete.
+
+commit 6c23ebd08430780237e85d8cc8a368a0c36bfe28
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Sun Jul 30 15:44:57 2017 -0400
+
+    setting identification for blocks. For UV calculation and likely
+    evaluating properties.
+
+commit 7b1d51df6ef8bfbd373d5077a03e5b8fba058681
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Sun Jul 30 15:37:24 2017 -0400
+
+    Entity statemachine implemented. States are correctly evaluated.
+
+commit 9e54f8786517d866c030db5721bab59e2b636d6c
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Sun Jul 30 15:13:43 2017 -0400
+
+    Code organization.
+
+commit b35eb5cf75a989a13d83bbb54e5a87e153f907dd
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Sun Jul 30 13:21:44 2017 -0400
+
+    jumper added to society.
+
+commit 8fb347895d083a7865016d44cabb59f0048182d3
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Sun Jul 30 13:19:06 2017 -0400
+
+    jumping enemies added in.
+
+commit c57a7eb811056024702d47d3457941af47e2b939
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Sun Jul 30 10:48:21 2017 -0400
+
+    test level reader checks for possible errors.
+
+commit 1d73ccb610ed1078968650e20e8b1ac002beb11e
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Sun Jul 30 00:05:02 2017 -0400
+
+    have a prototype for the level format. basic reader and convertor.
+
+commit 9827e49be56254af41b9a35f0abe7579aa604db1
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Sat Jul 29 22:17:00 2017 -0400
+
+    Entity class added. Reduces code redundancy and lines written.
+
+commit 492b465c38559b419b894d74d1faca77c631ba89
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Fri Jul 28 00:11:54 2017 -0400
+
+    platformy feel complete. Mostly.
+
+commit abe1e0efba4d42bd7de6e2a13495097168dd3b0c
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Fri Jul 28 00:04:44 2017 -0400
+
+    fixed gravity and stomping. Now you die when you should die.
+
+commit e3f32b67d7e229621798fcd4f1a639ddd66c70c3
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Thu Jul 27 22:59:35 2017 -0400
+
+    readjusting things.
+
+commit e116a2ee176f4227f904e066d2456306fc4df680
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Thu Jul 27 20:16:28 2017 -0400
+
+    fixed comment that shouldn't be there
+
+commit d67633fc10a26eeb2c4326a01a09a6ec977533a2
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Thu Jul 27 19:51:56 2017 -0400
+
+    slowed incineration to show effect
+
+commit 198171012e6a7ac685278210a72cd8723c7461d7
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Thu Jul 27 19:46:33 2017 -0400
+
+    enemies incinerate when they die :)
+
+commit 4688ccec8823e47da41dfc059a55712eaaae8fd0
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Thu Jul 27 19:43:46 2017 -0400
+
+    hacks in proper goomba jump collision LOLOLOLOLOLOL
+
+commit 53630ca809972ecec18354bf5656540ddbd12f57
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Thu Jul 27 18:28:52 2017 -0400
+
+    kills enemy after jumping or standing on it.
+
+commit 0f96f7b94d73c987405cbf59cd2ac1b64a794212
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Thu Jul 27 18:20:35 2017 -0400
+
+    Head bump bounce.
+
+commit 944717d464336269eab409bb05f05c370ee203f9
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Thu Jul 27 18:06:16 2017 -0400
+
+    removed stans ability to jump.
+
+commit 2acd19b1468e6648537b91cafc212798a33beec5
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Thu Jul 27 18:05:05 2017 -0400
+
+    stan the jumpy ai.
+
 commit e0ea90b676faf6cefc2a4ccc31d8bf3ecf65e10c
 Author: Xpost2000 <xpost2000cod@gmail.com>
 Date:   Thu Jul 27 16:58:16 2017 -0400
