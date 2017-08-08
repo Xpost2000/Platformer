@@ -56,6 +56,10 @@ class Entity{
 		bool intersect_aabb( Entity &other )	{
 			return bb.intersect(other.bb);
 		}
+		bool intersect_point( Vec2 pointPos ){
+			aabb pBB(pointPos, Vec2(1));
+			return bb.intersect(pBB);
+		}
 		void set_aabb(Vec2 pos, Vec2 size){ bb = aabb(pos, size); }
 		// each entity might reposition the aabb in their own way.
 		virtual void reposition_aabb() { bb = aabb( pos , bb.size); }
