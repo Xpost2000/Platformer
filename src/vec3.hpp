@@ -207,7 +207,7 @@ class Vector3{
 		const Vector3 operator+=(const auto scalar){
 			return addScalarSelf(scalar);
 		}
-		friend std::ostream& operator<<(std::ostream &os, const Vector3& other){
+		friend std::ostream& operator<<(std::ostream &os, Vector3& other){
 			os << "(" << other.x() << "," << other.y() << "," << other.z() << ")";
 			return os;
 		}

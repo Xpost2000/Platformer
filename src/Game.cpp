@@ -148,8 +148,6 @@ Light lights[10] ={
 	Light()
 };
 
-float camX=0;
-float camY=0;
 void Game::draw(){
 	ctx->clearColor(0.0, 0.0, 0.0, 1.0);
 	ctx->clear(BufferClear::COLOR_DEPTH_BUFFERS);
@@ -164,7 +162,7 @@ void Game::draw(){
 		}
 		ls->setTextured(false);
 		sb->draw(Vec2(-5000), Vec4(0), Vec2(10000), Vec4(0.1, 0.1, 0.1, 1.0));
-		em.draw_background_props( Vec2(camX, camY), *sb );
+		em.draw_background_props( gc.getPos(), *sb );
 		ls->setTextured(true);
 		tm.get_tex("wall")->bind();
 		em.draw_progressor(*sb);
@@ -176,7 +174,7 @@ void Game::draw(){
 
 		ls->setTextured(true);
 		tm.get_tex("player")->bind();
-		sb->draw(p.getPos(), p.getUvs(), p.getSize(), Vec4(p.getColor().r(), p.getColor().g(), p.getColor().b(), 1.0));
+		sb->draw(p.getPos(), p.getUvs(), p.getSize(), Vec4(p.getColor().r(), p.getColor().g(), p.getColor().b(), 1.0f));
 		sb->render();
 		ls->setTextured(false);
 

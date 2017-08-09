@@ -1,0 +1,10 @@
+For future projects of a similar scope.
+For godsake please make more organized code, and more flexible
+code.
+
+As well as following a more consistent naming style 
+(I started with CamalCase and then changed to this camelCase than this_coding_style)
+It doesn't help I'm not using an IDE ( going to need to setup all my vim stuff again ).
+
+at least for organization I think I get one point for seperating each thing into it's
+own file so it doesn't take forever to track down in the codebase ( although it's pretty small for what it is )( There is a barely any game and it's mostly 90% renderer. )

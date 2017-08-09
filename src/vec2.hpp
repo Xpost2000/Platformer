@@ -154,7 +154,7 @@ class Vector2{
 		const auto cross(const Vector2& other){
 		}
 #endif VEC2_CROSS_PRODUCT
-		friend std::ostream& operator<<(std::ostream& os, const Vector2& other){
+		friend std::ostream& operator<<(std::ostream& os, Vector2& other){
 			// So ostream doesn't accept << ????
 			// oh wait I know why it didn't work. I set ostream as const. when << is modifying it. Idiot.
 			os << "(" << other.x() << "," << other.y() << ")";
