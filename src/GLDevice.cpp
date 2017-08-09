@@ -12,6 +12,17 @@
 GLDevice::GLDevice() : gl(0){
 }
 
+// I need the editor to figure out it's own dealies.
+#ifdef EDITOR_BUILD
+GLDevice::GLDevice(SDL_Window* window, gl_info_struct_t info) : gl(0){
+}
+
+
+GLDevice::~GLDevice(){
+	std::cout << "IDevice :: GLDevice :: Destructor()" << std::endl;
+}
+#endif
+#ifdef GAME_BUILD
 GLDevice::GLDevice(SDL_Window* window, gl_info_struct_t info) : gl(0){
 		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, info.major);
 		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, info.minor);
@@ -35,6 +46,7 @@ GLDevice::~GLDevice(){
 	SDL_GL_DeleteContext(gl);
 	gl = 0;
 }
+#endif
 
 std::shared_ptr<VertexArray> GLDevice::genVertexArray(){
 	return std::make_shared<VertexArray>();

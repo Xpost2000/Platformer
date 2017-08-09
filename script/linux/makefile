@@ -1,6 +1,6 @@
 GCC=g++
 LIBS=-lSDL2main -lSDL2 -lSDL2_image -lGLEW -lGL
-FLAGS=-std=gnu++14 -Wall -O3
+FLAGS=-std=gnu++14 -Wall -O3 -DGAME_BUILD=110
 OBJ_FILES= ../../obj/IDevice.o\
 	  ../../obj/IObjectHandle.o\
 	  ../../obj/Buffer.o\
