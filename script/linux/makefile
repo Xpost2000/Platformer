@@ -1,8 +1,9 @@
 GCC=g++
-LIBS=-lSDL2main -lSDL2 -lSDL2_image -lGLEW -lGL
+LIBS=-lSDL2main -lSDL2 -lSDL2_image -lSDL2_mixer -lGLEW -lGL
 FLAGS=-std=gnu++14 -Wall -O3 -DGAME_BUILD=110
 OBJ_FILES= ../../obj/IDevice.o\
 	  ../../obj/IObjectHandle.o\
+	  ../../obj/Sound.o\
 	  ../../obj/Buffer.o\
 	  ../../obj/Config.o\
 	  ../../obj/Level.o\
@@ -85,6 +86,7 @@ all:
 	$(GCC) ../../src/Config.cpp $(LIBS) $(FLAGS) -c -o ../../obj/Config.o 2> ../../logs/linux/config.log
 	$(GCC) ../../src/LevelList.cpp $(LIBS) $(FLAGS) -c -o ../../obj/LevelList.o 2> ../../logs/linux/levellist.log
 	$(GCC) ../../src/Level.cpp $(LIBS) $(FLAGS) -c -o ../../obj/Level.o 2> ../../logs/linux/level.log
+	$(GCC) ../../src/Sound.cpp $(LIBS) $(FLAGS) -c -o ../../obj/Sound.o 2> ../../logs/linux/sound.log
 	$(GCC) ../../src/Game.cpp $(LIBS) $(FLAGS) -c -o ../../obj/Game.o 2> ../../logs/linux/game.log
 link:
 	$(GCC) $(OBJ_FILES) $(LIBS) $(FLAGS) -o ../../bin/Game_linux 2> ../../logs/linker_linux.log

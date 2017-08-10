@@ -1,10 +1,11 @@
 GCC=g++
-LIBS=-lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lglew32 -lOpenGL32 -lboost_random-mgw51-1_60
+LIBS=-lmingw32 -lSDL2main -lSDL2 -lSDL2_mixer -lSDL2_image -lglew32 -lOpenGL32 -lboost_random-mgw51-1_60
 LIBS_LINUX=-lSDL2main -lSDL2 -lGLEW -lGL
 FLAGS=-std=gnu++14 -Wall -O3 -DGAME_BUILD=110
 EDITOR_OBJ_FILES= 
 GAME_OBJ_FILES= ../../obj/Game.o\
-		../../obj/main.o
+		../../obj/main.o\
+		../../obj/Sound.o
 OBJ_FILES= ../../obj/IDevice.o\
 	  ../../obj/IObjectHandle.o\
 	  ../../obj/LightShader.o\
@@ -90,6 +91,7 @@ all:
 	$(GCC) ../../src/Level.cpp $(LIBS) $(FLAGS) -c -o ../../obj/Level.o 2> ../../logs/win/Level.log
 	$(GCC) ../../src/GameCamera.cpp $(LIBS) $(FLAGS) -c -o ../../obj/GameCamera.o 2> ../../logs/win/GameCamera.log
 	$(GCC) ../../src/EntityManager.cpp $(LIBS) $(FLAGS) -c -o ../../obj/EntityManager.o 2> ../../logs/win/EntityManager.log
+	$(GCC) ../../src/Sound.cpp $(LIBS) $(FLAGS) -c -o ../../obj/Sound.o 2> ../../logs/win/Sound.log
 link-game:
 	$(GCC) $(OBJ_FILES) $(GAME_OBJ_FILES) $(LIBS) $(FLAGS) -o ../../bin/Game.exe 2> ../../logs/linker_windows.log
 link-editor:

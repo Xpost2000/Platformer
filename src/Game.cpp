@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "Sound.h"
 
 // I'm likely going to stre a different vector for different enemy types.
 // I used it for animation time.
@@ -16,8 +17,9 @@ std::array<Light, 10> lights{
 	Light()
 };
 Game::Game(){
-	SDL_Init(SDL_INIT_VIDEO);
+	SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
 	IMG_Init(IMG_INIT_PNG);
+	Sound::init();
 	cfg.read_config();
 	w = cfg.get_window_width();
 	h = cfg.get_window_height();
@@ -66,10 +68,12 @@ Game::Game(){
 	tm.add_texture("wall", "textures//wall_test.png", ctx);
 	tm.add_texture("player", "textures//test_player.png", ctx);
 	tm.add_texture("ui-menu", "textures//ui//ui_atlas.png", ctx);
+	Sound::load_sound(cfg.get_sounds_dir()+std::string("beep.wav"), "beep");
 	gc = GameCamera(Vec2(0, 0), Vec2(w, h), Vec2(-3000, -3000), Vec2(3000, 3000));
 	ls->setProj(proj);
 }
 Game::~Game(){
+	Sound::free_memory();
 	SDL_Quit();
 }
 void Game::run(){
@@ -108,6 +112,12 @@ void Game::update(){
 					else
 					state == GameState::Menu;
 				}
+			}
+		}
+		if(ev.type == SDL_MOUSEMOTION){
+			bool inButton = quit.mouse_inside(mX,mY)|option.mouse_inside(mX,mY)|start.mouse_inside(mX,mY);
+			if(inButton && state == GameState::Menu){
+				Sound::play_sound("beep");
 			}
 		}
 	}
