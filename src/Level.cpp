@@ -8,7 +8,7 @@
 Level::Level(std::string path){
 	std::ifstream file(path.c_str());
 	std::string token;
-	bool flags[3];
+	bool flags[3]={false};
 	try{
 	while(file >> token){
 		if(token == "camera_limits"){
@@ -77,7 +77,7 @@ Level::Level(std::string path){
 			float power=0;
 			float r=0, g=0, b=0;
 			file >> index;
-			if(index > 10){ throw std::range_error("MAX INDEX FOR LIGHTS IS 10. PROVIDED IN FILE EXCEEDS IT."); }
+			if(index > 9){ throw std::range_error("MAX INDEX FOR LIGHTS IS 10(from the zeroth index it's actually 9). PROVIDED IN FILE EXCEEDS IT."); }
 			file >> x;
 			file >> y;
 			file >> power;
