@@ -21,7 +21,18 @@
 #include "TextureManager.h"
 #include "GameState.h"
 #include "GameCamera.h"
+#include <array>
+#include "BasicEnemy.h"
+#include "JumpingEnemy.h"
+#include "Block.h"
+#include "Player.h"
+#include "Level.h"
 
+/*
+ * 
+ * Spooky representation eh?
+ *
+ */
 class Game{
 	public:
 		Game();
@@ -51,7 +62,10 @@ class Game{
 		std::shared_ptr<SpriteBatcher> sb = nullptr;
 		std::shared_ptr<LightShader> ls = nullptr;
 		std::shared_ptr<PostProcessor> pp = nullptr;
+		int currentLevel=0;
+		std::vector<Level> levels;
 		glm::mat4 proj;
+		float amnt;
 		ptrs::IDevice ctx = nullptr;
 };
 

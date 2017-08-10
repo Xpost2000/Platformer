@@ -2,6 +2,7 @@
 #define LEVEL_H
 #include "LightStruct.h"
 #include <vector>
+#include <array>
 #include "Player.h"
 #include "Block.h"
 #include "EntityManager.h"
@@ -15,17 +16,18 @@ class Level{
 		Level ( const Level& other ) = default;
 		Level(){}
 		Level(std::string path);
-		void load( Player& p, EntityManager& em, Light lights[10]){
+		void load( Player& p, EntityManager& em, std::array<Light, 10>& light){
 			p.setPos(playerSpawnPos);
 			em = this->em;
 			loaded = true;
-			lights = this->lights;
+			light = lights;
 		}
 		bool loaded=false;
 	private:
 		Vec2 playerSpawnPos;
 		EntityManager em;
-		Light lights[10]={Light()};
+		std::array<Light, 10> lights;
+
 };
 
 #endif

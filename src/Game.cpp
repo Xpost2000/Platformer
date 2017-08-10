@@ -1,15 +1,9 @@
 #include "Game.h"
-#include "BasicEnemy.h"
-#include "JumpingEnemy.h"
-#include "Block.h"
-#include "Player.h"
-#include "Level.h"
+
 // I'm likely going to stre a different vector for different enemy types.
+// I used it for animation time.
 Player p(Vec2(300, 300), Vec2(73, 73), Vec2(100), Vec4(1.0, 1.0, 1.0, 1.0));
-std::vector<Level> levels;
-int currentLevel=0;
-float amnt;
-Light lights[10] ={
+std::array<Light, 10> lights{
 	Light(),
 	Light(),
 	Light(),

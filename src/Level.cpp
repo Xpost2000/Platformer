@@ -6,6 +6,8 @@
 #define FOUND_PROGRESSOR 1
 #define FOUND_PSPAWN 2
 Level::Level(std::string path){
+	// just clean init everything first;
+	for(auto& l : lights) { l = Light(); }
 	std::ifstream file(path.c_str());
 	std::string token;
 	bool flags[3]={false};
@@ -77,7 +79,7 @@ Level::Level(std::string path){
 			float power=0;
 			float r=0, g=0, b=0;
 			file >> index;
-			if(index > 9){ throw std::range_error("MAX INDEX FOR LIGHTS IS 10(from the zeroth index it's actually 9). PROVIDED IN FILE EXCEEDS IT."); }
+			if(index > 9 || index < 0){ throw std::range_error("MAX INDEX FOR LIGHTS IS 10(from the zeroth index it's actually 9). PROVIDED IN FILE EXCEEDS IT."); break; }
 			file >> x;
 			file >> y;
 			file >> power;
