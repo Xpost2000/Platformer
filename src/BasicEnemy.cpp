@@ -6,6 +6,7 @@
 * update function. But that is because
 * it practically has to be.
 */
+#ifdef DEBUG_BUILD
 void BasicEnemy::print_state(){
 	switch(eState){
 		case EnemyState::STANDING:
@@ -29,6 +30,7 @@ void BasicEnemy::print_state(){
 			break;
 	}
 }
+#endif
 void BasicEnemy::update(float dt, std::vector<Block>& blocks){
 	if(!isDead()){
 	velocity.y() += gravity*dt;

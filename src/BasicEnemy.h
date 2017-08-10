@@ -47,7 +47,6 @@ class BasicEnemy : public Entity{
 	protected:
 		EnemyState eState;
 		Direction dir;
-		void print_state();
 		// 1 / 15 chance roughly.
 		bool onGround;
 };

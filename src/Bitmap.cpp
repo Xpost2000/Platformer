@@ -22,7 +22,7 @@ Bitmap::~Bitmap() {
  * What I do here is that I use a switch statement to check the value of the enum
  * I return the cooresponding GLenum.
  */
-int Bitmap::get_format() const{
+const int Bitmap::get_format() const{
 	switch(fmt){
 		case RGB:
 			return GL_RGB;
@@ -55,10 +55,10 @@ void* Bitmap::get_data(){
 	return data;
 }
 
-int Bitmap::get_width() const{
+const int Bitmap::get_width() const{
 	return width;
 }
 
-int Bitmap::get_height() const{
+const int Bitmap::get_height() const{
 	return height;
 }

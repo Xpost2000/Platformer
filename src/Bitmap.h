@@ -27,7 +27,7 @@ class Bitmap{
 		Bitmap( const Bitmap& other ) = default;
 		~Bitmap();
 		// return the pixel format as an integer
-		int get_format() const;
+		const int get_format() const;
 		// set the data taking in a void pointer.
 		void set_data( void* );
 		// set width
@@ -36,8 +36,8 @@ class Bitmap{
 		void set_height(int);
 		// return the data as a void*
 		void* get_data();
-		int get_width() const;
-		int get_height() const;
+		const int get_width() const;
+		const int get_height() const;
 	private:
 		PixelFormat fmt;
 		void* data;
