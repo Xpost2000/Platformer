@@ -1,5 +1,6 @@
 #ifndef LEVEL_H
 #define LEVEL_H
+#include "LightStruct.h"
 #include <vector>
 #include "Player.h"
 #include "Block.h"
@@ -14,15 +15,17 @@ class Level{
 		Level ( const Level& other ) = default;
 		Level(){}
 		Level(std::string path);
-		void load( Player& p, EntityManager& em){
+		void load( Player& p, EntityManager& em, Light lights[10]){
 			p.setPos(playerSpawnPos);
 			em = this->em;
 			loaded = true;
+			lights = this->lights;
 		}
 		bool loaded=false;
 	private:
 		Vec2 playerSpawnPos;
 		EntityManager em;
+		Light lights[10]={Light()};
 };
 
 #endif

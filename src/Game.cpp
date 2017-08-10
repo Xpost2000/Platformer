@@ -9,6 +9,18 @@ Player p(Vec2(300, 300), Vec2(73, 73), Vec2(100), Vec4(1.0, 1.0, 1.0, 1.0));
 std::vector<Level> levels;
 int currentLevel=0;
 float amnt;
+Light lights[10] ={
+	Light(),
+	Light(),
+	Light(),
+	Light(),
+	Light(),
+	Light(),
+	Light(),
+	Light(),
+	Light(),
+	Light()
+};
 Game::Game(){
 	SDL_Init(SDL_INIT_VIDEO);
 	IMG_Init(IMG_INIT_PNG);
@@ -107,7 +119,7 @@ void Game::update(){
 	}
 	if(state == GameState::Playing){
 		if(levels[currentLevel].loaded == false){
-			levels[currentLevel].load(p, em);
+			levels[currentLevel].load(p, em, lights);
 		}
 		em.update(ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS));
 		if(!p.death_check()){
@@ -118,7 +130,7 @@ void Game::update(){
 		else{
 			pp->get()->setFade(true);
 			if(p.DeathAnimation(ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS), state)){
-				levels[currentLevel].load(p, em);
+				levels[currentLevel].load(p, em, lights);
 			}
 			amnt -= ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS)/2;
 			pp->get()->setDt(amnt);			
@@ -135,18 +147,7 @@ void Game::update(){
 	}
 }
 
-Light lights[10] ={
-	Light(2000, Vec3(1), Vec2(500)),
-	Light(),
-	Light(),
-	Light(),
-	Light(),
-	Light(),
-	Light(),
-	Light(),
-	Light(),
-	Light()
-};
+
 
 void Game::draw(){
 	ctx->clearColor(0.0, 0.0, 0.0, 1.0);
