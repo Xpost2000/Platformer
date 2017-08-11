@@ -1,20 +1,20 @@
 In file included from ../../src/Bitmap.cpp:1:0:
-../../src/Bitmap.h: In constructor 'Bitmap::Bitmap(void*, int, int, PixelFormat)':
-../../src/Bitmap.h:45:7: warning: 'Bitmap::height' will be initialized after [-Wreorder]
+../../src/Bitmap.h: In constructor ‘Bitmap::Bitmap(void*, int, int, PixelFormat)’:
+../../src/Bitmap.h:45:7: warning: ‘Bitmap::height’ will be initialized after [-Wreorder]
    int height;
        ^
-../../src/Bitmap.h:42:15: warning:   'PixelFormat Bitmap::fmt' [-Wreorder]
+../../src/Bitmap.h:42:15: warning:   ‘PixelFormat Bitmap::fmt’ [-Wreorder]
    PixelFormat fmt;
                ^
 ../../src/Bitmap.cpp:12:1: warning:   when initialized here [-Wreorder]
  Bitmap::Bitmap( void* data, int w, int h, PixelFormat fmt ) : data(data), width(w), height(h), fmt(fmt){
  ^
 In file included from ../../src/Bitmap.cpp:1:0:
-../../src/Bitmap.h: In constructor 'Bitmap::Bitmap(int, int, PixelFormat)':
-../../src/Bitmap.h:45:7: warning: 'Bitmap::height' will be initialized after [-Wreorder]
+../../src/Bitmap.h: In constructor ‘Bitmap::Bitmap(int, int, PixelFormat)’:
+../../src/Bitmap.h:45:7: warning: ‘Bitmap::height’ will be initialized after [-Wreorder]
    int height;
        ^
-../../src/Bitmap.h:42:15: warning:   'PixelFormat Bitmap::fmt' [-Wreorder]
+../../src/Bitmap.h:42:15: warning:   ‘PixelFormat Bitmap::fmt’ [-Wreorder]
    PixelFormat fmt;
                ^
 ../../src/Bitmap.cpp:15:1: warning:   when initialized here [-Wreorder]

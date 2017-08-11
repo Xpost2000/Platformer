@@ -7,7 +7,7 @@ void Config::read_config(){
 		SDL_ShowSimpleMessageBox(
 				SDL_MESSAGEBOX_ERROR,
 				"Fatal error : Game could not find configuration file.",
-				"Please reinstall this game for the configuration file.", NULL);	
+				"Please reinstall this game for the configuration file.", NULL);
 		exit(-1);
 		return;
 	}else{
@@ -26,6 +26,10 @@ void Config::read_config(){
 			}
 			if(token == "game_name" || token == "game_name="){
 				std::getline(config, game_name);
+				#ifdef __linux__
+				// I'm going to append a null terminating character cause it seems that Linux doesn't seem to null terminate a string.
+				game_name += '\0';
+				#endif
 			}
 			if(token == "texture_dir=" || token == "texture_dir"){
 				config >> texture_dir;

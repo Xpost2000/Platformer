@@ -1,3 +1,87 @@
+commit 7321621a478d427e38467544d0cf02ece29573cb
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Fri Aug 11 16:56:54 2017 -0400
+
+    rickety hax
+
+commit bbee2fd3b1aaf2096f46013cbdf76b42a6e31762
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Fri Aug 11 16:38:11 2017 -0400
+
+    Fixed last borken level
+
+commit 81201b8386f7babcef59fdf617bf042b4b6723ef
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Fri Aug 11 16:37:13 2017 -0400
+
+    fixed somehow broken level file..
+
+commit d3fc51cd799c8ec8918ab574cbde03efdc9112cf
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Fri Aug 11 16:35:16 2017 -0400
+
+    UVs calculated correctly.
+
+commit 539cdc787bb27775023192e444a8feb3e0cac40c
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Fri Aug 11 15:58:09 2017 -0400
+
+    Refined sound playing on main menu. Now it makes sense.
+
+commit fd3a5b91ee51b46c2887cdcc36e92ab951983107
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Thu Aug 10 18:54:04 2017 -0400
+
+    Added basic Sound playing. SDL2_Mixer dependency added.
+
+commit 89f02e597431965a35702e71ce3c45994bcce12f
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Thu Aug 10 17:32:38 2017 -0400
+
+    I const correct a few things
+
+commit 26181964c55d9b9a5a2765e5d9c6b6868d5970b9
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Thu Aug 10 17:05:21 2017 -0400
+
+    fixes. Lights are now described in files. Not hard coded
+
+commit dc3b92dc2e4a4da8dc9440cddf5d73478045c004
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Thu Aug 10 16:33:16 2017 -0400
+
+    checking to make sure my handling works. Also fixed smthn
+
+commit 78c726e0eedb72ada2f5694cf205d164b971f21a
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Thu Aug 10 16:29:57 2017 -0400
+
+    adds minor error handling to the level loader and etc.
+
+commit 150e5a95ca51d952e3ea22793630269c3eb4ace0
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Wed Aug 9 12:59:29 2017 -0400
+
+    changes
+
+commit e7c30bf0f3af38b9b89ab03e17d639be3e5d4c54
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Wed Aug 9 12:43:42 2017 -0400
+
+    fixed parallax scrolling objects.
+
+commit cea29b16495b6ad45d6cf3cbf3787281273e6422
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Tue Aug 8 15:27:06 2017 -0400
+
+    added point aabb
+
+commit 01a8dab0651279b11e25976dd74b08ad2cdad767
+Author: Xpost2000 <xpost2000cod@gmail.com>
+Date:   Sat Aug 5 15:29:32 2017 -0400
+
+    made a new tileset
+
 commit a9cf70ee1b880b18bebe312e3cbb9394a198e264
 Author: Xpost2000 <xpost2000cod@gmail.com>
 Date:   Wed Aug 2 00:43:54 2017 -0400

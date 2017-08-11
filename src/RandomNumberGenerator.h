@@ -12,7 +12,7 @@
 #ifdef __linux__ // The C++11 random library works on linux. Or so I'm told. I'll test it myself later.
 #include <random> // Include the C++11 random library
 #endif 
-#ifdef __WIN32__ // My windows compiler atm is TDM GCC 5.1.0, which works on my windows machine.
+#ifdef __WIN32__ // My windows compiler atm is TDM GCC 5.1.0, which works on my windows machine. EDIT: Redundancy much.
 // Include Boost random library on Windows.
 #include <boost/random/mersenne_twister.hpp>
 #include <boost/random/random_device.hpp>

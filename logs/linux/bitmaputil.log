@@ -1,4 +1,4 @@
-../../src/BitmapUtil.cpp: In function 'Bitmap& fromImage(const char*)':
+../../src/BitmapUtil.cpp: In function ‘Bitmap& fromImage(const char*)’:
 ../../src/BitmapUtil.cpp:10:1: warning: no return statement in function returning non-void [-Wreturn-type]
  }
  ^
