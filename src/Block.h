@@ -32,6 +32,62 @@ class Block : public Entity{
 		// TODO: Replace the UVs for the new finalized tile map.
 		void revive(){dead=false;}
 		void kill(){dead=true;}
+		// This is if you wish to draw a "Block" I'm just using it for the background which is a flat color
+		// Only doing to avoid minor uniform changing. It's not really that substatial
+		static Vec4 get_uv_from_type(int type){
+			auto NW = [&](float x) { return x / 128.0f; };
+			auto NH = [&](float x) { return x / 128.0f; };
+			switch(type){
+				case BlockTypes::BasicBox:
+					return Vec4(NW(0), NH(49), NW(10), NH(59));
+				break;
+				case BlockTypes::FlatColor:
+					return Vec4(NW(0), NH(61), NW(1), NH(62));
+				break;	
+				case BlockTypes::Box:
+					return Vec4(NW(12), NH(49), NW(22), NH(59));
+				break;
+				case BlockTypes::Canister:
+					return Vec4(NW(44), NH(27), NW(44+15), NH(44+15));
+				break;
+				case BlockTypes::ControlPanel:
+					return Vec4(NW(44), NH(44), NW(44+15), NH(44+15));
+				break;
+				case BlockTypes::DoubleDoors:
+					return Vec4(NW(54), NH(0), NW(54+15), NH(15));
+				break;
+				case BlockTypes::Exit:
+					return Vec4(NW(24), NH(49), NW(24+10), NH(49+10));
+				break;
+				case BlockTypes::ExitSign:
+					return Vec4(NW(0), NH(0), NW(25), NH(25));
+				break;
+				case BlockTypes::Floor:
+					return Vec4(NW(61), NH(17), NW(61+10), NH(17+10));
+				break;
+				case BlockTypes::KeyPad:
+					return Vec4(NW(0), NH(27), NW(47), NH(20));
+				break;
+				case BlockTypes::Pipe:
+					return Vec4(NW(61), NH(29), NW(71), NH(39));
+				break;
+				case BlockTypes::RetinaScanner:
+					return Vec4(NW(27), NH(0), NW(27+25), NH(25));
+				break;
+				case BlockTypes::UniqueDoor:
+					return Vec4(NW(71), NH(0), NW(71+15), NH(15));
+				break;
+				case BlockTypes::WallTile:
+					return Vec4(NW(0), NH(0), NW(25), NH(25));
+				break;
+				case BlockTypes::WarningSign:
+					return Vec4(NW(22), NH(27), NW(42), NH(47));
+				break;
+				default:
+					break;
+			}
+		}
+
 		Vec4 getUvs(){
 #ifdef OLD_UV_SHEET
 			/*

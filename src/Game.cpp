@@ -167,11 +167,11 @@ void Game::draw(){
 		for(int i = 0; i < 10; ++i){
 			ls->setLight(i, lights[i]);
 		}
-		ls->setTextured(false);
-		sb->draw(Vec2(-5000), Vec4(0), Vec2(10000), Vec4(0.1, 0.1, 0.1, 1.0));
-		em.draw_background_props( gc.getPos(), *sb );
+		// this is herr sky.
 		ls->setTextured(true);
 		tm.get_tex("tiles")->bind();
+		sb->draw(Vec2(-5000), Vec4(Block::get_uv_from_type(BlockTypes::FlatColor)), Vec2(10000), Vec4(0.1, 0.1, 0.1, 1.0));
+		em.draw_background_props( gc.getPos(), *sb );
 		em.draw_progressor(*sb);
 		em.draw_blocks( *sb );
 

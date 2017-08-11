@@ -32,6 +32,16 @@ In file included from ../../src/Block.h:3:0,
 In file included from ../../src/EntityManager.h:4:0,
                  from ../../src/EntityManager.cpp:1:
 ../../src/Block.h: In member function 'virtual Vec4 Block::getUvs()':
-../../src/Block.h:112:3: warning: control reaches end of non-void function [-Wreturn-type]
+../../src/Block.h:168:3: warning: control reaches end of non-void function [-Wreturn-type]
+   }
+   ^
+In file included from ../../src/EntityManager.h:8:0,
+                 from ../../src/EntityManager.cpp:1:
+../../src/BackgroundSprites.h: In member function 'Vec4 BackgroundBlock::getUvs()':
+../../src/BackgroundSprites.h:67:3: warning: control reaches end of non-void function [-Wreturn-type]
+   }
+   ^
+../../src/BackgroundSprites.h: In member function 'Vec4 BackgroundBlockStatic::getUvs()':
+../../src/BackgroundSprites.h:132:3: warning: control reaches end of non-void function [-Wreturn-type]
    }
    ^

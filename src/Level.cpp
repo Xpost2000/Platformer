@@ -59,7 +59,7 @@ Level::Level(std::string path){
 			file >> r;
 			file >> g;
 			file >> b;
-			em.create_block(BackgroundBlock(Vec2(x,y),Vec2(w,h),Vec4(r, g, b, 1.0), Vec2(sx, sy)));
+			em.create_block(BackgroundBlock(Vec2(x,y),Vec2(w,h),Vec4(r, g, b, 1.0), Vec2(sx, sy), 2));
 		}
 		if(token == "bgrnd-static"){
 			float w=0, h=0, x=0, y=0, r=0, g=0, b=0;
@@ -70,7 +70,7 @@ Level::Level(std::string path){
 			file >> r;
 			file >> g;
 			file >> b;
-			em.create_block(BackgroundBlockStatic(Vec2(x,y),Vec2(w,h),Vec4(r, g, b, 1.0)));
+			em.create_block(BackgroundBlockStatic(Vec2(x,y),Vec2(w,h),Vec4(r, g, b, 1.0), 2));
 		}
 		if(token == "light"){
 			// I usually declare the variables in the order they are supposed to be used.
