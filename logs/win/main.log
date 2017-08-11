@@ -43,13 +43,6 @@ In file included from ../../src/Block.h:3:0,
 ../../src/Entity.h:67:3: warning: no return statement in function returning non-void [-Wreturn-type]
    }
    ^
-In file included from ../../src/EntityManager.h:4:0,
-                 from ../../src/Game.h:16,
-                 from ../../src/main.cpp:1:
-../../src/Block.h: In member function 'virtual Vec4 Block::getUvs()':
-../../src/Block.h:50:3: warning: no return statement in function returning non-void [-Wreturn-type]
-   }
-   ^
 In file included from ../../src/Game.h:18:0,
                  from ../../src/main.cpp:1:
 ../../src/uiButton.h: In constructor 'uiButton::uiButton(Vec2, Vec2, Vec3, Vec3, ButtonType)':

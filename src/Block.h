@@ -9,10 +9,22 @@
 // for now we have basic identifications for 3 basic types.
 // I honestly have no idea how else it would work.
 namespace BlockTypes{
-	const int Floor = 1;
-	const int Wall = 2;
-	const int Ceiling = 3;
-};
+	const int BasicBox = 1;
+	const int FlatColor = 2;
+	const int Box = 3;
+	const int Canister = 4;
+	const int ControlPanel = 5;
+	const int DoubleDoors = 6;
+	const int Exit = 7;
+	const int ExitSign = 8;
+	const int Floor = 9;
+	const int KeyPad = 10;
+	const int Pipe = 11;
+	const int RetinaScanner=12;
+	const int UniqueDoor = 13;
+	const int WallTile = 14;
+	const int WarningSign = 15;
+}	
 // This is a struct. pretty much.
 class Block : public Entity{
 	public:
@@ -42,7 +54,57 @@ class Block : public Entity{
 					break;
 			}
 #else
+			// replace the borken macro with lambda functor objects cause it will work
+//define NW(x) x / 128
+//#define NH(x) x / 128
+			auto NW = [&](float x) { return x / 128.0f; };
+			auto NH = [&](float x) { return x / 128.0f; };
 			switch(type){
+				case BlockTypes::BasicBox:
+					return Vec4(NW(0), NH(49), NW(10), NH(59));
+				break;
+				case BlockTypes::FlatColor:
+					return Vec4(NW(0), NH(61), NW(1), NH(62));
+				break;	
+				case BlockTypes::Box:
+					return Vec4(NW(12), NH(49), NW(22), NH(59));
+				break;
+				case BlockTypes::Canister:
+					return Vec4(NW(44), NH(27), NW(44+15), NH(44+15));
+				break;
+				case BlockTypes::ControlPanel:
+					return Vec4(NW(44), NH(44), NW(44+15), NH(44+15));
+				break;
+				case BlockTypes::DoubleDoors:
+					return Vec4(NW(54), NH(0), NW(54+15), NH(15));
+				break;
+				case BlockTypes::Exit:
+					return Vec4(NW(24), NH(49), NW(24+10), NH(49+10));
+				break;
+				case BlockTypes::ExitSign:
+					return Vec4(NW(0), NH(0), NW(25), NH(25));
+				break;
+				case BlockTypes::Floor:
+					return Vec4(NW(61), NH(17), NW(61+10), NH(17+10));
+				break;
+				case BlockTypes::KeyPad:
+					return Vec4(NW(0), NH(27), NW(47), NH(20));
+				break;
+				case BlockTypes::Pipe:
+					return Vec4(NW(61), NH(29), NW(71), NH(39));
+				break;
+				case BlockTypes::RetinaScanner:
+					return Vec4(NW(27), NH(0), NW(27+25), NH(25));
+				break;
+				case BlockTypes::UniqueDoor:
+					return Vec4(NW(71), NH(0), NW(71+15), NH(15));
+				break;
+				case BlockTypes::WallTile:
+					return Vec4(NW(0), NH(0), NW(25), NH(25));
+				break;
+				case BlockTypes::WarningSign:
+					return Vec4(NW(22), NH(27), NW(42), NH(47));
+				break;
 				default:
 					break;
 			}

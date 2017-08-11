@@ -20,9 +20,3 @@ In file included from ../../src/BasicEnemy.h:8:0,
 ../../src/Entity.h:67:3: warning: no return statement in function returning non-void [-Wreturn-type]
    }
    ^
-In file included from ../../src/BasicEnemy.h:9:0,
-                 from ../../src/BasicEnemy.cpp:1:
-../../src/Block.h: In member function 'virtual Vec4 Block::getUvs()':
-../../src/Block.h:50:3: warning: no return statement in function returning non-void [-Wreturn-type]
-   }
-   ^

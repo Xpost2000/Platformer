@@ -6,6 +6,10 @@
 #include "vector_typedef.h"
 #include "vec2.hpp"
 #include "vec4.hpp"
+#include "Block.h"
+	
+//TODO: Calculate UVs based on the block type it is.
+//I guess a todo is to also add in the types. lol
 struct BackgroundBlock{
 	public:
 		Vec4 getUvs(){

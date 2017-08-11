@@ -24,7 +24,7 @@ Level::Level(std::string path){
 			// camera == Camera( lowerLimits(lX, lY), Limits(hX, hY) );
 		}
 		if(token == "block"){
-			float w=0, h=0, x=0, y=0, r=0, g=0, b=0, type=0;
+			float w=0, h=0, x=0, y=0, r=0, g=0, b=0; int type=0;
 			file >> w;
 			file >> h;
 			file >> x;
