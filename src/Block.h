@@ -17,9 +17,17 @@ namespace BlockTypes{
 class Block : public Entity{
 	public:
 		// I know a block cannot really "die", but I can use it as a flag for active ness..
+		// TODO: Replace the UVs for the new finalized tile map.
 		void revive(){dead=false;}
 		void kill(){dead=true;}
 		Vec4 getUvs(){
+#ifdef OLD_UV_SHEET
+			/*
+			 * To future people and future me when I re read this at some point.
+			 * I know I know, there is a simple expression to calculate the UVs based on
+			 * the rows and columns but I believe it sadly only works if all the sub images
+			 * are all the same size. Eh
+			 */
 			switch(type){
 				case BlockTypes::Floor:
 					return Vec4(0, 31/64.0f, 30/64.0f, 61/64.0f);
@@ -33,6 +41,12 @@ class Block : public Entity{
 				default:
 					break;
 			}
+#else
+			switch(type){
+				default:
+					break;
+			}
+#endif
 		}
 		Block(const Block& other) = default;
 		Block(Vec2 pos, Vec2 size, Vec4 color=Vec4(0.2), int type = BlockTypes::Floor)

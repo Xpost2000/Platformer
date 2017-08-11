@@ -65,7 +65,7 @@ Game::Game(){
 	sb = std::make_shared<SpriteBatcher>(ctx);
 	ls = std::make_shared<LightShader>(ctx);
 	pp = std::make_shared<PostProcessor>(ctx, w, h);
-	tm.add_texture("wall", "textures//wall_test.png", ctx);
+	tm.add_texture("tiles", "textures//tiles.png", ctx);
 	tm.add_texture("player", "textures//test_player.png", ctx);
 	tm.add_texture("ui-menu", "textures//ui//ui_atlas.png", ctx);
 	Sound::load_sound(cfg.get_sounds_dir()+std::string("beep.wav"), "beep");
@@ -114,12 +114,14 @@ void Game::update(){
 				}
 			}
 		}
+		/*
 		if(ev.type == SDL_MOUSEMOTION){
 			bool inButton = quit.mouse_inside(mX,mY)|option.mouse_inside(mX,mY)|start.mouse_inside(mX,mY);
 			if(inButton && state == GameState::Menu){
 				Sound::play_sound("beep");
 			}
 		}
+		*/
 	}
 	if(state == GameState::Playing){
 		if(levels[currentLevel].loaded == false){
@@ -169,7 +171,7 @@ void Game::draw(){
 		sb->draw(Vec2(-5000), Vec4(0), Vec2(10000), Vec4(0.1, 0.1, 0.1, 1.0));
 		em.draw_background_props( gc.getPos(), *sb );
 		ls->setTextured(true);
-		tm.get_tex("wall")->bind();
+		tm.get_tex("tiles")->bind();
 		em.draw_progressor(*sb);
 		em.draw_blocks( *sb );
 

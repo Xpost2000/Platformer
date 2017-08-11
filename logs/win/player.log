@@ -22,3 +22,9 @@ In file included from ../../src/Progressor.h:3:0,
 ../../src/Entity.h:67:3: warning: no return statement in function returning non-void [-Wreturn-type]
    }
    ^
+In file included from ../../src/Player.h:10:0,
+                 from ../../src/Player.cpp:1:
+../../src/Block.h: In member function 'virtual Vec4 Block::getUvs()':
+../../src/Block.h:50:3: warning: no return statement in function returning non-void [-Wreturn-type]
+   }
+   ^

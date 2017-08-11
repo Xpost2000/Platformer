@@ -2,6 +2,7 @@
 #define UI_BUTTON_H
 #include "vector_typedef.h"
 #include "vec2.hpp"
+#include "Sound.h"
 #include "vec3.hpp"
 // this button is a ui element.
 // specifically for the main menu right now.
@@ -38,6 +39,10 @@ class uiButton{
 			if(y < pos.y()){
 				inside = false;
 			}
+			if(inside&&!sound_played){
+					Sound::play_sound("beep");
+					sound_played=true;
+			}else if(!inside){ sound_played=false; }
 			return inside;
 		}
 		Vec2 getPos(){ return pos; }
@@ -61,6 +66,7 @@ class uiButton{
 		}
 		ButtonType type() { return id; }
 	private:
+	bool sound_played=false;
 	ButtonType id;
 	Vec2 pos;		
 	Vec2 size;
