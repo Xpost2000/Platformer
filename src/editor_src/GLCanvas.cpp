@@ -21,6 +21,8 @@ GLCanvas::GLCanvas( wxWindow* parent, const wxGLAttributes& disp, wxWindowID id,
 		wxMessageBox("GLEW failed to initialize", "Error", wxICON_ERROR);
 	}
 	ds = std::make_shared<DefaultShader>(dev);
+	tm = std::make_shared<TextureManager>();
+	tm->add_texture("test", "textures\\tiles.png", get_device());
 	sb = std::make_shared<SpriteBatcher>(dev);
 	// set up matrix and stuff
 	projection = glm::ortho(0.0f, static_cast<float>(size.x), static_cast<float>(size.y), 0.0f, -1.f, 1.f);

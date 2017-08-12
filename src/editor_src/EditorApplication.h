@@ -20,7 +20,6 @@ class EditorApplication : public wxApp{
 		 * handle itself approprietely.
 		 */
 	private:
-		std::shared_ptr<TextureManager> tm;
 		GLCanvas* main_canvas;
 		RenderTimer* timer;
 		wxFrame* test_window;

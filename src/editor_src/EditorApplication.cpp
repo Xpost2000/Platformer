@@ -12,11 +12,8 @@ bool EditorApplication::OnInit(){
 	attribs.PlatformDefaults().Depth(24).DoubleBuffer().EndList();
 	test_window = new wxFrame(NULL, wxID_ANY, "TestWindow");
 	main_canvas = new GLCanvas(test_window, attribs);
-	tm = std::make_shared<TextureManager>();
-	tm->add_texture("test", "textures\\tiles.png", main_canvas->get_device());
-	main_canvas->SetTextureManagerPtr(tm);
 	timer = new RenderTimer(main_canvas);
-	timer->Start(4);
+	timer->Start(11);
 	test_window->Show(true);
 	/*
 	 * Alright I can procede with the other wxWidgets things.
@@ -30,7 +27,6 @@ bool EditorApplication::OnInit(){
  * This is so I can ensure the proper quiting of SDL.
  */ 
 EditorApplication::~EditorApplication(){
-	tm.reset();
 }
 
 /*
