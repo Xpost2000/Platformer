@@ -7,6 +7,7 @@
  * I'm creating the editor using wxWidgets.
  */
 #include <wx/wx.h>
+#include "../TextureManager.h"
 #include "GLCanvas.h"
 #include "RenderTimer.h"
 class EditorApplication : public wxApp{
@@ -19,6 +20,7 @@ class EditorApplication : public wxApp{
 		 * handle itself approprietely.
 		 */
 	private:
+		std::shared_ptr<TextureManager> tm;
 		GLCanvas* main_canvas;
 		RenderTimer* timer;
 		wxFrame* test_window;

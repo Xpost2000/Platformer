@@ -1,5 +1,6 @@
 #ifndef WX_GL_CANVAS_H
 #define WX_GL_CANVAS_H
+#include "../TextureManager.h"
 #include <wx/wx.h>
 #include "../GLDevice.h"
 #include <glm/glm.hpp>
@@ -22,7 +23,7 @@ class GLCanvas : public wxGLCanvas{
 		~GLCanvas(){}
 		void PaintScene( wxPaintEvent& pnt );	
 		void OnResize ( wxSizeEvent& evnt );
-		void SetDefaultShaderPtr( const std::shared_ptr<DefaultShader>& ds ){ this->ds = ds; }
+		void SetTextureManagerPtr( const std::shared_ptr<TextureManager>& tm ) { this->tm = tm; }
 
 		const std::shared_ptr<IDevice>& get_device() { return dev; }
 	private:
@@ -32,6 +33,7 @@ class GLCanvas : public wxGLCanvas{
 		wxGLContext* ctx_obj;
 		std::shared_ptr<DefaultShader> ds;
 		std::shared_ptr<SpriteBatcher> sb;
+		std::shared_ptr<TextureManager> tm;
 		std::shared_ptr<IDevice> dev;
 		wxSize viewPort_sz;
 		DECLARE_EVENT_TABLE()
