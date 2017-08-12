@@ -30,6 +30,7 @@ bool EditorApplication::OnInit(){
  * This is so I can ensure the proper quiting of SDL.
  */ 
 EditorApplication::~EditorApplication(){
+	tm.reset();
 }
 
 /*
