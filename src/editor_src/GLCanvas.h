@@ -22,6 +22,7 @@ class GLCanvas : public wxGLCanvas{
 		~GLCanvas(){}
 		void PaintScene( wxPaintEvent& pnt );	
 		void OnResize ( wxSizeEvent& evnt );
+		void SetDefaultShaderPtr( const std::shared_ptr<DefaultShader>& ds ){ this->ds = ds; }
 
 		const std::shared_ptr<IDevice>& get_device() { return dev; }
 	private:

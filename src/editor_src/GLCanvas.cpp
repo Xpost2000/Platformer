@@ -9,8 +9,10 @@ GLCanvas::GLCanvas( wxWindow* parent, const wxGLAttributes& disp, wxWindowID id,
 	// The original IDevice class was ment for SDL2 use mainly
 	// other wise provided a wrapper that was typesafe for
 	// OpenGL functions.
+	wxGLContextAttrs ctx_attributes;
+	ctx_attributes.CoreProfile().OGLVersion(4,5).EndList();
 	dev = std::make_shared<GLDevice>(dummy, blank);
-	ctx_obj = new wxGLContext(this);
+	ctx_obj = new wxGLContext(this, NULL, &ctx_attributes);
 	SetBackgroundStyle(wxBG_STYLE_CUSTOM);
 	SetCurrent(*ctx_obj);
 	glewExperimental=true;
@@ -20,7 +22,7 @@ GLCanvas::GLCanvas( wxWindow* parent, const wxGLAttributes& disp, wxWindowID id,
 	ds = std::make_shared<DefaultShader>(dev);
 	sb = std::make_shared<SpriteBatcher>(dev);
 	// set up matrix and stuff
-	projection = glm::ortho(0.0f, (float)size.x, (float)size.y, 0.0f, -1.f, 1.f);
+	projection = glm::ortho(0.0f, static_cast<float>(size.x), static_cast<float>(size.y), 0.0f, -1.f, 1.f);
 }
 
 void GLCanvas::PaintScene( wxPaintEvent& pnt ){
@@ -42,6 +44,8 @@ void GLCanvas::PaintScene( wxPaintEvent& pnt ){
 	ds->use();
 	ds->setMatrices(projection, view);
 	sb->draw(Vec2(300, 200), Vec4(0), Vec2(400, 400), Vec4(1.0));
+	sb->draw(Vec2(100, 200), Vec4(0), Vec2(200, 400), Vec4(0.4));
+	sb->draw(Vec2(300, 200), Vec4(0), Vec2(400, 100), Vec4(0.2));
 	sb->render();
 	ds->unuse();
 	
@@ -51,6 +55,7 @@ void GLCanvas::PaintScene( wxPaintEvent& pnt ){
 void GLCanvas::OnResize( wxSizeEvent& evnt ){
 	SetSize(evnt.GetSize());
 	viewPort_sz = evnt.GetSize();
+	projection = glm::ortho(0.0f, static_cast<float>(viewPort_sz.x), static_cast<float>(viewPort_sz.y), 0.0f, -1.f, 1.f);
 }
 
 wxBEGIN_EVENT_TABLE( GLCanvas, wxGLCanvas )
