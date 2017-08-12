@@ -8,6 +8,13 @@ bool EditorApplication::OnInit(){
 	SDL_SetMainReady();
 	SDL_Init(SDL_INIT_VIDEO); // for SDL_Surface presumably.
 	IMG_Init(IMG_INIT_PNG);
+	wxGLAttributes attribs;
+	attribs.PlatformDefaults().Depth(24).DoubleBuffer().EndList();
+	test_window = new wxFrame(NULL, wxID_ANY, "TestWindow");
+	main_canvas = new GLCanvas(test_window, attribs);
+	timer = new RenderTimer(main_canvas);
+	timer->Start(4);
+	test_window->Show(true);
 	/*
 	 * Alright I can procede with the other wxWidgets things.
 	 */

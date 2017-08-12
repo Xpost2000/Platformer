@@ -1,0 +1,183 @@
+In file included from ../../src/editor_src/RenderTimer.cpp:1:0:
+../../src/editor_src/RenderTimer.h: In constructor 'RenderTimer::RenderTimer(wxGLCanvas*)':
+../../src/editor_src/RenderTimer.h:18:15: warning: 'RenderTimer::ptr' will be initialized after [-Wreorder]
+   wxGLCanvas* ptr;
+               ^
+../../src/editor_src/RenderTimer.cpp:4:19: warning:   base 'wxTimer' [-Wreorder]
+ ptr(ptr), wxTimer(){
+                   ^
+../../src/editor_src/RenderTimer.cpp:3:1: warning:   when initialized here [-Wreorder]
+ RenderTimer::RenderTimer(wxGLCanvas* ptr):
+ ^
+../../src/editor_src/RenderTimer.cpp: At global scope:
+../../src/editor_src/RenderTimer.cpp:15:1: warning: 'virtual void wxWindowBase::SetInitialBestSize(const wxSize&)' is deprecated: use SetInitialSize() instead. [-Wdeprecated-declarations]
+ }
+ ^
+In file included from C:/TDM-GCC-32/include/wx/wx.h:38:0,
+                 from ../../src/editor_src/RenderTimer.h:3,
+                 from ../../src/editor_src/RenderTimer.cpp:1:
+C:/TDM-GCC-32/include/wx/window.h:1917:13: note: declared here
+ inline void wxWindowBase::SetInitialBestSize(const wxSize& size)
+             ^
+../../src/editor_src/RenderTimer.cpp:15:1: warning: 'virtual void wxWindowBase::SetInitialBestSize(const wxSize&)' is deprecated: use SetInitialSize() instead. [-Wdeprecated-declarations]
+ }
+ ^
+In file included from C:/TDM-GCC-32/include/wx/wx.h:38:0,
+                 from ../../src/editor_src/RenderTimer.h:3,
+                 from ../../src/editor_src/RenderTimer.cpp:1:
+C:/TDM-GCC-32/include/wx/window.h:1917:13: note: declared here
+ inline void wxWindowBase::SetInitialBestSize(const wxSize& size)
+             ^
+../../src/editor_src/RenderTimer.cpp:15:1: warning: 'virtual void wxWindowBase::SetInitialBestSize(const wxSize&)' is deprecated: use SetInitialSize() instead. [-Wdeprecated-declarations]
+ }
+ ^
+In file included from C:/TDM-GCC-32/include/wx/wx.h:38:0,
+                 from ../../src/editor_src/RenderTimer.h:3,
+                 from ../../src/editor_src/RenderTimer.cpp:1:
+C:/TDM-GCC-32/include/wx/window.h:1917:13: note: declared here
+ inline void wxWindowBase::SetInitialBestSize(const wxSize& size)
+             ^
+../../src/editor_src/RenderTimer.cpp:15:1: warning: 'virtual void wxWindowBase::SetInitialBestSize(const wxSize&)' is deprecated: use SetInitialSize() instead. [-Wdeprecated-declarations]
+ }
+ ^
+In file included from C:/TDM-GCC-32/include/wx/wx.h:38:0,
+                 from ../../src/editor_src/RenderTimer.h:3,
+                 from ../../src/editor_src/RenderTimer.cpp:1:
+C:/TDM-GCC-32/include/wx/window.h:1917:13: note: declared here
+ inline void wxWindowBase::SetInitialBestSize(const wxSize& size)
+             ^
+../../src/editor_src/RenderTimer.cpp:15:1: warning: 'virtual void wxWindowBase::SetInitialBestSize(const wxSize&)' is deprecated: use SetInitialSize() instead. [-Wdeprecated-declarations]
+ }
+ ^
+In file included from C:/TDM-GCC-32/include/wx/wx.h:38:0,
+                 from ../../src/editor_src/RenderTimer.h:3,
+                 from ../../src/editor_src/RenderTimer.cpp:1:
+C:/TDM-GCC-32/include/wx/window.h:1917:13: note: declared here
+ inline void wxWindowBase::SetInitialBestSize(const wxSize& size)
+             ^
+../../src/editor_src/RenderTimer.cpp:15:1: warning: 'virtual void wxWindowBase::SetInitialBestSize(const wxSize&)' is deprecated: use SetInitialSize() instead. [-Wdeprecated-declarations]
+ }
+ ^
+In file included from C:/TDM-GCC-32/include/wx/wx.h:38:0,
+                 from ../../src/editor_src/RenderTimer.h:3,
+                 from ../../src/editor_src/RenderTimer.cpp:1:
+C:/TDM-GCC-32/include/wx/window.h:1917:13: note: declared here
+ inline void wxWindowBase::SetInitialBestSize(const wxSize& size)
+             ^
+../../src/editor_src/RenderTimer.cpp:15:1: warning: 'virtual void wxWindowBase::SetInitialBestSize(const wxSize&)' is deprecated: use SetInitialSize() instead. [-Wdeprecated-declarations]
+ }
+ ^
+In file included from C:/TDM-GCC-32/include/wx/wx.h:38:0,
+                 from ../../src/editor_src/RenderTimer.h:3,
+                 from ../../src/editor_src/RenderTimer.cpp:1:
+C:/TDM-GCC-32/include/wx/window.h:1917:13: note: declared here
+ inline void wxWindowBase::SetInitialBestSize(const wxSize& size)
+             ^
+../../src/editor_src/RenderTimer.cpp:15:1: warning: 'virtual void wxWindowBase::SetInitialBestSize(const wxSize&)' is deprecated: use SetInitialSize() instead. [-Wdeprecated-declarations]
+ }
+ ^
+In file included from C:/TDM-GCC-32/include/wx/wx.h:38:0,
+                 from ../../src/editor_src/RenderTimer.h:3,
+                 from ../../src/editor_src/RenderTimer.cpp:1:
+C:/TDM-GCC-32/include/wx/window.h:1917:13: note: declared here
+ inline void wxWindowBase::SetInitialBestSize(const wxSize& size)
+             ^
+../../src/editor_src/RenderTimer.cpp:15:1: warning: 'virtual void wxWindowBase::SetInitialBestSize(const wxSize&)' is deprecated: use SetInitialSize() instead. [-Wdeprecated-declarations]
+ }
+ ^
+In file included from C:/TDM-GCC-32/include/wx/wx.h:38:0,
+                 from ../../src/editor_src/RenderTimer.h:3,
+                 from ../../src/editor_src/RenderTimer.cpp:1:
+C:/TDM-GCC-32/include/wx/window.h:1917:13: note: declared here
+ inline void wxWindowBase::SetInitialBestSize(const wxSize& size)
+             ^
+../../src/editor_src/RenderTimer.cpp:15:1: warning: 'virtual void wxWindowBase::SetInitialBestSize(const wxSize&)' is deprecated: use SetInitialSize() instead. [-Wdeprecated-declarations]
+ }
+ ^
+In file included from C:/TDM-GCC-32/include/wx/wx.h:38:0,
+                 from ../../src/editor_src/RenderTimer.h:3,
+                 from ../../src/editor_src/RenderTimer.cpp:1:
+C:/TDM-GCC-32/include/wx/window.h:1917:13: note: declared here
+ inline void wxWindowBase::SetInitialBestSize(const wxSize& size)
+             ^
+../../src/editor_src/RenderTimer.cpp:15:1: warning: 'virtual void wxWindowBase::SetInitialBestSize(const wxSize&)' is deprecated: use SetInitialSize() instead. [-Wdeprecated-declarations]
+ }
+ ^
+In file included from C:/TDM-GCC-32/include/wx/wx.h:38:0,
+                 from ../../src/editor_src/RenderTimer.h:3,
+                 from ../../src/editor_src/RenderTimer.cpp:1:
+C:/TDM-GCC-32/include/wx/window.h:1917:13: note: declared here
+ inline void wxWindowBase::SetInitialBestSize(const wxSize& size)
+             ^
+../../src/editor_src/RenderTimer.cpp:15:1: warning: 'virtual void wxWindowBase::SetInitialBestSize(const wxSize&)' is deprecated: use SetInitialSize() instead. [-Wdeprecated-declarations]
+ }
+ ^
+In file included from C:/TDM-GCC-32/include/wx/wx.h:38:0,
+                 from ../../src/editor_src/RenderTimer.h:3,
+                 from ../../src/editor_src/RenderTimer.cpp:1:
+C:/TDM-GCC-32/include/wx/window.h:1917:13: note: declared here
+ inline void wxWindowBase::SetInitialBestSize(const wxSize& size)
+             ^
+../../src/editor_src/RenderTimer.cpp:15:1: warning: 'virtual void wxWindowBase::SetInitialBestSize(const wxSize&)' is deprecated: use SetInitialSize() instead. [-Wdeprecated-declarations]
+ }
+ ^
+In file included from C:/TDM-GCC-32/include/wx/wx.h:38:0,
+                 from ../../src/editor_src/RenderTimer.h:3,
+                 from ../../src/editor_src/RenderTimer.cpp:1:
+C:/TDM-GCC-32/include/wx/window.h:1917:13: note: declared here
+ inline void wxWindowBase::SetInitialBestSize(const wxSize& size)
+             ^
+../../src/editor_src/RenderTimer.cpp:15:1: warning: 'virtual void wxWindowBase::SetInitialBestSize(const wxSize&)' is deprecated: use SetInitialSize() instead. [-Wdeprecated-declarations]
+ }
+ ^
+In file included from C:/TDM-GCC-32/include/wx/wx.h:38:0,
+                 from ../../src/editor_src/RenderTimer.h:3,
+                 from ../../src/editor_src/RenderTimer.cpp:1:
+C:/TDM-GCC-32/include/wx/window.h:1917:13: note: declared here
+ inline void wxWindowBase::SetInitialBestSize(const wxSize& size)
+             ^
+../../src/editor_src/RenderTimer.cpp:15:1: warning: 'virtual void wxWindowBase::SetInitialBestSize(const wxSize&)' is deprecated: use SetInitialSize() instead. [-Wdeprecated-declarations]
+ }
+ ^
+In file included from C:/TDM-GCC-32/include/wx/wx.h:38:0,
+                 from ../../src/editor_src/RenderTimer.h:3,
+                 from ../../src/editor_src/RenderTimer.cpp:1:
+C:/TDM-GCC-32/include/wx/window.h:1917:13: note: declared here
+ inline void wxWindowBase::SetInitialBestSize(const wxSize& size)
+             ^
+../../src/editor_src/RenderTimer.cpp:15:1: warning: 'virtual void wxWindowBase::SetInitialBestSize(const wxSize&)' is deprecated: use SetInitialSize() instead. [-Wdeprecated-declarations]
+ }
+ ^
+In file included from C:/TDM-GCC-32/include/wx/wx.h:38:0,
+                 from ../../src/editor_src/RenderTimer.h:3,
+                 from ../../src/editor_src/RenderTimer.cpp:1:
+C:/TDM-GCC-32/include/wx/window.h:1917:13: note: declared here
+ inline void wxWindowBase::SetInitialBestSize(const wxSize& size)
+             ^
+../../src/editor_src/RenderTimer.cpp:15:1: warning: 'virtual void wxWindowBase::SetInitialBestSize(const wxSize&)' is deprecated: use SetInitialSize() instead. [-Wdeprecated-declarations]
+ }
+ ^
+In file included from C:/TDM-GCC-32/include/wx/wx.h:38:0,
+                 from ../../src/editor_src/RenderTimer.h:3,
+                 from ../../src/editor_src/RenderTimer.cpp:1:
+C:/TDM-GCC-32/include/wx/window.h:1917:13: note: declared here
+ inline void wxWindowBase::SetInitialBestSize(const wxSize& size)
+             ^
+../../src/editor_src/RenderTimer.cpp:15:1: warning: 'virtual void wxWindowBase::SetInitialBestSize(const wxSize&)' is deprecated: use SetInitialSize() instead. [-Wdeprecated-declarations]
+ }
+ ^
+In file included from C:/TDM-GCC-32/include/wx/wx.h:38:0,
+                 from ../../src/editor_src/RenderTimer.h:3,
+                 from ../../src/editor_src/RenderTimer.cpp:1:
+C:/TDM-GCC-32/include/wx/window.h:1917:13: note: declared here
+ inline void wxWindowBase::SetInitialBestSize(const wxSize& size)
+             ^
+../../src/editor_src/RenderTimer.cpp:15:1: warning: 'virtual void wxWindowBase::SetInitialBestSize(const wxSize&)' is deprecated: use SetInitialSize() instead. [-Wdeprecated-declarations]
+ }
+ ^
+In file included from C:/TDM-GCC-32/include/wx/wx.h:38:0,
+                 from ../../src/editor_src/RenderTimer.h:3,
+                 from ../../src/editor_src/RenderTimer.cpp:1:
+C:/TDM-GCC-32/include/wx/window.h:1917:13: note: declared here
+ inline void wxWindowBase::SetInitialBestSize(const wxSize& size)
+             ^

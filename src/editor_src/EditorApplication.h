@@ -7,6 +7,8 @@
  * I'm creating the editor using wxWidgets.
  */
 #include <wx/wx.h>
+#include "GLCanvas.h"
+#include "RenderTimer.h"
 class EditorApplication : public wxApp{
 	public:
 		virtual bool OnInit();
@@ -17,6 +19,9 @@ class EditorApplication : public wxApp{
 		 * handle itself approprietely.
 		 */
 	private:
+		GLCanvas* main_canvas;
+		RenderTimer* timer;
+		wxFrame* test_window;
 };
 DECLARE_APP(EditorApplication)
 #endif
