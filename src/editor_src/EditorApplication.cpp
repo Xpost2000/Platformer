@@ -18,6 +18,8 @@ bool EditorApplication::OnInit(){
 	/*
 	 * Alright I can procede with the other wxWidgets things.
 	 */
+	atexit(SDL_Quit);
+	atexit(IMG_Quit);
 	return true;
 }
 
@@ -25,8 +27,6 @@ bool EditorApplication::OnInit(){
  * This is so I can ensure the proper quiting of SDL.
  */ 
 EditorApplication::~EditorApplication(){
-	IMG_Quit();
-	SDL_Quit();
 }
 
 /*

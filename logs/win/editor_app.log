@@ -1,0 +1,17 @@
+In file included from ../../src/editor_src/../vec3.hpp:4:0,
+                 from ../../src/editor_src/../Vertex.h:5,
+                 from ../../src/editor_src/../SpriteBatcher.h:4,
+                 from ../../src/editor_src/GLCanvas.h:8,
+                 from ../../src/editor_src/EditorApplication.h:10,
+                 from ../../src/editor_src/EditorApplication.cpp:1:
+../../src/editor_src/../vec2.hpp:156:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
+ #endif VEC2_CROSS_PRODUCT
+        ^
+In file included from ../../src/editor_src/../LightShader.h:5:0,
+                 from ../../src/editor_src/GLCanvas.h:9,
+                 from ../../src/editor_src/EditorApplication.h:10,
+                 from ../../src/editor_src/EditorApplication.cpp:1:
+../../src/editor_src/../ShaderUniform.h: In member function 'bool ShaderUniform::is_valid()':
+../../src/editor_src/../ShaderUniform.h:48:33: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+   bool is_valid() { return (obj != -1); } 
+                                 ^

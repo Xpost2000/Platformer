@@ -1,4 +1,5 @@
 #include "GLCanvas.h"
+#include <iostream>
 
 GLCanvas::GLCanvas( wxWindow* parent, const wxGLAttributes& disp, wxWindowID id, const wxPoint & pos, const wxSize& size, long style )
 : wxGLCanvas(parent, disp, id, pos, size, style){
@@ -11,17 +12,24 @@ GLCanvas::GLCanvas( wxWindow* parent, const wxGLAttributes& disp, wxWindowID id,
 	dev = std::make_shared<GLDevice>(dummy, blank);
 	ctx_obj = new wxGLContext(this);
 	SetBackgroundStyle(wxBG_STYLE_CUSTOM);
+	SetCurrent(*ctx_obj);
 	glewExperimental=true;
-	glewInit();
+	if(glewInit()!=GLEW_OK){
+		wxMessageBox("GLEW failed to initialize", "Error", wxICON_ERROR);
+	}
+	ds = std::make_shared<DefaultShader>(dev);
+	sb = std::make_shared<SpriteBatcher>(dev);
+	// set up matrix and stuff
+	projection = glm::ortho(0.0f, (float)size.x, (float)size.y, 0.0f, -1.f, 1.f);
 }
 
 void GLCanvas::PaintScene( wxPaintEvent& pnt ){
 	SetCurrent(*ctx_obj);
 	wxPaintDC (this);
 	dev->viewport(0, 0, viewPort_sz.x, viewPort_sz.y);
-	dev->clearColor(1.0, 0.0, 0.0, 1.0);
+	dev->clearColor(0.0, 0.0, 0.1, 1.0);
 	dev->clear(BufferClear::COLOR_BUFFER);
-#define IMMEDIATE_MODE_VIEWPORT_TEST
+//#define IMMEDIATE_MODE_VIEWPORT_TEST
 #ifdef IMMEDIATE_MODE_VIEWPORT_TEST
 	glBegin(GL_TRIANGLES);
 	glColor3f(0.0, 1.0, 0.0);
@@ -30,6 +38,13 @@ void GLCanvas::PaintScene( wxPaintEvent& pnt ){
 	glVertex2f(0, 0.5);
 	glEnd();
 #endif
+	
+	ds->use();
+	ds->setMatrices(projection, view);
+	sb->draw(Vec2(300, 200), Vec4(0), Vec2(400, 400), Vec4(1.0));
+	sb->render();
+	ds->unuse();
+	
 	SwapBuffers();
 }
 
