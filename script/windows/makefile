@@ -1,5 +1,6 @@
 GCC=g++
 LIBS=-lmingw32 -lSDL2main -lSDL2 -lSDL2_mixer -lSDL2_image -lglew32 -lOpenGL32 -lboost_random-mgw51-1_60
+EDITOR_LIBS=-lwxbase31u -lwxmsw31u_core -lwxmsw31u_gl
 LIBS_LINUX=-lSDL2main -lSDL2 -lGLEW -lGL
 FLAGS=-std=gnu++14 -Wall -O3 -DGAME_BUILD=110
 EDITOR_OBJ_FILES= 
@@ -92,10 +93,11 @@ all:
 	$(GCC) ../../src/GameCamera.cpp $(LIBS) $(FLAGS) -c -o ../../obj/GameCamera.o 2> ../../logs/win/GameCamera.log
 	$(GCC) ../../src/EntityManager.cpp $(LIBS) $(FLAGS) -c -o ../../obj/EntityManager.o 2> ../../logs/win/EntityManager.log
 	$(GCC) ../../src/Sound.cpp $(LIBS) $(FLAGS) -c -o ../../obj/Sound.o 2> ../../logs/win/Sound.log
+## FROM HERE COMPILE EDITOR SPECIFIC SOURCE FILES.
 link-game:
 	$(GCC) $(OBJ_FILES) $(GAME_OBJ_FILES) $(LIBS) $(FLAGS) -o ../../bin/Game.exe 2> ../../logs/linker_windows.log
 link-editor:
-	$(GCC) $(OBJ_FILES) $(EDITOR_OBJ_FILES) $(LIBS) $(FLAGS) -o ../../bin/editor.exe 2> ../../logs/linker_windows_editor.log
+	$(GCC) $(OBJ_FILES) $(EDITOR_OBJ_FILES) $(EDITOR_LIBS) $(LIBS) $(FLAGS) -o ../../bin/editor.exe 2> ../../logs/linker_windows_editor.log
 clean:
 	rm ../../obj/*.o
 exec:
