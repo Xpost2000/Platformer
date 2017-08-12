@@ -1,4 +1,5 @@
 #include "GLCanvas.h"
+#include "../Block.h"
 #include <iostream>
 
 GLCanvas::GLCanvas( wxWindow* parent, const wxGLAttributes& disp, wxWindowID id, const wxPoint & pos, const wxSize& size, long style )
@@ -42,10 +43,13 @@ void GLCanvas::PaintScene( wxPaintEvent& pnt ){
 #endif
 	
 	ds->use();
+	ds->setTex(0);
+	ds->setTextured(true);
 	ds->setMatrices(projection, view);
-	sb->draw(Vec2(300, 200), Vec4(0), Vec2(400, 400), Vec4(1.0));
-	sb->draw(Vec2(100, 200), Vec4(0), Vec2(200, 400), Vec4(0.4));
-	sb->draw(Vec2(300, 200), Vec4(0), Vec2(400, 100), Vec4(0.2));
+	tm->get_tex("test")->bind();
+	sb->draw(Vec2(300, 200), Vec4(Block::get_uv_from_type(BlockTypes::BasicBox)), Vec2(400, 400), Vec4(1.0));
+	sb->draw(Vec2(100, 200), Vec4(Block::get_uv_from_type(BlockTypes::Box)), Vec2(200, 400), Vec4(0.4));
+	sb->draw(Vec2(300, 200), Vec4(Block::get_uv_from_type(BlockTypes::Floor)), Vec2(400, 100), Vec4(0.2));
 	sb->render();
 	ds->unuse();
 	
