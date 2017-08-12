@@ -11,9 +11,6 @@ bool EditorApplication::OnInit(){
 	/*
 	 * Alright I can procede with the other wxWidgets things.
 	 */
-	//Sanity check #1
-	SDL_ShowSimpleMessageBox(0, "SADOMAE", "ASDOPAS", NULL);
-	wxMessageBox( wxT("WxWidgets MB"), wxT("Number Two"), wxICON_INFORMATION );
 	return true;
 }
 
