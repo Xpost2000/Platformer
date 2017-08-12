@@ -21,6 +21,15 @@ void GLCanvas::PaintScene( wxPaintEvent& pnt ){
 	dev->viewport(0, 0, viewPort_sz.x, viewPort_sz.y);
 	dev->clearColor(1.0, 0.0, 0.0, 1.0);
 	dev->clear(BufferClear::COLOR_BUFFER);
+#define IMMEDIATE_MODE_VIEWPORT_TEST
+#ifdef IMMEDIATE_MODE_VIEWPORT_TEST
+	glBegin(GL_TRIANGLES);
+	glColor3f(0.0, 1.0, 0.0);
+	glVertex2f(-0.5, -0.5);
+	glVertex2f(0.5, -0.5);
+	glVertex2f(0, 0.5);
+	glEnd();
+#endif
 	SwapBuffers();
 }
 
