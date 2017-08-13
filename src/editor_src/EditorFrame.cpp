@@ -48,7 +48,8 @@ void EditorFrame::OnRecenter( wxCommandEvent& ev ){
 	NOT_IMPLEMENTED_MB("The camera would be recentered(if it existed)");
 }
 void EditorFrame::OnAbout( wxCommandEvent& ev ){
-	NOT_IMPLEMENTED_MB("An about dialog would appear.");
+//	aboutDialog = new EditorAboutDialog( this );
+	NOT_IMPLEMENTED_MB("The dialog is not finished.");
 }
 void EditorFrame::OnOpen( wxCommandEvent& ev ){
 	NOT_IMPLEMENTED_MB("A file dialog would appear( I could easily make one but it'd have to have features eh? )");

@@ -7,6 +7,7 @@ EDITOR_FLAGS=-std=gnu++14 -Wall -O2 -mwindows
 EDITOR_OBJ_FILES=../../obj/EditorApplication.o\
 		 ../../obj/GLCanvas.o\
 		 ../../obj/EditorFrame.o\
+		 ../../obj/EditorAboutDialog.o\
 		 ../../obj/RenderTimer.o
 
 GAME_OBJ_FILES= ../../obj/Game.o\
@@ -104,6 +105,7 @@ build-editor:
 	$(GCC) ../../src/editor_src/RenderTimer.cpp $(EDITOR_LIBS) $(EDITOR_FLAGS) -c -o ../../obj/RenderTimer.o 2> ../../logs/win/render_timer.log
 	$(GCC) ../../src/editor_src/GLCanvas.cpp $(EDITOR_LIBS) $(EDITOR_FLAGS) -c -o ../../obj/GLCanvas.o 2> ../../logs/win/gl_canvas.log
 	$(GCC) ../../src/editor_src/EditorFrame.cpp $(EDITOR_LIBS) $(EDITOR_FLAGS) -c -o ../../obj/EditorFrame.o 2> ../../logs/win/editor_frame.log
+	$(GCC) ../../src/editor_src/EditorAboutDialog.cpp $(EDITOR_LIBS) $(EDITOR_FLAGS) -c -o ../../obj/EditorAboutDialog.o 2> ../../logs/win/editor_dialog.log
 link-game:
 	$(GCC) $(OBJ_FILES) $(GAME_OBJ_FILES) $(LIBS) $(FLAGS) -o ../../bin/Game.exe 2> ../../logs/linker_windows.log
 link-editor:

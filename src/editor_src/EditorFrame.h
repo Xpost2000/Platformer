@@ -3,6 +3,7 @@
 #include <wx/wx.h>
 #include "GLCanvas.h"
 #include "RenderTimer.h"
+#include "EditorAboutDialog.h"
 /*
  * This is going to be the window frame that contains everything for the window :)
  */
@@ -29,6 +30,8 @@ class EditorFrame : public wxFrame{
 		wxMenu* file;
 		wxMenu* view;
 		wxMenu* help;
-	DECLARE_EVENT_TABLE()
+		// Dialogs.
+		EditorAboutDialog* aboutDialog;
+		DECLARE_EVENT_TABLE()
 };
 #endif
