@@ -32,13 +32,10 @@ GLCanvas::GLCanvas( wxWindow* parent, const wxGLAttributes& disp, wxWindowID id,
 }
 
 void GLCanvas::PaintScene( wxPaintEvent& pnt ){
-	camera.SetScreenRes(Vec2(viewPort_sz.x, viewPort_sz.y));
 	camera.refresh();
 	SetCurrent(*ctx_obj);
 	wxPaintDC (this);
-	if(!current.loaded){
-		current.load(player, entity_manager, lights);
-	}
+	
 	dev->viewport(0, 0, viewPort_sz.x, viewPort_sz.y);
 	dev->clearColor(1.0, 1.0, 1.0, 1.0);
 	dev->clear(BufferClear::COLOR_BUFFER);
@@ -88,10 +85,22 @@ void GLCanvas::PaintScene( wxPaintEvent& pnt ){
 	SwapBuffers();
 }
 
+void GLCanvas::LogicRefresh(){
+	if(!current.loaded){
+		current.load(player, entity_manager, lights);
+	}
+	if(HasFocus()){
+		std::cerr << "I have focus and attention :)" << std::endl;
+	}else{
+		std::cerr << "I don't have focus" << std::endl;
+	}
+}
+
 void GLCanvas::OnResize( wxSizeEvent& evnt ){
 	SetSize(evnt.GetSize());
 	viewPort_sz = evnt.GetSize();
 	projection = glm::ortho(0.0f, static_cast<float>(viewPort_sz.x), static_cast<float>(viewPort_sz.y), 0.0f, -1.f, 1.f);
+	camera.SetScreenRes(Vec2(viewPort_sz.x, viewPort_sz.y));
 }
 
 wxBEGIN_EVENT_TABLE( GLCanvas, wxGLCanvas )

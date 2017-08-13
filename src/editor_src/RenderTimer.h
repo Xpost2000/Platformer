@@ -1,7 +1,7 @@
 #ifndef RENDERER_TIMER_H
 #define RENDERER_TIMER_H
 #include <wx/wx.h>
-#include <wx/glcanvas.h>
+#include "GLCanvas.h"
 /*
  * wxWidgets doesn't render constantly
  * and it only redraws when it has to.
@@ -11,10 +11,10 @@
  */
 class RenderTimer : public wxTimer{
 	public:
-		RenderTimer(wxGLCanvas* ptr);
+		RenderTimer(GLCanvas* ptr);
 		~RenderTimer();
 		void Notify();
 	private:
-		wxGLCanvas* ptr;
+		GLCanvas* ptr;
 };
 #endif

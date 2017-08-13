@@ -28,6 +28,7 @@ class GLCanvas : public wxGLCanvas{
 		~GLCanvas(){}
 		void PaintScene( wxPaintEvent& pnt );	
 		void OnResize ( wxSizeEvent& evnt );
+		void LogicRefresh();
 		void SetTextureManagerPtr( const std::shared_ptr<TextureManager>& tm ) { this->tm = tm; }
 
 		const std::shared_ptr<IDevice>& get_device() { return dev; }
