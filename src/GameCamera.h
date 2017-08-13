@@ -17,7 +17,7 @@ class GameCamera{
 		void SetScreenRes( Vec2 res ) { screenResolution=res; }
 		void SetPos( Vec2 pos ) { this->pos = pos; }
 		void RecenterPlayer( Player& p );	
-		void refresh(){ matrix = glm::translate(matrix, glm::vec3(pos.x(), pos.y(), 0.0f)); }
+		inline void refresh(){ matrix = glm::mat4(); matrix = glm::translate(matrix, glm::vec3(pos.x(), pos.y(), 0.0f)); }
 		glm::mat4 &get_matrix() { return matrix; }
 	private:
 		Vec2 screenResolution;

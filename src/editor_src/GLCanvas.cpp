@@ -33,6 +33,7 @@ GLCanvas::GLCanvas( wxWindow* parent, const wxGLAttributes& disp, wxWindowID id,
 
 void GLCanvas::PaintScene( wxPaintEvent& pnt ){
 	camera.SetScreenRes(Vec2(viewPort_sz.x, viewPort_sz.y));
+	camera.refresh();
 	SetCurrent(*ctx_obj);
 	wxPaintDC (this);
 	if(!current.loaded){

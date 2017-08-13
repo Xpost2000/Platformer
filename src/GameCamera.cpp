@@ -29,8 +29,8 @@ void GameCamera::update(Player& p){
 }
 
 void GameCamera::RecenterPlayer( Player& p ){
-	matrix = glm::mat4();
+//	matrix = glm::mat4();
 	pos.x() = -p.getPos().x() + screenResolution.x() / 2.0f;
 	pos.y() = -p.getPos().y() + screenResolution.y() / 2.0f;
-	matrix = glm::translate(matrix , glm::vec3(pos.x(), pos.y(), 0.0f));
+//	matrix = glm::translate(matrix , glm::vec3(pos.x(), pos.y(), 0.0f));
 }
