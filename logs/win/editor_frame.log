@@ -1,0 +1,198 @@
+In file included from ../../src/editor_src/../vec3.hpp:4:0,
+                 from ../../src/editor_src/../Vertex.h:5,
+                 from ../../src/editor_src/../SpriteBatcher.h:4,
+                 from ../../src/editor_src/GLCanvas.h:9,
+                 from ../../src/editor_src/EditorFrame.h:4,
+                 from ../../src/editor_src/EditorFrame.cpp:1:
+../../src/editor_src/../vec2.hpp:156:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
+ #endif VEC2_CROSS_PRODUCT
+        ^
+In file included from ../../src/editor_src/../LightShader.h:5:0,
+                 from ../../src/editor_src/GLCanvas.h:10,
+                 from ../../src/editor_src/EditorFrame.h:4,
+                 from ../../src/editor_src/EditorFrame.cpp:1:
+../../src/editor_src/../ShaderUniform.h: In member function 'bool ShaderUniform::is_valid()':
+../../src/editor_src/../ShaderUniform.h:48:33: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+   bool is_valid() { return (obj != -1); } 
+                                 ^
+../../src/editor_src/EditorFrame.cpp: At global scope:
+../../src/editor_src/EditorFrame.cpp:17:1: warning: 'virtual void wxWindowBase::SetInitialBestSize(const wxSize&)' is deprecated: use SetInitialSize() instead. [-Wdeprecated-declarations]
+ }
+ ^
+In file included from C:/TDM-GCC-32/include/wx/wx.h:38:0,
+                 from ../../src/editor_src/EditorFrame.h:3,
+                 from ../../src/editor_src/EditorFrame.cpp:1:
+C:/TDM-GCC-32/include/wx/window.h:1917:13: note: declared here
+ inline void wxWindowBase::SetInitialBestSize(const wxSize& size)
+             ^
+../../src/editor_src/EditorFrame.cpp:17:1: warning: 'virtual void wxWindowBase::SetInitialBestSize(const wxSize&)' is deprecated: use SetInitialSize() instead. [-Wdeprecated-declarations]
+ }
+ ^
+In file included from C:/TDM-GCC-32/include/wx/wx.h:38:0,
+                 from ../../src/editor_src/EditorFrame.h:3,
+                 from ../../src/editor_src/EditorFrame.cpp:1:
+C:/TDM-GCC-32/include/wx/window.h:1917:13: note: declared here
+ inline void wxWindowBase::SetInitialBestSize(const wxSize& size)
+             ^
+../../src/editor_src/EditorFrame.cpp:17:1: warning: 'virtual void wxWindowBase::SetInitialBestSize(const wxSize&)' is deprecated: use SetInitialSize() instead. [-Wdeprecated-declarations]
+ }
+ ^
+In file included from C:/TDM-GCC-32/include/wx/wx.h:38:0,
+                 from ../../src/editor_src/EditorFrame.h:3,
+                 from ../../src/editor_src/EditorFrame.cpp:1:
+C:/TDM-GCC-32/include/wx/window.h:1917:13: note: declared here
+ inline void wxWindowBase::SetInitialBestSize(const wxSize& size)
+             ^
+../../src/editor_src/EditorFrame.cpp:17:1: warning: 'virtual void wxWindowBase::SetInitialBestSize(const wxSize&)' is deprecated: use SetInitialSize() instead. [-Wdeprecated-declarations]
+ }
+ ^
+In file included from C:/TDM-GCC-32/include/wx/wx.h:38:0,
+                 from ../../src/editor_src/EditorFrame.h:3,
+                 from ../../src/editor_src/EditorFrame.cpp:1:
+C:/TDM-GCC-32/include/wx/window.h:1917:13: note: declared here
+ inline void wxWindowBase::SetInitialBestSize(const wxSize& size)
+             ^
+../../src/editor_src/EditorFrame.cpp:17:1: warning: 'virtual void wxWindowBase::SetInitialBestSize(const wxSize&)' is deprecated: use SetInitialSize() instead. [-Wdeprecated-declarations]
+ }
+ ^
+In file included from C:/TDM-GCC-32/include/wx/wx.h:38:0,
+                 from ../../src/editor_src/EditorFrame.h:3,
+                 from ../../src/editor_src/EditorFrame.cpp:1:
+C:/TDM-GCC-32/include/wx/window.h:1917:13: note: declared here
+ inline void wxWindowBase::SetInitialBestSize(const wxSize& size)
+             ^
+../../src/editor_src/EditorFrame.cpp:17:1: warning: 'virtual void wxWindowBase::SetInitialBestSize(const wxSize&)' is deprecated: use SetInitialSize() instead. [-Wdeprecated-declarations]
+ }
+ ^
+In file included from C:/TDM-GCC-32/include/wx/wx.h:38:0,
+                 from ../../src/editor_src/EditorFrame.h:3,
+                 from ../../src/editor_src/EditorFrame.cpp:1:
+C:/TDM-GCC-32/include/wx/window.h:1917:13: note: declared here
+ inline void wxWindowBase::SetInitialBestSize(const wxSize& size)
+             ^
+../../src/editor_src/EditorFrame.cpp:17:1: warning: 'virtual void wxWindowBase::SetInitialBestSize(const wxSize&)' is deprecated: use SetInitialSize() instead. [-Wdeprecated-declarations]
+ }
+ ^
+In file included from C:/TDM-GCC-32/include/wx/wx.h:38:0,
+                 from ../../src/editor_src/EditorFrame.h:3,
+                 from ../../src/editor_src/EditorFrame.cpp:1:
+C:/TDM-GCC-32/include/wx/window.h:1917:13: note: declared here
+ inline void wxWindowBase::SetInitialBestSize(const wxSize& size)
+             ^
+../../src/editor_src/EditorFrame.cpp:17:1: warning: 'virtual void wxWindowBase::SetInitialBestSize(const wxSize&)' is deprecated: use SetInitialSize() instead. [-Wdeprecated-declarations]
+ }
+ ^
+In file included from C:/TDM-GCC-32/include/wx/wx.h:38:0,
+                 from ../../src/editor_src/EditorFrame.h:3,
+                 from ../../src/editor_src/EditorFrame.cpp:1:
+C:/TDM-GCC-32/include/wx/window.h:1917:13: note: declared here
+ inline void wxWindowBase::SetInitialBestSize(const wxSize& size)
+             ^
+../../src/editor_src/EditorFrame.cpp:17:1: warning: 'virtual void wxWindowBase::SetInitialBestSize(const wxSize&)' is deprecated: use SetInitialSize() instead. [-Wdeprecated-declarations]
+ }
+ ^
+In file included from C:/TDM-GCC-32/include/wx/wx.h:38:0,
+                 from ../../src/editor_src/EditorFrame.h:3,
+                 from ../../src/editor_src/EditorFrame.cpp:1:
+C:/TDM-GCC-32/include/wx/window.h:1917:13: note: declared here
+ inline void wxWindowBase::SetInitialBestSize(const wxSize& size)
+             ^
+../../src/editor_src/EditorFrame.cpp:17:1: warning: 'virtual void wxWindowBase::SetInitialBestSize(const wxSize&)' is deprecated: use SetInitialSize() instead. [-Wdeprecated-declarations]
+ }
+ ^
+In file included from C:/TDM-GCC-32/include/wx/wx.h:38:0,
+                 from ../../src/editor_src/EditorFrame.h:3,
+                 from ../../src/editor_src/EditorFrame.cpp:1:
+C:/TDM-GCC-32/include/wx/window.h:1917:13: note: declared here
+ inline void wxWindowBase::SetInitialBestSize(const wxSize& size)
+             ^
+../../src/editor_src/EditorFrame.cpp:17:1: warning: 'virtual void wxWindowBase::SetInitialBestSize(const wxSize&)' is deprecated: use SetInitialSize() instead. [-Wdeprecated-declarations]
+ }
+ ^
+In file included from C:/TDM-GCC-32/include/wx/wx.h:38:0,
+                 from ../../src/editor_src/EditorFrame.h:3,
+                 from ../../src/editor_src/EditorFrame.cpp:1:
+C:/TDM-GCC-32/include/wx/window.h:1917:13: note: declared here
+ inline void wxWindowBase::SetInitialBestSize(const wxSize& size)
+             ^
+../../src/editor_src/EditorFrame.cpp:17:1: warning: 'virtual void wxWindowBase::SetInitialBestSize(const wxSize&)' is deprecated: use SetInitialSize() instead. [-Wdeprecated-declarations]
+ }
+ ^
+In file included from C:/TDM-GCC-32/include/wx/wx.h:38:0,
+                 from ../../src/editor_src/EditorFrame.h:3,
+                 from ../../src/editor_src/EditorFrame.cpp:1:
+C:/TDM-GCC-32/include/wx/window.h:1917:13: note: declared here
+ inline void wxWindowBase::SetInitialBestSize(const wxSize& size)
+             ^
+../../src/editor_src/EditorFrame.cpp:17:1: warning: 'virtual void wxWindowBase::SetInitialBestSize(const wxSize&)' is deprecated: use SetInitialSize() instead. [-Wdeprecated-declarations]
+ }
+ ^
+In file included from C:/TDM-GCC-32/include/wx/wx.h:38:0,
+                 from ../../src/editor_src/EditorFrame.h:3,
+                 from ../../src/editor_src/EditorFrame.cpp:1:
+C:/TDM-GCC-32/include/wx/window.h:1917:13: note: declared here
+ inline void wxWindowBase::SetInitialBestSize(const wxSize& size)
+             ^
+../../src/editor_src/EditorFrame.cpp:17:1: warning: 'virtual void wxWindowBase::SetInitialBestSize(const wxSize&)' is deprecated: use SetInitialSize() instead. [-Wdeprecated-declarations]
+ }
+ ^
+In file included from C:/TDM-GCC-32/include/wx/wx.h:38:0,
+                 from ../../src/editor_src/EditorFrame.h:3,
+                 from ../../src/editor_src/EditorFrame.cpp:1:
+C:/TDM-GCC-32/include/wx/window.h:1917:13: note: declared here
+ inline void wxWindowBase::SetInitialBestSize(const wxSize& size)
+             ^
+../../src/editor_src/EditorFrame.cpp:17:1: warning: 'virtual void wxWindowBase::SetInitialBestSize(const wxSize&)' is deprecated: use SetInitialSize() instead. [-Wdeprecated-declarations]
+ }
+ ^
+In file included from C:/TDM-GCC-32/include/wx/wx.h:38:0,
+                 from ../../src/editor_src/EditorFrame.h:3,
+                 from ../../src/editor_src/EditorFrame.cpp:1:
+C:/TDM-GCC-32/include/wx/window.h:1917:13: note: declared here
+ inline void wxWindowBase::SetInitialBestSize(const wxSize& size)
+             ^
+../../src/editor_src/EditorFrame.cpp:17:1: warning: 'virtual void wxWindowBase::SetInitialBestSize(const wxSize&)' is deprecated: use SetInitialSize() instead. [-Wdeprecated-declarations]
+ }
+ ^
+In file included from C:/TDM-GCC-32/include/wx/wx.h:38:0,
+                 from ../../src/editor_src/EditorFrame.h:3,
+                 from ../../src/editor_src/EditorFrame.cpp:1:
+C:/TDM-GCC-32/include/wx/window.h:1917:13: note: declared here
+ inline void wxWindowBase::SetInitialBestSize(const wxSize& size)
+             ^
+../../src/editor_src/EditorFrame.cpp:17:1: warning: 'virtual void wxWindowBase::SetInitialBestSize(const wxSize&)' is deprecated: use SetInitialSize() instead. [-Wdeprecated-declarations]
+ }
+ ^
+In file included from C:/TDM-GCC-32/include/wx/wx.h:38:0,
+                 from ../../src/editor_src/EditorFrame.h:3,
+                 from ../../src/editor_src/EditorFrame.cpp:1:
+C:/TDM-GCC-32/include/wx/window.h:1917:13: note: declared here
+ inline void wxWindowBase::SetInitialBestSize(const wxSize& size)
+             ^
+../../src/editor_src/EditorFrame.cpp:17:1: warning: 'virtual void wxWindowBase::SetInitialBestSize(const wxSize&)' is deprecated: use SetInitialSize() instead. [-Wdeprecated-declarations]
+ }
+ ^
+In file included from C:/TDM-GCC-32/include/wx/wx.h:38:0,
+                 from ../../src/editor_src/EditorFrame.h:3,
+                 from ../../src/editor_src/EditorFrame.cpp:1:
+C:/TDM-GCC-32/include/wx/window.h:1917:13: note: declared here
+ inline void wxWindowBase::SetInitialBestSize(const wxSize& size)
+             ^
+../../src/editor_src/EditorFrame.cpp:17:1: warning: 'virtual void wxWindowBase::SetInitialBestSize(const wxSize&)' is deprecated: use SetInitialSize() instead. [-Wdeprecated-declarations]
+ }
+ ^
+In file included from C:/TDM-GCC-32/include/wx/wx.h:38:0,
+                 from ../../src/editor_src/EditorFrame.h:3,
+                 from ../../src/editor_src/EditorFrame.cpp:1:
+C:/TDM-GCC-32/include/wx/window.h:1917:13: note: declared here
+ inline void wxWindowBase::SetInitialBestSize(const wxSize& size)
+             ^
+../../src/editor_src/EditorFrame.cpp:17:1: warning: 'virtual void wxWindowBase::SetInitialBestSize(const wxSize&)' is deprecated: use SetInitialSize() instead. [-Wdeprecated-declarations]
+ }
+ ^
+In file included from C:/TDM-GCC-32/include/wx/wx.h:38:0,
+                 from ../../src/editor_src/EditorFrame.h:3,
+                 from ../../src/editor_src/EditorFrame.cpp:1:
+C:/TDM-GCC-32/include/wx/window.h:1917:13: note: declared here
+ inline void wxWindowBase::SetInitialBestSize(const wxSize& size)
+             ^

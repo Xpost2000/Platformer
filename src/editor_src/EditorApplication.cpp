@@ -1,4 +1,5 @@
 #include "EditorApplication.h"
+#include "IDConstants.h"
 
 /*
  * I include SDL and link it because I require SDL_Image for the ImageTexture class. Probably should've implemented it with FreeImage or something
@@ -8,13 +9,11 @@ bool EditorApplication::OnInit(){
 	SDL_SetMainReady();
 	SDL_Init(SDL_INIT_VIDEO); // for SDL_Surface presumably.
 	IMG_Init(IMG_INIT_PNG);
-	wxGLAttributes attribs;
-	attribs.PlatformDefaults().Depth(24).DoubleBuffer().EndList();
-	test_window = new wxFrame(NULL, wxID_ANY, "TestWindow");
-	main_canvas = new GLCanvas(test_window, attribs);
-	timer = new RenderTimer(main_canvas);
+	mainWindow = new EditorFrame(NULL, ConstantId::MainWindow_ID, "Editor Window Prototype", wxDefaultPosition, wxSize(500, 500));
+	timer = new RenderTimer(mainWindow->RetrieveCanvas());
+
 	timer->Start(11);
-	test_window->Show(true);
+	mainWindow->Show(true);
 	/*
 	 * Alright I can procede with the other wxWidgets things.
 	 */

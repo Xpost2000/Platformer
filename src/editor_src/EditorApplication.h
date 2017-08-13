@@ -8,6 +8,7 @@
  */
 #include <wx/wx.h>
 #include "../TextureManager.h"
+#include "EditorFrame.h"
 #include "GLCanvas.h"
 #include "RenderTimer.h"
 class EditorApplication : public wxApp{
@@ -20,9 +21,8 @@ class EditorApplication : public wxApp{
 		 * handle itself approprietely.
 		 */
 	private:
-		GLCanvas* main_canvas;
 		RenderTimer* timer;
-		wxFrame* test_window;
+		EditorFrame* mainWindow;
 };
 DECLARE_APP(EditorApplication)
 #endif
