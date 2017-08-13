@@ -9,7 +9,7 @@ bool EditorApplication::OnInit(){
 	SDL_SetMainReady();
 	SDL_Init(SDL_INIT_VIDEO); // for SDL_Surface presumably.
 	IMG_Init(IMG_INIT_PNG);
-	mainWindow = new EditorFrame(NULL, ConstantId::MainWindow_ID, "Editor Window Prototype", wxDefaultPosition, wxSize(800, 730));
+	mainWindow = new EditorFrame(NULL, ConstantId::MainWindow_ID, "Editor Window Prototype", wxDefaultPosition, wxSize(1000, 730));
 	mainWindow->Show(true);
 	/*
 	 * Alright I can procede with the other wxWidgets things.

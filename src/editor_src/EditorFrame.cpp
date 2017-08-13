@@ -26,6 +26,7 @@ EditorFrame::EditorFrame(wxWindow* parent, wxWindowID id,
 	view = new wxMenu("View");
 	help = new wxMenu("Help");
 
+	file->Append( ConstantId::MainWindow::FileMenu_Open, "Open an existing level\tAlt-O", "Opens a existing level file." );
 	file->Append( wxID_EXIT, "Exit", "Quit the program" );
 	view->Append( ConstantId::MainWindow::ViewMenu_Recenter, "Recenter on Player", "Recenter the camera onto the player" );
 	help->Append( ConstantId::MainWindow::HelpMenu_About, "About\tF1", "" );
@@ -49,10 +50,14 @@ void EditorFrame::OnRecenter( wxCommandEvent& ev ){
 void EditorFrame::OnAbout( wxCommandEvent& ev ){
 	NOT_IMPLEMENTED_MB("An about dialog would appear.");
 }
+void EditorFrame::OnOpen( wxCommandEvent& ev ){
+	NOT_IMPLEMENTED_MB("A file dialog would appear( I could easily make one but it'd have to have features eh? )");
+}
 // Declare the Event Table
 wxBEGIN_EVENT_TABLE(EditorFrame, wxFrame)
 	EVT_MENU( wxID_EXIT, EditorFrame::OnQuit )
 	EVT_MENU( ConstantId::MainWindow::ViewMenu_Recenter, EditorFrame::OnRecenter )
 	EVT_MENU( ConstantId::MainWindow::HelpMenu_About, EditorFrame::OnAbout )
+	EVT_MENU( ConstantId::MainWindow::FileMenu_Open, EditorFrame::OnOpen)
 wxEND_EVENT_TABLE()
 

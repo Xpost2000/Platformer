@@ -17,6 +17,7 @@ class EditorFrame : public wxFrame{
 		void OnClose ( wxCloseEvent& ev );
 		void OnRecenter( wxCommandEvent& ev );
 		void OnAbout( wxCommandEvent& ev );
+		void OnOpen( wxCommandEvent& ev );
 	private:
 		wxGLAttributes glAttributes;
 		GLCanvas* canvas;

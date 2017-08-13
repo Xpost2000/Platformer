@@ -9,6 +9,7 @@ namespace ConstantId{
 	namespace MainWindow{
 		const int HelpMenu_About = wxID_HIGHEST+11;
 		const int ViewMenu_Recenter = wxID_HIGHEST+12;
+		const int FileMenu_Open = wxID_HIGHEST+13;
 	};
 };
 #endif
