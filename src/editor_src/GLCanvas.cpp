@@ -33,11 +33,6 @@ GLCanvas::GLCanvas( wxWindow* parent, const wxGLAttributes& disp, wxWindowID id,
 
 void GLCanvas::PaintScene( wxPaintEvent& pnt ){
 	camera.SetScreenRes(Vec2(viewPort_sz.x, viewPort_sz.y));
-//	camera.RecenterPlayer(player);
-//	camera.update(player);
-	if(camera.get_matrix() == glm::mat4()){
-		std::cerr << "MATRIX IS EQUAL TO IDENTITY\n";
-	}
 	SetCurrent(*ctx_obj);
 	wxPaintDC (this);
 	if(!current.loaded){
