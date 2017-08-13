@@ -4,7 +4,6 @@ RenderTimer::RenderTimer(wxGLCanvas* ptr):
 ptr(ptr), wxTimer(){
 }
 RenderTimer::~RenderTimer(){
-	wxTimer::Stop();
 }
 
 // this function is called when the timer is "reset"

@@ -15,6 +15,8 @@ EditorFrame::EditorFrame(wxWindow* parent, wxWindowID id,
 	canvas = new GLCanvas(this, glAttributes);	
 	CreateStatusBar(1);
 	SetStatusText("Letter X Game Editor prototype/alpha");
+	timer = new RenderTimer( RetrieveCanvas() );
+	timer->Start(10);
 	/*
 	 * I'm going to now construct the menu bar.
 	 */
@@ -38,6 +40,7 @@ EditorFrame::EditorFrame(wxWindow* parent, wxWindowID id,
 }
 
 void EditorFrame::OnQuit( wxCommandEvent& ev ){
+	timer->Stop();
 	Close();
 }
 void EditorFrame::OnRecenter( wxCommandEvent& ev ){

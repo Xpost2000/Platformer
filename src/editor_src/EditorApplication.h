@@ -21,7 +21,6 @@ class EditorApplication : public wxApp{
 		 * handle itself approprietely.
 		 */
 	private:
-		RenderTimer* timer;
 		EditorFrame* mainWindow;
 };
 DECLARE_APP(EditorApplication)
