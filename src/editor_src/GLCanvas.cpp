@@ -22,6 +22,7 @@ GLCanvas::GLCanvas( wxWindow* parent, const wxGLAttributes& disp, wxWindowID id,
 		wxMessageBox("GLEW failed to initialize", "Error", wxICON_ERROR);
 	}
 	ds = std::make_shared<DefaultShader>(dev);
+	ls = std::make_shared<LightShader>(dev);
 	tm = std::make_shared<TextureManager>();
 	tm->add_texture("tiles", "textures\\tiles.png", get_device());
 	tm->add_texture("player", "textures\\test_player.png", get_device());
@@ -52,11 +53,17 @@ void GLCanvas::PaintScene( wxPaintEvent& pnt ){
 	glEnd();
 #endif
 	
-	ds->use();
-	ds->setTex(0);
-	ds->setTextured(true);
-	ds->setMatrices(projection, view);
+	ls->use();
+	ls->setTex(0);
+	ls->setTextured(true);
+	ls->setProj(projection);
+	ls->setView(view);
+	// render the lights
+	for(int i = 0; i < 10; ++i ){
+		ls->setLight(i, lights[i]);
+	}
 	tm->get_tex("tiles")->bind();
+	sb->draw(Vec2(-1000), Vec4(Block::get_uv_from_type(BlockTypes::FlatColor)), Vec2(12390120), Vec4(0.0, 0.0, 0.1, 1.0));
 	// THE CAMERA DOESN'T EXIST SO BACKGROUND PROPS ARE NOT DRAWN
 	entity_manager.draw_progressor(*sb);	
 	entity_manager.draw_blocks(*sb);
@@ -65,7 +72,7 @@ void GLCanvas::PaintScene( wxPaintEvent& pnt ){
 	tm->get_tex("player")->bind();
 	sb->draw( player.getPos(), player.getUvs(), player.getSize(), Vec4(1.0f) );
 	sb->render();
-	ds->unuse();
+	ls->unuse();
 	
 	SwapBuffers();
 }

@@ -40,6 +40,7 @@ class GLCanvas : public wxGLCanvas{
 		std::array<Light, 10> lights;
 		wxGLContext* ctx_obj;
 		std::shared_ptr<DefaultShader> ds;
+		std::shared_ptr<LightShader> ls;
 		std::shared_ptr<SpriteBatcher> sb;
 		std::shared_ptr<TextureManager> tm;
 		std::shared_ptr<IDevice> dev;
