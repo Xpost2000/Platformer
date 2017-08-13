@@ -29,6 +29,7 @@ EditorFrame::EditorFrame(wxWindow* parent, wxWindowID id,
 	file->Append( ConstantId::MainWindow::FileMenu_Open, "Open an existing level\tAlt-O", "Opens a existing level file." );
 	file->Append( wxID_EXIT, "Exit", "Quit the program" );
 	view->Append( ConstantId::MainWindow::ViewMenu_Recenter, "Recenter on Player", "Recenter the camera onto the player" );
+	view->AppendCheckItem( ConstantId::MainWindow::ViewMenu_Lighting, "Enable Lighting", "" );
 	help->Append( ConstantId::MainWindow::HelpMenu_About, "About\tF1", "" );
 
 
@@ -66,11 +67,15 @@ void EditorFrame::OnOpen( wxCommandEvent& ev ){
 void EditorFrame::RecenterCamera(){
 	canvas->get_camera().RecenterPlayer(canvas->get_player());
 }
+void EditorFrame::OnLightingBox( wxCommandEvent& ev ){
+	canvas->lighting_enabled() = view->IsChecked( ConstantId::MainWindow::ViewMenu_Lighting );
+}
 // Declare the Event Table
 wxBEGIN_EVENT_TABLE(EditorFrame, wxFrame)
 	EVT_MENU( wxID_EXIT, EditorFrame::OnQuit )
 	EVT_MENU( ConstantId::MainWindow::ViewMenu_Recenter, EditorFrame::OnRecenter )
 	EVT_MENU( ConstantId::MainWindow::HelpMenu_About, EditorFrame::OnAbout )
 	EVT_MENU( ConstantId::MainWindow::FileMenu_Open, EditorFrame::OnOpen)
+	EVT_MENU( ConstantId::MainWindow::ViewMenu_Lighting, EditorFrame::OnLightingBox)
 wxEND_EVENT_TABLE()
 

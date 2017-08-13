@@ -55,18 +55,24 @@ void GLCanvas::PaintScene( wxPaintEvent& pnt ){
 	ds->use();
 	ds->setTextured(false);	
 	ds->setMatrices(projection, camera.get_matrix());
+	if(lighting){
 	ls->use();
 	ls->setTex(0);
 	ls->setTextured(true);
 	ls->setProj(projection);
 	ls->setView(camera.get_matrix());
-	// render the lights
 	for(int i = 0; i < 10; ++i ){
 		ls->setLight(i, lights[i]);
 	}
+	}else{
+		ds->setTex(0);
+		ds->setTextured(true);
+	}
+	// render the lights
+	
 	tm->get_tex("tiles")->bind();
 	sb->draw(Vec2(-1000), Vec4(Block::get_uv_from_type(BlockTypes::FlatColor)), Vec2(12390120), Vec4(0.0, 0.0, 0.1, 1.0));
-	// THE CAMERA DOESN'T EXIST SO BACKGROUND PROPS ARE NOT DRAWN
+	entity_manager.draw_background_props( camera.getPos(), *sb );
 	entity_manager.draw_progressor(*sb);	
 	entity_manager.draw_blocks(*sb);
 	entity_manager.draw_jumping_enemies(*sb);
@@ -76,6 +82,7 @@ void GLCanvas::PaintScene( wxPaintEvent& pnt ){
 	sb->render();
 	ls->unuse();
 	ds->use();
+	ds->setTextured(false);
 	sb->draw( player.getPos(), player.getUvs(), player.getSize(), Vec4(1.0f, 0.0, 0.0, 1.0) );
 	sb->render(true);
 	SwapBuffers();

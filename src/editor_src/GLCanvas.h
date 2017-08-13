@@ -34,10 +34,12 @@ class GLCanvas : public wxGLCanvas{
 		Level& get_level() { return current; }
 		GameCamera& get_camera() { return camera; }
 		Player& get_player() { return player; }
+		bool& lighting_enabled() { return lighting; }
 	private:
 		glm::mat4 view=glm::mat4();
 		glm::mat4 projection;		
 	private:
+		bool lighting=false;
 		GameCamera camera;
 		Level current;
 		Player player;

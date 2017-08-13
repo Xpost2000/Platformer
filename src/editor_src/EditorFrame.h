@@ -17,6 +17,7 @@ class EditorFrame : public wxFrame{
 		void OnQuit( wxCommandEvent& ev );
 		void OnClose ( wxCloseEvent& ev );
 		void OnRecenter( wxCommandEvent& ev );
+		void OnLightingBox( wxCommandEvent& ev );
 		void OnAbout( wxCommandEvent& ev );
 		void OnOpen( wxCommandEvent& ev );
 	private:
