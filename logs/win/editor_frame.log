@@ -8,10 +8,30 @@ In file included from ../../src/editor_src/../vec3.hpp:4:0,
  #endif VEC2_CROSS_PRODUCT
         ^
 In file included from ../../src/editor_src/../LightShader.h:5:0,
-                 from ../../src/editor_src/GLCanvas.h:10,
+                 from ../../src/editor_src/GLCanvas.h:11,
                  from ../../src/editor_src/EditorFrame.h:4,
                  from ../../src/editor_src/EditorFrame.cpp:1:
 ../../src/editor_src/../ShaderUniform.h: In member function 'bool ShaderUniform::is_valid()':
 ../../src/editor_src/../ShaderUniform.h:48:33: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
    bool is_valid() { return (obj != -1); } 
                                  ^
+In file included from ../../src/editor_src/../Progressor.h:3:0,
+                 from ../../src/editor_src/../Player.h:5,
+                 from ../../src/editor_src/../Level.h:6,
+                 from ../../src/editor_src/GLCanvas.h:13,
+                 from ../../src/editor_src/EditorFrame.h:4,
+                 from ../../src/editor_src/EditorFrame.cpp:1:
+../../src/editor_src/../Entity.h: In constructor 'Entity::Entity(Vec2, Vec2, Vec2, Vec4)':
+../../src/editor_src/../Entity.h:77:8: warning: 'Entity::size' will be initialized after [-Wreorder]
+   Vec2 size;
+        ^
+../../src/editor_src/../Entity.h:76:8: warning:   'Vec2 Entity::velocity' [-Wreorder]
+   Vec2 velocity;
+        ^
+../../src/editor_src/../Entity.h:31:3: warning:   when initialized here [-Wreorder]
+   Entity(Vec2 pos, Vec2 size, Vec2 velocity, Vec4 color)
+   ^
+../../src/editor_src/../Entity.h: In member function 'virtual bool Entity::DeathAnimation(float)':
+../../src/editor_src/../Entity.h:67:3: warning: no return statement in function returning non-void [-Wreturn-type]
+   }
+   ^

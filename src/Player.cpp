@@ -18,7 +18,9 @@ void Player::calculate_uvs(){
 				return;
 			}
 			break;
-		default:
+		case PlayerState::STANDING:
+		case PlayerState::WALKING:
+		case PlayerState::DEAD:
 			uvs = Vec4(0, 32.0f/64.0f, 30.0f/64.0f, 62.0f/64.0f);
 			break;
 	}

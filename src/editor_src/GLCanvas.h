@@ -7,9 +7,13 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include "../DefaultShader.h"
 #include "../SpriteBatcher.h"
+#include "../LightStruct.h"
 #include "../LightShader.h"
 #include "../typedefs.h"
+#include "../Level.h"
 #include <wx/glcanvas.h>
+#include "../EntityManager.h"
+#include "../Player.h"
 
 /*
  * I'm this is going to render the game scene.
@@ -30,6 +34,10 @@ class GLCanvas : public wxGLCanvas{
 		glm::mat4 view=glm::mat4();
 		glm::mat4 projection;		
 	private:
+		Level current;
+		Player player;
+		EntityManager entity_manager;
+		std::array<Light, 10> lights;
 		wxGLContext* ctx_obj;
 		std::shared_ptr<DefaultShader> ds;
 		std::shared_ptr<SpriteBatcher> sb;

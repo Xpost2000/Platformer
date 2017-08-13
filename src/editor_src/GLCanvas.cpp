@@ -4,6 +4,7 @@
 
 GLCanvas::GLCanvas( wxWindow* parent, const wxGLAttributes& disp, wxWindowID id, const wxPoint & pos, const wxSize& size, long style )
 : wxGLCanvas(parent, disp, id, pos, size, style){
+	player=Player(Vec2(300), Vec2(73,73), Vec2(100), Vec4(1.0));
 	// I create two dummies to "work on"
 	SDL_Window* dummy;
 	gl_info_struct_t blank;
@@ -22,18 +23,25 @@ GLCanvas::GLCanvas( wxWindow* parent, const wxGLAttributes& disp, wxWindowID id,
 	}
 	ds = std::make_shared<DefaultShader>(dev);
 	tm = std::make_shared<TextureManager>();
-	tm->add_texture("test", "textures\\tiles.png", get_device());
+	tm->add_texture("tiles", "textures\\tiles.png", get_device());
+	tm->add_texture("player", "textures\\test_player.png", get_device());
 	sb = std::make_shared<SpriteBatcher>(dev);
 	// set up matrix and stuff
 	projection = glm::ortho(0.0f, static_cast<float>(size.x), static_cast<float>(size.y), 0.0f, -1.f, 1.f);
+
+	current = Level("levels\\demo.map");
 }
 
 void GLCanvas::PaintScene( wxPaintEvent& pnt ){
 	SetCurrent(*ctx_obj);
 	wxPaintDC (this);
+	if(!current.loaded){
+		current.load(player, entity_manager, lights);
+	}
 	dev->viewport(0, 0, viewPort_sz.x, viewPort_sz.y);
-	dev->clearColor(0.0, 0.0, 0.1, 1.0);
+	dev->clearColor(1.0, 1.0, 1.0, 1.0);
 	dev->clear(BufferClear::COLOR_BUFFER);
+	dev->enableAlpha();
 //#define IMMEDIATE_MODE_VIEWPORT_TEST
 #ifdef IMMEDIATE_MODE_VIEWPORT_TEST
 	glBegin(GL_TRIANGLES);
@@ -48,10 +56,14 @@ void GLCanvas::PaintScene( wxPaintEvent& pnt ){
 	ds->setTex(0);
 	ds->setTextured(true);
 	ds->setMatrices(projection, view);
-	tm->get_tex("test")->bind();
-	sb->draw(Vec2(300, 200), Vec4(Block::get_uv_from_type(BlockTypes::BasicBox)), Vec2(400, 400), Vec4(1.0));
-	sb->draw(Vec2(100, 200), Vec4(Block::get_uv_from_type(BlockTypes::Box)), Vec2(200, 400), Vec4(0.4));
-	sb->draw(Vec2(300, 200), Vec4(Block::get_uv_from_type(BlockTypes::Floor)), Vec2(400, 100), Vec4(0.2));
+	tm->get_tex("tiles")->bind();
+	// THE CAMERA DOESN'T EXIST SO BACKGROUND PROPS ARE NOT DRAWN
+	entity_manager.draw_progressor(*sb);	
+	entity_manager.draw_blocks(*sb);
+	entity_manager.draw_jumping_enemies(*sb);
+	entity_manager.draw_basic_enemies(*sb);
+	tm->get_tex("player")->bind();
+	sb->draw( player.getPos(), player.getUvs(), player.getSize(), Vec4(1.0f) );
 	sb->render();
 	ds->unuse();
 	
