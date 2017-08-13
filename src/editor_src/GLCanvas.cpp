@@ -29,8 +29,6 @@ GLCanvas::GLCanvas( wxWindow* parent, const wxGLAttributes& disp, wxWindowID id,
 	sb = std::make_shared<SpriteBatcher>(dev);
 	// set up matrix and stuff
 	projection = glm::ortho(0.0f, static_cast<float>(size.x), static_cast<float>(size.y), 0.0f, -1.f, 1.f);
-
-	current = Level("levels\\demo.map");
 }
 
 void GLCanvas::PaintScene( wxPaintEvent& pnt ){
