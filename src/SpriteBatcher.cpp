@@ -49,7 +49,7 @@ void SpriteBatcher::draw(Vec2 pos, Vec4 uvs, Vec2 size, Vec4 tl, Vec4 tr, Vec4 b
 	vertices.push_back(Vertex(Vec3(pos.x() + size.x(), pos.y() + size.y(), 1.0), Vec2(uvs.z(), uvs.y()), br));
 }
 
-void SpriteBatcher::render(){
+void SpriteBatcher::render(bool wireframe){
 	vbo->bind(BufferTypes::ARRAY_BUFFER);
 	vao->bind();
 	vbo->bufferData(BufferTypes::ARRAY_BUFFER, vertices.size() * sizeof(Vertex), NULL, BufferUsage::DYNAMIC_DRAW);
@@ -61,6 +61,7 @@ void SpriteBatcher::render(){
 	vao->enableAttribute(1);
 	vao->enableAttribute(2);
 	// Oh god... First un hidden api call....
-	glDrawArrays(GL_TRIANGLES, 0, vertices.size());
+	GLenum draw_mode = wireframe ? GL_LINES : GL_TRIANGLES;
+	glDrawArrays(draw_mode, 0, vertices.size());
 	vertices.clear();
 }

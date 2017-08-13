@@ -30,6 +30,7 @@ class GLCanvas : public wxGLCanvas{
 		void SetTextureManagerPtr( const std::shared_ptr<TextureManager>& tm ) { this->tm = tm; }
 
 		const std::shared_ptr<IDevice>& get_device() { return dev; }
+		Level& get_level() { return current; }
 	private:
 		glm::mat4 view=glm::mat4();
 		glm::mat4 projection;		

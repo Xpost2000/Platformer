@@ -35,3 +35,12 @@ In file included from ../../src/editor_src/../Progressor.h:3:0,
 ../../src/editor_src/../Entity.h:67:3: warning: no return statement in function returning non-void [-Wreturn-type]
    }
    ^
+In file included from ../../src/editor_src/../Player.h:10:0,
+                 from ../../src/editor_src/../Level.h:6,
+                 from ../../src/editor_src/GLCanvas.h:13,
+                 from ../../src/editor_src/EditorFrame.h:4,
+                 from ../../src/editor_src/EditorFrame.cpp:1:
+../../src/editor_src/../Block.h: In member function 'virtual Vec4 Block::getUvs()':
+../../src/editor_src/../Block.h:168:3: warning: control reaches end of non-void function [-Wreturn-type]
+   }
+   ^

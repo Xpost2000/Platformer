@@ -46,13 +46,24 @@ void EditorFrame::OnQuit( wxCommandEvent& ev ){
 }
 void EditorFrame::OnRecenter( wxCommandEvent& ev ){
 	NOT_IMPLEMENTED_MB("The camera would be recentered(if it existed)");
+	RecenterCamera();
 }
 void EditorFrame::OnAbout( wxCommandEvent& ev ){
 //	aboutDialog = new EditorAboutDialog( this );
 	NOT_IMPLEMENTED_MB("The dialog is not finished.");
 }
 void EditorFrame::OnOpen( wxCommandEvent& ev ){
-	NOT_IMPLEMENTED_MB("A file dialog would appear( I could easily make one but it'd have to have features eh? )");
+//	NOT_IMPLEMENTED_MB("A file dialog would appear( I could easily make one but it'd have to have features eh? )");
+	wxFileDialog open_file( this, wxT("Open a Level File"),
+		       	 	wxGetCwd(), "",
+				"Level Files (*.map)|*.map", wxFD_OPEN);
+	if(open_file.ShowModal() == wxID_OK){
+		canvas->get_level() = Level(open_file.GetPath().ToStdString());	
+	}else{
+		return;
+	}
+}
+void EditorFrame::RecenterCamera(){
 }
 // Declare the Event Table
 wxBEGIN_EVENT_TABLE(EditorFrame, wxFrame)

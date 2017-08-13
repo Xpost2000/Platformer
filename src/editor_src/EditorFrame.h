@@ -20,6 +20,7 @@ class EditorFrame : public wxFrame{
 		void OnAbout( wxCommandEvent& ev );
 		void OnOpen( wxCommandEvent& ev );
 	private:
+		void RecenterCamera();
 		wxGLAttributes glAttributes;
 		GLCanvas* canvas;
 	private:

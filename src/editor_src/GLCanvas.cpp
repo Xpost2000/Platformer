@@ -52,7 +52,9 @@ void GLCanvas::PaintScene( wxPaintEvent& pnt ){
 	glVertex2f(0, 0.5);
 	glEnd();
 #endif
-	
+	ds->use();
+	ds->setTextured(false);	
+	ds->setMatrices(projection, view);
 	ls->use();
 	ls->setTex(0);
 	ls->setTextured(true);
@@ -73,6 +75,10 @@ void GLCanvas::PaintScene( wxPaintEvent& pnt ){
 	sb->draw( player.getPos(), player.getUvs(), player.getSize(), Vec4(1.0f) );
 	sb->render();
 	ls->unuse();
+	ds->use();
+	sb->draw( player.getPos(), player.getUvs(), player.getSize(), Vec4(1.0f, 0.0, 0.0, 1.0) );
+	sb->render(true);
+
 	
 	SwapBuffers();
 }

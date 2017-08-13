@@ -22,3 +22,7 @@ In file included from ../../src/Progressor.h:3:0,
 ../../src/Entity.h:67:3: warning: no return statement in function returning non-void [-Wreturn-type]
    }
    ^
+../../src/Player.cpp: In member function 'void Player::calculate_uvs()':
+../../src/Player.cpp:9:8: warning: enumeration value 'HURT' not handled in switch [-Wswitch]
+  switch(pState){
+        ^
