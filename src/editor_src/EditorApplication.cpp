@@ -9,10 +9,10 @@ bool EditorApplication::OnInit(){
 	SDL_SetMainReady();
 	SDL_Init(SDL_INIT_VIDEO); // for SDL_Surface presumably.
 	IMG_Init(IMG_INIT_PNG);
-	mainWindow = new EditorFrame(NULL, ConstantId::MainWindow_ID, "Editor Window Prototype", wxDefaultPosition, wxSize(500, 500));
+	mainWindow = new EditorFrame(NULL, ConstantId::MainWindow_ID, "Editor Window Prototype", wxDefaultPosition, wxSize(800, 730));
 	timer = new RenderTimer(mainWindow->RetrieveCanvas());
 
-	timer->Start(11);
+	timer->Start(15);
 	mainWindow->Show(true);
 	/*
 	 * Alright I can procede with the other wxWidgets things.
@@ -26,6 +26,7 @@ bool EditorApplication::OnInit(){
  * This is so I can ensure the proper quiting of SDL.
  */ 
 EditorApplication::~EditorApplication(){
+	timer->Stop();
 }
 
 /*
