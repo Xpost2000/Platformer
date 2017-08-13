@@ -12,7 +12,7 @@ EditorFrame::EditorFrame(wxWindow* parent, wxWindowID id,
 			 const wxSize& size)
 : wxFrame(parent, id, title, pos, size){
 	glAttributes.PlatformDefaults().Depth(24).DoubleBuffer().EndList();
-	canvas = new GLCanvas(this, glAttributes);	
+	canvas = new GLCanvas(this, glAttributes, wxID_ANY, pos, size);	
 	CreateStatusBar(1);
 	SetStatusText("Letter X Game Editor prototype/alpha");
 	timer = new RenderTimer( canvas );
