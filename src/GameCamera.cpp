@@ -1,10 +1,18 @@
 #include "GameCamera.h"
 #include "Player.h"
+#include <iostream>
 
 void GameCamera::update(Player& p){
 	matrix = glm::mat4();
 	pos.x() = -p.getPos().x() + screenResolution.x() / 2.0f;
 	pos.y() = -p.getPos().y() + screenResolution.y() / 2.0f;
+	std::cout << "CamX: " << pos.x() << std::endl;
+	std::cout << "CamY: " << pos.y() << std::endl;
+	std::cout << "CamScreenX: " << screenResolution.x() << std::endl;
+	std::cout << "CamScreenY: " << screenResolution.y() << std::endl;
+
+
+
 	if( pos.x() < screenResolution.x() + limits.x() ){
 		pos.x() = limits.x();
 	}
@@ -17,5 +25,12 @@ void GameCamera::update(Player& p){
 	if( pos.y() > screenResolution.y() + lowerLimits.y() ){
 		pos.y() = lowerLimits.y();
 	}
+	matrix = glm::translate(matrix , glm::vec3(pos.x(), pos.y(), 0.0f));
+}
+
+void GameCamera::RecenterPlayer( Player& p ){
+	matrix = glm::mat4();
+	pos.x() = -p.getPos().x() + screenResolution.x() / 2.0f;
+	pos.y() = -p.getPos().y() + screenResolution.y() / 2.0f;
 	matrix = glm::translate(matrix , glm::vec3(pos.x(), pos.y(), 0.0f));
 }

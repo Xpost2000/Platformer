@@ -32,6 +32,12 @@ GLCanvas::GLCanvas( wxWindow* parent, const wxGLAttributes& disp, wxWindowID id,
 }
 
 void GLCanvas::PaintScene( wxPaintEvent& pnt ){
+	camera.SetScreenRes(Vec2(viewPort_sz.x, viewPort_sz.y));
+//	camera.RecenterPlayer(player);
+//	camera.update(player);
+	if(camera.get_matrix() == glm::mat4()){
+		std::cerr << "MATRIX IS EQUAL TO IDENTITY\n";
+	}
 	SetCurrent(*ctx_obj);
 	wxPaintDC (this);
 	if(!current.loaded){
@@ -52,12 +58,12 @@ void GLCanvas::PaintScene( wxPaintEvent& pnt ){
 #endif
 	ds->use();
 	ds->setTextured(false);	
-	ds->setMatrices(projection, view);
+	ds->setMatrices(projection, camera.get_matrix());
 	ls->use();
 	ls->setTex(0);
 	ls->setTextured(true);
 	ls->setProj(projection);
-	ls->setView(view);
+	ls->setView(camera.get_matrix());
 	// render the lights
 	for(int i = 0; i < 10; ++i ){
 		ls->setLight(i, lights[i]);
@@ -76,8 +82,6 @@ void GLCanvas::PaintScene( wxPaintEvent& pnt ){
 	ds->use();
 	sb->draw( player.getPos(), player.getUvs(), player.getSize(), Vec4(1.0f, 0.0, 0.0, 1.0) );
 	sb->render(true);
-
-	
 	SwapBuffers();
 }
 

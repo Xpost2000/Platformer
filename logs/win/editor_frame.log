@@ -1,14 +1,28 @@
-In file included from ../../src/editor_src/../vec3.hpp:4:0,
-                 from ../../src/editor_src/../Vertex.h:5,
-                 from ../../src/editor_src/../SpriteBatcher.h:4,
+In file included from ../../src/editor_src/../GameCamera.h:4:0,
                  from ../../src/editor_src/GLCanvas.h:9,
                  from ../../src/editor_src/EditorFrame.h:4,
                  from ../../src/editor_src/EditorFrame.cpp:1:
 ../../src/editor_src/../vec2.hpp:156:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
  #endif VEC2_CROSS_PRODUCT
         ^
+In file included from ../../src/editor_src/GLCanvas.h:9:0,
+                 from ../../src/editor_src/EditorFrame.h:4,
+                 from ../../src/editor_src/EditorFrame.cpp:1:
+../../src/editor_src/../GameCamera.h: In constructor 'GameCamera::GameCamera(Vec2, Vec2, Vec2, Vec2)':
+../../src/editor_src/../GameCamera.h:27:32: warning: 'GameCamera::lowerLimits' will be initialized after [-Wreorder]
+   Vec2 lowerLimits=Vec2(-100000);
+                                ^
+../../src/editor_src/../GameCamera.h:23:8: warning:   'Vec2 GameCamera::screenResolution' [-Wreorder]
+   Vec2 screenResolution;
+        ^
+In file included from ../../src/editor_src/GLCanvas.h:9:0,
+                 from ../../src/editor_src/EditorFrame.h:4,
+                 from ../../src/editor_src/EditorFrame.cpp:1:
+../../src/editor_src/../GameCamera.h:12:3: warning:   when initialized here [-Wreorder]
+   GameCamera(Vec2 pos, Vec2 screenResolution, Vec2 limits, Vec2 lowerLimits) : pos(pos), limits(limits), lowerLimits(lowerLimits), screenResolution(screenResolution) {}
+   ^
 In file included from ../../src/editor_src/../LightShader.h:5:0,
-                 from ../../src/editor_src/GLCanvas.h:11,
+                 from ../../src/editor_src/GLCanvas.h:12,
                  from ../../src/editor_src/EditorFrame.h:4,
                  from ../../src/editor_src/EditorFrame.cpp:1:
 ../../src/editor_src/../ShaderUniform.h: In member function 'bool ShaderUniform::is_valid()':
@@ -18,7 +32,7 @@ In file included from ../../src/editor_src/../LightShader.h:5:0,
 In file included from ../../src/editor_src/../Progressor.h:3:0,
                  from ../../src/editor_src/../Player.h:5,
                  from ../../src/editor_src/../Level.h:6,
-                 from ../../src/editor_src/GLCanvas.h:13,
+                 from ../../src/editor_src/GLCanvas.h:14,
                  from ../../src/editor_src/EditorFrame.h:4,
                  from ../../src/editor_src/EditorFrame.cpp:1:
 ../../src/editor_src/../Entity.h: In constructor 'Entity::Entity(Vec2, Vec2, Vec2, Vec4)':
@@ -37,7 +51,7 @@ In file included from ../../src/editor_src/../Progressor.h:3:0,
    ^
 In file included from ../../src/editor_src/../Player.h:10:0,
                  from ../../src/editor_src/../Level.h:6,
-                 from ../../src/editor_src/GLCanvas.h:13,
+                 from ../../src/editor_src/GLCanvas.h:14,
                  from ../../src/editor_src/EditorFrame.h:4,
                  from ../../src/editor_src/EditorFrame.cpp:1:
 ../../src/editor_src/../Block.h: In member function 'virtual Vec4 Block::getUvs()':

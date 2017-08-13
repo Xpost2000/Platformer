@@ -45,7 +45,7 @@ void EditorFrame::OnQuit( wxCommandEvent& ev ){
 	Close();
 }
 void EditorFrame::OnRecenter( wxCommandEvent& ev ){
-	NOT_IMPLEMENTED_MB("The camera would be recentered(if it existed)");
+//	NOT_IMPLEMENTED_MB("The camera would be recentered(if it existed)");
 	RecenterCamera();
 }
 void EditorFrame::OnAbout( wxCommandEvent& ev ){
@@ -64,6 +64,7 @@ void EditorFrame::OnOpen( wxCommandEvent& ev ){
 	}
 }
 void EditorFrame::RecenterCamera(){
+	canvas->get_camera().RecenterPlayer(canvas->get_player());
 }
 // Declare the Event Table
 wxBEGIN_EVENT_TABLE(EditorFrame, wxFrame)

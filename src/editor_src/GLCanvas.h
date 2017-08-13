@@ -6,6 +6,7 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include "../DefaultShader.h"
+#include "../GameCamera.h"
 #include "../SpriteBatcher.h"
 #include "../LightStruct.h"
 #include "../LightShader.h"
@@ -31,10 +32,13 @@ class GLCanvas : public wxGLCanvas{
 
 		const std::shared_ptr<IDevice>& get_device() { return dev; }
 		Level& get_level() { return current; }
+		GameCamera& get_camera() { return camera; }
+		Player& get_player() { return player; }
 	private:
 		glm::mat4 view=glm::mat4();
 		glm::mat4 projection;		
 	private:
+		GameCamera camera;
 		Level current;
 		Player player;
 		EntityManager entity_manager;

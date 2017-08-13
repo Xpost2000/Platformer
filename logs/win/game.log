@@ -72,10 +72,10 @@ In file included from ../../src/Game.h:20:0,
 In file included from ../../src/Game.h:23:0,
                  from ../../src/Game.cpp:1:
 ../../src/GameCamera.h: In constructor 'GameCamera::GameCamera(Vec2, Vec2, Vec2, Vec2)':
-../../src/GameCamera.h:23:8: warning: 'GameCamera::lowerLimits' will be initialized after [-Wreorder]
-   Vec2 lowerLimits;
-        ^
-../../src/GameCamera.h:19:8: warning:   'Vec2 GameCamera::screenResolution' [-Wreorder]
+../../src/GameCamera.h:27:32: warning: 'GameCamera::lowerLimits' will be initialized after [-Wreorder]
+   Vec2 lowerLimits=Vec2(-100000);
+                                ^
+../../src/GameCamera.h:23:8: warning:   'Vec2 GameCamera::screenResolution' [-Wreorder]
    Vec2 screenResolution;
         ^
 In file included from ../../src/Game.h:23:0,

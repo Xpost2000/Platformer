@@ -14,12 +14,16 @@ class GameCamera{
 		Vec2 getLimits() { return limits; }
 		Vec2 getLowerLimits() { return lowerLimits; }
 		Vec2 getPos() { return pos; }
-		glm::mat4 get_matrix() { return matrix; }
+		void SetScreenRes( Vec2 res ) { screenResolution=res; }
+		void SetPos( Vec2 pos ) { this->pos = pos; }
+		void RecenterPlayer( Player& p );	
+		void refresh(){ matrix = glm::translate(matrix, glm::vec3(pos.x(), pos.y(), 0.0f)); }
+		glm::mat4 &get_matrix() { return matrix; }
 	private:
 		Vec2 screenResolution;
 		glm::mat4 matrix;
 		Vec2 pos;
-		Vec2 limits;
-		Vec2 lowerLimits;
+		Vec2 limits=Vec2(100000);
+		Vec2 lowerLimits=Vec2(-100000);
 };
 #endif
