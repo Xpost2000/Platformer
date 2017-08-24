@@ -17,6 +17,7 @@ class EditorFrame : public wxFrame{
 		void OnQuit( wxCommandEvent& ev );
 		void OnClose ( wxCloseEvent& ev );
 		void OnRecenter( wxCommandEvent& ev );
+		void OnTestMap( wxCommandEvent& ev );
 		void OnLightingBox( wxCommandEvent& ev );
 		void OnAbout( wxCommandEvent& ev );
 		void OnOpen( wxCommandEvent& ev );
@@ -30,8 +31,11 @@ class EditorFrame : public wxFrame{
 		// Menu Bar.
 		wxMenuBar* topBar;
 		wxMenu* file;
+		wxMenu* edit;
 		wxMenu* view;
 		wxMenu* help;
+		wxString currentDir;
+		wxString currentLevelPath;
 		// Dialogs.
 		EditorAboutDialog* aboutDialog;
 		DECLARE_EVENT_TABLE()

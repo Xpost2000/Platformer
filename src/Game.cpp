@@ -266,7 +266,7 @@ std::function<void(int&, char**, Game*)> command_callbacks[]={
 	CALLBACK_CMD("LOAD LEVEL"){
 		std::cerr << "Please note levels loaded that have a progressor cannot go to the next level and will crash the program\n";
 		instance->levels.push_back(Level(argv[++argc]));
-		instance->state = GameState::Playing;
+//		instance->state = GameState::Playing;
 	},
 	CALLBACK_CMD("RESOLUTION"){
 		instance->w = atoi(argv[++argc]);

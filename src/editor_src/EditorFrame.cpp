@@ -13,6 +13,7 @@ EditorFrame::EditorFrame(wxWindow* parent, wxWindowID id,
 : wxFrame(parent, id, title, pos, size){
 	glAttributes.PlatformDefaults().Depth(24).DoubleBuffer().EndList();
 	canvas = new GLCanvas(this, glAttributes, wxID_ANY, pos, size);	
+	currentDir = wxGetCwd();
 	CreateStatusBar(1);
 	SetStatusText("Letter X Game Editor prototype/alpha");
 	timer = new RenderTimer( canvas );
@@ -23,18 +24,21 @@ EditorFrame::EditorFrame(wxWindow* parent, wxWindowID id,
 	topBar = new wxMenuBar();
 	// Now I construct the other sub menus
 	file = new wxMenu("File");
+	edit = new wxMenu("Edit");
 	view = new wxMenu("View");
 	help = new wxMenu("Help");
 
 	file->Append( ConstantId::MainWindow::FileMenu_Open, "Open an existing level\tAlt-O", "Opens a existing level file." );
 	file->Append( wxID_EXIT, "Exit", "Quit the program" );
-	view->Append( ConstantId::MainWindow::ViewMenu_Recenter, "Recenter on Player", "Recenter the camera onto the player" );
-	view->AppendCheckItem( ConstantId::MainWindow::ViewMenu_Lighting, "Enable Lighting", "" );
+	edit->Append( ConstantId::MainWindow::EditMenu_Test, "Test map ingame \tAlt-P", "Test currently opened map ingame");
+	view->Append( ConstantId::MainWindow::ViewMenu_Recenter, "Recenter on Player\tAlt-C", "Recenter the camera onto the player" );
+	view->AppendCheckItem( ConstantId::MainWindow::ViewMenu_Lighting, "Enable Lighting\tAlt-L", "" );
 	help->Append( ConstantId::MainWindow::HelpMenu_About, "About\tF1", "" );
 
 
 	// now let's append them to the menu bar so they work
 	topBar->Append(file, "File");
+	topBar->Append(edit, "Edit");
 	topBar->Append(view, "View");
 	topBar->Append(help, "Help");
 
@@ -60,6 +64,8 @@ void EditorFrame::OnOpen( wxCommandEvent& ev ){
 				"Level Files (*.map)|*.map", wxFD_OPEN);
 	if(open_file.ShowModal() == wxID_OK){
 		canvas->get_level() = Level(open_file.GetPath().ToStdString());	
+
+		currentLevelPath = open_file.GetPath();
 	}else{
 		return;
 	}
@@ -70,6 +76,9 @@ void EditorFrame::RecenterCamera(){
 void EditorFrame::OnLightingBox( wxCommandEvent& ev ){
 	canvas->lighting_enabled() = view->IsChecked( ConstantId::MainWindow::ViewMenu_Lighting );
 }
+void EditorFrame::OnTestMap( wxCommandEvent& ev ){
+	wxExecute(currentDir+"/Game.exe -fl " + currentLevelPath + " -res 700 500 ");
+}
 // Declare the Event Table
 wxBEGIN_EVENT_TABLE(EditorFrame, wxFrame)
 	EVT_MENU( wxID_EXIT, EditorFrame::OnQuit )
@@ -77,5 +86,6 @@ wxBEGIN_EVENT_TABLE(EditorFrame, wxFrame)
 	EVT_MENU( ConstantId::MainWindow::HelpMenu_About, EditorFrame::OnAbout )
 	EVT_MENU( ConstantId::MainWindow::FileMenu_Open, EditorFrame::OnOpen)
 	EVT_MENU( ConstantId::MainWindow::ViewMenu_Lighting, EditorFrame::OnLightingBox)
+	EVT_MENU( ConstantId::MainWindow::EditMenu_Test, EditorFrame::OnTestMap )	 
 wxEND_EVENT_TABLE()
 
