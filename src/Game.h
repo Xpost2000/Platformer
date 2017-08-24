@@ -41,6 +41,7 @@ class Game{
 		// force load a level so I'm going to add a few command line
 		// arguments to allow this.
 		Game(int argc, char** argv);
+		Game(Game& other) = default;
 		~Game();
 		void run();
 	private:
@@ -52,6 +53,7 @@ class Game{
 		float h ;
 		std::string game_name;
 		bool initalized=false;
+		// I need it to be like this cause I initalize it in the cpp file.
 	private:
 		uiButton start;
 		uiButton option;
@@ -71,7 +73,10 @@ class Game{
 		std::shared_ptr<LightShader> ls = nullptr;
 		std::shared_ptr<PostProcessor> pp = nullptr;
 		int currentLevel=0;
+	public:
+		// I need to hack some stuff in.
 		std::vector<Level> levels;
+	private:
 		glm::mat4 proj;
 		float amnt;
 		ptrs::IDevice ctx = nullptr;

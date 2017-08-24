@@ -227,7 +227,6 @@ void Game::draw(){
 // representation and the standand representation.
 
 // here's a convient macro
-#define CALLBACK_CMD(name) [&](int &argc, char** argv)
 #define COMMAND(sh, cmd, desc) std::make_pair<std::pair<std::string, std::string>, std::string>(std::make_pair<std::string, std::string>(sh, cmd), desc)
 /*
 std::pair<std::string, std::string> command_strings[]={
@@ -248,14 +247,18 @@ std::pair<std::pair<std::string, std::string>, std::string> command_strings[]={
 	COMMAND("-e", "--editor-run", "Only use if the editor runs this program, it is a combination of -v and -fl")
 };
 
-std::function<void(int&, char**)> command_callbacks[]={
+#define CALLBACK_CMD(name) [&](int &argc, Game* instance)
+std::function<void(int&, Game*)> command_callbacks[]={
 	CALLBACK_CMD("HELP"){
 		std::cout << "List of accepted commands\n-----------------------------\n" << std::endl;
 		for(auto& commands : command_strings){
-			std::cout << commands.first.first << " || " << commands.first.second << "\t" << commands.second << std::endl;
+			std::cout << commands.first.first << "\t" << commands.first.second << "\t" << commands.second << std::endl;
 		}
+		std::cout << "If you have questions about gameplay and or\nother things, please contact me at xpost2000cod@gmail.com" << std::endl;
 	},
 	CALLBACK_CMD("VERSION"){
+		std::cout << "I distribute this program under the zlib license" << std::endl;
+		std::cout << "This game is in pre-alpha stage" << std::endl;
 	},
 	CALLBACK_CMD("LOAD LEVEL"){
 	},
@@ -269,16 +272,16 @@ void Game::parse_cmd(int argc, char** argv){
 	// I keep going whilst there are still strings pretty much.
 	std::string cmd_string;
 	int argc_cur = 1;
-	while((cmd_string = argv[argc_cur], cmd_string.c_str() != NULL) && argc_cur < argc){
+	while((cmd_string = argv[argc_cur], cmd_string.c_str() != NULL) && argc_cur != argc){
 		// I'm essentially going to compare each element to
 		// some tables and parse approprietely.
 		for( size_t i = 0; i < 4; ++i ){
 			std::pair<std::string, std::string> cmd = command_strings[i].first;
 			if(cmd_string == cmd.first || cmd_string == cmd.second){
 				// the functions are made in order anyways.
-				command_callbacks[i](argc_cur, argv);
+				command_callbacks[i](argc_cur, this);
 			}
 		}
-		++argc_cur;
+		argc_cur = std::min(argc_cur, argc);
 	}
 }
