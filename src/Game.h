@@ -30,20 +30,28 @@
 
 /*
  * 
- * Spooky representation eh?
+ * TODO: Refactor all of this code
+ * 	 cause it's starting to get very messy.
  *
  */
 class Game{
 	public:
 		Game();
+		// I need the editor to be able to essentially
+		// force load a level so I'm going to add a few command line
+		// arguments to allow this.
+		Game(int argc, char** argv);
 		~Game();
 		void run();
 	private:
 		void update();
 		void draw();
+		void parse_cmd(int argc, char** argv);
+		void init();
 		float w ;
 		float h ;
 		std::string game_name;
+		bool initalized=false;
 	private:
 		uiButton start;
 		uiButton option;

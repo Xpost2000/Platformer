@@ -89,11 +89,8 @@ void GLCanvas::LogicRefresh(){
 	if(!current.loaded){
 		current.load(player, entity_manager, lights);
 	}
-	if(HasFocus()){
-		std::cerr << "I have focus and attention :)" << std::endl;
-	}else{
-		std::cerr << "I don't have focus" << std::endl;
-	}
+	std::cerr << GetClientSize().x << std::endl;
+	std::cerr << GetClientSize().y<< std::endl;
 }
 
 void GLCanvas::OnResize( wxSizeEvent& evnt ){

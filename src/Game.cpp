@@ -16,7 +16,35 @@ std::array<Light, 10> lights{
 	Light(),
 	Light()
 };
+Game::Game(int argc, char** argv){
+	// no arguments (except for the default argument 0 which is the program name)
+	parse_cmd(argc, argv);
+	init();
+}
 Game::Game(){
+	init();	
+	std::cout << "\n\nEntries in the level list\n";
+	lst.read(cfg.get_lvl_list_dir() + cfg.get_lvl_list_file());
+	for( auto &ent : lst.entries ){
+		std::cout << ent << std::endl;
+		levels.push_back(Level(ent));
+	}
+}
+Game::~Game(){
+	Sound::free_memory();
+	SDL_Quit();
+}
+void Game::run(){
+	while(!window->should_close()){
+		update();
+		draw();
+	}
+}
+// package this into a mouse struct class.
+int mX;
+int mY;
+// this is essentially basic initalization in general.
+void Game::init(){
 	SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
 	IMG_Init(IMG_INIT_PNG);
 	Sound::init();
@@ -32,12 +60,6 @@ Game::Game(){
 	std::cout << "Texture Files Directory ::" << cfg.get_texture_dir() << std::endl;
 	std::cout << "Level Files Directory ::" << cfg.get_level_dir() << std::endl;
 	std::cout << "Sound Files Directory ::" << cfg.get_sounds_dir() << std::endl;
-	std::cout << "\n\nEntries in the level list\n";
-	lst.read(cfg.get_lvl_list_dir() + cfg.get_lvl_list_file());
-	for( auto &ent : lst.entries ){
-		std::cout << ent << std::endl;
-		levels.push_back(Level(ent));
-	}
 	proj = glm::ortho(0.0f, w, h, 0.0f, -1.0f, 1.0f);
 	window = std::make_shared<Window>(w, h, game_name);
 	window->spawn();
@@ -71,19 +93,8 @@ Game::Game(){
 	Sound::load_sound(cfg.get_sounds_dir()+std::string("beep.wav"), "beep");
 	gc = GameCamera(Vec2(0, 0), Vec2(w, h), Vec2(-3000, -3000), Vec2(3000, 3000));
 	ls->setProj(proj);
+	initalized =true;
 }
-Game::~Game(){
-	Sound::free_memory();
-	SDL_Quit();
-}
-void Game::run(){
-	while(!window->should_close()){
-		update();
-		draw();
-	}
-}
-int mX;
-int mY;
 void Game::update(){
 	ClockTimer::Tick();
 	SDL_GetMouseState(&mX, &mY);
@@ -207,4 +218,62 @@ void Game::draw(){
 	pp->end();
 	ls->setView(gc.get_matrix());
 	window->refresh();
+}
+
+// I'm going to create a few tables containing data here for easy usage.
+// I'm using a pair because all commands will have a short hand 
+// representation and the standand representation.
+
+// here's a convient macro
+#define CALLBACK_CMD(name) [&](int &argc, char** argv)
+#define COMMAND(sh, cmd, desc) std::make_pair<std::pair<std::string, std::string>, std::string>(std::make_pair<std::string, std::string>(sh, cmd), desc)
+/*
+std::pair<std::string, std::string> command_strings[]={
+	std::make_pair<std::string, std::string>("-h", "--help"),
+	std::make_pair<std::string, std::string>("-v", "--version"),
+	std::make_pair<std::string, std::string>("-fl", "--forceload_level"),
+	std::make_pair<std::string, std::string>("-res", "--resolution")
+};
+*/
+// I'm going to make a pair of a pair of strings and then a string
+// because I'm using it like this
+// (shortcut cmd, full cmd name), (description)
+std::pair<std::pair<std::string, std::string>, std::string> command_strings[]={
+	COMMAND("-h", "--help", "Shows you all command line arguments"),
+	COMMAND("-v", "--version", "Shows you current software version"),
+	COMMAND("-fl", "--forceload_level", "Forcefully load a level, ignoring the level list\n"),
+	COMMAND("-res", "--resolution", "start the game at a set resolution")
+};
+
+std::function<void(int&, char**)> command_callbacks[]={
+	CALLBACK_CMD("HELP"){
+		std::cout << "List of accepted commands\n-----------------------------\n" << std::endl;
+		for(auto& commands : command_strings){
+			std::cout << commands.first.first << " || " << commands.first.second << "\t" << commands.second << std::endl;
+		}
+	},
+	CALLBACK_CMD("VERSION"){
+	},
+	CALLBACK_CMD("LOAD LEVEL"){
+	},
+	CALLBACK_CMD("RESOLUTION"){
+	}
+};
+
+void Game::parse_cmd(int argc, char** argv){
+	// I keep going whilst there are still strings pretty much.
+	std::string cmd_string;
+	int argc_cur = 1;
+	while((cmd_string = argv[argc_cur], cmd_string.c_str() != NULL) && argc_cur < argc){
+		// I'm essentially going to compare each element to
+		// some tables and parse approprietely.
+		for( size_t i = 0; i < 4; ++i ){
+			std::pair<std::string, std::string> cmd = command_strings[i].first;
+			if(cmd_string == cmd.first || cmd_string == cmd.second){
+				// the functions are made in order anyways.
+				command_callbacks[i](argc_cur, argv);
+			}
+		}
+		++argc_cur;
+	}
 }
