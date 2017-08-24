@@ -247,8 +247,8 @@ std::pair<std::pair<std::string, std::string>, std::string> command_strings[]={
 	COMMAND("-e", "--editor-run", "Only use if the editor runs this program, it is a combination of -v and -fl")
 };
 
-#define CALLBACK_CMD(name) [&](int &argc, Game* instance)
-std::function<void(int&, Game*)> command_callbacks[]={
+#define CALLBACK_CMD(name) [&](int &argc, char** argv , Game* instance)
+std::function<void(int&, char**, Game*)> command_callbacks[]={
 	CALLBACK_CMD("HELP"){
 		std::cout << "List of accepted commands\n-----------------------------\n" << std::endl;
 		for(auto& commands : command_strings){
@@ -261,6 +261,7 @@ std::function<void(int&, Game*)> command_callbacks[]={
 		std::cout << "This game is in pre-alpha stage" << std::endl;
 	},
 	CALLBACK_CMD("LOAD LEVEL"){
+		instance->levels.push_back(Level(argv[++argc]));
 	},
 	CALLBACK_CMD("RESOLUTION"){
 	},
@@ -272,16 +273,28 @@ void Game::parse_cmd(int argc, char** argv){
 	// I keep going whilst there are still strings pretty much.
 	std::string cmd_string;
 	int argc_cur = 1;
+	/*
 	while((cmd_string = argv[argc_cur], cmd_string.c_str() != NULL) && argc_cur != argc){
 		// I'm essentially going to compare each element to
 		// some tables and parse approprietely.
-		for( size_t i = 0; i < 4; ++i ){
+		for( size_t i = 0; i < 5; ++i ){
 			std::pair<std::string, std::string> cmd = command_strings[i].first;
 			if(cmd_string == cmd.first || cmd_string == cmd.second){
 				// the functions are made in order anyways.
-				command_callbacks[i](argc_cur, this);
+				command_callbacks[i](argc_cur, argv, this);
 			}
 		}
 		argc_cur = std::min(argc_cur, argc);
+	}
+	*/
+	for( ; argc_cur < argc; ++argc_cur ){
+		cmd_string = argv[argc_cur];
+		for( size_t i = 0; i < 5; ++i ){
+			std::pair<std::string, std::string> cmd = command_strings[i].first;
+			if(cmd_string == cmd.first || cmd_string == cmd.second){
+				// the functions are made in order anyways.
+				command_callbacks[i](argc_cur, argv, this);
+			}
+		}
 	}
 }
