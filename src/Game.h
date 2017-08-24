@@ -49,8 +49,10 @@ class Game{
 		void draw();
 		void parse_cmd(int argc, char** argv);
 		void init();
+	public:
 		float w ;
 		float h ;
+	private:
 		std::string game_name;
 		bool initalized=false;
 		// I need it to be like this cause I initalize it in the cpp file.
@@ -59,8 +61,9 @@ class Game{
 		uiButton option;
 		uiButton quit;
 		uiButton credits;
-	private:
+	public:
 		GameState state = GameState::Menu;
+	private:
 		Config cfg;
 		LevelListFile lst;
 		GameCamera gc;

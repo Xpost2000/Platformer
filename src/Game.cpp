@@ -19,9 +19,13 @@ std::array<Light, 10> lights{
 Game::Game(int argc, char** argv){
 	// no arguments (except for the default argument 0 which is the program name)
 	parse_cmd(argc, argv);
+	cfg.read_config();
 	init();
 }
 Game::Game(){
+	cfg.read_config();
+	w = cfg.get_window_width();
+	h = cfg.get_window_height();
 	init();	
 	std::cout << "\n\nEntries in the level list\n";
 	lst.read(cfg.get_lvl_list_dir() + cfg.get_lvl_list_file());
@@ -50,9 +54,6 @@ void Game::init(){
 	SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
 	IMG_Init(IMG_INIT_PNG);
 	Sound::init();
-	cfg.read_config();
-	w = cfg.get_window_width();
-	h = cfg.get_window_height();
 	start = uiButton(Vec2(0+100, h/2.0f + 50), Vec2(300, 60), Vec3(1.0), Vec3(1.0, 0.0, 0.0), ButtonType::Start);
 	option = uiButton(Vec2(0+100, h/2.0f + 120), Vec2(300, 60), Vec3(1.0), Vec3(0.0, 1.0, 0.0), ButtonType::Options);
 	quit = uiButton(Vec2(0+100, h/2.0f + 180), Vec2(300, 60), Vec3(1.0), Vec3(0.0, 0.0, 1.0), ButtonType::Quit);
@@ -254,39 +255,33 @@ std::function<void(int&, char**, Game*)> command_callbacks[]={
 		for(auto& commands : command_strings){
 			std::cout << commands.first.first << "\t" << commands.first.second << "\t" << commands.second << std::endl;
 		}
-		std::cout << "If you have questions about gameplay and or\nother things, please contact me at xpost2000cod@gmail.com" << std::endl;
+		std::cout << "If you have questions about gameplay and or\nother things, please contact me at xpost2000cod@gmail.com\n" << std::endl;
+		exit(0);
 	},
 	CALLBACK_CMD("VERSION"){
 		std::cout << "I distribute this program under the zlib license" << std::endl;
 		std::cout << "This game is in pre-alpha stage" << std::endl;
+		exit(0);
 	},
 	CALLBACK_CMD("LOAD LEVEL"){
+		std::cerr << "Please note levels loaded that have a progressor cannot go to the next level and will crash the program\n";
 		instance->levels.push_back(Level(argv[++argc]));
+		instance->state = GameState::Playing;
 	},
 	CALLBACK_CMD("RESOLUTION"){
+		instance->w = atoi(argv[++argc]);
+		instance->h = atoi(argv[++argc]);
 	},
 	CALLBACK_CMD("EDITOR RUN FLAG"){
+		command_callbacks[2](argc, argv, instance);
+		command_callbacks[3](argc, argv, instance);
 	}
 };
 
 void Game::parse_cmd(int argc, char** argv){
 	// I keep going whilst there are still strings pretty much.
 	std::string cmd_string;
-	int argc_cur = 1;
-	/*
-	while((cmd_string = argv[argc_cur], cmd_string.c_str() != NULL) && argc_cur != argc){
-		// I'm essentially going to compare each element to
-		// some tables and parse approprietely.
-		for( size_t i = 0; i < 5; ++i ){
-			std::pair<std::string, std::string> cmd = command_strings[i].first;
-			if(cmd_string == cmd.first || cmd_string == cmd.second){
-				// the functions are made in order anyways.
-				command_callbacks[i](argc_cur, argv, this);
-			}
-		}
-		argc_cur = std::min(argc_cur, argc);
-	}
-	*/
+	int argc_cur = 1;	
 	for( ; argc_cur < argc; ++argc_cur ){
 		cmd_string = argv[argc_cur];
 		for( size_t i = 0; i < 5; ++i ){
