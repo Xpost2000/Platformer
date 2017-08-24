@@ -20,6 +20,10 @@
  * I'm this is going to render the game scene.
  * to paint the scene I'm probably going to store the game data
  * and render the data when it's sent.
+ *
+ * I really do want to follow the single responsibility for each class ideal
+ * but it seems to be very hard to work with in wxWidgets. but then again this is the
+ * second wxWidgets application I've created other than a calculator
  */
 #include <memory>
 class GLCanvas : public wxGLCanvas{
@@ -28,7 +32,10 @@ class GLCanvas : public wxGLCanvas{
 		~GLCanvas(){}
 		void PaintScene( wxPaintEvent& pnt );	
 		void OnResize ( wxSizeEvent& evnt );
+		void MouseEvents( wxMouseEvent& ev );
+
 		void LogicRefresh();
+		
 		void SetTextureManagerPtr( const std::shared_ptr<TextureManager>& tm ) { this->tm = tm; }
 
 		const std::shared_ptr<IDevice>& get_device() { return dev; }

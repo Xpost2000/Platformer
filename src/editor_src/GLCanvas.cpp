@@ -89,8 +89,6 @@ void GLCanvas::LogicRefresh(){
 	if(!current.loaded){
 		current.load(player, entity_manager, lights);
 	}
-	std::cerr << GetClientSize().x << std::endl;
-	std::cerr << GetClientSize().y<< std::endl;
 }
 
 void GLCanvas::OnResize( wxSizeEvent& evnt ){
@@ -100,7 +98,20 @@ void GLCanvas::OnResize( wxSizeEvent& evnt ){
 	camera.SetScreenRes(Vec2(viewPort_sz.x, viewPort_sz.y));
 }
 
+void GLCanvas::MouseEvents( wxMouseEvent& ev ){
+	const wxPoint center = wxPoint(viewPort_sz.x/2, viewPort_sz.y/2);
+	if(ev.Dragging() && ev.RightIsDown()){
+		ShowCursor(0);
+		const wxPoint curPos = ScreenToClient(wxGetMousePosition());
+		const wxPoint mouseDelta = curPos - center;
+		camera.transform( Vec2(-mouseDelta.x*0.7, -mouseDelta.y*0.7) );
+		WarpPointer( center.x, center.y );
+	}
+	ShowCursor(1);
+}
+
 wxBEGIN_EVENT_TABLE( GLCanvas, wxGLCanvas )
 	EVT_PAINT(GLCanvas::PaintScene)
 	EVT_SIZE(GLCanvas::OnResize)
+	EVT_MOUSE_EVENTS(GLCanvas::MouseEvents)
 wxEND_EVENT_TABLE()

@@ -14,6 +14,7 @@ class GameCamera{
 		Vec2 getLimits() { return limits; }
 		Vec2 getLowerLimits() { return lowerLimits; }
 		Vec2 getPos() { return pos; }
+		inline Vec2 transform( Vec2 offset ) { pos.x() += offset.x(); pos.y() += offset.y(); }
 		void SetScreenRes( Vec2 res ) { screenResolution=res; }
 		void SetPos( Vec2 pos ) { this->pos = pos; }
 		void RecenterPlayer( Player& p );	

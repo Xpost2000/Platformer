@@ -11,10 +11,10 @@ In file included from ../../src/editor_src/GLCanvas.h:9:0,
                  from ../../src/editor_src/EditorApplication.h:11,
                  from ../../src/editor_src/EditorApplication.cpp:1:
 ../../src/editor_src/../GameCamera.h: In constructor 'GameCamera::GameCamera(Vec2, Vec2, Vec2, Vec2)':
-../../src/editor_src/../GameCamera.h:27:32: warning: 'GameCamera::lowerLimits' will be initialized after [-Wreorder]
+../../src/editor_src/../GameCamera.h:28:32: warning: 'GameCamera::lowerLimits' will be initialized after [-Wreorder]
    Vec2 lowerLimits=Vec2(-100000);
                                 ^
-../../src/editor_src/../GameCamera.h:23:8: warning:   'Vec2 GameCamera::screenResolution' [-Wreorder]
+../../src/editor_src/../GameCamera.h:24:8: warning:   'Vec2 GameCamera::screenResolution' [-Wreorder]
    Vec2 screenResolution;
         ^
 In file included from ../../src/editor_src/GLCanvas.h:9:0,
@@ -24,6 +24,14 @@ In file included from ../../src/editor_src/GLCanvas.h:9:0,
 ../../src/editor_src/../GameCamera.h:12:3: warning:   when initialized here [-Wreorder]
    GameCamera(Vec2 pos, Vec2 screenResolution, Vec2 limits, Vec2 lowerLimits) : pos(pos), limits(limits), lowerLimits(lowerLimits), screenResolution(screenResolution) {}
    ^
+In file included from ../../src/editor_src/GLCanvas.h:9:0,
+                 from ../../src/editor_src/EditorFrame.h:4,
+                 from ../../src/editor_src/EditorApplication.h:11,
+                 from ../../src/editor_src/EditorApplication.cpp:1:
+../../src/editor_src/../GameCamera.h: In member function 'Vec2 GameCamera::transform(Vec2)':
+../../src/editor_src/../GameCamera.h:17:88: warning: no return statement in function returning non-void [-Wreturn-type]
+   inline Vec2 transform( Vec2 offset ) { pos.x() += offset.x(); pos.y() += offset.y(); }
+                                                                                        ^
 In file included from ../../src/editor_src/../LightShader.h:5:0,
                  from ../../src/editor_src/GLCanvas.h:12,
                  from ../../src/editor_src/EditorFrame.h:4,
