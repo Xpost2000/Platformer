@@ -35,10 +35,12 @@ Game::~Game(){
 	SDL_Quit();
 }
 void Game::run(){
+	if(initalized){
 	while(!window->should_close()){
 		update();
 		draw();
-	}
+		}
+	}else{ exit(0); }
 }
 // package this into a mouse struct class.
 int mX;
@@ -242,7 +244,8 @@ std::pair<std::pair<std::string, std::string>, std::string> command_strings[]={
 	COMMAND("-h", "--help", "Shows you all command line arguments"),
 	COMMAND("-v", "--version", "Shows you current software version"),
 	COMMAND("-fl", "--forceload_level", "Forcefully load a level, ignoring the level list\n"),
-	COMMAND("-res", "--resolution", "start the game at a set resolution")
+	COMMAND("-res", "--resolution", "start the game at a set resolution"),
+	COMMAND("-e", "--editor-run", "Only use if the editor runs this program, it is a combination of -v and -fl")
 };
 
 std::function<void(int&, char**)> command_callbacks[]={
@@ -257,6 +260,8 @@ std::function<void(int&, char**)> command_callbacks[]={
 	CALLBACK_CMD("LOAD LEVEL"){
 	},
 	CALLBACK_CMD("RESOLUTION"){
+	},
+	CALLBACK_CMD("EDITOR RUN FLAG"){
 	}
 };
 
