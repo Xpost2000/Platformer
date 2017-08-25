@@ -29,6 +29,7 @@ EditorFrame::EditorFrame(wxWindow* parent, wxWindowID id,
 	help = new wxMenu("Help");
 
 	file->Append( ConstantId::MainWindow::FileMenu_Open, "Open an existing level\tAlt-O", "Opens a existing level file." );
+	file->Append( ConstantId::MainWindow::FileMenu_Save, "Save a level to a file\tCtrl-S", "Save a level to a file");
 	file->Append( ConstantId::MainWindow::FileMenu_Details, "Level Details", "Recieve a summary of all entities on the map.");
 	file->Append( wxID_EXIT, "Exit", "Quit the program" );
 	edit->Append( ConstantId::MainWindow::EditMenu_Test, "Test map ingame \tAlt-P", "Test currently opened map ingame");
@@ -83,6 +84,9 @@ void EditorFrame::OnTestMap( wxCommandEvent& ev ){
 void EditorFrame::OnDetails( wxCommandEvent& ev ){
 	NOT_IMPLEMENTED_MB("TODO Feature");
 }
+void EditorFrame::OnSaveLevel( wxCommandEvent& ev ) {
+	NOT_IMPLEMENTED_MB("TODO FEATURE");
+}
 // Declare the Event Table
 wxBEGIN_EVENT_TABLE(EditorFrame, wxFrame)
 	EVT_MENU( wxID_EXIT, EditorFrame::OnQuit )
@@ -92,5 +96,6 @@ wxBEGIN_EVENT_TABLE(EditorFrame, wxFrame)
 	EVT_MENU( ConstantId::MainWindow::ViewMenu_Lighting, EditorFrame::OnLightingBox)
 	EVT_MENU( ConstantId::MainWindow::EditMenu_Test, EditorFrame::OnTestMap )	 
 	EVT_MENU( ConstantId::MainWindow::FileMenu_Details, EditorFrame::OnDetails )
+	EVT_MENU( ConstantId::MainWindow::FileMenu_Save, EditorFrame::OnSaveLevel )
 wxEND_EVENT_TABLE()
 

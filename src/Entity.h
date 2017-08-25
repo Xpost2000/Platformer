@@ -60,6 +60,10 @@ class Entity{
 			aabb pBB(pointPos, Vec2(1));
 			return bb.intersect(pBB);
 		}
+		bool interesect_point_pos( Vec2 pointPos ){
+			Entity ptr( pointPos, Vec2(1), Vec2(0), Vec4(0) );
+			return intersect(ptr);
+		}
 		void set_aabb(Vec2 pos, Vec2 size){ bb = aabb(pos, size); }
 		// each entity might reposition the aabb in their own way.
 		virtual void reposition_aabb() { bb = aabb( pos , bb.size); }

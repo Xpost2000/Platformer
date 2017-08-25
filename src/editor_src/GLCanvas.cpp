@@ -131,7 +131,9 @@ void GLCanvas::MouseEvents( wxMouseEvent& ev ){
 		std::cout << "Player Pos : "<< player.getPos().x() << " , " << player.getPos().y();
 		std::cout << "Mosue Pos  : " << mousePos.x() << " , " << mousePos.y() << std::endl;
 		for(auto& ent : entities){
-			if(ent->intersect_point( mousePos )){
+			// I made a spelling mistake while naming
+			// intersect_point_pos...
+			if(ent->interesect_point_pos( mousePos )){
 				std::cout << "An entity was clicked" << std::endl;
 				currentEnt = ent;
 				found_anything=true;
