@@ -73,7 +73,7 @@ void GLCanvas::PaintScene( wxPaintEvent& pnt ){
 	ls->unuse();
 	ds->use();
 	ds->setTextured(false);
-	if(currentEnt==nullptr){
+	if(currentEnt!=nullptr){
 		sb->draw( currentEnt->getPos(), Vec4(0), currentEnt->getSize(), Vec4(1.0, 0.0, 0.0, 1.0) );
 		sb->render();
 	}
@@ -105,6 +105,10 @@ void GLCanvas::MouseEvents( wxMouseEvent& ev ){
 		glm::vec3 mapped = glm::unProject(glm::vec3(curPos.x, viewPort_sz.y-curPos.y, 0.0), camera.get_matrix(), projection, glm::vec4(0, 0, viewPort_sz.x, viewPort_sz.y));
 		mousePos = Vec2(mapped.x, mapped.y);
 		// iterate through all objects
+		// I make a vector of pointers because a pointer can actually
+		// contain the data. If I had used the standard Entity vector
+		// it might not've worked. Also this should be slightly more faster
+		// anyways.
 		std::vector<Entity*> entities;
 		for( auto& block : entity_manager.get_blocks() ){
 			entities.push_back( &block );
@@ -120,6 +124,15 @@ void GLCanvas::MouseEvents( wxMouseEvent& ev ){
 		}
 		for( auto& bbs : entity_manager.get_background_static_blocks() ){
 			entities.push_back( &bbs );
+		}
+		entities.push_back ( &entity_manager.get_progressor() );
+		entities.push_back ( &player );
+		for(auto& ent : entities){
+			if(ent->intersect_point( mousePos )){
+				std::cout << "An entity was clicked" << std::endl;
+				currentEnt = ent;
+				break;
+			}
 		}
 	}
 }
