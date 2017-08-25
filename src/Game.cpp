@@ -234,6 +234,7 @@ std::pair<std::string, std::string> command_strings[]={
 // I'm going to make a pair of a pair of strings and then a string
 // because I'm using it like this
 // (shortcut cmd, full cmd name), (description)
+// TODO use an std array so I don't have to slightly change the for loop next time.
 std::pair<std::pair<std::string, std::string>, std::string> command_strings[]={
 	COMMAND("-h", "--help", "Shows you all command line arguments"),
 	COMMAND("-v", "--version", "Shows you current software version"),

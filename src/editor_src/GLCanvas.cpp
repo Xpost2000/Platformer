@@ -2,6 +2,8 @@
 #include "../Block.h"
 #include <iostream>
 
+Vec2 mousePos;
+
 GLCanvas::GLCanvas( wxWindow* parent, const wxGLAttributes& disp, wxWindowID id, const wxPoint & pos, const wxSize& size, long style )
 : wxGLCanvas(parent, disp, id, pos, size, style){
 	player=Player(Vec2(300), Vec2(73,73), Vec2(100), Vec4(1.0));
@@ -72,6 +74,7 @@ void GLCanvas::PaintScene( wxPaintEvent& pnt ){
 	ds->use();
 	ds->setTextured(false);
 	sb->draw( player.getPos(), player.getUvs(), player.getSize(), Vec4(1.0f, 0.0, 0.0, 1.0) );
+	sb->draw( mousePos, player.getUvs(), Vec2(4, 4), Vec4(1.0f, 0.0, 0.0, 1.0) );
 	sb->render(true);
 	SwapBuffers();
 }
@@ -91,11 +94,16 @@ void GLCanvas::OnResize( wxSizeEvent& evnt ){
 
 void GLCanvas::MouseEvents( wxMouseEvent& ev ){
 	const wxPoint center = wxPoint(viewPort_sz.x/2, viewPort_sz.y/2);
+	const wxPoint curPos = ScreenToClient(wxGetMousePosition());
 	if(ev.Dragging() && ev.RightIsDown()){
-		const wxPoint curPos = ScreenToClient(wxGetMousePosition());
 		const wxPoint mouseDelta = curPos - center;
 		camera.transform( Vec2(-mouseDelta.x*0.7, -mouseDelta.y*0.7) );
 		WarpPointer( center.x, center.y );
+	}
+	if(ev.LeftIsDown()){
+		glm::vec3 mapped = glm::unProject(glm::vec3(curPos.x, viewPort_sz.y-curPos.y, 0.0), camera.get_matrix(), projection, glm::vec4(0, 0, viewPort_sz.x, viewPort_sz.y));
+		mousePos = Vec2(mapped.x, mapped.y);
+		std::cout << "Mouse Coords (MAPPED TO GAME COORDS) : X " << mapped.x << " Y " << mapped.y << std::endl; 
 	}
 }
 
