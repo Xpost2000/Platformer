@@ -4,7 +4,7 @@ EDITOR_LIBS=-lmingw32 -lSDL2 -lSDL2_image -lglew32 -lOpenGL32 -lboost_random-mgw
 LIBS_LINUX=-lSDL2main -lSDL2 -lGLEW -lGL
 # temporarily adding debug symbols
 FLAGS=-std=gnu++14 -Wall -O2 -DGAME_BUILD=110
-EDITOR_FLAGS=-std=gnu++14 -Wall -O2 -mwindows
+EDITOR_FLAGS=-std=gnu++14 -Wall -O2 -mwindows -DEDITOR_BUILD=110
 EDITOR_OBJ_FILES=../../obj/EditorApplication.o\
 		 ../../obj/GLCanvas.o\
 		 ../../obj/EditorFrame.o\
@@ -110,7 +110,7 @@ build-editor:
 link-game:
 	$(GCC) $(OBJ_FILES) $(GAME_OBJ_FILES) $(LIBS) $(FLAGS) -o ../../bin/Game.exe 2> ../../logs/linker_windows.log
 link-editor:
-	$(GCC) $(OBJ_FILES) $(EDITOR_OBJ_FILES) $(EDITOR_LIBS) $(FLAGS) -o ../../bin/editor.exe 2> ../../logs/linker_windows_editor.log
+	$(GCC) $(OBJ_FILES) $(EDITOR_OBJ_FILES) $(EDITOR_LIBS) $(FLAGS) $(EDITOR_FLAGS) -o ../../bin/editor.exe 2> ../../logs/linker_windows_editor.log
 clean:
 	rm ../../obj/*.o
 exec:

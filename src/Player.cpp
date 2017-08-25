@@ -22,6 +22,7 @@ void Player::calculate_uvs(){
 		case PlayerState::WALKING:
 		case PlayerState::DEAD:
 			uvs = Vec4(0, 32.0f/64.0f, 30.0f/64.0f, 62.0f/64.0f);
+			return;
 			break;
 	}
 }
@@ -136,7 +137,7 @@ void Player::update(float dt, std::vector<Block> &blocks, std::vector<BasicEnemy
 	if(keys[SDL_SCANCODE_SPACE]){
 		jump(dt);
 	}
-	if( velocity.y() > 0 && !onGround ){
+	if( !onGround ){
 		pState = PlayerState::FALLING;
 	}
 	velocity.y() += gravity * dt;

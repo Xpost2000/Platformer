@@ -26,11 +26,19 @@ class Player : public Entity{
 	public:
 		Player(const Player& other) = default;
 		Player(){}
+#ifndef EDITOR_BUILD
 		Player(Vec2 pos, Vec2 size, Vec2 velocity , Vec4 color)
 	 	: Entity(pos, size, velocity, color)	{
 			set_aabb(Vec2(pos.x()+15, pos.y()+5), Vec2(40, 65));
+			reposition_aabb();
 			calculate_uvs();
 		}
+#else
+		Player( Vec2 pos, Vec2 size, Vec2 velocity, Vec4 color )
+		: Entity(pos, size, velocity, color){
+			calculate_uvs();
+		}
+#endif
 		void update(float dt, EntityManager& em);
 		void update(float dt, std::vector<Block> &blocks, std::vector<BasicEnemy>& be, std::vector<JumpingEnemy>& je, Progressor& p);
 		bool death_check(){ if(health < 0){ kill(); } return dead; }

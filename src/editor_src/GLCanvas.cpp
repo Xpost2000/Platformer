@@ -127,13 +127,20 @@ void GLCanvas::MouseEvents( wxMouseEvent& ev ){
 		}
 		entities.push_back ( &entity_manager.get_progressor() );
 		entities.push_back ( &player );
+		bool found_anything = false;
+		std::cout << "Player Pos : "<< player.getPos().x() << " , " << player.getPos().y();
+		std::cout << "Mosue Pos  : " << mousePos.x() << " , " << mousePos.y() << std::endl;
 		for(auto& ent : entities){
 			if(ent->intersect_point( mousePos )){
 				std::cout << "An entity was clicked" << std::endl;
 				currentEnt = ent;
+				found_anything=true;
 				break;
 			}
 		}
+		// This is to imitate a lot of more mature programs that allow selection
+		// in which if you don't hit anything like white space. It is deselected.
+		if( !found_anything ) currentEnt = nullptr;
 	}
 }
 
