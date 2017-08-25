@@ -29,6 +29,7 @@ EditorFrame::EditorFrame(wxWindow* parent, wxWindowID id,
 	help = new wxMenu("Help");
 
 	file->Append( ConstantId::MainWindow::FileMenu_Open, "Open an existing level\tAlt-O", "Opens a existing level file." );
+	file->Append( ConstantId::MainWindow::FileMenu_Details, "Level Details", "Recieve a summary of all entities on the map.");
 	file->Append( wxID_EXIT, "Exit", "Quit the program" );
 	edit->Append( ConstantId::MainWindow::EditMenu_Test, "Test map ingame \tAlt-P", "Test currently opened map ingame");
 	view->Append( ConstantId::MainWindow::ViewMenu_Recenter, "Recenter on Player\tAlt-C", "Recenter the camera onto the player" );
@@ -79,6 +80,9 @@ void EditorFrame::OnLightingBox( wxCommandEvent& ev ){
 void EditorFrame::OnTestMap( wxCommandEvent& ev ){
 	wxExecute(currentDir+"/Game.exe -fl " + currentLevelPath + " -res 700 500 ");
 }
+void EditorFrame::OnDetails( wxCommandEvent& ev ){
+	NOT_IMPLEMENTED_MB("TODO Feature");
+}
 // Declare the Event Table
 wxBEGIN_EVENT_TABLE(EditorFrame, wxFrame)
 	EVT_MENU( wxID_EXIT, EditorFrame::OnQuit )
@@ -87,5 +91,6 @@ wxBEGIN_EVENT_TABLE(EditorFrame, wxFrame)
 	EVT_MENU( ConstantId::MainWindow::FileMenu_Open, EditorFrame::OnOpen)
 	EVT_MENU( ConstantId::MainWindow::ViewMenu_Lighting, EditorFrame::OnLightingBox)
 	EVT_MENU( ConstantId::MainWindow::EditMenu_Test, EditorFrame::OnTestMap )	 
+	EVT_MENU( ConstantId::MainWindow::FileMenu_Details, EditorFrame::OnDetails )
 wxEND_EVENT_TABLE()
 

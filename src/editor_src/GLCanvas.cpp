@@ -23,10 +23,10 @@ GLCanvas::GLCanvas( wxWindow* parent, const wxGLAttributes& disp, wxWindowID id,
 	}
 	ds = std::make_shared<DefaultShader>(dev);
 	ls = std::make_shared<LightShader>(dev);
+	sb = std::make_shared<SpriteBatcher>(dev);
 	tm = std::make_shared<TextureManager>();
 	tm->add_texture("tiles", "textures\\tiles.png", get_device());
 	tm->add_texture("player", "textures\\test_player.png", get_device());
-	sb = std::make_shared<SpriteBatcher>(dev);
 	// set up matrix and stuff
 	projection = glm::ortho(0.0f, static_cast<float>(size.x), static_cast<float>(size.y), 0.0f, -1.f, 1.f);
 }
@@ -40,15 +40,6 @@ void GLCanvas::PaintScene( wxPaintEvent& pnt ){
 	dev->clearColor(1.0, 1.0, 1.0, 1.0);
 	dev->clear(BufferClear::COLOR_BUFFER);
 	dev->enableAlpha();
-//#define IMMEDIATE_MODE_VIEWPORT_TEST
-#ifdef IMMEDIATE_MODE_VIEWPORT_TEST
-	glBegin(GL_TRIANGLES);
-	glColor3f(0.0, 1.0, 0.0);
-	glVertex2f(-0.5, -0.5);
-	glVertex2f(0.5, -0.5);
-	glVertex2f(0, 0.5);
-	glEnd();
-#endif
 	ds->use();
 	ds->setTextured(false);	
 	ds->setMatrices(projection, camera.get_matrix());
@@ -68,7 +59,7 @@ void GLCanvas::PaintScene( wxPaintEvent& pnt ){
 	// render the lights
 	
 	tm->get_tex("tiles")->bind();
-	sb->draw(Vec2(-1000), Vec4(Block::get_uv_from_type(BlockTypes::FlatColor)), Vec2(12390120), Vec4(0.0, 0.0, 0.1, 1.0));
+	sb->draw(Vec2(-78000), Vec4(Block::get_uv_from_type(BlockTypes::FlatColor)), Vec2(12390120), Vec4(0.0, 0.0, 0.1, 1.0));
 	entity_manager.draw_background_props( camera.getPos(), *sb );
 	entity_manager.draw_progressor(*sb);	
 	entity_manager.draw_blocks(*sb);
@@ -101,13 +92,11 @@ void GLCanvas::OnResize( wxSizeEvent& evnt ){
 void GLCanvas::MouseEvents( wxMouseEvent& ev ){
 	const wxPoint center = wxPoint(viewPort_sz.x/2, viewPort_sz.y/2);
 	if(ev.Dragging() && ev.RightIsDown()){
-		ShowCursor(0);
 		const wxPoint curPos = ScreenToClient(wxGetMousePosition());
 		const wxPoint mouseDelta = curPos - center;
 		camera.transform( Vec2(-mouseDelta.x*0.7, -mouseDelta.y*0.7) );
 		WarpPointer( center.x, center.y );
 	}
-	ShowCursor(1);
 }
 
 wxBEGIN_EVENT_TABLE( GLCanvas, wxGLCanvas )

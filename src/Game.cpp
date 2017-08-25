@@ -3,6 +3,7 @@
 
 // I'm likely going to stre a different vector for different enemy types.
 // I used it for animation time.
+
 Player p(Vec2(300, 300), Vec2(73, 73), Vec2(100), Vec4(1.0, 1.0, 1.0, 1.0));
 std::array<Light, 10> lights{
 	Light(),
@@ -105,6 +106,7 @@ void Game::update(){
 		if(ev.type==SDL_QUIT){
 			window->set_should_close(true);
 		}
+		//DEBUGGING PURPOSES
 		if(ev.key.keysym.sym == SDLK_RETURN){
 			p.kill();
 		}
@@ -128,14 +130,6 @@ void Game::update(){
 				}
 			}
 		}
-		/*
-		if(ev.type == SDL_MOUSEMOTION){
-			bool inButton = quit.mouse_inside(mX,mY)|option.mouse_inside(mX,mY)|start.mouse_inside(mX,mY);
-			if(inButton && state == GameState::Menu){
-				Sound::play_sound("beep");
-			}
-		}
-		*/
 	}
 	if(state == GameState::Playing){
 		if(levels[currentLevel].loaded == false){

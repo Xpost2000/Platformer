@@ -20,6 +20,7 @@ class EditorFrame : public wxFrame{
 		void OnTestMap( wxCommandEvent& ev );
 		void OnLightingBox( wxCommandEvent& ev );
 		void OnAbout( wxCommandEvent& ev );
+		void OnDetails( wxCommandEvent& ev );
 		void OnOpen( wxCommandEvent& ev );
 	private:
 		void RecenterCamera();

@@ -11,6 +11,7 @@ namespace ConstantId{
 		const int ViewMenu_Recenter = wxID_HIGHEST+12;
 		const int ViewMenu_Lighting = wxID_HIGHEST+121;
 		const int FileMenu_Open = wxID_HIGHEST+13;
+		const int FileMenu_Details = wxID_HIGHEST+131;
 		const int EditMenu_Test = wxID_HIGHEST+14;
 	};
 };
