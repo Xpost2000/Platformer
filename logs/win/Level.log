@@ -29,3 +29,14 @@ In file included from ../../src/Player.h:10:0,
 ../../src/Block.h:168:3: warning: control reaches end of non-void function [-Wreturn-type]
    }
    ^
+In file included from ../../src/EntityManager.h:8:0,
+                 from ../../src/Level.h:8,
+                 from ../../src/Level.cpp:1:
+../../src/BackgroundSprites.h: In member function 'virtual Vec4 BackgroundBlock::getUvs()':
+../../src/BackgroundSprites.h:67:3: warning: control reaches end of non-void function [-Wreturn-type]
+   }
+   ^
+../../src/BackgroundSprites.h: In member function 'virtual Vec4 BackgroundBlockStatic::getUvs()':
+../../src/BackgroundSprites.h:128:3: warning: control reaches end of non-void function [-Wreturn-type]
+   }
+   ^

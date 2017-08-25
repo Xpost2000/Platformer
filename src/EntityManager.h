@@ -22,6 +22,8 @@ class EntityManager{
 		std::vector<JumpingEnemy>& get_jumping_enemies(){ return jumpingEnemies; }
 		std::vector<Block>& get_blocks(){ return blocks; }
 		std::vector<BasicEnemy>& get_basic_enemies(){ return basicEnemies; }
+		std::vector<BackgroundBlock>& get_background_blocks() { return bs; }
+		std::vector<BackgroundBlockStatic>& get_background_static_blocks() { return bss; }
 		Progressor& get_progressor() { return p; }
 		void draw_blocks( SpriteBatcher& );	
 		void draw_progressor( SpriteBatcher& );

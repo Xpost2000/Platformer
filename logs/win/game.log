@@ -90,9 +90,16 @@ In file included from ../../src/Game.h:23:0,
    inline Vec2 transform( Vec2 offset ) { pos.x() += offset.x(); pos.y() += offset.y(); }
                                                                                         ^
 ../../src/Game.cpp: In member function 'void Game::update()':
-../../src/Game.cpp:127:12: warning: statement has no effect [-Wunused-value]
+../../src/Game.cpp:129:12: warning: statement has no effect [-Wunused-value]
       state == GameState::Menu;
             ^
+In file included from ../../src/EntityManager.h:8:0,
+                 from ../../src/Game.h:16,
+                 from ../../src/Game.cpp:1:
+../../src/BackgroundSprites.h: In member function 'virtual Vec4 BackgroundBlock::getUvs()':
+../../src/BackgroundSprites.h:67:3: warning: control reaches end of non-void function [-Wreturn-type]
+   }
+   ^
 In file included from ../../src/EntityManager.h:4:0,
                  from ../../src/Game.h:16,
                  from ../../src/Game.cpp:1:
@@ -100,6 +107,16 @@ In file included from ../../src/EntityManager.h:4:0,
 ../../src/Block.h:168:3: warning: control reaches end of non-void function [-Wreturn-type]
    }
    ^
+In file included from ../../src/EntityManager.h:8:0,
+                 from ../../src/Game.h:16,
+                 from ../../src/Game.cpp:1:
+../../src/BackgroundSprites.h: In member function 'virtual Vec4 BackgroundBlockStatic::getUvs()':
+../../src/BackgroundSprites.h:128:3: warning: control reaches end of non-void function [-Wreturn-type]
+   }
+   ^
+In file included from ../../src/EntityManager.h:4:0,
+                 from ../../src/Game.h:16,
+                 from ../../src/Game.cpp:1:
 ../../src/Block.h: In static member function 'static Vec4 Block::get_uv_from_type(int)':
 ../../src/Block.h:89:3: warning: control reaches end of non-void function [-Wreturn-type]
    }

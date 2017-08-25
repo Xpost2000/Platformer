@@ -73,9 +73,10 @@ void GLCanvas::PaintScene( wxPaintEvent& pnt ){
 	ls->unuse();
 	ds->use();
 	ds->setTextured(false);
-	sb->draw( player.getPos(), player.getUvs(), player.getSize(), Vec4(1.0f, 0.0, 0.0, 1.0) );
-	sb->draw( mousePos, player.getUvs(), Vec2(4, 4), Vec4(1.0f, 0.0, 0.0, 1.0) );
-	sb->render(true);
+	if(currentEnt==nullptr){
+		sb->draw( currentEnt->getPos(), Vec4(0), currentEnt->getSize(), Vec4(1.0, 0.0, 0.0, 1.0) );
+		sb->render();
+	}
 	SwapBuffers();
 }
 
@@ -103,7 +104,23 @@ void GLCanvas::MouseEvents( wxMouseEvent& ev ){
 	if(ev.LeftIsDown()){
 		glm::vec3 mapped = glm::unProject(glm::vec3(curPos.x, viewPort_sz.y-curPos.y, 0.0), camera.get_matrix(), projection, glm::vec4(0, 0, viewPort_sz.x, viewPort_sz.y));
 		mousePos = Vec2(mapped.x, mapped.y);
-		std::cout << "Mouse Coords (MAPPED TO GAME COORDS) : X " << mapped.x << " Y " << mapped.y << std::endl; 
+		// iterate through all objects
+		std::vector<Entity*> entities;
+		for( auto& block : entity_manager.get_blocks() ){
+			entities.push_back( &block );
+		}
+		for( auto& jumping_enemy : entity_manager.get_jumping_enemies() ){
+			entities.push_back( &jumping_enemy );
+		}
+		for( auto& basic_enemy : entity_manager.get_basic_enemies() ){
+			entities.push_back( &basic_enemy );
+		}
+		for( auto& bb : entity_manager.get_background_blocks() ){
+			entities.push_back( &bb );
+		}
+		for( auto& bbs : entity_manager.get_background_static_blocks() ){
+			entities.push_back( &bbs );
+		}
 	}
 }
 

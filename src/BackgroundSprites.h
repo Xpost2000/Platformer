@@ -10,7 +10,7 @@
 	
 //TODO: Calculate UVs based on the block type it is.
 //I guess a todo is to also add in the types. lol
-struct BackgroundBlock{
+class BackgroundBlock : public Block{
 	public:
 		Vec4 getUvs(){
 			auto NW = [&](float x) { return x / 128.0f; };
@@ -67,15 +67,11 @@ struct BackgroundBlock{
 		}
 		BackgroundBlock(){}
 		BackgroundBlock(Vec2 pos, Vec2 size, Vec4 color, Vec2 scrollFactor, int type)
-		: pos(pos), size(size), color(color), scrollFactor(scrollFactor), type(type){
+		: Block(pos, size, color, type), scrollFactor(scrollFactor){
 		}
-		Vec2 pos;
-		Vec2 size;
-		Vec4 color;
 		Vec2 scrollFactor;
-		int type;
 };
-struct BackgroundBlockStatic{
+class BackgroundBlockStatic : public Block{
 	public:
 		Vec4 getUvs(){
 			auto NW = [&](float x) { return x / 128.0f; };
@@ -132,12 +128,8 @@ struct BackgroundBlockStatic{
 		}
 		BackgroundBlockStatic(){}
 		BackgroundBlockStatic(Vec2 pos, Vec2 size, Vec4 color, int type)
-		: pos(pos), size(size), color(color), type(type){
+		: Block(pos, size, color, type){
 		}
-		Vec2 pos;
-		Vec2 size;
-		Vec4 color;
-		int type;
 };
 
 #endif

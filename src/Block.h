@@ -167,10 +167,11 @@ class Block : public Entity{
 #endif
 		}
 		Block(const Block& other) = default;
+		Block() {}
 		Block(Vec2 pos, Vec2 size, Vec4 color=Vec4(0.2), int type = BlockTypes::Floor)
 		 : Entity(pos, size, Vec2(0), color), type(type){
 		}
-	private:
+	protected:
 	int type;
 };
 #endif

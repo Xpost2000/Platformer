@@ -51,6 +51,8 @@ class GLCanvas : public wxGLCanvas{
 		GameCamera camera;
 		Level current;
 		Player player;
+		// I'm going to use a pointer to the current entity to figure anything out.
+		Entity* currentEnt = nullptr;
 		EntityManager entity_manager;
 		std::array<Light, 10> lights;
 		wxGLContext* ctx_obj;
