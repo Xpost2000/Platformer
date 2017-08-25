@@ -3,7 +3,7 @@ LIBS=-lmingw32 -lSDL2main -lSDL2 -lSDL2_mixer -lSDL2_image -lglew32 -lOpenGL32 -
 EDITOR_LIBS=-lmingw32 -lSDL2 -lSDL2_image -lglew32 -lOpenGL32 -lboost_random-mgw51-1_60 -lwxbase31u -lwxmsw31u_core -lwxmsw31u_gl
 LIBS_LINUX=-lSDL2main -lSDL2 -lGLEW -lGL
 # temporarily adding debug symbols
-FLAGS=-std=gnu++14 -Wall -g -DGAME_BUILD=110
+FLAGS=-std=gnu++14 -Wall -O2 -DGAME_BUILD=110
 EDITOR_FLAGS=-std=gnu++14 -Wall -O2 -mwindows
 EDITOR_OBJ_FILES=../../obj/EditorApplication.o\
 		 ../../obj/GLCanvas.o\
