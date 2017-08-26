@@ -254,7 +254,10 @@ void GLCanvas::paste(){
 				std::cout << "OBJECT UNIDENTIFIABLE\n";
 				break;
 		}
+// normal copy and paste actually keeps the object inside of the clipboard as I've just realized.
+#ifdef CUT_PASTE_PASTE_STYLE
 		copy = nullptr;
+#endif
 	}
 }
 
