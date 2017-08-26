@@ -93,11 +93,15 @@ void GLCanvas::OnResize( wxSizeEvent& evnt ){
 	camera.SetScreenRes(Vec2(viewPort_sz.x, viewPort_sz.y));
 }
 
+// Idk if I need it yet.
+void GLCanvas::KeyboardEvents( wxKeyEvent& ev ){
+}
+
 void GLCanvas::MouseEvents( wxMouseEvent& ev ){
 	const wxPoint center = wxPoint(viewPort_sz.x/2, viewPort_sz.y/2);
 	const wxPoint curPos = ScreenToClient(wxGetMousePosition());
+	const wxPoint mouseDelta = curPos - center;
 	if(ev.Dragging() && ev.RightIsDown()){
-		const wxPoint mouseDelta = curPos - center;
 		camera.transform( Vec2(-mouseDelta.x*0.7, -mouseDelta.y*0.7) );
 		WarpPointer( center.x, center.y );
 	}
@@ -128,11 +132,17 @@ void GLCanvas::MouseEvents( wxMouseEvent& ev ){
 		entities.push_back ( &entity_manager.get_progressor() );
 		entities.push_back ( &player );
 		bool found_anything = false;
+		bool already_equal = false;
 		for(auto& ent : entities){
 			// I made a spelling mistake while naming
 			// intersect_point_pos...
 			if(ent->interesect_point_pos( mousePos )){
 				std::cout << "An entity was clicked" << std::endl;
+				if(currentEnt == ent){
+					already_equal=true;
+					found_anything=true;
+					break;
+				}
 				currentEnt = ent;
 				found_anything=true;
 				break;
@@ -141,6 +151,9 @@ void GLCanvas::MouseEvents( wxMouseEvent& ev ){
 		// This is to imitate a lot of more mature programs that allow selection
 		// in which if you don't hit anything like white space. It is deselected.
 		if( !found_anything ) currentEnt = nullptr;
+		// perform a dragging operation pretty much
+		if(already_equal){
+		}
 	} 
 }
 
@@ -180,4 +193,5 @@ wxBEGIN_EVENT_TABLE( GLCanvas, wxGLCanvas )
 	EVT_PAINT(GLCanvas::PaintScene)
 	EVT_SIZE(GLCanvas::OnResize)
 	EVT_MOUSE_EVENTS(GLCanvas::MouseEvents)
+	EVT_KEY_DOWN(GLCanvas::KeyboardEvents)
 wxEND_EVENT_TABLE()

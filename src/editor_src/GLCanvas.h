@@ -33,6 +33,7 @@ class GLCanvas : public wxGLCanvas{
 		void PaintScene( wxPaintEvent& pnt );	
 		void OnResize ( wxSizeEvent& evnt );
 		void MouseEvents( wxMouseEvent& ev );
+		void KeyboardEvents( wxKeyEvent& ev );
 
 		void LogicRefresh();
 		

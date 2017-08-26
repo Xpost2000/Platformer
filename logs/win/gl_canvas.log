@@ -37,24 +37,24 @@ In file included from ../../src/editor_src/../Progressor.h:3:0,
                  from ../../src/editor_src/GLCanvas.h:14,
                  from ../../src/editor_src/GLCanvas.cpp:1:
 ../../src/editor_src/../Entity.h: In constructor 'Entity::Entity(Vec2, Vec2, Vec2, Vec4)':
-../../src/editor_src/../Entity.h:81:8: warning: 'Entity::size' will be initialized after [-Wreorder]
+../../src/editor_src/../Entity.h:88:8: warning: 'Entity::size' will be initialized after [-Wreorder]
    Vec2 size;
         ^
-../../src/editor_src/../Entity.h:80:8: warning:   'Vec2 Entity::velocity' [-Wreorder]
+../../src/editor_src/../Entity.h:87:8: warning:   'Vec2 Entity::velocity' [-Wreorder]
    Vec2 velocity;
         ^
 ../../src/editor_src/../Entity.h:31:3: warning:   when initialized here [-Wreorder]
    Entity(Vec2 pos, Vec2 size, Vec2 velocity, Vec4 color)
    ^
 ../../src/editor_src/../Entity.h: In member function 'virtual bool Entity::DeathAnimation(float)':
-../../src/editor_src/../Entity.h:71:3: warning: no return statement in function returning non-void [-Wreturn-type]
+../../src/editor_src/../Entity.h:78:3: warning: no return statement in function returning non-void [-Wreturn-type]
    }
    ^
 ../../src/editor_src/GLCanvas.cpp: In member function 'void GLCanvas::save(std::__cxx11::string)':
-../../src/editor_src/GLCanvas.cpp:158:13: warning: unused variable 'jumping_enemy' [-Wunused-variable]
+../../src/editor_src/GLCanvas.cpp:175:13: warning: unused variable 'jumping_enemy' [-Wunused-variable]
   for( auto& jumping_enemy : entity_manager.get_jumping_enemies() ){
              ^
-../../src/editor_src/GLCanvas.cpp:161:13: warning: unused variable 'basic_enemy' [-Wunused-variable]
+../../src/editor_src/GLCanvas.cpp:178:13: warning: unused variable 'basic_enemy' [-Wunused-variable]
   for( auto& basic_enemy : entity_manager.get_basic_enemies() ){
              ^
 In file included from ../../src/editor_src/../Player.h:10:0,
