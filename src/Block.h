@@ -170,6 +170,7 @@ class Block : public Entity{
 		Block() {}
 		Block(Vec2 pos, Vec2 size, Vec4 color=Vec4(0.2), int type = BlockTypes::Floor)
 		 : Entity(pos, size, Vec2(0), color), type(type){
+			 magic=BLOCK;
 		}
 		int get_type() { return type; }
 	protected:

@@ -109,6 +109,16 @@ void GLCanvas::KeyboardEvents( wxKeyEvent& ev ){
 		case WXK_DOWN:
 			currentEnt->getPos().y() += 20;
 			break;
+			/*
+		case WXK_CONTROL_C:
+			std::cout << "copied\n";
+			copy_f();
+			break;
+		case WXK_CONTROL_V:
+			std::cout << "pasted\n";
+			paste();
+			break;
+			*/
 	}
 	}
 }
@@ -207,6 +217,15 @@ void GLCanvas::save(std::string path){
 void GLCanvas::save(){
 	std::string path = "C:\\DEFAULT_LEVEL_NAME.lvl";
 	save(path);
+}
+void GLCanvas::copy_f(){
+	copy = currentEnt;
+}
+void GLCanvas::paste(){
+	if( copy != nullptr ){
+		std::cout << copy->magic << " : Magic Number" << std::endl;
+		copy = nullptr;
+	}
 }
 
 wxBEGIN_EVENT_TABLE( GLCanvas, wxGLCanvas )

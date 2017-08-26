@@ -47,6 +47,8 @@ class GLCanvas : public wxGLCanvas{
 		bool& parallax_enabled() { return parallax; }
 		void save();
 		void save(std::string path);
+		void copy_f();
+		void paste();
 	private:
 		glm::mat4 view=glm::mat4();
 		glm::mat4 projection;		
@@ -58,6 +60,8 @@ class GLCanvas : public wxGLCanvas{
 		Player player;
 		// I'm going to use a pointer to the current entity to figure anything out.
 		Entity* currentEnt = nullptr;
+		// used for my little copy and paste system :D
+		Entity* copy = nullptr;
 		EntityManager entity_manager;
 		std::array<Light, 10> lights;
 		wxGLContext* ctx_obj;

@@ -36,6 +36,7 @@ class Player : public Entity{
 #else
 		Player( Vec2 pos, Vec2 size, Vec2 velocity, Vec4 color )
 		: Entity(pos, size, velocity, color){
+			magic=PLAYER;
 			calculate_uvs();
 		}
 #endif

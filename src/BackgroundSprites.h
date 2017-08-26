@@ -68,6 +68,7 @@ class BackgroundBlock : public Block{
 		BackgroundBlock(){}
 		BackgroundBlock(Vec2 pos, Vec2 size, Vec4 color, Vec2 scrollFactor, int type)
 		: Block(pos, size, color, type), scrollFactor(scrollFactor){
+			magic=BGRNDBLOCK;
 		}
 		Vec2 scrollFactor;
 };
@@ -129,6 +130,7 @@ class BackgroundBlockStatic : public Block{
 		BackgroundBlockStatic(){}
 		BackgroundBlockStatic(Vec2 pos, Vec2 size, Vec4 color, int type)
 		: Block(pos, size, color, type){
+			magic=STBLOCK;
 		}
 };
 

@@ -10,6 +10,11 @@
 #include "vec2.hpp"
 #include "vec4.hpp"
 
+#define BLOCK 1
+#define PLAYER 2
+#define STBLOCK 3
+#define BGRNDBLOCK 4
+
 struct aabb{
 	aabb(){}
 	aabb(Vec2 pos, Vec2 size) : pos(pos), size(size){}
@@ -79,6 +84,12 @@ class Entity{
 		virtual void kill() {}
 		virtual void revive() {}
 		aabb& get_aabb() { return bb; }
+		// I use a pointer to a generic entity in the
+		// editor. For the copy and pasting I do not store the entities
+		// directly but I use the entity manager to do things. The entity manager
+		// adds using functions like create_block , create_enemy.
+		// Each type has a different magic_number.
+		int magic=0;
 	protected:
 		aabb bb;
 		bool dead=0;

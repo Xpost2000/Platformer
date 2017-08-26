@@ -21,6 +21,8 @@ class EditorFrame : public wxFrame{
 		void OnLightingBox( wxCommandEvent& ev );
 		void OnParallaxBox ( wxCommandEvent& ev );
 		void OnSaveLevel( wxCommandEvent& ev );
+		void OnCopy( wxCommandEvent& ev );
+		void OnPaste( wxCommandEvent& ev );
 		void OnAbout( wxCommandEvent& ev );
 		void OnDetails( wxCommandEvent& ev );
 		void OnOpen( wxCommandEvent& ev );
