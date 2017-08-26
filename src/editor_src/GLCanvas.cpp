@@ -100,7 +100,8 @@ void GLCanvas::KeyboardEvents( wxKeyEvent& ev ){
 void GLCanvas::MouseEvents( wxMouseEvent& ev ){
 	const wxPoint center = wxPoint(viewPort_sz.x/2, viewPort_sz.y/2);
 	const wxPoint curPos = ScreenToClient(wxGetMousePosition());
-	const wxPoint mouseDelta = curPos - center;
+	wxPoint last;
+	wxPoint mouseDelta = curPos - center;
 	if(ev.Dragging() && ev.RightIsDown()){
 		camera.transform( Vec2(-mouseDelta.x*0.7, -mouseDelta.y*0.7) );
 		WarpPointer( center.x, center.y );
@@ -153,7 +154,10 @@ void GLCanvas::MouseEvents( wxMouseEvent& ev ){
 		if( !found_anything ) currentEnt = nullptr;
 		// perform a dragging operation pretty much
 		if(already_equal){
-		}
+			glm::vec3 mapped = glm::unProject(glm::vec3(curPos.x, viewPort_sz.y-curPos.y, 0.0), camera.get_matrix(), projection, glm::vec4(0, 0, viewPort_sz.x, viewPort_sz.y));
+			currentEnt->getPos().x() = mapped.x-currentEnt->getSize().x()/2.0f;
+			currentEnt->getPos().y() = mapped.y-currentEnt->getSize().y()/2.0f;
+		} 
 	} 
 }
 
