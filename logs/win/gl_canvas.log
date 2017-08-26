@@ -57,6 +57,16 @@ In file included from ../../src/editor_src/../Progressor.h:3:0,
 ../../src/editor_src/GLCanvas.cpp:210:13: warning: unused variable 'basic_enemy' [-Wunused-variable]
   for( auto& basic_enemy : entity_manager.get_basic_enemies() ){
              ^
+../../src/editor_src/GLCanvas.cpp: In member function 'void GLCanvas::delete_cur()':
+../../src/editor_src/GLCanvas.cpp:278:22: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     for(int i = 0; i < blocks.size(); ++i){
+                      ^
+../../src/editor_src/GLCanvas.cpp:286:22: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     for(int i = 0; i < bk_blocks.size(); ++i){
+                      ^
+../../src/editor_src/GLCanvas.cpp:294:42: warning: left operand of comma operator has no effect [-Wunused-value]
+     for(int i = 0; i , bk_st_blocks.size(); ++i){
+                                          ^
 In file included from ../../src/editor_src/../Player.h:10:0,
                  from ../../src/editor_src/../Level.h:6,
                  from ../../src/editor_src/GLCanvas.h:14,

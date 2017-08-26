@@ -100,7 +100,7 @@ void GLCanvas::KeyboardEvents( wxKeyEvent& ev ){
 		currentEnt = nullptr;
 	}
 	if(wxGetKeyState(WXK_DELETE)){
-		std::cout << "DELETE PLACEHOLDER\n";
+		delete_cur();
 	}
 	switch(ev.GetKeyCode()){
 		case WXK_LEFT:
@@ -255,6 +255,53 @@ void GLCanvas::paste(){
 				break;
 		}
 		copy = nullptr;
+	}
+}
+
+void GLCanvas::delete_cur(){
+	// check magic number for identification	
+	if( currentEnt != nullptr ){
+		int& magic = currentEnt->magic; // just to avoid typing a bit of text
+		auto& bk_st_blocks = entity_manager.get_background_static_blocks();
+		auto& bk_blocks = entity_manager.get_background_blocks();
+		auto& blocks = entity_manager.get_blocks();
+		// if the number matches we loop through the appropriete
+		// container and check if the addresses match. I know for these
+		// classes they don't implement the == operator but pointers
+		// always have it covered, and besides this is the one that makes the most 
+		// sense.
+		switch(magic){
+			case PLAYER:
+				wxMessageBox(wxT("You cannot delete the player."), wxT("Illegal Action"));
+				break;
+			case BLOCK:
+				for(int i = 0; i < blocks.size(); ++i){
+					if(&blocks[i] == currentEnt){
+						blocks.erase(blocks.begin()+i);
+						break;
+					}
+				}
+				break;
+			case BGRNDBLOCK:
+				for(int i = 0; i < bk_blocks.size(); ++i){
+					if(&bk_blocks[i] == currentEnt){
+						bk_blocks.erase(bk_blocks.begin()+i);
+						break;
+					}
+				}
+				break;
+			case STBLOCK:
+				for(int i = 0; i , bk_st_blocks.size(); ++i){
+					if(&bk_st_blocks[i] == currentEnt){
+						bk_st_blocks.erase(bk_st_blocks.begin()+i);
+						break;
+					}
+				}
+				break;
+			default:
+				break;
+		}
+		currentEnt = nullptr;
 	}
 }
 

@@ -49,6 +49,7 @@ class GLCanvas : public wxGLCanvas{
 		void save(std::string path);
 		void copy_f();
 		void paste();
+		void delete_cur();
 	private:
 		glm::mat4 view=glm::mat4();
 		glm::mat4 projection;		
