@@ -21,6 +21,7 @@ class EditorApplication : public wxApp{
 		 * handle itself approprietely.
 		 */
 	private:
+		FILE* lock;
 		EditorFrame* mainWindow;
 };
 DECLARE_APP(EditorApplication)

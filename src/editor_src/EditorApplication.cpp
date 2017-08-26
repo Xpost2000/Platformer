@@ -6,6 +6,16 @@
  * but if I can get away with using on Library I suppose I should.
  */
 bool EditorApplication::OnInit(){
+	/*
+	 * I don't want this to potentially hog resources and besides
+	 * there is no need for more than one copy at a time.
+	 */
+	if( access( ".lockfile", F_OK ) != -1 ){
+		wxMessageBox( wxT("Error : More than one instance being run"), wxT("There is more than one instance"), wxICON_INFORMATION );
+		exit(0);
+		return false;
+	}else{
+	lock = fopen(".lockfile", "w");
 	SDL_SetMainReady();
 	SDL_Init(SDL_INIT_VIDEO); // for SDL_Surface presumably.
 	IMG_Init(IMG_INIT_PNG);
@@ -16,6 +26,7 @@ bool EditorApplication::OnInit(){
 	 */
 	atexit(SDL_Quit);
 	atexit(IMG_Quit);
+	}
 	return true;
 }
 
@@ -23,6 +34,8 @@ bool EditorApplication::OnInit(){
  * This is so I can ensure the proper quiting of SDL.
  */ 
 EditorApplication::~EditorApplication(){
+	fclose(lock);
+	remove(".lockfile");
 }
 
 /*
