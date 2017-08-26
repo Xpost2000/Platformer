@@ -59,6 +59,7 @@ void Player::collide_blocks( float dt, std::vector<Block>& blocks ){
 	pred.reposition_aabb();
 	for(auto& b : blocks){	
 		if(pred.intersect_aabb(b)){
+			if(b.get_type() == KILLZONE_BLOCK){ kill(); }
 			velocity.x() = 0;
 			break;
 		}
@@ -68,12 +69,14 @@ void Player::collide_blocks( float dt, std::vector<Block>& blocks ){
 	pred.reposition_aabb();
 	for(auto& b : blocks){
 		if(pred.intersect_aabb(b)){
+			if(b.get_type() == KILLZONE_BLOCK){ kill(); }
 			velocity.y() = 0;
 			if(b.get_aabb().pos.y() + b.get_aabb().size.y() < bb.pos.y()){
 			}
 			else{
 				onGround = true;
 			}
+
 			break;
 		}else{
 			onGround = false;

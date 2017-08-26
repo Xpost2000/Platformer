@@ -25,6 +25,7 @@ namespace BlockTypes{
 	const int WallTile = 14;
 	const int WarningSign = 15;
 }	
+const int KILLZONE_BLOCK =16;
 // This is a struct. pretty much.
 class Block : public Entity{
 	public:

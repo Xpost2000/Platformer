@@ -22,6 +22,7 @@ void EntityManager::clear_entities(){
 }
 void EntityManager::draw_blocks( SpriteBatcher& sb ){
 	for(auto &b : blocks)	{
+		if(b.get_type()!=KILLZONE_BLOCK)
 		sb.draw(b.getPos(), b.getUvs(), b.getSize(), b.getColor());
 	}
 	sb.render();
