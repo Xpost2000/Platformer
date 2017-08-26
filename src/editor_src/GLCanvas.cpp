@@ -179,7 +179,7 @@ void GLCanvas::save(std::string path){
 		//
 	}
 	for( auto& block : entity_manager.get_background_blocks() ){
-		level_save << "block " << block.getSize().x() << " " << block.getSize().y() << " " << block.getPos().x() << " " << block.getPos().y() << " "
+		level_save << "bgrnd " << block.getSize().x() << " " << block.getSize().y() << " " << block.getPos().x() << " " << block.getPos().y() << " "
 			   << block.scrollFactor.x() << " " << block.scrollFactor.y() <<" "<< block.getColor().x() << " " << block.getColor().y() << " " << block.getColor().z() << " " << block.get_type() << std::endl;
 	}
 	for( auto& block : entity_manager.get_background_static_blocks() ){
