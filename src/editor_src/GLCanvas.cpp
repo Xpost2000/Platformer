@@ -62,7 +62,7 @@ void GLCanvas::PaintScene( wxPaintEvent& pnt ){
 	
 	tm->get_tex("tiles")->bind();
 	sb->draw(Vec2(-78000), Vec4(Block::get_uv_from_type(BlockTypes::FlatColor)), Vec2(12390120), Vec4(0.0, 0.0, 0.1, 1.0));
-	entity_manager.draw_background_props( camera.getPos(), *sb );
+	entity_manager.draw_background_props( camera.getPos(), *sb, parallax );
 	entity_manager.draw_progressor(*sb);	
 	entity_manager.draw_blocks(*sb);
 	entity_manager.draw_jumping_enemies(*sb);

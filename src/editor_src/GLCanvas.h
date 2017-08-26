@@ -44,6 +44,7 @@ class GLCanvas : public wxGLCanvas{
 		GameCamera& get_camera() { return camera; }
 		Player& get_player() { return player; }
 		bool& lighting_enabled() { return lighting; }
+		bool& parallax_enabled() { return parallax; }
 		void save();
 		void save(std::string path);
 	private:
@@ -51,6 +52,7 @@ class GLCanvas : public wxGLCanvas{
 		glm::mat4 projection;		
 	private:
 		bool lighting=false;
+		bool parallax=false;
 		GameCamera camera;
 		Level current;
 		Player player;

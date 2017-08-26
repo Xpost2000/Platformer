@@ -15,7 +15,7 @@ EditorFrame::EditorFrame(wxWindow* parent, wxWindowID id,
 	canvas = new GLCanvas(this, glAttributes, wxID_ANY, pos, size);	
 	currentDir = wxGetCwd();
 	CreateStatusBar(1);
-	SetStatusText("Letter X Game Editor prototype/alpha");
+	SetStatusText("Letter X Game Editor prototype/beta");
 	timer = new RenderTimer( canvas );
 	timer->Start(10);
 	/*
@@ -32,9 +32,10 @@ EditorFrame::EditorFrame(wxWindow* parent, wxWindowID id,
 	file->Append( ConstantId::MainWindow::FileMenu_Save, "Save a level to a file\tCtrl-S", "Save a level to a file");
 	file->Append( ConstantId::MainWindow::FileMenu_Details, "Level Details", "Recieve a summary of all entities on the map.");
 	file->Append( wxID_EXIT, "Exit", "Quit the program" );
-	edit->Append( ConstantId::MainWindow::EditMenu_Test, "Test map ingame \tAlt-P", "Test currently opened map ingame");
+//	edit->Append( ConstantId::MainWindow::EditMenu_Test, "Test map ingame \tAlt-P", "Test currently opened map ingame");
 	view->Append( ConstantId::MainWindow::ViewMenu_Recenter, "Recenter on Player\tAlt-C", "Recenter the camera onto the player" );
 	view->AppendCheckItem( ConstantId::MainWindow::ViewMenu_Lighting, "Enable Lighting\tAlt-L", "" );
+	view->AppendCheckItem( ConstantId::MainWindow::ViewMenu_EnableParallax, "Enable Parallax Scorlling\tAlt-P" );
 	help->Append( ConstantId::MainWindow::HelpMenu_About, "About\tF1", "" );
 
 
@@ -88,14 +89,18 @@ void EditorFrame::OnSaveLevel( wxCommandEvent& ev ) {
 //	NOT_IMPLEMENTED_MB("TODO FEATURE");
 	canvas->save( currentLevelPath.ToStdString() );
 }
+void EditorFrame::OnParallaxBox( wxCommandEvent& ev ){
+	canvas->parallax_enabled() = view->IsChecked ( ConstantId::MainWindow::ViewMenu_EnableParallax );
+}
 // Declare the Event Table
 wxBEGIN_EVENT_TABLE(EditorFrame, wxFrame)
 	EVT_MENU( wxID_EXIT, EditorFrame::OnQuit )
+	EVT_MENU( ConstantId::MainWindow::ViewMenu_EnableParallax, EditorFrame::OnParallaxBox)
 	EVT_MENU( ConstantId::MainWindow::ViewMenu_Recenter, EditorFrame::OnRecenter )
 	EVT_MENU( ConstantId::MainWindow::HelpMenu_About, EditorFrame::OnAbout )
 	EVT_MENU( ConstantId::MainWindow::FileMenu_Open, EditorFrame::OnOpen)
 	EVT_MENU( ConstantId::MainWindow::ViewMenu_Lighting, EditorFrame::OnLightingBox)
-	EVT_MENU( ConstantId::MainWindow::EditMenu_Test, EditorFrame::OnTestMap )	 
+//	EVT_MENU( ConstantId::MainWindow::EditMenu_Test, EditorFrame::OnTestMap )	 
 	EVT_MENU( ConstantId::MainWindow::FileMenu_Details, EditorFrame::OnDetails )
 	EVT_MENU( ConstantId::MainWindow::FileMenu_Save, EditorFrame::OnSaveLevel )
 wxEND_EVENT_TABLE()

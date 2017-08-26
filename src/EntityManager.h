@@ -27,7 +27,7 @@ class EntityManager{
 		Progressor& get_progressor() { return p; }
 		void draw_blocks( SpriteBatcher& );	
 		void draw_progressor( SpriteBatcher& );
-		void draw_background_props( Vec2 camPos, SpriteBatcher& );	
+		void draw_background_props( Vec2 camPos, SpriteBatcher&, bool p=true );	
 		void draw_jumping_enemies( SpriteBatcher& );	
 		void draw_basic_enemies( SpriteBatcher& );	
 		void update( float dt );

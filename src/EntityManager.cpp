@@ -43,9 +43,15 @@ void EntityManager::draw_basic_enemies( SpriteBatcher& sb ){
 	}
 	sb.render();
 }
-void EntityManager::draw_background_props( Vec2 camPos, SpriteBatcher& sb ){
+void EntityManager::draw_background_props( Vec2 camPos, SpriteBatcher& sb, bool p ){
+	if(p){
 	for(auto &e : bs){
 		sb.draw(Vec2(-camPos.x()*e.scrollFactor.x()+e.getPos().x(), -camPos.y()*e.scrollFactor.y()+e.getPos().y()), e.getUvs(), e.getSize(), e.getColor());
+	}
+	}else{
+	for(auto &e : bs){
+		sb.draw(e.getPos(), e.getUvs(), e.getSize(), e.getColor());
+	}
 	}
 	for(auto &e : bss){
 		sb.draw(e.getPos(), e.getUvs(), e.getSize(), e.getColor());

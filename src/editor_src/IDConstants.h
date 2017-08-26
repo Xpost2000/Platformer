@@ -10,6 +10,7 @@ namespace ConstantId{
 		const int HelpMenu_About = wxID_HIGHEST+11;
 		const int ViewMenu_Recenter = wxID_HIGHEST+12;
 		const int ViewMenu_Lighting = wxID_HIGHEST+121;
+		const int ViewMenu_EnableParallax = wxID_HIGHEST+122;
 		const int FileMenu_Open = wxID_HIGHEST+13;
 		const int FileMenu_Save = wxID_HIGHEST+132;
 		const int FileMenu_Details = wxID_HIGHEST+131;

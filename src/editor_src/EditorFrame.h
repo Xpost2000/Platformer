@@ -19,6 +19,7 @@ class EditorFrame : public wxFrame{
 		void OnRecenter( wxCommandEvent& ev );
 		void OnTestMap( wxCommandEvent& ev );
 		void OnLightingBox( wxCommandEvent& ev );
+		void OnParallaxBox ( wxCommandEvent& ev );
 		void OnSaveLevel( wxCommandEvent& ev );
 		void OnAbout( wxCommandEvent& ev );
 		void OnDetails( wxCommandEvent& ev );

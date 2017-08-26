@@ -24,16 +24,16 @@ In file included from ../../src/Progressor.h:3:0,
                  from ../../src/Player.h:5,
                  from ../../src/GameCamera.cpp:2:
 ../../src/Entity.h: In constructor 'Entity::Entity(Vec2, Vec2, Vec2, Vec4)':
-../../src/Entity.h:81:8: warning: 'Entity::size' will be initialized after [-Wreorder]
+../../src/Entity.h:88:8: warning: 'Entity::size' will be initialized after [-Wreorder]
    Vec2 size;
         ^
-../../src/Entity.h:80:8: warning:   'Vec2 Entity::velocity' [-Wreorder]
+../../src/Entity.h:87:8: warning:   'Vec2 Entity::velocity' [-Wreorder]
    Vec2 velocity;
         ^
 ../../src/Entity.h:31:3: warning:   when initialized here [-Wreorder]
    Entity(Vec2 pos, Vec2 size, Vec2 velocity, Vec4 color)
    ^
 ../../src/Entity.h: In member function 'virtual bool Entity::DeathAnimation(float)':
-../../src/Entity.h:71:3: warning: no return statement in function returning non-void [-Wreturn-type]
+../../src/Entity.h:78:3: warning: no return statement in function returning non-void [-Wreturn-type]
    }
    ^
