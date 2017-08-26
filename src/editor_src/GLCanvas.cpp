@@ -219,6 +219,7 @@ void GLCanvas::save(){
 	save(path);
 }
 void GLCanvas::copy_f(){
+	if(currentEnt!=nullptr)
 	copy = currentEnt;
 }
 void GLCanvas::paste(){

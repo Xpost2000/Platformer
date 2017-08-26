@@ -33,7 +33,7 @@ EditorFrame::EditorFrame(wxWindow* parent, wxWindowID id,
 	file->Append( ConstantId::MainWindow::FileMenu_Details, "Level Details", "Recieve a summary of all entities on the map.");
 	file->Append( wxID_EXIT, "Exit", "Quit the program" );
 //	edit->Append( ConstantId::MainWindow::EditMenu_Test, "Test map ingame \tAlt-P", "Test currently opened map ingame");
-	edit->Append( ConstantId::MainWindow::EditMenu_Copy, "Copy\tCtrl-P");
+	edit->Append( ConstantId::MainWindow::EditMenu_Copy, "Copy\tCtrl-C");
 	edit->Append( ConstantId::MainWindow::EditMenu_Paste, "Paste\tCtrl-V");
 	view->Append( ConstantId::MainWindow::ViewMenu_Recenter, "Recenter on Player\tAlt-C", "Recenter the camera onto the player" );
 	view->AppendCheckItem( ConstantId::MainWindow::ViewMenu_Lighting, "Enable Lighting\tAlt-L", "" );
