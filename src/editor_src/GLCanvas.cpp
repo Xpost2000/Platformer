@@ -95,6 +95,22 @@ void GLCanvas::OnResize( wxSizeEvent& evnt ){
 
 // Idk if I need it yet.
 void GLCanvas::KeyboardEvents( wxKeyEvent& ev ){
+	if( currentEnt != nullptr ){
+	switch(ev.GetKeyCode()){
+		case WXK_LEFT:
+			currentEnt->getPos().x() -= 20;
+			break;
+		case WXK_RIGHT:
+			currentEnt->getPos().x() += 20;
+			break;
+		case WXK_UP:
+			currentEnt->getPos().y() -= 20;
+			break;
+		case WXK_DOWN:
+			currentEnt->getPos().y() += 20;
+			break;
+	}
+	}
 }
 
 void GLCanvas::MouseEvents( wxMouseEvent& ev ){

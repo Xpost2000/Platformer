@@ -51,10 +51,10 @@ In file included from ../../src/editor_src/../Progressor.h:3:0,
    }
    ^
 ../../src/editor_src/GLCanvas.cpp: In member function 'void GLCanvas::save(std::__cxx11::string)':
-../../src/editor_src/GLCanvas.cpp:175:13: warning: unused variable 'jumping_enemy' [-Wunused-variable]
+../../src/editor_src/GLCanvas.cpp:191:13: warning: unused variable 'jumping_enemy' [-Wunused-variable]
   for( auto& jumping_enemy : entity_manager.get_jumping_enemies() ){
              ^
-../../src/editor_src/GLCanvas.cpp:178:13: warning: unused variable 'basic_enemy' [-Wunused-variable]
+../../src/editor_src/GLCanvas.cpp:194:13: warning: unused variable 'basic_enemy' [-Wunused-variable]
   for( auto& basic_enemy : entity_manager.get_basic_enemies() ){
              ^
 In file included from ../../src/editor_src/../Player.h:10:0,
