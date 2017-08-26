@@ -50,6 +50,13 @@ In file included from ../../src/editor_src/../Progressor.h:3:0,
 ../../src/editor_src/../Entity.h:71:3: warning: no return statement in function returning non-void [-Wreturn-type]
    }
    ^
+../../src/editor_src/GLCanvas.cpp: In member function 'void GLCanvas::save(std::__cxx11::string)':
+../../src/editor_src/GLCanvas.cpp:158:13: warning: unused variable 'jumping_enemy' [-Wunused-variable]
+  for( auto& jumping_enemy : entity_manager.get_jumping_enemies() ){
+             ^
+../../src/editor_src/GLCanvas.cpp:161:13: warning: unused variable 'basic_enemy' [-Wunused-variable]
+  for( auto& basic_enemy : entity_manager.get_basic_enemies() ){
+             ^
 In file included from ../../src/editor_src/../Player.h:10:0,
                  from ../../src/editor_src/../Level.h:6,
                  from ../../src/editor_src/GLCanvas.h:14,

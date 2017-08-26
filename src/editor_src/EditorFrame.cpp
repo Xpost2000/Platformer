@@ -85,7 +85,8 @@ void EditorFrame::OnDetails( wxCommandEvent& ev ){
 	NOT_IMPLEMENTED_MB("TODO Feature");
 }
 void EditorFrame::OnSaveLevel( wxCommandEvent& ev ) {
-	NOT_IMPLEMENTED_MB("TODO FEATURE");
+//	NOT_IMPLEMENTED_MB("TODO FEATURE");
+	canvas->save( currentLevelPath.ToStdString() );
 }
 // Declare the Event Table
 wxBEGIN_EVENT_TABLE(EditorFrame, wxFrame)

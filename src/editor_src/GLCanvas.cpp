@@ -128,8 +128,6 @@ void GLCanvas::MouseEvents( wxMouseEvent& ev ){
 		entities.push_back ( &entity_manager.get_progressor() );
 		entities.push_back ( &player );
 		bool found_anything = false;
-		std::cout << "Player Pos : "<< player.getPos().x() << " , " << player.getPos().y();
-		std::cout << "Mosue Pos  : " << mousePos.x() << " , " << mousePos.y() << std::endl;
 		for(auto& ent : entities){
 			// I made a spelling mistake while naming
 			// intersect_point_pos...
@@ -143,7 +141,39 @@ void GLCanvas::MouseEvents( wxMouseEvent& ev ){
 		// This is to imitate a lot of more mature programs that allow selection
 		// in which if you don't hit anything like white space. It is deselected.
 		if( !found_anything ) currentEnt = nullptr;
+	} 
+}
+
+#include <fstream>
+void GLCanvas::save(std::string path){
+	std::ofstream level_save(path);
+	level_save << "player_spawn " << player.getPos().x() << " " << player.getPos().y() << std::endl;	
+	level_save << "progressor " << entity_manager.get_progressor().getSize().x() << " " << entity_manager.get_progressor().getSize().y()
+		   << " " << entity_manager.get_progressor().getPos().x() << " " << entity_manager.get_progressor().getPos().y()
+		   << " " << entity_manager.get_progressor().getColor().x() << " " << entity_manager.get_progressor().getColor().y() << " " << entity_manager.get_progressor().getColor().z() << std::endl;
+	for( auto& block : entity_manager.get_blocks() ){
+		level_save << "block " << block.getSize().x() << " " << block.getSize().y() << " " << block.getPos().x() << " " << block.getPos().y() << " "
+			   << block.getColor().x() << " " << block.getColor().y() << " " << block.getColor().z() << " " << block.get_type() << std::endl;
 	}
+	for( auto& jumping_enemy : entity_manager.get_jumping_enemies() ){
+		//
+	}
+	for( auto& basic_enemy : entity_manager.get_basic_enemies() ){
+		//
+	}
+	for( auto& block : entity_manager.get_background_blocks() ){
+		level_save << "block " << block.getSize().x() << " " << block.getSize().y() << " " << block.getPos().x() << " " << block.getPos().y() << " "
+			   << block.scrollFactor.x() << " " << block.scrollFactor.y() <<" "<< block.getColor().x() << " " << block.getColor().y() << " " << block.getColor().z() << " " << block.get_type() << std::endl;
+	}
+	for( auto& block : entity_manager.get_background_static_blocks() ){
+		level_save << "bgrnd-static " << block.getSize().x() << " " << block.getSize().y() << " " << block.getPos().x() << " " << block.getPos().y() << " "
+			   << block.getColor().x() << " " << block.getColor().y() << " " << block.getColor().z() << std::endl;//" " << block.get_type() << std::endl;
+	}
+	
+}
+void GLCanvas::save(){
+	std::string path = "C:\\DEFAULT_LEVEL_NAME.lvl";
+	save(path);
 }
 
 wxBEGIN_EVENT_TABLE( GLCanvas, wxGLCanvas )

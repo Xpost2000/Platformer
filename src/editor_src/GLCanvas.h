@@ -43,6 +43,8 @@ class GLCanvas : public wxGLCanvas{
 		GameCamera& get_camera() { return camera; }
 		Player& get_player() { return player; }
 		bool& lighting_enabled() { return lighting; }
+		void save();
+		void save(std::string path);
 	private:
 		glm::mat4 view=glm::mat4();
 		glm::mat4 projection;		
