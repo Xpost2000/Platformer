@@ -96,6 +96,12 @@ void GLCanvas::OnResize( wxSizeEvent& evnt ){
 // Idk if I need it yet.
 void GLCanvas::KeyboardEvents( wxKeyEvent& ev ){
 	if( currentEnt != nullptr ){
+	if(wxGetKeyState(WXK_ESCAPE)){
+		currentEnt = nullptr;
+	}
+	if(wxGetKeyState(WXK_DELETE)){
+		std::cout << "DELETE PLACEHOLDER\n";
+	}
 	switch(ev.GetKeyCode()){
 		case WXK_LEFT:
 			currentEnt->getPos().x() -= 20;
@@ -226,17 +232,23 @@ void GLCanvas::paste(){
 	if( copy != nullptr ){
 //		std::cout << copy->magic << " : Magic Number" << std::endl;
 		int& magic = copy->magic; // just to avoid typing a bit of text
+		auto& bk_st_blocks = entity_manager.get_background_static_blocks();
+		auto& bk_blocks = entity_manager.get_background_blocks();
+		auto& blocks = entity_manager.get_blocks();
 		switch(magic){
 			case PLAYER:
 				break;
 			case BLOCK:
 				entity_manager.create_block(*(Block*)copy);
+				currentEnt = &blocks.back();
 				break;
 			case BGRNDBLOCK:
 				entity_manager.create_block(*(BackgroundBlock*)copy);
+				currentEnt = &bk_blocks.back();
 				break;
 			case STBLOCK:
 				entity_manager.create_block(*(BackgroundBlockStatic*)copy);
+				currentEnt = &bk_st_blocks.back();
 				break;
 			default:
 				std::cout << "OBJECT UNIDENTIFIABLE\n";
