@@ -224,7 +224,24 @@ void GLCanvas::copy_f(){
 }
 void GLCanvas::paste(){
 	if( copy != nullptr ){
-		std::cout << copy->magic << " : Magic Number" << std::endl;
+//		std::cout << copy->magic << " : Magic Number" << std::endl;
+		int& magic = copy->magic; // just to avoid typing a bit of text
+		switch(magic){
+			case PLAYER:
+				break;
+			case BLOCK:
+				entity_manager.create_block(*(Block*)copy);
+				break;
+			case BGRNDBLOCK:
+				entity_manager.create_block(*(BackgroundBlock*)copy);
+				break;
+			case STBLOCK:
+				entity_manager.create_block(*(BackgroundBlockStatic*)copy);
+				break;
+			default:
+				std::cout << "OBJECT UNIDENTIFIABLE\n";
+				break;
+		}
 		copy = nullptr;
 	}
 }
