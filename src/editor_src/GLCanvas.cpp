@@ -184,12 +184,18 @@ void GLCanvas::MouseEvents( wxMouseEvent& ev ){
 		// This is to imitate a lot of more mature programs that allow selection
 		// in which if you don't hit anything like white space. It is deselected.
 		if( !found_anything ) currentEnt = nullptr;
+		// so now I'm goign to add a new feature based on "mode"
 		// perform a dragging operation pretty much
+		if(mode==SELECT_M){
 		if(already_equal){
 			glm::vec3 mapped = glm::unProject(glm::vec3(curPos.x, viewPort_sz.y-curPos.y, 0.0), camera.get_matrix(), projection, glm::vec4(0, 0, viewPort_sz.x, viewPort_sz.y));
 			currentEnt->getPos().x() = mapped.x-currentEnt->getSize().x()/2.0f;
 			currentEnt->getPos().y() = mapped.y-currentEnt->getSize().y()/2.0f;
-		} 
+		}}else if( mode==DELETE_M ){
+			delete_cur();
+		}else if( mode==CREATE_M ){
+			// UNKNOWN
+		}
 	} 
 }
 

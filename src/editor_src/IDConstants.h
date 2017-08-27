@@ -17,6 +17,9 @@ namespace ConstantId{
 		const int EditMenu_Test = wxID_HIGHEST+14;
 		const int EditMenu_Copy = wxID_HIGHEST+141;
 		const int EditMenu_Paste = wxID_HIGHEST+142;
+		const int TBMenu_Create = wxID_HIGHEST+19;
+		const int TBMenu_Select = wxID_HIGHEST+191;
+		const int TBMenu_Delete = wxID_HIGHEST+192;
 	};
 };
 #endif

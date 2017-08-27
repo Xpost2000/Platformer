@@ -11,12 +11,35 @@ EditorFrame::EditorFrame(wxWindow* parent, wxWindowID id,
 			 const wxPoint& pos,
 			 const wxSize& size)
 : wxFrame(parent, id, title, pos, size){
+	wxImage::AddHandler( new wxPNGHandler );
 	glAttributes.PlatformDefaults().Depth(24).DoubleBuffer().EndList();
 	canvas = new GLCanvas(this, glAttributes, wxID_ANY, pos, size);	
+	wxImage select("textures\\select.png", wxBITMAP_TYPE_PNG);
+	wxImage create("textures\\create.png", wxBITMAP_TYPE_PNG);
+	wxImage erase("textures\\erase.png",   wxBITMAP_TYPE_PNG);
+	wxImage open("textures\\folder.png",   wxBITMAP_TYPE_PNG);
+	wxImage save("textures\\save.png",     wxBITMAP_TYPE_PNG);
 	currentDir = wxGetCwd();
 	CreateStatusBar(1);
-	SetStatusText("Letter X Game Editor prototype/beta");
+	SetStatusText("Welcome to Letter X Editor!");
+	tool = new wxToolBar(this, wxID_ANY);
 	timer = new RenderTimer( canvas );
+	vert = new wxBoxSizer(wxVERTICAL);
+	using namespace ConstantId::MainWindow;
+	tool->AddTool(FileMenu_Open, "Open File", open, "Open a level file");
+	tool->AddTool(FileMenu_Save, "Save File", save, "Save a level file");
+	tool->AddSeparator();	
+	tool->AddSeparator();	
+	tool->AddTool(TBMenu_Select, "Select", select, "Put editor in select mode.");
+	tool->AddTool(TBMenu_Create, "Create", create, "Put editor in create mode");
+	tool->AddTool(TBMenu_Delete, "Erase",  erase, "Put editor in erase mode.");
+	tool->Realize();
+	vert->Add(tool, 0, 0);
+	vert->Add(canvas, 2, wxEXPAND|wxALL, 0);
+	SetAutoLayout(true);
+	SetSizer(vert);
+	vert->Fit(this);
+	vert->SetSizeHints(this);
 	timer->Start(10);
 	/*
 	 * I'm going to now construct the menu bar.
@@ -100,6 +123,29 @@ void EditorFrame::OnCopy( wxCommandEvent& ev ){
 void EditorFrame::OnPaste( wxCommandEvent& ev ){
 	canvas->paste();
 }
+void EditorFrame::OnIdle( wxIdleEvent& ev ){
+	switch(canvas->get_mode()){
+		case SELECT_M:
+			SetStatusText("Editor Mode : Select");
+			break;
+		case DELETE_M:
+			SetStatusText("Editor Mode : Delete");
+			break;
+		case CREATE_M:
+			SetStatusText("Editor Mode : Create");
+			break;
+	}
+}
+
+void EditorFrame::OnTB_Select( wxCommandEvent& ev ){
+	canvas->get_mode() = SELECT_M;
+}
+void EditorFrame::OnTB_Create( wxCommandEvent& ev ){
+	canvas->get_mode() = CREATE_M;
+}
+void EditorFrame::OnTB_Delete( wxCommandEvent& ev ){
+	canvas->get_mode() = DELETE_M;
+}
 // Declare the Event Table
 wxBEGIN_EVENT_TABLE(EditorFrame, wxFrame)
 	EVT_MENU( wxID_EXIT, EditorFrame::OnQuit )
@@ -113,5 +159,9 @@ wxBEGIN_EVENT_TABLE(EditorFrame, wxFrame)
 	EVT_MENU( ConstantId::MainWindow::FileMenu_Save, EditorFrame::OnSaveLevel )
 	EVT_MENU( ConstantId::MainWindow::EditMenu_Copy, EditorFrame::OnCopy )
 	EVT_MENU( ConstantId::MainWindow::EditMenu_Paste, EditorFrame::OnPaste )
+	EVT_MENU( ConstantId::MainWindow::TBMenu_Select, EditorFrame::OnTB_Select )
+	EVT_MENU( ConstantId::MainWindow::TBMenu_Create, EditorFrame::OnTB_Create )
+	EVT_MENU( ConstantId::MainWindow::TBMenu_Delete, EditorFrame::OnTB_Delete )
+	EVT_IDLE( EditorFrame::OnIdle )
 wxEND_EVENT_TABLE()
 

@@ -51,20 +51,20 @@ In file included from ../../src/editor_src/../Progressor.h:3:0,
    }
    ^
 ../../src/editor_src/GLCanvas.cpp: In member function 'void GLCanvas::save(std::__cxx11::string)':
-../../src/editor_src/GLCanvas.cpp:207:13: warning: unused variable 'jumping_enemy' [-Wunused-variable]
+../../src/editor_src/GLCanvas.cpp:213:13: warning: unused variable 'jumping_enemy' [-Wunused-variable]
   for( auto& jumping_enemy : entity_manager.get_jumping_enemies() ){
              ^
-../../src/editor_src/GLCanvas.cpp:210:13: warning: unused variable 'basic_enemy' [-Wunused-variable]
+../../src/editor_src/GLCanvas.cpp:216:13: warning: unused variable 'basic_enemy' [-Wunused-variable]
   for( auto& basic_enemy : entity_manager.get_basic_enemies() ){
              ^
 ../../src/editor_src/GLCanvas.cpp: In member function 'void GLCanvas::delete_cur()':
-../../src/editor_src/GLCanvas.cpp:281:22: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+../../src/editor_src/GLCanvas.cpp:287:22: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
      for(int i = 0; i < blocks.size(); ++i){
                       ^
-../../src/editor_src/GLCanvas.cpp:289:22: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+../../src/editor_src/GLCanvas.cpp:295:22: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
      for(int i = 0; i < bk_blocks.size(); ++i){
                       ^
-../../src/editor_src/GLCanvas.cpp:297:42: warning: left operand of comma operator has no effect [-Wunused-value]
+../../src/editor_src/GLCanvas.cpp:303:42: warning: left operand of comma operator has no effect [-Wunused-value]
      for(int i = 0; i , bk_st_blocks.size(); ++i){
                                           ^
 In file included from ../../src/editor_src/../Player.h:10:0,
@@ -72,7 +72,7 @@ In file included from ../../src/editor_src/../Player.h:10:0,
                  from ../../src/editor_src/GLCanvas.h:14,
                  from ../../src/editor_src/GLCanvas.cpp:1:
 ../../src/editor_src/../Block.h: In static member function 'static Vec4 Block::get_uv_from_type(int)':
-../../src/editor_src/../Block.h:89:3: warning: control reaches end of non-void function [-Wreturn-type]
+../../src/editor_src/../Block.h:90:3: warning: control reaches end of non-void function [-Wreturn-type]
    }
    ^
 In file included from ../../src/editor_src/../EntityManager.h:8:0,
@@ -88,7 +88,7 @@ In file included from ../../src/editor_src/../Player.h:10:0,
                  from ../../src/editor_src/GLCanvas.h:14,
                  from ../../src/editor_src/GLCanvas.cpp:1:
 ../../src/editor_src/../Block.h: In member function 'virtual Vec4 Block::getUvs()':
-../../src/editor_src/../Block.h:168:3: warning: control reaches end of non-void function [-Wreturn-type]
+../../src/editor_src/../Block.h:169:3: warning: control reaches end of non-void function [-Wreturn-type]
    }
    ^
 In file included from ../../src/editor_src/../EntityManager.h:8:0,

@@ -71,7 +71,7 @@ In file included from ../../src/editor_src/../Player.h:10:0,
                  from ../../src/editor_src/EditorFrame.h:4,
                  from ../../src/editor_src/EditorFrame.cpp:1:
 ../../src/editor_src/../Block.h: In member function 'virtual Vec4 Block::getUvs()':
-../../src/editor_src/../Block.h:168:3: warning: control reaches end of non-void function [-Wreturn-type]
+../../src/editor_src/../Block.h:169:3: warning: control reaches end of non-void function [-Wreturn-type]
    }
    ^
 In file included from ../../src/editor_src/../EntityManager.h:8:0,

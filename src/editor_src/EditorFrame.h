@@ -26,6 +26,10 @@ class EditorFrame : public wxFrame{
 		void OnAbout( wxCommandEvent& ev );
 		void OnDetails( wxCommandEvent& ev );
 		void OnOpen( wxCommandEvent& ev );
+		void OnIdle( wxIdleEvent& ev );
+		void OnTB_Select( wxCommandEvent& ev );
+		void OnTB_Create( wxCommandEvent& ev );
+		void OnTB_Delete( wxCommandEvent& ev );
 	private:
 		void RecenterCamera();
 		wxGLAttributes glAttributes;
@@ -34,6 +38,8 @@ class EditorFrame : public wxFrame{
 		// Timer
 		RenderTimer* timer;
 		// Menu Bar.
+		wxBoxSizer* vert;
+		wxToolBar* tool;
 		wxMenuBar* topBar;
 		wxMenu* file;
 		wxMenu* edit;

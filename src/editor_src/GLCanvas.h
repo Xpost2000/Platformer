@@ -26,6 +26,9 @@
  * second wxWidgets application I've created other than a calculator
  */
 #include <memory>
+const int SELECT_M=0;
+const int DELETE_M=1;
+const int CREATE_M=2;
 class GLCanvas : public wxGLCanvas{
 	public:
 		GLCanvas( wxWindow* parent, const wxGLAttributes& disp, wxWindowID id=wxID_ANY, const wxPoint &pos=wxDefaultPosition, const wxSize& size=wxDefaultSize, long style=0 );
@@ -50,10 +53,12 @@ class GLCanvas : public wxGLCanvas{
 		void copy_f();
 		void paste();
 		void delete_cur();
+		int &get_mode(){ return mode; }
 	private:
 		glm::mat4 view=glm::mat4();
 		glm::mat4 projection;		
 	private:
+		int mode=0;
 		bool lighting=false;
 		bool parallax=false;
 		GameCamera camera;
