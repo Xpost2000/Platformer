@@ -20,6 +20,7 @@ bool EditorApplication::OnInit(){
 	SDL_Init(SDL_INIT_VIDEO); // for SDL_Surface presumably.
 	IMG_Init(IMG_INIT_PNG);
 	mainWindow = new EditorFrame(NULL, ConstantId::MainWindow_ID, "Editor Window Prototype", wxDefaultPosition, wxSize(1000, 730));
+	std::cerr << "Frame created\n";
 	mainWindow->Show(true);
 	/*
 	 * Alright I can procede with the other wxWidgets things.

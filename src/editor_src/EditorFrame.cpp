@@ -22,6 +22,7 @@ EditorFrame::EditorFrame(wxWindow* parent, wxWindowID id,
 	wxImage light("textures\\lighting.png",wxBITMAP_TYPE_PNG);
 	wxImage parallax("textures\\parallax.png", wxBITMAP_TYPE_PNG);
 	wxImage recenter("textures\\recenter.png", wxBITMAP_TYPE_PNG);
+	std::cerr << "Loading texture assests" << std::endl;
 	currentDir = wxGetCwd();
 	CreateStatusBar(1);
 	SetStatusText("Welcome to Letter X Editor!");
@@ -43,6 +44,7 @@ EditorFrame::EditorFrame(wxWindow* parent, wxWindowID id,
 	tool->AddTool(ViewMenu_Recenter, "Recenter", recenter, "Center camera on player");
 	tool->AddTool(ViewMenu_EnableParallax, "Parallax", parallax, "Enable parallax scrolling");	
 	tool->Realize();
+	std::cerr << "Toolbar creation" << std::endl;
 	hori->Add(tool, 0, 0);
 	hori->Add(new wxStaticText(this, wxID_ANY, " Main Toolbar(Substitute for menubar above.)"));
 	hori->Fit(this);
@@ -54,6 +56,7 @@ EditorFrame::EditorFrame(wxWindow* parent, wxWindowID id,
 	vert->Fit(this);
 	vert->SetSizeHints(this);
 	timer->Start(10);
+	std::cerr << "Started program timer" << std::endl;
 	/*
 	 * I'm going to now construct the menu bar.
 	 */
@@ -75,7 +78,7 @@ EditorFrame::EditorFrame(wxWindow* parent, wxWindowID id,
 	view->AppendCheckItem( ConstantId::MainWindow::ViewMenu_Lighting, "Enable Lighting\tAlt-L", "" );
 	view->AppendCheckItem( ConstantId::MainWindow::ViewMenu_EnableParallax, "Enable Parallax Scorlling\tAlt-P" );
 	help->Append( ConstantId::MainWindow::HelpMenu_About, "About\tF1", "" );
-
+	std::cerr << "Creating menubar" << std::endl;
 
 	// now let's append them to the menu bar so they work
 	topBar->Append(file, "File");
@@ -93,10 +96,12 @@ void EditorFrame::OnQuit( wxCommandEvent& ev ){
 void EditorFrame::OnRecenter( wxCommandEvent& ev ){
 //	NOT_IMPLEMENTED_MB("The camera would be recentered(if it existed)");
 	RecenterCamera();
+	std::cerr << "Camera recentered" << std::endl;
 }
 void EditorFrame::OnAbout( wxCommandEvent& ev ){
 //	aboutDialog = new EditorAboutDialog( this );
 	NOT_IMPLEMENTED_MB("The dialog is not finished.");
+	std::cerr << "About dialog : Appears" << std::endl;
 }
 void EditorFrame::OnOpen( wxCommandEvent& ev ){
 //	NOT_IMPLEMENTED_MB("A file dialog would appear( I could easily make one but it'd have to have features eh? )");
@@ -105,8 +110,8 @@ void EditorFrame::OnOpen( wxCommandEvent& ev ){
 				"Level Files (*.map)|*.map", wxFD_OPEN);
 	if(open_file.ShowModal() == wxID_OK){
 		canvas->get_level() = Level(open_file.GetPath().ToStdString());	
-
 		currentLevelPath = open_file.GetPath();
+		std::cerr << "Loaded level" << std::endl;
 	}else{
 		return;
 	}
@@ -116,6 +121,7 @@ void EditorFrame::RecenterCamera(){
 }
 void EditorFrame::OnLightingBox( wxCommandEvent& ev ){
 	canvas->lighting_enabled() = !canvas->lighting_enabled();
+	std::cerr << "Lighting has been toggled" << std::endl;
 }
 void EditorFrame::OnTestMap( wxCommandEvent& ev ){
 	wxExecute(currentDir+"/Game.exe -fl " + currentLevelPath + " -res 700 500 ");
@@ -126,9 +132,11 @@ void EditorFrame::OnDetails( wxCommandEvent& ev ){
 void EditorFrame::OnSaveLevel( wxCommandEvent& ev ) {
 //	NOT_IMPLEMENTED_MB("TODO FEATURE");
 	canvas->save( currentLevelPath.ToStdString() );
+	std::cerr << "Saved level file(if is valid file)" << std::endl;
 }
 void EditorFrame::OnParallaxBox( wxCommandEvent& ev ){
 	canvas->parallax_enabled() = !canvas->parallax_enabled();
+	std::cerr << "Parallax Scrolling has been toggled" << std::endl;
 }
 void EditorFrame::OnCopy( wxCommandEvent& ev ){
 	canvas->copy_f();
