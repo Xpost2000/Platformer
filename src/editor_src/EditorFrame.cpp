@@ -28,6 +28,7 @@ EditorFrame::EditorFrame(wxWindow* parent, wxWindowID id,
 	tool = new wxToolBar(this, wxID_ANY);
 	timer = new RenderTimer( canvas );
 	vert = new wxBoxSizer(wxVERTICAL);
+	wxBoxSizer *hori = new wxBoxSizer(wxHORIZONTAL);
 	using namespace ConstantId::MainWindow;
 	tool->AddTool(FileMenu_Open, "Open File", open, "Open a level file");
 	tool->AddTool(FileMenu_Save, "Save File", save, "Save a level file");
@@ -42,7 +43,11 @@ EditorFrame::EditorFrame(wxWindow* parent, wxWindowID id,
 	tool->AddTool(ViewMenu_Recenter, "Recenter", recenter, "Center camera on player");
 	tool->AddTool(ViewMenu_EnableParallax, "Parallax", parallax, "Enable parallax scrolling");	
 	tool->Realize();
-	vert->Add(tool, 0, 0);
+	hori->Add(tool, 0, 0);
+	hori->Add(new wxStaticText(this, wxID_ANY, " Main Toolbar(Substitute for menubar above.)"));
+	hori->Fit(this);
+	hori->SetSizeHints(this);
+	vert->Add(hori, 0, 0);
 	vert->Add(canvas, 2, wxEXPAND|wxALL, 0);
 	SetAutoLayout(true);
 	SetSizer(vert);
