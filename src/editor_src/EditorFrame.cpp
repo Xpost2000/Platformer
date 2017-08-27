@@ -19,6 +19,9 @@ EditorFrame::EditorFrame(wxWindow* parent, wxWindowID id,
 	wxImage erase("textures\\erase.png",   wxBITMAP_TYPE_PNG);
 	wxImage open("textures\\folder.png",   wxBITMAP_TYPE_PNG);
 	wxImage save("textures\\save.png",     wxBITMAP_TYPE_PNG);
+	wxImage light("textures\\lighting.png",wxBITMAP_TYPE_PNG);
+	wxImage parallax("textures\\parallax.png", wxBITMAP_TYPE_PNG);
+	wxImage recenter("textures\\recenter.png", wxBITMAP_TYPE_PNG);
 	currentDir = wxGetCwd();
 	CreateStatusBar(1);
 	SetStatusText("Welcome to Letter X Editor!");
@@ -33,6 +36,11 @@ EditorFrame::EditorFrame(wxWindow* parent, wxWindowID id,
 	tool->AddTool(TBMenu_Select, "Select", select, "Put editor in select mode.");
 	tool->AddTool(TBMenu_Create, "Create", create, "Put editor in create mode");
 	tool->AddTool(TBMenu_Delete, "Erase",  erase, "Put editor in erase mode.");
+	tool->AddSeparator();	
+	tool->AddSeparator();	
+	tool->AddTool(ViewMenu_Lighting, "Lighting", light, "Enable Lighting");
+	tool->AddTool(ViewMenu_Recenter, "Recenter", recenter, "Center camera on player");
+	tool->AddTool(ViewMenu_EnableParallax, "Parallax", parallax, "Enable parallax scrolling");	
 	tool->Realize();
 	vert->Add(tool, 0, 0);
 	vert->Add(canvas, 2, wxEXPAND|wxALL, 0);
@@ -102,7 +110,7 @@ void EditorFrame::RecenterCamera(){
 	canvas->get_camera().RecenterPlayer(canvas->get_player());
 }
 void EditorFrame::OnLightingBox( wxCommandEvent& ev ){
-	canvas->lighting_enabled() = view->IsChecked( ConstantId::MainWindow::ViewMenu_Lighting );
+	canvas->lighting_enabled() = !canvas->lighting_enabled();
 }
 void EditorFrame::OnTestMap( wxCommandEvent& ev ){
 	wxExecute(currentDir+"/Game.exe -fl " + currentLevelPath + " -res 700 500 ");
@@ -115,7 +123,7 @@ void EditorFrame::OnSaveLevel( wxCommandEvent& ev ) {
 	canvas->save( currentLevelPath.ToStdString() );
 }
 void EditorFrame::OnParallaxBox( wxCommandEvent& ev ){
-	canvas->parallax_enabled() = view->IsChecked ( ConstantId::MainWindow::ViewMenu_EnableParallax );
+	canvas->parallax_enabled() = !canvas->parallax_enabled();
 }
 void EditorFrame::OnCopy( wxCommandEvent& ev ){
 	canvas->copy_f();
