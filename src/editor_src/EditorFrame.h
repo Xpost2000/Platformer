@@ -3,11 +3,11 @@
 #include <wx/wx.h>
 #include "GLCanvas.h"
 #include "RenderTimer.h"
-#include "PropertyPanel.h"
 #include "EditorAboutDialog.h"
 /*
  * This is going to be the window frame that contains everything for the window :)
  */
+class PropertyPanel;
 class EditorFrame : public wxFrame{
 	public:
 		friend class PropertyPanel;
@@ -36,6 +36,7 @@ class EditorFrame : public wxFrame{
 		void RecenterCamera();
 		wxGLAttributes glAttributes;
 		GLCanvas* canvas;
+		PropertyPanel* property;
 	private:
 		// Timer
 		RenderTimer* timer;
