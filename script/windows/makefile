@@ -1,6 +1,6 @@
 GCC=g++
 LIBS=-lmingw32 -lSDL2main -lSDL2 -lSDL2_mixer -lSDL2_image -lglew32 -lOpenGL32 -lboost_random-mgw51-1_60
-EDITOR_LIBS=-lmingw32 -lSDL2 -lSDL2_image -lglew32 -lOpenGL32 -lboost_random-mgw51-1_60 -lwxbase31u -lwxmsw31u_core -lwxmsw31u_gl
+EDITOR_LIBS=-lmingw32 -lSDL2 -lSDL2_image -lglew32 -lOpenGL32 -lboost_random-mgw51-1_60 -lwxbase31u -lwxmsw31u_core -lwxmsw31u_adv -lwxmsw31u_propgrid -lwxmsw31u_gl
 LIBS_LINUX=-lSDL2main -lSDL2 -lGLEW -lGL
 # temporarily adding debug symbols
 FLAGS=-std=gnu++14 -Wall -O2 -DGAME_BUILD=110
@@ -8,6 +8,7 @@ EDITOR_FLAGS=-std=gnu++14 -Wall -O2 -DEDITOR_BUILD=110 #-mwindows -DEDITOR_BUILD
 EDITOR_OBJ_FILES=../../obj/EditorApplication.o\
 		 ../../obj/GLCanvas.o\
 		 ../../obj/EditorFrame.o\
+		 ../../obj/PropertyPane.o\
 		 ../../obj/EditorAboutDialog.o\
 		 ../../obj/RenderTimer.o
 
@@ -106,6 +107,7 @@ build-editor:
 	$(GCC) ../../src/editor_src/RenderTimer.cpp $(EDITOR_LIBS) $(EDITOR_FLAGS) -c -o ../../obj/RenderTimer.o 2> ../../logs/win/render_timer.log
 	$(GCC) ../../src/editor_src/GLCanvas.cpp $(EDITOR_LIBS) $(EDITOR_FLAGS) -c -o ../../obj/GLCanvas.o 2> ../../logs/win/gl_canvas.log
 	$(GCC) ../../src/editor_src/EditorFrame.cpp $(EDITOR_LIBS) $(EDITOR_FLAGS) -c -o ../../obj/EditorFrame.o 2> ../../logs/win/editor_frame.log
+	$(GCC) ../../src/editor_src/PropertyPane.cpp $(EDITOR_LIBS) $(EDITOR_FLAGS) -c -o ../../obj/PropertyPane.o 2> ../../logs/win/right_pane.log
 	$(GCC) ../../src/editor_src/EditorAboutDialog.cpp $(EDITOR_LIBS) $(EDITOR_FLAGS) -c -o ../../obj/EditorAboutDialog.o 2> ../../logs/win/editor_dialog.log
 link-game:
 	$(GCC) $(OBJ_FILES) $(GAME_OBJ_FILES) $(LIBS) $(FLAGS) -o ../../bin/Game.exe 2> ../../logs/linker_windows.log
