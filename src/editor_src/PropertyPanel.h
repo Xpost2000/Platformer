@@ -24,6 +24,16 @@ class PropertyPanel : public wxPanel{
 		wxPGProperty* PositionX=nullptr;
 		wxPGProperty* PositionY=nullptr;
 		// next
+		wxPGProperty* SizeX=nullptr;
+		wxPGProperty* SizeY=nullptr;
+		// next
+		wxPGProperty* R=nullptr;
+		wxPGProperty* G=nullptr;
+		wxPGProperty* B=nullptr;
+		// now special properties
+		wxPGProperty* scroll_category=nullptr;
+		wxPGProperty* scrollX=nullptr;
+		wxPGProperty* scrollY=nullptr;
 		wxSize sz;
 		// since this class is a friend of the editorframe
 		// because I require some access to private members
