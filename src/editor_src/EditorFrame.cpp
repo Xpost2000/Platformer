@@ -30,6 +30,7 @@ EditorFrame::EditorFrame(wxWindow* parent, wxWindowID id,
 	timer = new RenderTimer( canvas );
 	vert = new wxBoxSizer(wxVERTICAL);
 	wxBoxSizer *hori = new wxBoxSizer(wxHORIZONTAL);
+	wxBoxSizer *pane_sizer = new wxBoxSizer(wxHORIZONTAL);
 	using namespace ConstantId::MainWindow;
 	tool->AddTool(FileMenu_Open, "Open File", open, "Open a level file");
 	tool->AddTool(FileMenu_Save, "Save File", save, "Save a level file");
@@ -49,8 +50,11 @@ EditorFrame::EditorFrame(wxWindow* parent, wxWindowID id,
 	hori->Add(new wxStaticText(this, wxID_ANY, " Main Toolbar(Substitute for menubar above.)"));
 	hori->Fit(this);
 	hori->SetSizeHints(this);
+	pane_sizer->Add(canvas, 1, wxEXPAND|wxALL, 0);
+	pane_sizer->Fit(this);
+	pane_sizer->SetSizeHints(this);
 	vert->Add(hori, 0, 0);
-	vert->Add(canvas, 2, wxEXPAND|wxALL, 0);
+	vert->Add(pane_sizer, 2, wxEXPAND|wxALL);
 	SetAutoLayout(true);
 	SetSizer(vert);
 	vert->Fit(this);
