@@ -14,7 +14,7 @@ EditorFrame::EditorFrame(wxWindow* parent, wxWindowID id,
 : wxFrame(parent, id, title, pos, size){
 	wxImage::AddHandler( new wxPNGHandler );
 	glAttributes.PlatformDefaults().Depth(24).DoubleBuffer().EndList();
-	canvas = new GLCanvas(this, glAttributes, wxID_ANY, pos, size);	
+	canvas = new GLCanvas(this, glAttributes, wxID_ANY, pos, size/2);	
 	property = new PropertyPanel(this, wxID_ANY);
 	wxImage select("textures\\select.png", wxBITMAP_TYPE_PNG);
 	wxImage create("textures\\create.png", wxBITMAP_TYPE_PNG);
@@ -52,8 +52,8 @@ EditorFrame::EditorFrame(wxWindow* parent, wxWindowID id,
 	hori->Add(new wxStaticText(this, wxID_ANY, " Main Toolbar(Substitute for menubar above.)"));
 	hori->Fit(this);
 	hori->SetSizeHints(this);
-	pane_sizer->Add(canvas, 1, wxEXPAND|wxALL, 0);
-	pane_sizer->Add(property, 1, wxEXPAND|wxRIGHT, 0);
+	pane_sizer->Add(canvas, 1, wxEXPAND|wxALL, 10);
+	pane_sizer->Add(property, 1, wxEXPAND , 10);
 	pane_sizer->Fit(this);
 	pane_sizer->SetSizeHints(this);
 	vert->Add(hori, 0, 0);

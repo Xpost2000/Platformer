@@ -7,7 +7,7 @@ PropertyPanel::PropertyPanel(
 			    const wxSize& size,
 			    long style,
 			    const wxString& name)
-: wxPanel(parent, id, pos, size, style, name){
+: wxPanel(parent, id, pos, size, style, name), parent(static_cast<EditorFrame*>(parent)){
 	wxStaticText* stuff = new wxStaticText(this, wxID_ANY,
 					       "Sample Text");
 	stuff->Show(true);

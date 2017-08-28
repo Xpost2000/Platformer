@@ -15,5 +15,10 @@ class PropertyPanel : public wxPanel{
 			       const wxString& name=wxPanelNameStr);
 		~PropertyPanel();
 	private:
+		// since this class is a friend of the editorframe
+		// because I require some access to private members
+		// that I don't feel like using the getters for...
+		// Sue me :P
+		EditorFrame* parent=nullptr;
 };
 #endif
