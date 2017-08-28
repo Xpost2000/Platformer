@@ -3,12 +3,14 @@
 #include <wx/wx.h>
 #include "GLCanvas.h"
 #include "RenderTimer.h"
+#include "PropertyPanel.h"
 #include "EditorAboutDialog.h"
 /*
  * This is going to be the window frame that contains everything for the window :)
  */
 class EditorFrame : public wxFrame{
 	public:
+		friend class PropertyPanel;
 		EditorFrame(wxWindow* parent, wxWindowID id=wxID_ANY, const wxString &title= "Editor Window", const wxPoint &pos=wxDefaultPosition, const wxSize& size = wxDefaultSize);		
 		~EditorFrame(){ delete timer; }
 		wxGLCanvas* RetrieveCanvas() { return canvas; }	
