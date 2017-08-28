@@ -56,6 +56,18 @@ In file included from ../../src/editor_src/../Progressor.h:3:0,
 ../../src/editor_src/../Entity.h:83:3: warning: no return statement in function returning non-void [-Wreturn-type]
    }
    ^
+In file included from ../../src/editor_src/PropertyPanel.h:9:0,
+                 from ../../src/editor_src/EditorFrame.cpp:2:
+../../src/editor_src/GridTimer.h: In constructor 'GridTimer::GridTimer(PropertyPanel*)':
+../../src/editor_src/GridTimer.h:12:18: warning: 'GridTimer::ptr' will be initialized after [-Wreorder]
+   PropertyPanel* ptr;
+                  ^
+../../src/editor_src/GridTimer.h:8:55: warning:   base 'wxTimer' [-Wreorder]
+   GridTimer( PropertyPanel* ptr ) : ptr(ptr), wxTimer() {  }
+                                                       ^
+../../src/editor_src/GridTimer.h:8:3: warning:   when initialized here [-Wreorder]
+   GridTimer( PropertyPanel* ptr ) : ptr(ptr), wxTimer() {  }
+   ^
 In file included from ../../src/editor_src/../EntityManager.h:8:0,
                  from ../../src/editor_src/../Level.h:8,
                  from ../../src/editor_src/GLCanvas.h:14,

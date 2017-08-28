@@ -15,7 +15,7 @@ EditorFrame::EditorFrame(wxWindow* parent, wxWindowID id,
 	wxImage::AddHandler( new wxPNGHandler );
 	glAttributes.PlatformDefaults().Depth(24).DoubleBuffer().EndList();
 	canvas = new GLCanvas(this, glAttributes, wxID_ANY, pos, size/2);	
-	property = new PropertyPanel(this, wxID_ANY);
+	property = new PropertyPanel(this, wxID_ANY, pos, size);
 	wxImage select("textures\\select.png", wxBITMAP_TYPE_PNG);
 	wxImage create("textures\\create.png", wxBITMAP_TYPE_PNG);
 	wxImage erase("textures\\erase.png",   wxBITMAP_TYPE_PNG);
@@ -27,6 +27,7 @@ EditorFrame::EditorFrame(wxWindow* parent, wxWindowID id,
 	std::cerr << "Loading texture assests" << std::endl;
 	currentDir = wxGetCwd();
 	CreateStatusBar(1);
+	SetBackgroundColour(*wxWHITE);
 	SetStatusText("Welcome to Letter X Editor!");
 	tool = new wxToolBar(this, wxID_ANY);
 	timer = new RenderTimer( canvas );
