@@ -50,29 +50,47 @@ PropertyPanel::PropertyPanel(
  */
 void PropertyPanel::IdleHandler( ){
 	Entity* ptr = parent->canvas->get_current();
+	// technically speaking ptr is not going to work.
+	if(parent->canvas->get_current() == nullptr){
+		PositionX->SetValue( wxVariant(0) ); PositionX->Enable(false);
+		PositionY->SetValue( wxVariant(0) ); PositionY->Enable(false);
+		SizeX->SetValue( wxVariant(0) ); SizeX->Enable(false);
+		SizeY->SetValue( wxVariant(0) ); SizeY->Enable(false);
+		R->SetValue( wxVariant(0) ); R->Enable(false);
+		G->SetValue( wxVariant(0) ); G->Enable(false);
+		B->SetValue( wxVariant(0) ); B->Enable(false);
+		scroll_category->Enable(false);
+		scrollX->SetValue( wxVariant(0) ); scrollX->Enable(false);
+		scrollY->SetValue( wxVariant(0) ); scrollY->Enable(false);
+	}
 	if(ptr!=nullptr && parent->canvas->should_update){
-		PositionX->SetValue( wxVariant(ptr->getPos().x()) );
-		PositionY->SetValue( wxVariant(ptr->getPos().y()) );
-		SizeX->SetValue( wxVariant(ptr->getSize().x()));
-		SizeY->SetValue( wxVariant(ptr->getSize().y()));
+		PositionX->SetValue( wxVariant(ptr->getPos().x()) ); PositionX->Enable(true);
+		PositionY->SetValue( wxVariant(ptr->getPos().y()) ); PositionY->Enable(true);
+		if(ptr->magic != PLAYER){
+		SizeX->SetValue( wxVariant(ptr->getSize().x())); SizeX->Enable(true);
+		SizeY->SetValue( wxVariant(ptr->getSize().y())); SizeY->Enable(true);
 
-		R->SetValue( wxVariant(ptr->getColor().r()));
-		G->SetValue( wxVariant(ptr->getColor().g()));
-		B->SetValue( wxVariant(ptr->getColor().b()));
+		R->SetValue( wxVariant(ptr->getColor().r())); R->Enable(true);
+		G->SetValue( wxVariant(ptr->getColor().g())); G->Enable(true);
+		B->SetValue( wxVariant(ptr->getColor().b())); B->Enable(true);
+		}
 		if(ptr->magic == BGRNDBLOCK){
 			scroll_category->Enable(true);
 			BackgroundBlock* cast = (BackgroundBlock*)ptr;
-			scrollX->SetValue( wxVariant(cast->scrollFactor.x()) );
-			scrollY->SetValue( wxVariant(cast->scrollFactor.y()) );
+			scrollX->SetValue( wxVariant(cast->scrollFactor.x()) ); scrollX->Enable(true);
+			scrollY->SetValue( wxVariant(cast->scrollFactor.y()) ); scrollY->Enable(true);
 		}else { scroll_category->Enable(false); }
+
 	} else if ( ptr!=nullptr && parent->canvas->should_update==false ){
 		ptr->getPos().x()=PositionX->GetValue().GetDouble();
 		ptr->getPos().y()=PositionY->GetValue().GetDouble();
+		if(ptr->magic != PLAYER){
 		ptr->getSize().x()=SizeX->GetValue().GetDouble();
 		ptr->getSize().y()=SizeY->GetValue().GetDouble();
 		ptr->getColor().r()=R->GetValue().GetDouble();
 		ptr->getColor().g()=G->GetValue().GetDouble();
 		ptr->getColor().b()=B->GetValue().GetDouble();
+		}
 		if(ptr->magic == BGRNDBLOCK){
 			BackgroundBlock* cast = (BackgroundBlock*)ptr;
 			cast->scrollFactor.x() = scrollX->GetValue().GetDouble();

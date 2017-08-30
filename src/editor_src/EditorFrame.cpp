@@ -54,7 +54,7 @@ EditorFrame::EditorFrame(wxWindow* parent, wxWindowID id,
 	hori->Fit(this);
 	hori->SetSizeHints(this);
 	pane_sizer->Add(canvas, 1, wxEXPAND|wxALL, 10);
-	pane_sizer->Add(property, 1, wxEXPAND , 10);
+	pane_sizer->Add(property, 0, wxEXPAND , 0);
 	pane_sizer->Fit(this);
 	pane_sizer->SetSizeHints(this);
 	vert->Add(hori, 0, 0);
