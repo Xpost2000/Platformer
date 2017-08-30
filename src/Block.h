@@ -173,7 +173,7 @@ class Block : public Entity{
 		 : Entity(pos, size, Vec2(0), color), type(type){
 			 magic=BLOCK;
 		}
-		int get_type() { return type; }
+		int& get_type() { return type; }
 	protected:
 	int type;
 };

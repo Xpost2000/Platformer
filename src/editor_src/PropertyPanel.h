@@ -17,6 +17,7 @@ class PropertyPanel : public wxPanel{
 		~PropertyPanel();
 		void IdleHandler(  );
 	private:
+		int current_index=0;
 		// I need to do this.
 		wxPropertyGrid* properties;
 		GridTimer* timer;
@@ -34,6 +35,15 @@ class PropertyPanel : public wxPanel{
 		wxPGProperty* scroll_category=nullptr;
 		wxPGProperty* scrollX=nullptr;
 		wxPGProperty* scrollY=nullptr;
+		wxPGProperty* blockType=nullptr;
+		// Light Properties
+		wxPGProperty* lIndex=nullptr;
+		wxPGProperty* lPower=nullptr;	
+		wxPGProperty* lR = nullptr;
+		wxPGProperty* lG = nullptr;
+		wxPGProperty* lB = nullptr;
+		wxPGProperty* lX = nullptr;
+		wxPGProperty* lY = nullptr;
 		wxSize sz;
 		// since this class is a friend of the editorframe
 		// because I require some access to private members

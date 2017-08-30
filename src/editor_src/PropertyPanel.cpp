@@ -10,7 +10,7 @@ PropertyPanel::PropertyPanel(
 : wxPanel(parent, id, pos, size, style, name), parent(static_cast<EditorFrame*>(parent)){
 	sz = size;
 	properties = new wxPropertyGrid(this, -1, pos, size);
-	properties->Append( new wxPropertyCategory(wxT("All Properties")));
+	properties->Append( new wxPropertyCategory(wxT("All Properties + Lights")));
 	properties->Append( new wxPropertyCategory(wxT("Position")) );
 	PositionX = properties->Append( new wxFloatProperty("X", "X", 0) );
 	PositionY = properties->Append( new wxFloatProperty("Y", "Y", 0));
@@ -24,10 +24,19 @@ PropertyPanel::PropertyPanel(
 	R = properties->Append( new wxFloatProperty("R", "R", 0) );
 	G = properties->Append( new wxFloatProperty("G", "G", 0) );
 	B = properties->Append( new wxFloatProperty("B", "B", 0) );
+	blockType = properties->Append( new wxIntProperty("Block Type", "Block Type", 0) );
 	scroll_category = properties->Append( new wxPropertyCategory(wxT("Scroll Factors")) );
 	scrollX = properties->Append( new wxFloatProperty("Scroll X", "Scroll X", 0) );
 	scrollY = properties->Append( new wxFloatProperty("Scroll Y", "Scroll Y", 0) );
 	scroll_category->Enable(false);
+	properties->Append( new wxPropertyCategory(wxT("Light Properties")) );
+	lIndex = properties->Append( new wxIntProperty("Light Index", "Light Index", current_index));
+	lPower = properties->Append( new wxFloatProperty("Light Power", "Light Power", 0) );
+	lR = properties->Append( new wxFloatProperty("Light R", "Light R", 0) );
+	lG = properties->Append( new wxFloatProperty("Light G", "Light G", 0) );
+	lB = properties->Append( new wxFloatProperty("Light B", "Light B", 0) );
+	lX = properties->Append( new wxFloatProperty("Light X", "Light X", 0) );
+	lY = properties->Append( new wxFloatProperty("Light Y", "Light Y", 0) );
 	
 	properties->Show(true);
 	timer = new GridTimer(this);
@@ -51,6 +60,9 @@ PropertyPanel::PropertyPanel(
 void PropertyPanel::IdleHandler( ){
 	Entity* ptr = parent->canvas->get_current();
 	// technically speaking ptr is not going to work.
+	int as_int = static_cast<int>(blockType->GetValue().GetLong());
+	as_int = std::max(1, as_int);
+	as_int = std::min(10, as_int);
 	if(parent->canvas->get_current() == nullptr){
 		PositionX->SetValue( wxVariant(0) ); PositionX->Enable(false);
 		PositionY->SetValue( wxVariant(0) ); PositionY->Enable(false);
@@ -62,8 +74,21 @@ void PropertyPanel::IdleHandler( ){
 		scroll_category->Enable(false);
 		scrollX->SetValue( wxVariant(0) ); scrollX->Enable(false);
 		scrollY->SetValue( wxVariant(0) ); scrollY->Enable(false);
+		blockType->SetValue( wxVariant(1) ); blockType->Enable(false);
 	}
+	// sadly lights are pretty odd so I have to update it when entities get updated :(
 	if(ptr!=nullptr && parent->canvas->should_update){
+		current_index = static_cast<int>(lIndex->GetValue().GetLong());
+		current_index = std::max(0, current_index);
+		current_index = std::min(9, current_index);
+		lIndex->SetValue( wxVariant(current_index) );
+		Light& light = parent->canvas->get_lights()[current_index];
+		lPower->SetValue( wxVariant(light.strength) );
+		lR->SetValue( wxVariant(light.color.r()) );
+		lG->SetValue( wxVariant(light.color.g()) );
+		lB->SetValue( wxVariant(light.color.b()) );
+		lX->SetValue( wxVariant(light.pos.x()) );
+		lY->SetValue( wxVariant(light.pos.y()) );
 		PositionX->SetValue( wxVariant(ptr->getPos().x()) ); PositionX->Enable(true);
 		PositionY->SetValue( wxVariant(ptr->getPos().y()) ); PositionY->Enable(true);
 		if(ptr->magic != PLAYER){
@@ -73,6 +98,9 @@ void PropertyPanel::IdleHandler( ){
 		R->SetValue( wxVariant(ptr->getColor().r())); R->Enable(true);
 		G->SetValue( wxVariant(ptr->getColor().g())); G->Enable(true);
 		B->SetValue( wxVariant(ptr->getColor().b())); B->Enable(true);
+		Block* cast = (Block*)ptr;
+		blockType->SetValue( wxVariant(cast->get_type()) );
+		blockType->Enable(true);
 		}
 		if(ptr->magic == BGRNDBLOCK){
 			scroll_category->Enable(true);
@@ -90,12 +118,24 @@ void PropertyPanel::IdleHandler( ){
 		ptr->getColor().r()=R->GetValue().GetDouble();
 		ptr->getColor().g()=G->GetValue().GetDouble();
 		ptr->getColor().b()=B->GetValue().GetDouble();
+		Block* cast = (Block*)ptr;
+		cast->get_type() = as_int;
 		}
 		if(ptr->magic == BGRNDBLOCK){
 			BackgroundBlock* cast = (BackgroundBlock*)ptr;
 			cast->scrollFactor.x() = scrollX->GetValue().GetDouble();
 			cast->scrollFactor.y() = scrollY->GetValue().GetDouble();
 		}
+		goto please_forgive_me;
+	} else if ( parent->canvas->should_update==false ){
+please_forgive_me:
+		Light& light = parent->canvas->get_lights()[current_index];
+		light.strength = lPower->GetValue().GetDouble();
+		light.color.r() = lR->GetValue().GetDouble();
+		light.color.g() = lG->GetValue().GetDouble();
+		light.color.b() = lB->GetValue().GetDouble();
+		light.pos.x() = lX->GetValue().GetDouble();
+		light.pos.y() = lY->GetValue().GetDouble();
 	}
 }
 

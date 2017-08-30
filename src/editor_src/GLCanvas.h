@@ -50,6 +50,7 @@ class GLCanvas : public wxGLCanvas{
 		Entity*& get_current() { return currentEnt; }
 		bool& lighting_enabled() { return lighting; }
 		bool& parallax_enabled() { return parallax; }
+		std::array<Light, 10>& get_lights() { return lights; }
 		void save();
 		void save(std::string path);
 		void copy_f();
