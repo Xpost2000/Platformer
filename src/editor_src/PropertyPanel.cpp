@@ -50,7 +50,7 @@ PropertyPanel::PropertyPanel(
  */
 void PropertyPanel::IdleHandler( ){
 	Entity* ptr = parent->canvas->get_current();
-	if(ptr!=nullptr){
+	if(ptr!=nullptr && parent->canvas->should_update){
 		PositionX->SetValue( wxVariant(ptr->getPos().x()) );
 		PositionY->SetValue( wxVariant(ptr->getPos().y()) );
 		SizeX->SetValue( wxVariant(ptr->getSize().x()));
@@ -65,6 +65,19 @@ void PropertyPanel::IdleHandler( ){
 			scrollX->SetValue( wxVariant(cast->scrollFactor.x()) );
 			scrollY->SetValue( wxVariant(cast->scrollFactor.y()) );
 		}else { scroll_category->Enable(false); }
+	} else if ( ptr!=nullptr && parent->canvas->should_update==false ){
+		ptr->getPos().x()=PositionX->GetValue().GetDouble();
+		ptr->getPos().y()=PositionY->GetValue().GetDouble();
+		ptr->getSize().x()=SizeX->GetValue().GetDouble();
+		ptr->getSize().y()=SizeY->GetValue().GetDouble();
+		ptr->getColor().r()=R->GetValue().GetDouble();
+		ptr->getColor().g()=G->GetValue().GetDouble();
+		ptr->getColor().b()=B->GetValue().GetDouble();
+		if(ptr->magic == BGRNDBLOCK){
+			BackgroundBlock* cast = (BackgroundBlock*)ptr;
+			cast->scrollFactor.x() = scrollX->GetValue().GetDouble();
+			cast->scrollFactor.y() = scrollY->GetValue().GetDouble();
+		}
 	}
 }
 

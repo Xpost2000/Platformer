@@ -56,6 +56,7 @@ class GLCanvas : public wxGLCanvas{
 		void paste();
 		void delete_cur();
 		int &get_mode(){ return mode; }
+		bool should_update=false;
 	private:
 		glm::mat4 view=glm::mat4();
 		glm::mat4 projection;		

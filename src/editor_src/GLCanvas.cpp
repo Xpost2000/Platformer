@@ -134,6 +134,7 @@ void GLCanvas::MouseEvents( wxMouseEvent& ev ){
 	const wxPoint curPos = ScreenToClient(wxGetMousePosition());
 	wxPoint last;
 	wxPoint mouseDelta = curPos - center;
+	should_update=false;
 	if(ev.Dragging() && ev.RightIsDown()){
 		camera.transform( Vec2(-mouseDelta.x*0.7, -mouseDelta.y*0.7) );
 		WarpPointer( center.x, center.y );
@@ -178,6 +179,7 @@ void GLCanvas::MouseEvents( wxMouseEvent& ev ){
 				}
 				currentEnt = ent;
 				found_anything=true;
+				should_update=true;
 				break;
 			}
 		}
@@ -191,6 +193,7 @@ void GLCanvas::MouseEvents( wxMouseEvent& ev ){
 			glm::vec3 mapped = glm::unProject(glm::vec3(curPos.x, viewPort_sz.y-curPos.y, 0.0), camera.get_matrix(), projection, glm::vec4(0, 0, viewPort_sz.x, viewPort_sz.y));
 			currentEnt->getPos().x() = mapped.x-currentEnt->getSize().x()/2.0f;
 			currentEnt->getPos().y() = mapped.y-currentEnt->getSize().y()/2.0f;
+			should_update=true;
 		}}else if( mode==DELETE_M ){
 			delete_cur();
 		}else if( mode==CREATE_M ){
