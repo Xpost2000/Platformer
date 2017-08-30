@@ -209,6 +209,9 @@ void GLCanvas::save(std::string path){
 	level_save << "progressor " << entity_manager.get_progressor().getSize().x() << " " << entity_manager.get_progressor().getSize().y()
 		   << " " << entity_manager.get_progressor().getPos().x() << " " << entity_manager.get_progressor().getPos().y()
 		   << " " << entity_manager.get_progressor().getColor().x() << " " << entity_manager.get_progressor().getColor().y() << " " << entity_manager.get_progressor().getColor().z() << std::endl;
+	for( size_t i = 0; i < lights.size(); ++i ){
+		level_save << "light " << i << " " << lights[i].pos.x() << " " << lights[i].pos.y() << " " << lights[i].strength << " " << lights[i].color.r() << " " << lights[i].color.g() << " " << lights[i].color.b() << std::endl;
+	}
 	for( auto& block : entity_manager.get_blocks() ){
 		level_save << "block " << block.getSize().x() << " " << block.getSize().y() << " " << block.getPos().x() << " " << block.getPos().y() << " "
 			   << block.getColor().x() << " " << block.getColor().y() << " " << block.getColor().z() << " " << block.get_type() << std::endl;
