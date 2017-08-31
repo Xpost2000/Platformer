@@ -7,8 +7,10 @@ As well as following a more consistent naming style
 It doesn't help I'm not using an IDE ( going to need to setup all my vim stuff again ).
 
 at least for organization I think I get one point for seperating each thing into it's
-own file so it doesn't take forever to track down in the codebase ( although it's pretty small for what it is )( There is a barely any game and it's mostly 90% renderer. )
+own file so it doesn't take forever to track down in the codebase ( although it's pretty small for what it is )( There is a barely any game and it's mostly 90% renderer / OpenGL wrapper )
 
 EDIT : I'm seriously starting to regret not learning Component systems ( out of me thinking I wouldn't understand it )
 	Also make up my mind on how I want to make the base system setup. Do I want a device styled system like D3D
 	or just have entities draw themselves like SDL SFML and everything else
+
+NOTE TO SELF: Add transition screens. I'm actually trying to finish this game.
