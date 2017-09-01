@@ -228,7 +228,7 @@ void GLCanvas::save(std::string path){
 	}
 	for( auto& block : entity_manager.get_background_static_blocks() ){
 		level_save << "bgrnd-static " << block.getSize().x() << " " << block.getSize().y() << " " << block.getPos().x() << " " << block.getPos().y() << " "
-			   << block.getColor().x() << " " << block.getColor().y() << " " << block.getColor().z() << std::endl;//" " << block.get_type() << std::endl;
+			   << block.getColor().x() << " " << block.getColor().y() << " " << block.getColor().z() << " " << block.get_type() << std::endl;
 	}
 	
 }
