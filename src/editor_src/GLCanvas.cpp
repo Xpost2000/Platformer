@@ -140,6 +140,7 @@ void GLCanvas::MouseEvents( wxMouseEvent& ev ){
 		WarpPointer( center.x, center.y );
 	}
 	if(ev.LeftIsDown()){
+
 		glm::vec3 mapped = glm::unProject(glm::vec3(curPos.x, viewPort_sz.y-curPos.y, 0.0), camera.get_matrix(), projection, glm::vec4(0, 0, viewPort_sz.x, viewPort_sz.y));
 		mousePos = Vec2(mapped.x, mapped.y);
 		// iterate through all objects
@@ -147,6 +148,9 @@ void GLCanvas::MouseEvents( wxMouseEvent& ev ){
 		// contain the data. If I had used the standard Entity vector
 		// it might not've worked. Also this should be slightly more faster
 		// anyways.
+		if( mode==CREATE_M ){
+			// UNKNOWN
+		}
 		std::vector<Entity*> entities;
 		for( auto& block : entity_manager.get_blocks() ){
 			entities.push_back( &block );
@@ -190,14 +194,11 @@ void GLCanvas::MouseEvents( wxMouseEvent& ev ){
 		// perform a dragging operation pretty much
 		if(mode==SELECT_M){
 		if(already_equal){
-			glm::vec3 mapped = glm::unProject(glm::vec3(curPos.x, viewPort_sz.y-curPos.y, 0.0), camera.get_matrix(), projection, glm::vec4(0, 0, viewPort_sz.x, viewPort_sz.y));
 			currentEnt->getPos().x() = mapped.x-currentEnt->getSize().x()/2.0f;
 			currentEnt->getPos().y() = mapped.y-currentEnt->getSize().y()/2.0f;
 			should_update=true;
 		}}else if( mode==DELETE_M ){
 			delete_cur();
-		}else if( mode==CREATE_M ){
-			// UNKNOWN
 		}
 	} 
 }
