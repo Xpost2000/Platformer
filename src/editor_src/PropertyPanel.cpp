@@ -76,19 +76,21 @@ void PropertyPanel::IdleHandler( ){
 		scrollY->SetValue( wxVariant(0) ); scrollY->Enable(false);
 		blockType->SetValue( wxVariant(1) ); blockType->Enable(false);
 	}
+	if( lIndex->GetValue().GetLong() != current_index ){
+	current_index = static_cast<int>(lIndex->GetValue().GetLong());
+	current_index = std::max(0, current_index);
+	current_index = std::min(9, current_index);
+	lIndex->SetValue( wxVariant(current_index) );
+	Light& light = parent->canvas->get_lights()[current_index];
+	lPower->SetValue( wxVariant(light.strength) );
+	lR->SetValue( wxVariant(light.color.r()) );
+	lG->SetValue( wxVariant(light.color.g()) );
+	lB->SetValue( wxVariant(light.color.b()) );
+	lX->SetValue( wxVariant(light.pos.x()) );
+	lY->SetValue( wxVariant(light.pos.y()) );
+	}
 	// sadly lights are pretty odd so I have to update it when entities get updated :(
 	if(ptr!=nullptr && parent->canvas->should_update){
-		current_index = static_cast<int>(lIndex->GetValue().GetLong());
-		current_index = std::max(0, current_index);
-		current_index = std::min(9, current_index);
-		lIndex->SetValue( wxVariant(current_index) );
-		Light& light = parent->canvas->get_lights()[current_index];
-		lPower->SetValue( wxVariant(light.strength) );
-		lR->SetValue( wxVariant(light.color.r()) );
-		lG->SetValue( wxVariant(light.color.g()) );
-		lB->SetValue( wxVariant(light.color.b()) );
-		lX->SetValue( wxVariant(light.pos.x()) );
-		lY->SetValue( wxVariant(light.pos.y()) );
 		PositionX->SetValue( wxVariant(ptr->getPos().x()) ); PositionX->Enable(true);
 		PositionY->SetValue( wxVariant(ptr->getPos().y()) ); PositionY->Enable(true);
 		if(ptr->magic != PLAYER){
@@ -127,7 +129,7 @@ void PropertyPanel::IdleHandler( ){
 			cast->scrollFactor.y() = scrollY->GetValue().GetDouble();
 		}
 		goto please_forgive_me;
-	} else if ( parent->canvas->should_update==false ){
+	} else if ( parent->canvas->should_update==false  ){
 please_forgive_me:
 		Light& light = parent->canvas->get_lights()[current_index];
 		light.strength = lPower->GetValue().GetDouble();

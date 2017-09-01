@@ -72,6 +72,9 @@ class GLCanvas : public wxGLCanvas{
 		Entity* currentEnt = nullptr;
 		// used for my little copy and paste system :D
 		Entity* copy = nullptr;
+		// it copies from the create menu
+		// and changes the position to the mouse position.
+		Entity* creation_object=nullptr;
 		EntityManager entity_manager;
 		std::array<Light, 10> lights;
 		wxGLContext* ctx_obj;
