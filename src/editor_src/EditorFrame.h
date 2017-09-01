@@ -12,6 +12,7 @@ class CreationPanel;
 class EditorFrame : public wxFrame{
 	public:
 		friend class PropertyPanel;
+		friend class CreationPanel;
 		EditorFrame(wxWindow* parent, wxWindowID id=wxID_ANY, const wxString &title= "Editor Window", const wxPoint &pos=wxDefaultPosition, const wxSize& size = wxDefaultSize);		
 		~EditorFrame(){ delete timer; }
 		wxGLCanvas* RetrieveCanvas() { return canvas; }	
@@ -24,6 +25,7 @@ class EditorFrame : public wxFrame{
 		void OnLightingBox( wxCommandEvent& ev );
 		void OnParallaxBox ( wxCommandEvent& ev );
 		void OnSaveLevel( wxCommandEvent& ev );
+		void OnSaveAs( wxCommandEvent& ev );
 		void OnCopy( wxCommandEvent& ev );
 		void OnPaste( wxCommandEvent& ev );
 		void OnAbout( wxCommandEvent& ev );
@@ -40,6 +42,7 @@ class EditorFrame : public wxFrame{
 		PropertyPanel* property;
 		CreationPanel* creation;
 	private:
+		bool file_open=false;
 		// Timer
 		RenderTimer* timer;
 		// Menu Bar.

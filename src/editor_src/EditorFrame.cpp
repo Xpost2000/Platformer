@@ -80,6 +80,7 @@ EditorFrame::EditorFrame(wxWindow* parent, wxWindowID id,
 
 	file->Append( ConstantId::MainWindow::FileMenu_Open, "Open an existing level\tAlt-O", "Opens a existing level file." );
 	file->Append( ConstantId::MainWindow::FileMenu_Save, "Save a level to a file\tCtrl-S", "Save a level to a file");
+	file->Append( 1999, "Save As", "Save a level to a file");
 	file->Append( ConstantId::MainWindow::FileMenu_Details, "Level Details", "Recieve a summary of all entities on the map.");
 	file->Append( wxID_EXIT, "Exit", "Quit the program" );
 //	edit->Append( ConstantId::MainWindow::EditMenu_Test, "Test map ingame \tAlt-P", "Test currently opened map ingame");
@@ -123,6 +124,7 @@ void EditorFrame::OnOpen( wxCommandEvent& ev ){
 		canvas->get_level() = Level(open_file.GetPath().ToStdString());	
 		currentLevelPath = open_file.GetPath();
 		std::cerr << "Loaded level" << std::endl;
+		file_open=true;
 	}else{
 		return;
 	}
@@ -142,8 +144,17 @@ void EditorFrame::OnDetails( wxCommandEvent& ev ){
 }
 void EditorFrame::OnSaveLevel( wxCommandEvent& ev ) {
 //	NOT_IMPLEMENTED_MB("TODO FEATURE");
+	if(file_open)
 	canvas->save( currentLevelPath.ToStdString() );
+	else
+	OnSaveAs(ev);
 	std::cerr << "Saved level file(if is valid file)" << std::endl;
+}
+void EditorFrame::OnSaveAs( wxCommandEvent& ev ){
+	wxFileDialog saveas( this, "Save Level File", "", "", "Letter X Levels (*.map) |*.map", wxFD_SAVE|wxFD_OVERWRITE_PROMPT );
+	if(saveas.ShowModal() == wxID_OK){
+		canvas->save( saveas.GetPath().ToStdString() );
+	}
 }
 void EditorFrame::OnParallaxBox( wxCommandEvent& ev ){
 	canvas->parallax_enabled() = !canvas->parallax_enabled();
@@ -189,6 +200,7 @@ wxBEGIN_EVENT_TABLE(EditorFrame, wxFrame)
 //	EVT_MENU( ConstantId::MainWindow::EditMenu_Test, EditorFrame::OnTestMap )	 
 	EVT_MENU( ConstantId::MainWindow::FileMenu_Details, EditorFrame::OnDetails )
 	EVT_MENU( ConstantId::MainWindow::FileMenu_Save, EditorFrame::OnSaveLevel )
+	EVT_MENU( 1999, EditorFrame::OnSaveAs )
 	EVT_MENU( ConstantId::MainWindow::EditMenu_Copy, EditorFrame::OnCopy )
 	EVT_MENU( ConstantId::MainWindow::EditMenu_Paste, EditorFrame::OnPaste )
 	EVT_MENU( ConstantId::MainWindow::TBMenu_Select, EditorFrame::OnTB_Select )

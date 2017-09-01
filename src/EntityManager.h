@@ -18,6 +18,7 @@ class EntityManager{
 		void create_enemy(const JumpingEnemy) ;
 		void create_enemy(const BasicEnemy) ;
 		void set_progressor(const Progressor other) { p = other; }
+		void set_progressor_pos( Vec2 pos ) { p.getPos().x() = pos.x(); p.getPos().y() = pos.y(); }
 		void clear_entities();
 		std::vector<JumpingEnemy>& get_jumping_enemies(){ return jumpingEnemies; }
 		std::vector<Block>& get_blocks(){ return blocks; }

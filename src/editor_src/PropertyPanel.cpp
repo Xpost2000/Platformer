@@ -96,13 +96,14 @@ void PropertyPanel::IdleHandler( ){
 		if(ptr->magic != PLAYER){
 		SizeX->SetValue( wxVariant(ptr->getSize().x())); SizeX->Enable(true);
 		SizeY->SetValue( wxVariant(ptr->getSize().y())); SizeY->Enable(true);
-
 		R->SetValue( wxVariant(ptr->getColor().r())); R->Enable(true);
 		G->SetValue( wxVariant(ptr->getColor().g())); G->Enable(true);
 		B->SetValue( wxVariant(ptr->getColor().b())); B->Enable(true);
+		if(ptr->magic != PROGRESSOR){
 		Block* cast = (Block*)ptr;
 		blockType->SetValue( wxVariant(cast->get_type()) );
 		blockType->Enable(true);
+		}
 		}
 		if(ptr->magic == BGRNDBLOCK){
 			scroll_category->Enable(true);

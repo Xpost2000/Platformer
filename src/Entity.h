@@ -12,6 +12,7 @@
 
 #define BLOCK 1
 #define PLAYER 2
+#define PROGRESSOR 33
 #define STBLOCK 3
 #define BGRNDBLOCK 4
 

@@ -49,16 +49,16 @@ In file included from ../../src/editor_src/../Progressor.h:3:0,
                  from ../../src/editor_src/EditorApplication.h:11,
                  from ../../src/editor_src/EditorApplication.cpp:1:
 ../../src/editor_src/../Entity.h: In constructor 'Entity::Entity(Vec2, Vec2, Vec2, Vec4)':
-../../src/editor_src/../Entity.h:99:8: warning: 'Entity::size' will be initialized after [-Wreorder]
+../../src/editor_src/../Entity.h:100:8: warning: 'Entity::size' will be initialized after [-Wreorder]
    Vec2 size;
         ^
-../../src/editor_src/../Entity.h:98:8: warning:   'Vec2 Entity::velocity' [-Wreorder]
+../../src/editor_src/../Entity.h:99:8: warning:   'Vec2 Entity::velocity' [-Wreorder]
    Vec2 velocity;
         ^
-../../src/editor_src/../Entity.h:36:3: warning:   when initialized here [-Wreorder]
+../../src/editor_src/../Entity.h:37:3: warning:   when initialized here [-Wreorder]
    Entity(Vec2 pos, Vec2 size, Vec2 velocity, Vec4 color)
    ^
 ../../src/editor_src/../Entity.h: In member function 'virtual bool Entity::DeathAnimation(float)':
-../../src/editor_src/../Entity.h:83:3: warning: no return statement in function returning non-void [-Wreturn-type]
+../../src/editor_src/../Entity.h:84:3: warning: no return statement in function returning non-void [-Wreturn-type]
    }
    ^

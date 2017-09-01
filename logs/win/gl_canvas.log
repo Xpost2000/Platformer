@@ -37,17 +37,17 @@ In file included from ../../src/editor_src/../Progressor.h:3:0,
                  from ../../src/editor_src/GLCanvas.h:14,
                  from ../../src/editor_src/GLCanvas.cpp:1:
 ../../src/editor_src/../Entity.h: In constructor 'Entity::Entity(Vec2, Vec2, Vec2, Vec4)':
-../../src/editor_src/../Entity.h:99:8: warning: 'Entity::size' will be initialized after [-Wreorder]
+../../src/editor_src/../Entity.h:100:8: warning: 'Entity::size' will be initialized after [-Wreorder]
    Vec2 size;
         ^
-../../src/editor_src/../Entity.h:98:8: warning:   'Vec2 Entity::velocity' [-Wreorder]
+../../src/editor_src/../Entity.h:99:8: warning:   'Vec2 Entity::velocity' [-Wreorder]
    Vec2 velocity;
         ^
-../../src/editor_src/../Entity.h:36:3: warning:   when initialized here [-Wreorder]
+../../src/editor_src/../Entity.h:37:3: warning:   when initialized here [-Wreorder]
    Entity(Vec2 pos, Vec2 size, Vec2 velocity, Vec4 color)
    ^
 ../../src/editor_src/../Entity.h: In member function 'virtual bool Entity::DeathAnimation(float)':
-../../src/editor_src/../Entity.h:83:3: warning: no return statement in function returning non-void [-Wreturn-type]
+../../src/editor_src/../Entity.h:84:3: warning: no return statement in function returning non-void [-Wreturn-type]
    }
    ^
 ../../src/editor_src/GLCanvas.cpp: In member function 'void GLCanvas::save(std::__cxx11::string)':
@@ -58,16 +58,17 @@ In file included from ../../src/editor_src/../Progressor.h:3:0,
   for( auto& basic_enemy : entity_manager.get_basic_enemies() ){
              ^
 ../../src/editor_src/GLCanvas.cpp: In member function 'void GLCanvas::delete_cur()':
-../../src/editor_src/GLCanvas.cpp:293:22: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+../../src/editor_src/GLCanvas.cpp:296:22: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
      for(int i = 0; i < blocks.size(); ++i){
                       ^
-../../src/editor_src/GLCanvas.cpp:301:22: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+../../src/editor_src/GLCanvas.cpp:304:22: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
      for(int i = 0; i < bk_blocks.size(); ++i){
                       ^
-../../src/editor_src/GLCanvas.cpp:309:42: warning: left operand of comma operator has no effect [-Wunused-value]
+../../src/editor_src/GLCanvas.cpp:312:42: warning: left operand of comma operator has no effect [-Wunused-value]
      for(int i = 0; i , bk_st_blocks.size(); ++i){
                                           ^
-In file included from ../../src/editor_src/../Player.h:10:0,
+In file included from ../../src/editor_src/../Progressor.h:4:0,
+                 from ../../src/editor_src/../Player.h:5,
                  from ../../src/editor_src/../Level.h:6,
                  from ../../src/editor_src/GLCanvas.h:14,
                  from ../../src/editor_src/GLCanvas.cpp:1:
@@ -83,7 +84,8 @@ In file included from ../../src/editor_src/../EntityManager.h:8:0,
 ../../src/editor_src/../BackgroundSprites.h:67:3: warning: control reaches end of non-void function [-Wreturn-type]
    }
    ^
-In file included from ../../src/editor_src/../Player.h:10:0,
+In file included from ../../src/editor_src/../Progressor.h:4:0,
+                 from ../../src/editor_src/../Player.h:5,
                  from ../../src/editor_src/../Level.h:6,
                  from ../../src/editor_src/GLCanvas.h:14,
                  from ../../src/editor_src/GLCanvas.cpp:1:

@@ -289,6 +289,9 @@ void GLCanvas::delete_cur(){
 			case PLAYER:
 				wxMessageBox(wxT("You cannot delete the player."), wxT("Illegal Action"));
 				break;
+			case PROGRESSOR:
+				wxMessageBox(wxT("You cannot delete the progressor. Merely transform it :)"), wxT("Illegal Action"));
+				break;
 			case BLOCK:
 				for(int i = 0; i < blocks.size(); ++i){
 					if(&blocks[i] == currentEnt){

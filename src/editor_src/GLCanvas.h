@@ -46,6 +46,7 @@ class GLCanvas : public wxGLCanvas{
 		Level& get_level() { return current; }
 		GameCamera& get_camera() { return camera; }
 		Player& get_player() { return player; }
+		EntityManager& get_em() { return entity_manager; }
 		// the syntax for this is weird.
 		Entity*& get_current() { return currentEnt; }
 		bool& lighting_enabled() { return lighting; }
