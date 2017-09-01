@@ -1,5 +1,6 @@
 #include "EditorFrame.h"
 #include "PropertyPanel.h"
+#include "CreationPanel.h"
 #include "DebugMacro.h"
 #include "IDConstants.h"
 
@@ -16,6 +17,7 @@ EditorFrame::EditorFrame(wxWindow* parent, wxWindowID id,
 	glAttributes.PlatformDefaults().Depth(24).DoubleBuffer().EndList();
 	canvas = new GLCanvas(this, glAttributes, wxID_ANY, pos, size/2);	
 	property = new PropertyPanel(this, wxID_ANY, pos, size);
+	creation = new CreationPanel(this, wxID_ANY, pos, size/2);
 	wxImage select("textures\\select.png", wxBITMAP_TYPE_PNG);
 	wxImage create("textures\\create.png", wxBITMAP_TYPE_PNG);
 	wxImage erase("textures\\erase.png",   wxBITMAP_TYPE_PNG);
@@ -53,6 +55,7 @@ EditorFrame::EditorFrame(wxWindow* parent, wxWindowID id,
 	hori->Add(new wxStaticText(this, wxID_ANY, " Main Toolbar(Substitute for menubar above.)"));
 	hori->Fit(this);
 	hori->SetSizeHints(this);
+	pane_sizer->Add(creation, 0, wxEXPAND, 0);
 	pane_sizer->Add(canvas, 1, wxEXPAND|wxALL, 10);
 	pane_sizer->Add(property, 0, wxEXPAND , 0);
 	pane_sizer->Fit(this);

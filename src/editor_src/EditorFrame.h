@@ -8,6 +8,7 @@
  * This is going to be the window frame that contains everything for the window :)
  */
 class PropertyPanel;
+class CreationPanel;
 class EditorFrame : public wxFrame{
 	public:
 		friend class PropertyPanel;
@@ -37,6 +38,7 @@ class EditorFrame : public wxFrame{
 		wxGLAttributes glAttributes;
 		GLCanvas* canvas;
 		PropertyPanel* property;
+		CreationPanel* creation;
 	private:
 		// Timer
 		RenderTimer* timer;

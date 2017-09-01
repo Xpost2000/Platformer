@@ -11,6 +11,7 @@ EDITOR_OBJ_FILES=../../obj/EditorApplication.o\
 		 ../../obj/PropertyPanel.o\
 		 ../../obj/EditorAboutDialog.o\
 		 ../../obj/GridTimer.o\
+		 ../../obj/CreationPanel.o\
 		 ../../obj/RenderTimer.o
 
 GAME_OBJ_FILES= ../../obj/Game.o\
@@ -110,6 +111,7 @@ build-editor:
 	$(GCC) ../../src/editor_src/GridTimer.cpp $(EDITOR_LIBS) $(EDITOR_FLAGS) -c -o ../../obj/GridTimer.o 2> ../../logs/win/timer_grid.log
 	$(GCC) ../../src/editor_src/EditorFrame.cpp $(EDITOR_LIBS) $(EDITOR_FLAGS) -c -o ../../obj/EditorFrame.o 2> ../../logs/win/editor_frame.log
 	$(GCC) ../../src/editor_src/PropertyPanel.cpp $(EDITOR_LIBS) $(EDITOR_FLAGS) -c -o ../../obj/PropertyPanel.o 2> ../../logs/win/right_pane.log
+	$(GCC) ../../src/editor_src/CreationPanel.cpp $(EDITOR_LIBS) $(EDITOR_FLAGS) -c -o ../../obj/CreationPanel.o 2> ../../logs/win/left_pane.log
 	$(GCC) ../../src/editor_src/EditorAboutDialog.cpp $(EDITOR_LIBS) $(EDITOR_FLAGS) -c -o ../../obj/EditorAboutDialog.o 2> ../../logs/win/editor_dialog.log
 link-game:
 	$(GCC) $(OBJ_FILES) $(GAME_OBJ_FILES) $(LIBS) $(FLAGS) -o ../../bin/Game.exe 2> ../../logs/linker_windows.log

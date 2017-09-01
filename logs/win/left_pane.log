@@ -1,0 +1,180 @@
+../../src/editor_src/CreationPanel.cpp:9:1: warning: 'virtual void wxWindowBase::SetInitialBestSize(const wxSize&)' is deprecated: use SetInitialSize() instead. [-Wdeprecated-declarations]
+ }
+ ^
+In file included from C:/TDM-GCC-32/include/wx/wx.h:38:0,
+                 from ../../src/editor_src/CreationPanel.h:3,
+                 from ../../src/editor_src/CreationPanel.cpp:1:
+C:/TDM-GCC-32/include/wx/window.h:1917:13: note: declared here
+ inline void wxWindowBase::SetInitialBestSize(const wxSize& size)
+             ^
+../../src/editor_src/CreationPanel.cpp:9:1: warning: 'virtual void wxWindowBase::SetInitialBestSize(const wxSize&)' is deprecated: use SetInitialSize() instead. [-Wdeprecated-declarations]
+ }
+ ^
+In file included from C:/TDM-GCC-32/include/wx/wx.h:38:0,
+                 from ../../src/editor_src/CreationPanel.h:3,
+                 from ../../src/editor_src/CreationPanel.cpp:1:
+C:/TDM-GCC-32/include/wx/window.h:1917:13: note: declared here
+ inline void wxWindowBase::SetInitialBestSize(const wxSize& size)
+             ^
+../../src/editor_src/CreationPanel.cpp:9:1: warning: 'virtual void wxWindowBase::SetInitialBestSize(const wxSize&)' is deprecated: use SetInitialSize() instead. [-Wdeprecated-declarations]
+ }
+ ^
+In file included from C:/TDM-GCC-32/include/wx/wx.h:38:0,
+                 from ../../src/editor_src/CreationPanel.h:3,
+                 from ../../src/editor_src/CreationPanel.cpp:1:
+C:/TDM-GCC-32/include/wx/window.h:1917:13: note: declared here
+ inline void wxWindowBase::SetInitialBestSize(const wxSize& size)
+             ^
+../../src/editor_src/CreationPanel.cpp:9:1: warning: 'virtual void wxWindowBase::SetInitialBestSize(const wxSize&)' is deprecated: use SetInitialSize() instead. [-Wdeprecated-declarations]
+ }
+ ^
+In file included from C:/TDM-GCC-32/include/wx/wx.h:38:0,
+                 from ../../src/editor_src/CreationPanel.h:3,
+                 from ../../src/editor_src/CreationPanel.cpp:1:
+C:/TDM-GCC-32/include/wx/window.h:1917:13: note: declared here
+ inline void wxWindowBase::SetInitialBestSize(const wxSize& size)
+             ^
+../../src/editor_src/CreationPanel.cpp:9:1: warning: 'virtual void wxWindowBase::SetInitialBestSize(const wxSize&)' is deprecated: use SetInitialSize() instead. [-Wdeprecated-declarations]
+ }
+ ^
+In file included from C:/TDM-GCC-32/include/wx/wx.h:38:0,
+                 from ../../src/editor_src/CreationPanel.h:3,
+                 from ../../src/editor_src/CreationPanel.cpp:1:
+C:/TDM-GCC-32/include/wx/window.h:1917:13: note: declared here
+ inline void wxWindowBase::SetInitialBestSize(const wxSize& size)
+             ^
+../../src/editor_src/CreationPanel.cpp:9:1: warning: 'virtual void wxWindowBase::SetInitialBestSize(const wxSize&)' is deprecated: use SetInitialSize() instead. [-Wdeprecated-declarations]
+ }
+ ^
+In file included from C:/TDM-GCC-32/include/wx/wx.h:38:0,
+                 from ../../src/editor_src/CreationPanel.h:3,
+                 from ../../src/editor_src/CreationPanel.cpp:1:
+C:/TDM-GCC-32/include/wx/window.h:1917:13: note: declared here
+ inline void wxWindowBase::SetInitialBestSize(const wxSize& size)
+             ^
+../../src/editor_src/CreationPanel.cpp:9:1: warning: 'virtual void wxWindowBase::SetInitialBestSize(const wxSize&)' is deprecated: use SetInitialSize() instead. [-Wdeprecated-declarations]
+ }
+ ^
+In file included from C:/TDM-GCC-32/include/wx/wx.h:38:0,
+                 from ../../src/editor_src/CreationPanel.h:3,
+                 from ../../src/editor_src/CreationPanel.cpp:1:
+C:/TDM-GCC-32/include/wx/window.h:1917:13: note: declared here
+ inline void wxWindowBase::SetInitialBestSize(const wxSize& size)
+             ^
+../../src/editor_src/CreationPanel.cpp:9:1: warning: 'virtual void wxWindowBase::SetInitialBestSize(const wxSize&)' is deprecated: use SetInitialSize() instead. [-Wdeprecated-declarations]
+ }
+ ^
+In file included from C:/TDM-GCC-32/include/wx/wx.h:38:0,
+                 from ../../src/editor_src/CreationPanel.h:3,
+                 from ../../src/editor_src/CreationPanel.cpp:1:
+C:/TDM-GCC-32/include/wx/window.h:1917:13: note: declared here
+ inline void wxWindowBase::SetInitialBestSize(const wxSize& size)
+             ^
+../../src/editor_src/CreationPanel.cpp:9:1: warning: 'virtual void wxWindowBase::SetInitialBestSize(const wxSize&)' is deprecated: use SetInitialSize() instead. [-Wdeprecated-declarations]
+ }
+ ^
+In file included from C:/TDM-GCC-32/include/wx/wx.h:38:0,
+                 from ../../src/editor_src/CreationPanel.h:3,
+                 from ../../src/editor_src/CreationPanel.cpp:1:
+C:/TDM-GCC-32/include/wx/window.h:1917:13: note: declared here
+ inline void wxWindowBase::SetInitialBestSize(const wxSize& size)
+             ^
+../../src/editor_src/CreationPanel.cpp:9:1: warning: 'virtual void wxWindowBase::SetInitialBestSize(const wxSize&)' is deprecated: use SetInitialSize() instead. [-Wdeprecated-declarations]
+ }
+ ^
+In file included from C:/TDM-GCC-32/include/wx/wx.h:38:0,
+                 from ../../src/editor_src/CreationPanel.h:3,
+                 from ../../src/editor_src/CreationPanel.cpp:1:
+C:/TDM-GCC-32/include/wx/window.h:1917:13: note: declared here
+ inline void wxWindowBase::SetInitialBestSize(const wxSize& size)
+             ^
+../../src/editor_src/CreationPanel.cpp:9:1: warning: 'virtual void wxWindowBase::SetInitialBestSize(const wxSize&)' is deprecated: use SetInitialSize() instead. [-Wdeprecated-declarations]
+ }
+ ^
+In file included from C:/TDM-GCC-32/include/wx/wx.h:38:0,
+                 from ../../src/editor_src/CreationPanel.h:3,
+                 from ../../src/editor_src/CreationPanel.cpp:1:
+C:/TDM-GCC-32/include/wx/window.h:1917:13: note: declared here
+ inline void wxWindowBase::SetInitialBestSize(const wxSize& size)
+             ^
+../../src/editor_src/CreationPanel.cpp:9:1: warning: 'virtual void wxWindowBase::SetInitialBestSize(const wxSize&)' is deprecated: use SetInitialSize() instead. [-Wdeprecated-declarations]
+ }
+ ^
+In file included from C:/TDM-GCC-32/include/wx/wx.h:38:0,
+                 from ../../src/editor_src/CreationPanel.h:3,
+                 from ../../src/editor_src/CreationPanel.cpp:1:
+C:/TDM-GCC-32/include/wx/window.h:1917:13: note: declared here
+ inline void wxWindowBase::SetInitialBestSize(const wxSize& size)
+             ^
+../../src/editor_src/CreationPanel.cpp:9:1: warning: 'virtual void wxWindowBase::SetInitialBestSize(const wxSize&)' is deprecated: use SetInitialSize() instead. [-Wdeprecated-declarations]
+ }
+ ^
+In file included from C:/TDM-GCC-32/include/wx/wx.h:38:0,
+                 from ../../src/editor_src/CreationPanel.h:3,
+                 from ../../src/editor_src/CreationPanel.cpp:1:
+C:/TDM-GCC-32/include/wx/window.h:1917:13: note: declared here
+ inline void wxWindowBase::SetInitialBestSize(const wxSize& size)
+             ^
+../../src/editor_src/CreationPanel.cpp:9:1: warning: 'virtual void wxWindowBase::SetInitialBestSize(const wxSize&)' is deprecated: use SetInitialSize() instead. [-Wdeprecated-declarations]
+ }
+ ^
+In file included from C:/TDM-GCC-32/include/wx/wx.h:38:0,
+                 from ../../src/editor_src/CreationPanel.h:3,
+                 from ../../src/editor_src/CreationPanel.cpp:1:
+C:/TDM-GCC-32/include/wx/window.h:1917:13: note: declared here
+ inline void wxWindowBase::SetInitialBestSize(const wxSize& size)
+             ^
+../../src/editor_src/CreationPanel.cpp:9:1: warning: 'virtual void wxWindowBase::SetInitialBestSize(const wxSize&)' is deprecated: use SetInitialSize() instead. [-Wdeprecated-declarations]
+ }
+ ^
+In file included from C:/TDM-GCC-32/include/wx/wx.h:38:0,
+                 from ../../src/editor_src/CreationPanel.h:3,
+                 from ../../src/editor_src/CreationPanel.cpp:1:
+C:/TDM-GCC-32/include/wx/window.h:1917:13: note: declared here
+ inline void wxWindowBase::SetInitialBestSize(const wxSize& size)
+             ^
+../../src/editor_src/CreationPanel.cpp:9:1: warning: 'virtual void wxWindowBase::SetInitialBestSize(const wxSize&)' is deprecated: use SetInitialSize() instead. [-Wdeprecated-declarations]
+ }
+ ^
+In file included from C:/TDM-GCC-32/include/wx/wx.h:38:0,
+                 from ../../src/editor_src/CreationPanel.h:3,
+                 from ../../src/editor_src/CreationPanel.cpp:1:
+C:/TDM-GCC-32/include/wx/window.h:1917:13: note: declared here
+ inline void wxWindowBase::SetInitialBestSize(const wxSize& size)
+             ^
+../../src/editor_src/CreationPanel.cpp:9:1: warning: 'virtual void wxWindowBase::SetInitialBestSize(const wxSize&)' is deprecated: use SetInitialSize() instead. [-Wdeprecated-declarations]
+ }
+ ^
+In file included from C:/TDM-GCC-32/include/wx/wx.h:38:0,
+                 from ../../src/editor_src/CreationPanel.h:3,
+                 from ../../src/editor_src/CreationPanel.cpp:1:
+C:/TDM-GCC-32/include/wx/window.h:1917:13: note: declared here
+ inline void wxWindowBase::SetInitialBestSize(const wxSize& size)
+             ^
+../../src/editor_src/CreationPanel.cpp:9:1: warning: 'virtual void wxWindowBase::SetInitialBestSize(const wxSize&)' is deprecated: use SetInitialSize() instead. [-Wdeprecated-declarations]
+ }
+ ^
+In file included from C:/TDM-GCC-32/include/wx/wx.h:38:0,
+                 from ../../src/editor_src/CreationPanel.h:3,
+                 from ../../src/editor_src/CreationPanel.cpp:1:
+C:/TDM-GCC-32/include/wx/window.h:1917:13: note: declared here
+ inline void wxWindowBase::SetInitialBestSize(const wxSize& size)
+             ^
+../../src/editor_src/CreationPanel.cpp:9:1: warning: 'virtual void wxWindowBase::SetInitialBestSize(const wxSize&)' is deprecated: use SetInitialSize() instead. [-Wdeprecated-declarations]
+ }
+ ^
+In file included from C:/TDM-GCC-32/include/wx/wx.h:38:0,
+                 from ../../src/editor_src/CreationPanel.h:3,
+                 from ../../src/editor_src/CreationPanel.cpp:1:
+C:/TDM-GCC-32/include/wx/window.h:1917:13: note: declared here
+ inline void wxWindowBase::SetInitialBestSize(const wxSize& size)
+             ^
+../../src/editor_src/CreationPanel.cpp:9:1: warning: 'virtual void wxWindowBase::SetInitialBestSize(const wxSize&)' is deprecated: use SetInitialSize() instead. [-Wdeprecated-declarations]
+ }
+ ^
+In file included from C:/TDM-GCC-32/include/wx/wx.h:38:0,
+                 from ../../src/editor_src/CreationPanel.h:3,
+                 from ../../src/editor_src/CreationPanel.cpp:1:
+C:/TDM-GCC-32/include/wx/window.h:1917:13: note: declared here
+ inline void wxWindowBase::SetInitialBestSize(const wxSize& size)
+             ^
