@@ -16,6 +16,14 @@ class PropertyPanel : public wxPanel{
 			       const wxString& name=wxPanelNameStr);
 		~PropertyPanel();
 		void IdleHandler(  );
+		int gridW() { return static_cast<int>(grid_w->GetValue().GetLong());}
+		int gridH() { return static_cast<int>(grid_h->GetValue().GetLong());}
+		int gridType() { 
+			int grid_type_i = static_cast<int>( grid_type->GetValue().GetLong() );
+			grid_type_i = std::min(grid_type_i, 3);
+			grid_type_i = std::max(grid_type_i, 1);
+			return grid_type_i;
+		}
 	private:
 		int current_index=0;
 		// I need to do this.
@@ -44,6 +52,10 @@ class PropertyPanel : public wxPanel{
 		wxPGProperty* lB = nullptr;
 		wxPGProperty* lX = nullptr;
 		wxPGProperty* lY = nullptr;
+		// Creation Mode Properties
+		wxPGProperty* grid_type = nullptr;
+		wxPGProperty* grid_w = nullptr;
+		wxPGProperty* grid_h = nullptr;
 		wxSize sz;
 		// since this class is a friend of the editorframe
 		// because I require some access to private members

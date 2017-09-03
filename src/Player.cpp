@@ -1,4 +1,5 @@
 #include "Player.h"
+#include "Sound.h"
 #include "EntityManager.h"
 #include <algorithm>
 #include <iostream>
@@ -103,6 +104,7 @@ void Player::jump(float dt){
 	}else if(onGround){
 		velocity.y() = -262.0f;
 		onGround = false;
+		Sound::play_sound("jump");
 	}
 	pState = PlayerState::JUMPING;
 }

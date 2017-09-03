@@ -91,10 +91,13 @@ void Game::init(){
 	sb = std::make_shared<SpriteBatcher>(ctx);
 	ls = std::make_shared<LightShader>(ctx);
 	pp = std::make_shared<PostProcessor>(ctx, w, h);
+	btr = std::make_shared<BitmapTextRenderer>(ctx);
 	tm.add_texture("tiles", "textures//tiles.png", ctx);
 	tm.add_texture("player", "textures//test_player.png", ctx);
 	tm.add_texture("ui-menu", "textures//ui//ui_atlas.png", ctx);
+	tm.add_texture("ocr", "textures//ui//ocr.png", ctx);
 	Sound::load_sound(cfg.get_sounds_dir()+std::string("beep.wav"), "beep");
+	Sound::load_sound(cfg.get_sounds_dir()+std::string("jump.wav"), "jump");
 	gc = GameCamera(Vec2(0, 0), Vec2(w, h), Vec2(-3000, -3000), Vec2(3000, 3000));
 	ls->setProj(proj);
 	initalized =true;
@@ -169,13 +172,13 @@ void Game::draw(){
 	ctx->viewport(0, 0, w, h);
 	ctx->enableAlpha();
 	pp->begin();
-		ls->use();
 	if(state == GameState::Playing || state == GameState::Pause){
-		ls->setTex(0);
 		for(int i = 0; i < 10; ++i){
 			ls->setLight(i, lights[i]);
 		}
 		// this is herr sky.
+		ls->use();
+		ls->setTex(0);
 		ls->setTextured(true);
 		tm.get_tex("tiles")->bind();
 		sb->draw(Vec2(-5000), Vec4(Block::get_uv_from_type(BlockTypes::FlatColor)), Vec2(10000), Vec4(0.1, 0.1, 0.1, 1.0));

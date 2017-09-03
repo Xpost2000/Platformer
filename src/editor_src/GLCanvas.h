@@ -29,6 +29,8 @@
 const int SELECT_M=0;
 const int DELETE_M=1;
 const int CREATE_M=2;
+class PropertyPanel;
+
 class GLCanvas : public wxGLCanvas{
 	public:
 		GLCanvas( wxWindow* parent, const wxGLAttributes& disp, wxWindowID id=wxID_ANY, const wxPoint &pos=wxDefaultPosition, const wxSize& size=wxDefaultSize, long style=0 );
@@ -63,6 +65,7 @@ class GLCanvas : public wxGLCanvas{
 		glm::mat4 view=glm::mat4();
 		glm::mat4 projection;		
 	private:
+		PropertyPanel* property=nullptr;
 		int mode=0;
 		bool lighting=false;
 		bool parallax=false;

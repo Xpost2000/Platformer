@@ -13,9 +13,10 @@ class EditorFrame : public wxFrame{
 	public:
 		friend class PropertyPanel;
 		friend class CreationPanel;
+		friend class GLCanvas;
 		EditorFrame(wxWindow* parent, wxWindowID id=wxID_ANY, const wxString &title= "Editor Window", const wxPoint &pos=wxDefaultPosition, const wxSize& size = wxDefaultSize);		
 		~EditorFrame(){ delete timer; }
-		wxGLCanvas* RetrieveCanvas() { return canvas; }	
+		GLCanvas* RetrieveCanvas() { return canvas; }	
 	protected:
 		// Event Handlers
 		void OnQuit( wxCommandEvent& ev );

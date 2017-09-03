@@ -50,21 +50,55 @@ In file included from ../../src/editor_src/../Progressor.h:3:0,
 ../../src/editor_src/../Entity.h:84:3: warning: no return statement in function returning non-void [-Wreturn-type]
    }
    ^
+In file included from ../../src/editor_src/PropertyPanel.h:9:0,
+                 from ../../src/editor_src/GLCanvas.cpp:3:
+../../src/editor_src/GridTimer.h: In constructor 'GridTimer::GridTimer(PropertyPanel*)':
+../../src/editor_src/GridTimer.h:12:18: warning: 'GridTimer::ptr' will be initialized after [-Wreorder]
+   PropertyPanel* ptr;
+                  ^
+../../src/editor_src/GridTimer.h:8:55: warning:   base 'wxTimer' [-Wreorder]
+   GridTimer( PropertyPanel* ptr ) : ptr(ptr), wxTimer() {  }
+                                                       ^
+../../src/editor_src/GridTimer.h:8:3: warning:   when initialized here [-Wreorder]
+   GridTimer( PropertyPanel* ptr ) : ptr(ptr), wxTimer() {  }
+   ^
+../../src/editor_src/GLCanvas.cpp: In member function 'void GLCanvas::MouseEvents(wxMouseEvent&)':
+../../src/editor_src/GLCanvas.cpp:173:119: error: no matching function for call to 'BackgroundBlockStatic::BackgroundBlockStatic(Vec2, Vec2, Vec4)'
+      entity_manager.create_block(BackgroundBlockStatic(Vec2(x, y), Vec2(property->gridW(), property->gridH()), Vec4(1)));
+                                                                                                                       ^
+In file included from ../../src/editor_src/../EntityManager.h:8:0,
+                 from ../../src/editor_src/../Level.h:8,
+                 from ../../src/editor_src/GLCanvas.h:14,
+                 from ../../src/editor_src/GLCanvas.cpp:1:
+../../src/editor_src/../BackgroundSprites.h:131:3: note: candidate: BackgroundBlockStatic::BackgroundBlockStatic(Vec2, Vec2, Vec4, int)
+   BackgroundBlockStatic(Vec2 pos, Vec2 size, Vec4 color, int type)
+   ^
+../../src/editor_src/../BackgroundSprites.h:131:3: note:   candidate expects 4 arguments, 3 provided
+../../src/editor_src/../BackgroundSprites.h:130:3: note: candidate: BackgroundBlockStatic::BackgroundBlockStatic()
+   BackgroundBlockStatic(){}
+   ^
+../../src/editor_src/../BackgroundSprites.h:130:3: note:   candidate expects 0 arguments, 3 provided
+../../src/editor_src/../BackgroundSprites.h:75:7: note: candidate: constexpr BackgroundBlockStatic::BackgroundBlockStatic(const BackgroundBlockStatic&)
+ class BackgroundBlockStatic : public Block{
+       ^
+../../src/editor_src/../BackgroundSprites.h:75:7: note:   candidate expects 1 argument, 3 provided
+../../src/editor_src/../BackgroundSprites.h:75:7: note: candidate: constexpr BackgroundBlockStatic::BackgroundBlockStatic(BackgroundBlockStatic&&)
+../../src/editor_src/../BackgroundSprites.h:75:7: note:   candidate expects 1 argument, 3 provided
 ../../src/editor_src/GLCanvas.cpp: In member function 'void GLCanvas::save(std::__cxx11::string)':
-../../src/editor_src/GLCanvas.cpp:220:13: warning: unused variable 'jumping_enemy' [-Wunused-variable]
+../../src/editor_src/GLCanvas.cpp:248:13: warning: unused variable 'jumping_enemy' [-Wunused-variable]
   for( auto& jumping_enemy : entity_manager.get_jumping_enemies() ){
              ^
-../../src/editor_src/GLCanvas.cpp:223:13: warning: unused variable 'basic_enemy' [-Wunused-variable]
+../../src/editor_src/GLCanvas.cpp:251:13: warning: unused variable 'basic_enemy' [-Wunused-variable]
   for( auto& basic_enemy : entity_manager.get_basic_enemies() ){
              ^
 ../../src/editor_src/GLCanvas.cpp: In member function 'void GLCanvas::delete_cur()':
-../../src/editor_src/GLCanvas.cpp:297:22: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+../../src/editor_src/GLCanvas.cpp:325:22: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
      for(int i = 0; i < blocks.size(); ++i){
                       ^
-../../src/editor_src/GLCanvas.cpp:305:22: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+../../src/editor_src/GLCanvas.cpp:333:22: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
      for(int i = 0; i < bk_blocks.size(); ++i){
                       ^
-../../src/editor_src/GLCanvas.cpp:313:42: warning: left operand of comma operator has no effect [-Wunused-value]
+../../src/editor_src/GLCanvas.cpp:341:42: warning: left operand of comma operator has no effect [-Wunused-value]
      for(int i = 0; i , bk_st_blocks.size(); ++i){
                                           ^
 In file included from ../../src/editor_src/../Progressor.h:4:0,

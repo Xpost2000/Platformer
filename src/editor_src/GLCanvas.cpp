@@ -1,4 +1,6 @@
 #include "GLCanvas.h"
+#include "EditorFrame.h"
+#include "PropertyPanel.h"
 #include "../Block.h"
 #include <iostream>
 
@@ -7,6 +9,7 @@ Vec2 mousePos;
 GLCanvas::GLCanvas( wxWindow* parent, const wxGLAttributes& disp, wxWindowID id, const wxPoint & pos, const wxSize& size, long style )
 : wxGLCanvas(parent, disp, id, pos, size, style){
 	player=Player(Vec2(300), Vec2(73,73), Vec2(100), Vec4(1.0));
+	property = ((EditorFrame*)parent)->property;
 	// I create two dummies to "work on"
 	SDL_Window* dummy;
 	gl_info_struct_t blank;
@@ -150,6 +153,31 @@ void GLCanvas::MouseEvents( wxMouseEvent& ev ){
 		// anyways.
 		if( mode==CREATE_M ){
 			// UNKNOWN
+		//	int x = (( mousePos.x() + property->gridW()/2 ) / property->gridW())* property->gridW();
+		//	int y = (( mousePos.y() + property->gridH()/2 ) / property->gridH())* property->gridH();
+		// 
+		// 	so after one minute of fucking around with the calculator on windows I figured out grid snapping.
+		// 	cause I realized the logic of the expressions I looked up were invalid / wrong. I just modified
+		// 	the most common one I found which was this
+		// 	(pos / gridW) * gridW (same for height as well)
+		// 	I know int usually auto rounds but I'm now starting to think the operations are done in floating point
+		// 	first than converted to integer. ( also auto is weird )
+			int x = std::floor(mousePos.x()/property->gridW())*property->gridW();
+			int y = std::floor(mousePos.y()/property->gridH())*property->gridH();
+			//int y;
+			switch(property->gridType()){
+				case 1:
+					entity_manager.create_block(Block(Vec2(x, y), Vec2(property->gridW(), property->gridH()), Vec4(1)));
+					break;
+				case 2:
+					entity_manager.create_block(BackgroundBlockStatic(Vec2(x, y), Vec2(property->gridW(), property->gridH()), Vec4(1)));
+					break;
+				case 3:
+					break;
+				default:
+					break;
+			}
+			return;
 		}
 		std::vector<Entity*> entities;
 		for( auto& block : entity_manager.get_blocks() ){

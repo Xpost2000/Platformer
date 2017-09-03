@@ -15,9 +15,9 @@ EditorFrame::EditorFrame(wxWindow* parent, wxWindowID id,
 : wxFrame(parent, id, title, pos, size){
 	wxImage::AddHandler( new wxPNGHandler );
 	glAttributes.PlatformDefaults().Depth(24).DoubleBuffer().EndList();
-	canvas = new GLCanvas(this, glAttributes, wxID_ANY, pos, size/2);	
 	property = new PropertyPanel(this, wxID_ANY, pos, size);
 	creation = new CreationPanel(this, wxID_ANY, pos, size/2);
+	canvas = new GLCanvas(this, glAttributes, wxID_ANY, pos, size/2);	
 	wxImage select("textures\\select.png", wxBITMAP_TYPE_PNG);
 	wxImage create("textures\\create.png", wxBITMAP_TYPE_PNG);
 	wxImage erase("textures\\erase.png",   wxBITMAP_TYPE_PNG);

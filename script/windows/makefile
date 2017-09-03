@@ -28,6 +28,8 @@ OBJ_FILES= ../../obj/IDevice.o\
 	  ../../obj/ParticleRenderer.o\
 	  ../../obj/VertexArray.o\
 	  ../../obj/BufferTypes.o\
+	  ../../obj/BitmapTextRenderer.o\
+	  ../../obj/FreeTypeText.o\
 	  ../../obj/GLDevice.o\
 	  ../../obj/ClockTimer.o\
 	  ../../obj/Shader.o\
@@ -40,6 +42,7 @@ OBJ_FILES= ../../obj/IDevice.o\
 	  ../../obj/ImageTexture.o\
 	  ../../obj/DefaultShader.o\
 	  ../../obj/TestShader.o\
+	  ../../obj/TextShader.o\
 	  ../../obj/PostProcessorShader.o\
 	  ../../obj/PostProcessor.o\
 	  ../../obj/Renderbuffer.o\
@@ -72,12 +75,14 @@ all:
 	$(GCC) ../../src/IShaderSet.cpp $(LIBS) $(FLAGS) -c -o ../../obj/IShaderSet.o 2> ../../logs/win/ishaderset.log
 	$(GCC) ../../src/DefaultShader.cpp $(LIBS) $(FLAGS) -c -o ../../obj/DefaultShader.o 2> ../../logs/win/defaultshader.log
 	$(GCC) ../../src/TestShader.cpp $(LIBS) $(FLAGS) -c -o ../../obj/TestShader.o 2> ../../logs/win/testshader.log
+	$(GCC) ../../src/TextShader.cpp $(LIBS) $(FLAGS) -c -o ../../obj/TextShader.o 2> ../../logs/win/textshader.log
 	$(GCC) ../../src/PostProcessorShader.cpp $(LIBS) $(FLAGS) -c -o ../../obj/PostProcessorShader.o 2> ../../logs/win/postprocessorshader.log
 	$(GCC) ../../src/ShaderProgram.cpp $(LIBS) $(FLAGS) -c -o ../../obj/ShaderProgram.o 2> ../../logs/win/shaderprogram.log
 	$(GCC) ../../src/vectors.cpp $(LIBS) $(FLAGS) -c -o ../../obj/vectors.o 2> ../../logs/win/vectors.log
 	$(GCC) ../../src/ShaderUniform.cpp $(LIBS) $(FLAGS) -c -o ../../obj/ShaderUniform.o 2> ../../logs/win/shaderuniform.log
 	$(GCC) ../../src/SpriteBatcher.cpp $(LIBS) $(FLAGS) -c -o ../../obj/SpriteBatcher.o 2> ../../logs/win/spritebatcher.log
 	$(GCC) ../../src/Bitmap.cpp $(LIBS) $(FLAGS) -c -o ../../obj/Bitmap.o 2> ../../logs/win/bitmap.log
+	$(GCC) ../../src/FreeTypeText.cpp $(LIBS) $(FLAGS) -c -o ../../obj/FreeTypeText.o 2> ../../logs/win/text.log
 	$(GCC) ../../src/Renderbuffer.cpp $(LIBS) $(FLAGS) -c -o ../../obj/Renderbuffer.o 2> ../../logs/win/renderbuffer.log
 	$(GCC) ../../src/Framebuffer.cpp $(LIBS) $(FLAGS) -c -o ../../obj/Framebuffer.o 2> ../../logs/win/framebuffer.log
 	$(GCC) ../../src/Postprocessor.cpp $(LIBS) $(FLAGS) -c -o ../../obj/Postprocessor.o 2> ../../logs/win/postprocessor.log
@@ -93,6 +98,7 @@ all:
 	$(GCC) ../../src/Block.cpp $(LIBS) $(FLAGS) -c -o ../../obj/block.o 2> ../../logs/win/block.log
 	$(GCC) ../../src/Entity.cpp $(LIBS) $(FLAGS) -c -o ../../obj/Entity.o 2> ../../logs/win/entity.log
 	$(GCC) ../../src/BasicEnemy.cpp $(LIBS) $(FLAGS) -c -o ../../obj/BasicEnemy.o 2> ../../logs/win/basicenemy.log
+	$(GCC) ../../src/BitmapTextRenderer.cpp $(LIBS) $(FLAGS) -c -o ../../obj/BitmapTextRenderer.o 2> ../../logs/win/bmtxtrnder.log
 	$(GCC) ../../src/JumpingEnemy.cpp $(LIBS) $(FLAGS) -c -o ../../obj/JumpingEnemy.o 2> ../../logs/win/jumpingenemy.log
 	$(GCC) ../../src/Game.cpp $(LIBS) $(FLAGS) -c -o ../../obj/Game.o 2> ../../logs/win/game.log
 	$(GCC) ../../src/Config.cpp $(LIBS) $(FLAGS) -c -o ../../obj/Config.o 2> ../../logs/win/config.log

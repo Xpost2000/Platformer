@@ -1,0 +1,12 @@
+In file included from ../../src/vec3.hpp:4:0,
+                 from ../../src/Vertex.h:5,
+                 from ../../src/SpriteBatcher.h:4,
+                 from ../../src/BitmapTextRenderer.h:5,
+                 from ../../src/BitmapTextRenderer.cpp:1:
+../../src/vec2.hpp:156:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
+ #endif VEC2_CROSS_PRODUCT
+        ^
+../../src/BitmapTextRenderer.cpp: In member function 'Vec4 BitmapTextRenderer::uv_calc(int)':
+../../src/BitmapTextRenderer.cpp:95:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^

@@ -21,6 +21,7 @@
 #include "TextureManager.h"
 #include "GameState.h"
 #include "GameCamera.h"
+#include "BitmapTextRenderer.h"
 #include <array>
 #include "BasicEnemy.h"
 #include "JumpingEnemy.h"
@@ -69,6 +70,7 @@ class Game{
 		GameCamera gc;
 		EntityManager em;
 		TextureManager tm;
+		std::shared_ptr<BitmapTextRenderer> btr;
 		std::shared_ptr<Window> window = nullptr;
 		SDL_Event ev;
 		std::shared_ptr<ParticleRenderer> pr = nullptr;

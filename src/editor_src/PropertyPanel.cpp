@@ -1,4 +1,5 @@
 #include "PropertyPanel.h"
+#include "EditorFrame.h"
 
 PropertyPanel::PropertyPanel(
 			    wxWindow* parent,
@@ -37,7 +38,12 @@ PropertyPanel::PropertyPanel(
 	lB = properties->Append( new wxFloatProperty("Light B", "Light B", 0) );
 	lX = properties->Append( new wxFloatProperty("Light X", "Light X", 0) );
 	lY = properties->Append( new wxFloatProperty("Light Y", "Light Y", 0) );
+	properties->Append( new wxPropertyCategory(wxT("Creation Mode Properties")) );
+	grid_type = properties->Append( new wxIntProperty("Block Type(Grid)", "Block Type For Grid", 1) );
 	
+	grid_w = properties->Append( new wxIntProperty("Grid Width", "Grid Width", 10) );
+	grid_h = properties->Append( new wxIntProperty("Grid Height", "Grid Height", 10) );
+
 	properties->Show(true);
 	timer = new GridTimer(this);
 	timer->Start(10);
@@ -62,7 +68,7 @@ void PropertyPanel::IdleHandler( ){
 	// technically speaking ptr is not going to work.
 	int as_int = static_cast<int>(blockType->GetValue().GetLong());
 	as_int = std::max(1, as_int);
-	as_int = std::min(10, as_int);
+	as_int = std::min(16, as_int);
 	if(parent->canvas->get_current() == nullptr){
 		PositionX->SetValue( wxVariant(0) ); PositionX->Enable(false);
 		PositionY->SetValue( wxVariant(0) ); PositionY->Enable(false);

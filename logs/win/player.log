@@ -23,6 +23,6 @@ In file included from ../../src/Progressor.h:3:0,
    }
    ^
 ../../src/Player.cpp: In member function 'void Player::calculate_uvs()':
-../../src/Player.cpp:9:8: warning: enumeration value 'HURT' not handled in switch [-Wswitch]
+../../src/Player.cpp:10:8: warning: enumeration value 'HURT' not handled in switch [-Wswitch]
   switch(pState){
         ^

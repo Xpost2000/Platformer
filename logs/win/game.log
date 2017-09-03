@@ -90,7 +90,7 @@ In file included from ../../src/Game.h:23:0,
    inline Vec2 transform( Vec2 offset ) { pos.x() += offset.x(); pos.y() += offset.y(); }
                                                                                         ^
 ../../src/Game.cpp: In member function 'void Game::update()':
-../../src/Game.cpp:129:12: warning: statement has no effect [-Wunused-value]
+../../src/Game.cpp:132:12: warning: statement has no effect [-Wunused-value]
       state == GameState::Menu;
             ^
 In file included from ../../src/EntityManager.h:4:0,
