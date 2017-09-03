@@ -43,7 +43,7 @@ LightShader::LightShader(const std::shared_ptr<IDevice>& dev) :device(dev){
 			else
 			color = vColor;
 
-			ambient = vec3(0.2);
+			ambient = vec3(0.07);
 			vec4 res = vec4(ambient, 1.0f); 
 			for(int i = 0; i < MAX_LIGHTS; i++){
 				vec4 t = vec4(ambient, 1.0);
