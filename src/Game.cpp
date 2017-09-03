@@ -4,7 +4,6 @@
 // I'm likely going to stre a different vector for different enemy types.
 // I used it for animation time.
 
-Player p(Vec2(300, 300), Vec2(73, 73), Vec2(100), Vec4(1.0, 1.0, 1.0, 1.0));
 std::array<Light, 10> lights{
 	Light(),
 	Light(),
@@ -93,6 +92,7 @@ void Game::init(){
 	pp = std::make_shared<PostProcessor>(ctx, w, h);
 	btr = std::make_shared<BitmapTextRenderer>(ctx);
 	ftr = std::make_shared<TextRenderer>(ctx, "test.ttf");
+	p = Player(ftr.get(),Vec2(300, 300), Vec2(73, 73), Vec2(100), Vec4(1.0, 1.0, 1.0, 1.0));
 	tm.add_texture("tiles", "textures//tiles.png", ctx);
 	tm.add_texture("player", "textures//test_player.png", ctx);
 	tm.add_texture("ui-menu", "textures//ui//ui_atlas.png", ctx);

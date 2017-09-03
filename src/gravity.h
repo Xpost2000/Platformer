@@ -3,5 +3,5 @@
 /*
  * for now general gravity is 266.0f
  */
-const float gravity = 350.0f;
+const float gravity = 480.0f;
 #endif

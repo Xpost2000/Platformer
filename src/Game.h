@@ -78,6 +78,7 @@ class Game{
 		std::shared_ptr<ParticleRenderer> pr = nullptr;
 		std::shared_ptr<SpriteBatcher> sb = nullptr;
 		std::shared_ptr<LightShader> ls = nullptr;
+		Player p;//p(Vec2(300, 300), Vec2(73, 73), Vec2(100), Vec4(1.0, 1.0, 1.0, 1.0));
 		std::shared_ptr<PostProcessor> pp = nullptr;
 		int currentLevel=0;
 	public:

@@ -22,13 +22,15 @@ enum class PlayerState{
 	DEAD
 };
 class EntityManager;
+#include <memory>
+#include "FreeTypeText.h"
 class Player : public Entity{
 	public:
 		Player(const Player& other) = default;
 		Player(){}
 #ifndef EDITOR_BUILD
-		Player(Vec2 pos, Vec2 size, Vec2 velocity , Vec4 color)
-	 	: Entity(pos, size, velocity, color)	{
+		Player(TextRenderer* ren, Vec2 pos, Vec2 size, Vec2 velocity , Vec4 color)
+	 	: Entity(pos, size, velocity, color), ren(ren)	{
 			set_aabb(Vec2(pos.x()+15, pos.y()+5), Vec2(40, 65));
 			reposition_aabb();
 			calculate_uvs();
@@ -76,6 +78,7 @@ class Player : public Entity{
 		int health = 100;
 		float jump_delay = 10;
 		bool onGround = false;
+		TextRenderer* ren=nullptr;
 		Direction playerDir=Direction::RIGHT;
 		PlayerState pState=PlayerState::STANDING;
 };

@@ -26,7 +26,7 @@
  * I finally caught a factor in my bitmap rendering failing but I didn't make many commits
  * earlier so I couldn't go to the point where it was sort of working
  *
- * I'll refactor for Linux later.
+ * I'll refactor the whole project( to the best of my ability once finished at least 90% ) (I'm at least nearing 80% Should be able to finish the project at the very least by the end of the month)
  */
 struct Character{
 	GLuint texture;
@@ -167,10 +167,11 @@ class TextRenderer{
 			glDeleteVertexArrays(1, &vao);
 			glDeleteBuffers(1, &vbo);
 		}
-		void render( std::string txt, glm::vec2 pos, float scale, glm::vec3 color ){
+		void render( std::string txt, glm::vec2 pos, float scale, glm::vec3 color, bool moveWithcamera=false ){
 			shader->use();
 			shader->setTex(0);
 			shader->setColor( Vec3(color.x, color.y, color.z) );
+			shader->setTransform(moveWithcamera);
 			glActiveTexture(GL_TEXTURE0);
 			glBindVertexArray(vao);
 			glBindBuffer(GL_ARRAY_BUFFER, vbo);

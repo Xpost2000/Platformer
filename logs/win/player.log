@@ -22,6 +22,40 @@ In file included from ../../src/Progressor.h:3:0,
 ../../src/Entity.h:84:3: warning: no return statement in function returning non-void [-Wreturn-type]
    }
    ^
+In file included from ../../src/FreeTypeText.h:8:0,
+                 from ../../src/Player.h:26,
+                 from ../../src/Player.cpp:1:
+../../src/ShaderUniform.h: In member function 'bool ShaderUniform::is_valid()':
+../../src/ShaderUniform.h:48:33: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+   bool is_valid() { return (obj != -1); } 
+                                 ^
+In file included from ../../src/Player.h:26:0,
+                 from ../../src/Player.cpp:1:
+../../src/FreeTypeText.h: In destructor 'TextRendererShader::~TextRendererShader()':
+../../src/FreeTypeText.h:84:11: warning: deleting object of polymorphic class type 'ShaderUniform' which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
+    delete tex;
+           ^
+../../src/FreeTypeText.h:85:11: warning: deleting object of polymorphic class type 'ShaderUniform' which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
+    delete clr;
+           ^
+../../src/FreeTypeText.h:86:11: warning: deleting object of polymorphic class type 'ShaderUniform' which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
+    delete transform;
+           ^
+../../src/FreeTypeText.h:87:11: warning: deleting object of polymorphic class type 'ShaderUniform' which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
+    delete view;
+           ^
+../../src/FreeTypeText.h:88:11: warning: deleting object of polymorphic class type 'ShaderUniform' which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
+    delete proj;
+           ^
+../../src/FreeTypeText.h:89:11: warning: deleting object of polymorphic class type 'Shader' which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
+    delete vs;
+           ^
+../../src/FreeTypeText.h:90:11: warning: deleting object of polymorphic class type 'Shader' which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
+    delete fs;
+           ^
+../../src/FreeTypeText.h:91:11: warning: deleting object of polymorphic class type 'ShaderProgram' which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
+    delete sp;
+           ^
 ../../src/Player.cpp: In member function 'void Player::calculate_uvs()':
 ../../src/Player.cpp:10:8: warning: enumeration value 'HURT' not handled in switch [-Wswitch]
   switch(pState){
