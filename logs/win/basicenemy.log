@@ -1,10 +1,10 @@
 In file included from ../../src/Entity.h:10:0,
-                 from ../../src/BasicEnemy.h:8,
+                 from ../../src/BasicEnemy.h:12,
                  from ../../src/BasicEnemy.cpp:1:
 ../../src/vec2.hpp:156:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
  #endif VEC2_CROSS_PRODUCT
         ^
-In file included from ../../src/BasicEnemy.h:8:0,
+In file included from ../../src/BasicEnemy.h:12:0,
                  from ../../src/BasicEnemy.cpp:1:
 ../../src/Entity.h: In constructor 'Entity::Entity(Vec2, Vec2, Vec2, Vec4)':
 ../../src/Entity.h:100:8: warning: 'Entity::size' will be initialized after [-Wreorder]

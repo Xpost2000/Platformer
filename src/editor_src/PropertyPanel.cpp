@@ -43,6 +43,12 @@ PropertyPanel::PropertyPanel(
 	
 	grid_w = properties->Append( new wxIntProperty("Grid Width", "Grid Width", 10) );
 	grid_h = properties->Append( new wxIntProperty("Grid Height", "Grid Height", 10) );
+	grid_block_type = properties->Append( new wxIntProperty("Grid Actual Block type", "Actual Block Type", 1) );
+	grid_r = properties->Append( new wxFloatProperty("Grid R", "Grid R", 0) );
+	grid_g = properties->Append( new wxFloatProperty("Grid G", "Grid G", 0) );
+	grid_b = properties->Append( new wxFloatProperty("Grid B", "Grid B", 0) );
+
+
 
 	properties->Show(true);
 	timer = new GridTimer(this);

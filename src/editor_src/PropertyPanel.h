@@ -18,10 +18,30 @@ class PropertyPanel : public wxPanel{
 		void IdleHandler(  );
 		int gridW() { return static_cast<int>(grid_w->GetValue().GetLong());}
 		int gridH() { return static_cast<int>(grid_h->GetValue().GetLong());}
+		int gridBlockType() { 
+		int res = static_cast<int>(grid_block_type->GetValue().GetLong());
+		res = std::max(1, res);
+		res = std::min(16, res);
+		grid_block_type->SetValue(wxVariant(res));
+		return 	res;
+		}
+		int gridR(){
+			int r = static_cast<int>( grid_r->GetValue().GetLong() );
+			return r;
+		}
+		int gridG(){
+			int g = static_cast<int>( grid_g->GetValue().GetLong() );
+			return g;
+		}
+		int gridB(){
+			int b = static_cast<int>( grid_b->GetValue().GetLong() );
+			return b;
+		}
 		int gridType() { 
 			int grid_type_i = static_cast<int>( grid_type->GetValue().GetLong() );
 			grid_type_i = std::min(grid_type_i, 3);
 			grid_type_i = std::max(grid_type_i, 1);
+			grid_type->SetValue(wxVariant(grid_type_i));
 			return grid_type_i;
 		}
 	private:
@@ -29,7 +49,7 @@ class PropertyPanel : public wxPanel{
 		// I need to do this.
 		wxPropertyGrid* properties;
 		GridTimer* timer;
-		// sub properties
+		// sub properties)
 		wxPGProperty* PositionX=nullptr;
 		wxPGProperty* PositionY=nullptr;
 		// next
@@ -56,6 +76,11 @@ class PropertyPanel : public wxPanel{
 		wxPGProperty* grid_type = nullptr;
 		wxPGProperty* grid_w = nullptr;
 		wxPGProperty* grid_h = nullptr;
+		wxPGProperty* grid_block_type=nullptr;
+		wxPGProperty* grid_r = nullptr;
+		wxPGProperty* grid_g = nullptr;
+		wxPGProperty* grid_b = nullptr;
+
 		wxSize sz;
 		// since this class is a friend of the editorframe
 		// because I require some access to private members

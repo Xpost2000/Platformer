@@ -98,6 +98,7 @@ void Game::init(){
 	tm.add_texture("ui-menu", "textures//ui//ui_atlas.png", ctx);
 	Sound::load_sound(cfg.get_sounds_dir()+std::string("beep.wav"), "beep");
 	Sound::load_sound(cfg.get_sounds_dir()+std::string("jump.wav"), "jump");
+	Sound::load_sound(cfg.get_sounds_dir()+std::string("progressor.wav"), "nextLevel");
 	gc = GameCamera(Vec2(0, 0), Vec2(w, h), Vec2(-3000, -3000), Vec2(3000, 3000));
 	ls->setProj(proj);
 	initalized =true;
@@ -154,8 +155,15 @@ void Game::update(){
 			pp->get()->setDt(amnt);			
 		}
 		if(em.get_progressor().can_go_next_level()){
+			if(levelDelay <= 0){
 			currentLevel++;
 			em.get_progressor().recall();
+			draw_game = true;
+			levelDelay=100;
+			}else{
+				levelDelay-= ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS)*45;
+				draw_game = false;
+			}
 		}
 		if(p.lives <= 0){
 			p.score = 0;
@@ -190,6 +198,7 @@ void Game::draw(){
 		ls->setTextured(true);
 		tm.get_tex("tiles")->bind();
 		sb->draw(Vec2(-5000), Vec4(Block::get_uv_from_type(BlockTypes::FlatColor)), Vec2(10000), Vec4(0.1, 0.1, 0.1, 1.0));
+		if(draw_game){
 		em.draw_background_props( gc.getPos(), *sb );
 		em.draw_progressor(*sb);
 		em.draw_blocks( *sb );
@@ -203,11 +212,15 @@ void Game::draw(){
 		sb->draw(p.getPos(), p.getUvs(), p.getSize(), Vec4(p.getColor().r(), p.getColor().g(), p.getColor().b(), 1.0f));
 		sb->render();
 		ls->setTextured(false);
+		}
 
 		ftr->render("Lives : " + std::to_string(p.lives), glm::vec2(30, 00), 0.5, glm::vec3(1));
 		ftr->render("Score : " + std::to_string(p.score), glm::vec2(30, 50), 0.5, glm::vec3(1));
 		ftr->render("Coins : " + std::to_string(p.coins), glm::vec2(500, 000), 0.5, glm::vec3(1));
-
+		if(em.get_progressor().can_go_next_level() && levelDelay > 0){
+			ftr->render("You have " + std::to_string(p.lives) + " Lives", glm::vec2(200, 330), 0.6,glm::vec3(0, 1, 0));
+			ftr->render("Approaching next floor on ship...", glm::vec2(200, 300), 0.5, glm::vec3(1));
+		}
 		gc.update(p);
 	}else{
 		pp->get()->setFade(false);

@@ -66,6 +66,8 @@ class Game{
 	public:
 		GameState state = GameState::Menu;
 	private:
+		float levelDelay=100;
+		bool draw_game=true;
 		Config cfg;
 		LevelListFile lst;
 		GameCamera gc;

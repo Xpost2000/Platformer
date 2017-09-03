@@ -56,6 +56,36 @@ In file included from ../../src/editor_src/../Progressor.h:3:0,
 ../../src/editor_src/../Entity.h:84:3: warning: no return statement in function returning non-void [-Wreturn-type]
    }
    ^
+In file included from ../../src/editor_src/../Player.h:26:0,
+                 from ../../src/editor_src/../Level.h:6,
+                 from ../../src/editor_src/GLCanvas.h:14,
+                 from ../../src/editor_src/EditorFrame.h:4,
+                 from ../../src/editor_src/EditorFrame.cpp:1:
+../../src/editor_src/../FreeTypeText.h: In destructor 'TextRendererShader::~TextRendererShader()':
+../../src/editor_src/../FreeTypeText.h:84:11: warning: deleting object of polymorphic class type 'ShaderUniform' which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
+    delete tex;
+           ^
+../../src/editor_src/../FreeTypeText.h:85:11: warning: deleting object of polymorphic class type 'ShaderUniform' which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
+    delete clr;
+           ^
+../../src/editor_src/../FreeTypeText.h:86:11: warning: deleting object of polymorphic class type 'ShaderUniform' which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
+    delete transform;
+           ^
+../../src/editor_src/../FreeTypeText.h:87:11: warning: deleting object of polymorphic class type 'ShaderUniform' which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
+    delete view;
+           ^
+../../src/editor_src/../FreeTypeText.h:88:11: warning: deleting object of polymorphic class type 'ShaderUniform' which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
+    delete proj;
+           ^
+../../src/editor_src/../FreeTypeText.h:89:11: warning: deleting object of polymorphic class type 'Shader' which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
+    delete vs;
+           ^
+../../src/editor_src/../FreeTypeText.h:90:11: warning: deleting object of polymorphic class type 'Shader' which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
+    delete fs;
+           ^
+../../src/editor_src/../FreeTypeText.h:91:11: warning: deleting object of polymorphic class type 'ShaderProgram' which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
+    delete sp;
+           ^
 In file included from ../../src/editor_src/PropertyPanel.h:9:0,
                  from ../../src/editor_src/EditorFrame.cpp:2:
 ../../src/editor_src/GridTimer.h: In constructor 'GridTimer::GridTimer(PropertyPanel*)':

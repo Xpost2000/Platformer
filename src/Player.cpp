@@ -104,7 +104,9 @@ void Player::jump(float dt){
 	}else if(onGround){
 		velocity.y() = -262.0f;
 		onGround = false;
+#ifndef EDITOR_BUILD
 		Sound::play_sound("jump");
+#endif
 	}
 	pState = PlayerState::JUMPING;
 }
@@ -204,8 +206,11 @@ void Player::update(float dt, std::vector<Block> &blocks, std::vector<BasicEnemy
 	}
 
 	if(intersect(p)){
+		if(!p.can_go_next_level()){
 		p.mark();
 		score += 10;
+		Sound::play_sound("nextLevel");
+		}
 	}
 
 	pos.y() += velocity.y() * dt;

@@ -2,6 +2,10 @@
  * This class will just make basic enemies.
  * But for now just zombie like AI that only walks
  * around and turns the other direction if it touches something.
+ *
+ *  I could maybe create sub classes of the starting types by
+ *  just updating them differently on the magic number they spawn with.
+ *
  */
 #ifndef BASIC_ENEMY_H
 #define BASIC_ENEMY_H

@@ -1,6 +1,6 @@
 GCC=g++
 LIBS=-lmingw32 -lSDL2main -lSDL2 -lSDL2_mixer -lSDL2_image -lfreetype -lglew32 -lOpenGL32 -lboost_random-mgw51-1_60
-EDITOR_LIBS=-lmingw32 -lSDL2 -lSDL2_image -lglew32 -lOpenGL32 -lboost_random-mgw51-1_60 -lwxbase31u -lwxmsw31u_core -lwxmsw31u_adv -lwxmsw31u_propgrid -lwxmsw31u_gl
+EDITOR_LIBS=-lmingw32 -lSDL2 -lSDL2_mixer -lSDL2_image -lglew32 -lOpenGL32 -lboost_random-mgw51-1_60 -lwxbase31u -lwxmsw31u_core -lwxmsw31u_adv -lwxmsw31u_propgrid -lwxmsw31u_gl
 LIBS_LINUX=-lSDL2main -lSDL2 -lGLEW -lGL
 # temporarily adding debug symbols
 FLAGS=-std=gnu++14 -Wall -O2 -DGAME_BUILD=110
@@ -12,7 +12,8 @@ EDITOR_OBJ_FILES=../../obj/EditorApplication.o\
 		 ../../obj/EditorAboutDialog.o\
 		 ../../obj/GridTimer.o\
 		 ../../obj/CreationPanel.o\
-		 ../../obj/RenderTimer.o
+		 ../../obj/RenderTimer.o\
+		../../obj/Sound.o
 
 GAME_OBJ_FILES= ../../obj/Game.o\
 		../../obj/main.o\

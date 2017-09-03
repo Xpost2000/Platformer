@@ -151,34 +151,6 @@ void GLCanvas::MouseEvents( wxMouseEvent& ev ){
 		// contain the data. If I had used the standard Entity vector
 		// it might not've worked. Also this should be slightly more faster
 		// anyways.
-		if( mode==CREATE_M ){
-			// UNKNOWN
-		//	int x = (( mousePos.x() + property->gridW()/2 ) / property->gridW())* property->gridW();
-		//	int y = (( mousePos.y() + property->gridH()/2 ) / property->gridH())* property->gridH();
-		// 
-		// 	so after one minute of fucking around with the calculator on windows I figured out grid snapping.
-		// 	cause I realized the logic of the expressions I looked up were invalid / wrong. I just modified
-		// 	the most common one I found which was this
-		// 	(pos / gridW) * gridW (same for height as well)
-		// 	I know int usually auto rounds but I'm now starting to think the operations are done in floating point
-		// 	first than converted to integer. ( also auto is weird )
-			int x = std::floor(mousePos.x()/property->gridW())*property->gridW();
-			int y = std::floor(mousePos.y()/property->gridH())*property->gridH();
-			//int y;
-			switch(property->gridType()){
-				case 1:
-					entity_manager.create_block(Block(Vec2(x, y), Vec2(property->gridW(), property->gridH()), Vec4(1)));
-					break;
-				case 2:
-					entity_manager.create_block(BackgroundBlockStatic(Vec2(x, y), Vec2(property->gridW(), property->gridH()), Vec4(1)));
-					break;
-				case 3:
-					break;
-				default:
-					break;
-			}
-			return;
-		}
 		std::vector<Entity*> entities;
 		for( auto& block : entity_manager.get_blocks() ){
 			entities.push_back( &block );
@@ -197,6 +169,37 @@ void GLCanvas::MouseEvents( wxMouseEvent& ev ){
 		}
 		entities.push_back ( &entity_manager.get_progressor() );
 		entities.push_back ( &player );
+		if( mode==CREATE_M ){
+			// UNKNOWN
+		//	int x = (( mousePos.x() + property->gridW()/2 ) / property->gridW())* property->gridW();
+		//	int y = (( mousePos.y() + property->gridH()/2 ) / property->gridH())* property->gridH();
+		// 
+		// 	so after one minute of fucking around with the calculator on windows I figured out grid snapping.
+		// 	cause I realized the logic of the expressions I looked up were invalid / wrong. I just modified
+		// 	the most common one I found which was this
+		// 	(pos / gridW) * gridW (same for height as well)
+		// 	I know int usually auto rounds but I'm now starting to think the operations are done in floating point
+		// 	first than converted to integer. ( also auto is weird )
+			int x = std::floor(mousePos.x()/property->gridW())*property->gridW();
+			int y = std::floor(mousePos.y()/property->gridH())*property->gridH();
+			for(auto& e : entities){
+				if(e->intersect_point(Vec2(x, y))){ return; }
+			}
+			//int y;
+			switch(property->gridType()){
+				case 1:
+					entity_manager.create_block(Block(Vec2(x, y), Vec2(property->gridW(), property->gridH()), Vec4(property->gridR(), property->gridG(), property->gridB(), 1), property->gridBlockType()));
+					break;
+				case 2:
+					entity_manager.create_block(BackgroundBlockStatic(Vec2(x, y), Vec2(property->gridW(), property->gridH()), Vec4(property->gridR(), property->gridG(), property->gridB(), 1), property->gridBlockType()));
+					break;
+				case 3:
+					break;
+				default:
+					break;
+			}
+			return;
+		}
 		bool found_anything = false;
 		bool already_equal = false;
 		for(auto& ent : entities){
