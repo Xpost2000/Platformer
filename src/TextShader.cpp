@@ -7,7 +7,7 @@ TextShader::TextShader(const std::shared_ptr<IDevice>& dev) : device(dev){
 	fs = new Shader(device, ShaderType::FRAGMENT);
 	std::string vert (R"RW(
 		#version 330 core
-		layout(location=0) in vec4 pos;
+		layout(location=0) in vec3 pos;
 		layout(location=1) in vec2 uv;
 		layout(location=2) in vec4 clr;
 		uniform mat4 proj;
@@ -34,7 +34,7 @@ TextShader::TextShader(const std::shared_ptr<IDevice>& dev) : device(dev){
 		uniform sampler2D tex;
 		void main(){
 			vec2 nUvCoords = uvCoords;
-			nUvCoords.y = -nUvCoords.y;
+			nUvCoords.y = nUvCoords.y;
 			color = vColor*texture(tex, nUvCoords);
 		}
 	)RW");

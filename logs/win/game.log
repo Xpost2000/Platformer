@@ -89,8 +89,35 @@ In file included from ../../src/Game.h:23:0,
 ../../src/GameCamera.h:17:88: warning: no return statement in function returning non-void [-Wreturn-type]
    inline Vec2 transform( Vec2 offset ) { pos.x() += offset.x(); pos.y() += offset.y(); }
                                                                                         ^
+In file included from ../../src/Game.h:26:0,
+                 from ../../src/Game.cpp:1:
+../../src/FreeTypeText.h: In destructor 'TextRendererShader::~TextRendererShader()':
+../../src/FreeTypeText.h:84:11: warning: deleting object of polymorphic class type 'ShaderUniform' which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
+    delete tex;
+           ^
+../../src/FreeTypeText.h:85:11: warning: deleting object of polymorphic class type 'ShaderUniform' which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
+    delete clr;
+           ^
+../../src/FreeTypeText.h:86:11: warning: deleting object of polymorphic class type 'ShaderUniform' which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
+    delete transform;
+           ^
+../../src/FreeTypeText.h:87:11: warning: deleting object of polymorphic class type 'ShaderUniform' which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
+    delete view;
+           ^
+../../src/FreeTypeText.h:88:11: warning: deleting object of polymorphic class type 'ShaderUniform' which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
+    delete proj;
+           ^
+../../src/FreeTypeText.h:89:11: warning: deleting object of polymorphic class type 'Shader' which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
+    delete vs;
+           ^
+../../src/FreeTypeText.h:90:11: warning: deleting object of polymorphic class type 'Shader' which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
+    delete fs;
+           ^
+../../src/FreeTypeText.h:91:11: warning: deleting object of polymorphic class type 'ShaderProgram' which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
+    delete sp;
+           ^
 ../../src/Game.cpp: In member function 'void Game::update()':
-../../src/Game.cpp:132:12: warning: statement has no effect [-Wunused-value]
+../../src/Game.cpp:133:12: warning: statement has no effect [-Wunused-value]
       state == GameState::Menu;
             ^
 In file included from ../../src/EntityManager.h:4:0,

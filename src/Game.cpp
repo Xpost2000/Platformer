@@ -92,6 +92,7 @@ void Game::init(){
 	ls = std::make_shared<LightShader>(ctx);
 	pp = std::make_shared<PostProcessor>(ctx, w, h);
 	btr = std::make_shared<BitmapTextRenderer>(ctx);
+	ftr = std::make_shared<TextRenderer>(ctx, "test.ttf");
 	tm.add_texture("tiles", "textures//tiles.png", ctx);
 	tm.add_texture("player", "textures//test_player.png", ctx);
 	tm.add_texture("ui-menu", "textures//ui//ui_atlas.png", ctx);
@@ -213,8 +214,12 @@ void Game::draw(){
 		sb->draw(option.getPos(), option.getUvs(), option.getSize(), Vec4(option.getColor().x(), option.getColor().y(), option.getColor().z(), 1.0));
 		sb->draw(quit.getPos(), quit.getUvs(), quit.getSize(), Vec4(quit.getColor().x(), quit.getColor().y(), quit.getColor().z(), 1.0));
 		sb->render();
+
+		ftr->setMatrices( proj, gc.get_matrix() );
+		ftr->render("test", glm::vec2(200, 100), 20, glm::vec3(1));
+
 	}
-		ls->unuse();
+	ls->unuse();
 	pp->end();
 	ls->setView(gc.get_matrix());
 	window->refresh();
