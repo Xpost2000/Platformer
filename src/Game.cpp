@@ -96,7 +96,6 @@ void Game::init(){
 	tm.add_texture("tiles", "textures//tiles.png", ctx);
 	tm.add_texture("player", "textures//test_player.png", ctx);
 	tm.add_texture("ui-menu", "textures//ui//ui_atlas.png", ctx);
-	tm.add_texture("ocr", "textures//ui//ocr.png", ctx);
 	Sound::load_sound(cfg.get_sounds_dir()+std::string("beep.wav"), "beep");
 	Sound::load_sound(cfg.get_sounds_dir()+std::string("jump.wav"), "jump");
 	gc = GameCamera(Vec2(0, 0), Vec2(w, h), Vec2(-3000, -3000), Vec2(3000, 3000));
@@ -149,6 +148,7 @@ void Game::update(){
 			pp->get()->setFade(true);
 			if(p.DeathAnimation(ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS), state)){
 				levels[currentLevel].load(p, em, lights);
+				p.lives--;
 			}
 			amnt -= ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS)/2;
 			pp->get()->setDt(amnt);			
@@ -156,6 +156,13 @@ void Game::update(){
 		if(em.get_progressor().can_go_next_level()){
 			currentLevel++;
 			em.get_progressor().recall();
+		}
+		if(p.lives <= 0){
+			p.score = 0;
+			p.coins = 0;
+			p.lives = 3;
+			state = GameState::Menu;
+			gc.get_matrix() = glm::mat4();
 		}
 	}else{
 		start.update(mX, mY);
@@ -197,6 +204,10 @@ void Game::draw(){
 		sb->render();
 		ls->setTextured(false);
 
+		ftr->render("Lives : " + std::to_string(p.lives), glm::vec2(30, 00), 0.5, glm::vec3(1));
+		ftr->render("Score : " + std::to_string(p.score), glm::vec2(30, 50), 0.5, glm::vec3(1));
+		ftr->render("Coins : " + std::to_string(p.coins), glm::vec2(500, 000), 0.5, glm::vec3(1));
+
 		gc.update(p);
 	}else{
 		pp->get()->setFade(false);
@@ -214,9 +225,8 @@ void Game::draw(){
 		sb->draw(option.getPos(), option.getUvs(), option.getSize(), Vec4(option.getColor().x(), option.getColor().y(), option.getColor().z(), 1.0));
 		sb->draw(quit.getPos(), quit.getUvs(), quit.getSize(), Vec4(quit.getColor().x(), quit.getColor().y(), quit.getColor().z(), 1.0));
 		sb->render();
-
-		ftr->render("test", glm::vec2(200, 100), 0.6, glm::vec3(1));
-		ftr->render("test", glm::vec2(200, 300), 2, glm::vec3(1, 0, 0));
+		ftr->render("A game by Xpost 2000", glm::vec2(0, 0), 0.3, glm::vec3(1));
+//		ftr->render("test", glm::vec2(200, 100), 0.6, glm::vec3(1));
 
 	}
 	ls->unuse();

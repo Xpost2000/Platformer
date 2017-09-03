@@ -161,6 +161,7 @@ void Player::update(float dt, std::vector<Block> &blocks, std::vector<BasicEnemy
 			if((b.get_aabb().pos.y()+10 > bb.pos.y() + bb.size.y())&& !b.isDead()){
 				velocity.y() = -200;
 				b.kill();
+				score += 350;
 			}
 			else{
 				if(!b.isDead()){
@@ -183,6 +184,7 @@ void Player::update(float dt, std::vector<Block> &blocks, std::vector<BasicEnemy
 			if((b.get_aabb().pos.y()+10 > bb.pos.y() + bb.size.y())&& !b.isDead()){
 				velocity.y() = -200;
 				b.kill();
+				score += 400;
 			}
 			else{
 				if(!b.isDead()){
@@ -203,6 +205,7 @@ void Player::update(float dt, std::vector<Block> &blocks, std::vector<BasicEnemy
 
 	if(intersect(p)){
 		p.mark();
+		score += 10;
 	}
 
 	pos.y() += velocity.y() * dt;

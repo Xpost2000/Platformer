@@ -117,7 +117,7 @@ In file included from ../../src/Game.h:26:0,
     delete sp;
            ^
 ../../src/Game.cpp: In member function 'void Game::update()':
-../../src/Game.cpp:133:12: warning: statement has no effect [-Wunused-value]
+../../src/Game.cpp:132:12: warning: statement has no effect [-Wunused-value]
       state == GameState::Menu;
             ^
 In file included from ../../src/EntityManager.h:4:0,

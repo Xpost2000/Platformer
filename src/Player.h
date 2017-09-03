@@ -60,6 +60,10 @@ class Player : public Entity{
 		}
 		void kill(){ dead = true; pState = PlayerState::DEAD; }
 		void revive(){ dead = false; health=100;}
+		int score;
+		// for da future
+		int coins;
+		int lives;
 	private:
 		void reposition_aabb(){ bb.pos.x() = pos.x()+15; bb.pos.y() = pos.y()+8; }
 		void calculate_uvs();
