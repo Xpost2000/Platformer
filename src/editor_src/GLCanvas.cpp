@@ -182,9 +182,6 @@ void GLCanvas::MouseEvents( wxMouseEvent& ev ){
 		// 	first than converted to integer. ( also auto is weird )
 			int x = std::floor(mousePos.x()/property->gridW())*property->gridW();
 			int y = std::floor(mousePos.y()/property->gridH())*property->gridH();
-			for(auto& e : entities){
-				if(e->intersect_point(Vec2(x, y))){ return; }
-			}
 			//int y;
 			switch(property->gridType()){
 				case 1:

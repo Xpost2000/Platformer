@@ -92,20 +92,20 @@ In file included from ../../src/editor_src/PropertyPanel.h:9:0,
    GridTimer( PropertyPanel* ptr ) : ptr(ptr), wxTimer() {  }
    ^
 ../../src/editor_src/GLCanvas.cpp: In member function 'void GLCanvas::save(std::__cxx11::string)':
-../../src/editor_src/GLCanvas.cpp:251:13: warning: unused variable 'jumping_enemy' [-Wunused-variable]
+../../src/editor_src/GLCanvas.cpp:248:13: warning: unused variable 'jumping_enemy' [-Wunused-variable]
   for( auto& jumping_enemy : entity_manager.get_jumping_enemies() ){
              ^
-../../src/editor_src/GLCanvas.cpp:254:13: warning: unused variable 'basic_enemy' [-Wunused-variable]
+../../src/editor_src/GLCanvas.cpp:251:13: warning: unused variable 'basic_enemy' [-Wunused-variable]
   for( auto& basic_enemy : entity_manager.get_basic_enemies() ){
              ^
 ../../src/editor_src/GLCanvas.cpp: In member function 'void GLCanvas::delete_cur()':
-../../src/editor_src/GLCanvas.cpp:328:22: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+../../src/editor_src/GLCanvas.cpp:325:22: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
      for(int i = 0; i < blocks.size(); ++i){
                       ^
-../../src/editor_src/GLCanvas.cpp:336:22: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+../../src/editor_src/GLCanvas.cpp:333:22: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
      for(int i = 0; i < bk_blocks.size(); ++i){
                       ^
-../../src/editor_src/GLCanvas.cpp:344:42: warning: left operand of comma operator has no effect [-Wunused-value]
+../../src/editor_src/GLCanvas.cpp:341:42: warning: left operand of comma operator has no effect [-Wunused-value]
      for(int i = 0; i , bk_st_blocks.size(); ++i){
                                           ^
 In file included from ../../src/editor_src/../Progressor.h:4:0,
