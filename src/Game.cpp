@@ -215,13 +215,14 @@ void Game::draw(){
 		sb->draw(quit.getPos(), quit.getUvs(), quit.getSize(), Vec4(quit.getColor().x(), quit.getColor().y(), quit.getColor().z(), 1.0));
 		sb->render();
 
-		ftr->setMatrices( proj, gc.get_matrix() );
-		ftr->render("test", glm::vec2(200, 100), 20, glm::vec3(1));
+		ftr->render("test", glm::vec2(200, 100), 0.6, glm::vec3(1));
+		ftr->render("test", glm::vec2(200, 300), 2, glm::vec3(1, 0, 0));
 
 	}
 	ls->unuse();
 	pp->end();
 	ls->setView(gc.get_matrix());
+	ftr->setMatrices( proj, gc.get_matrix() );
 	window->refresh();
 }
 

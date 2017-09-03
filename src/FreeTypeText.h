@@ -48,12 +48,12 @@ class TextRendererShader : public IShaderSet{
 				uniform bool transform=false;
 				out vec2 texCoords;
 				void main(){
-				//	if(transform){
-				//		gl_Position = proj*view*vec4(position.xy, 0, 1);
-				//	}else{
+					if(transform){
+						gl_Position = proj*view*vec4(position.xy, 0, 1);
+					}else{
 						gl_Position = proj*vec4(position.xy, 0, 1);
+					}
 						texCoords = uv;
-				//	}
 				}
 			)RW");
 			std::string frag(R"RW(
@@ -64,7 +64,7 @@ class TextRendererShader : public IShaderSet{
 				out vec4 color;
 				void main(){
 					vec4 sampled = vec4(1, 1, 1, texture(tex, texCoords).r);
-					color =  sampled;
+					color =  vec4(clr, 1)*sampled;
 				}
 			)RW");
 			vs->source(1, vert, 0);
@@ -126,9 +126,8 @@ class TextRenderer{
 			glEnableVertexAttribArray(1);
 			shader = new TextRendererShader(dev);
 			FT_Init_FreeType(&ftI);
-
 			FT_New_Face(ftI, font_path.c_str(), 0, &font);
-			FT_Set_Pixel_Sizes( font, 0,  20);
+			FT_Set_Pixel_Sizes( font, 0,  70);
 			glPixelStorei( GL_UNPACK_ALIGNMENT,  1 );
 			for( unsigned char c = 0; c < 128; ++c ){
 				GLuint tex;
@@ -158,7 +157,9 @@ class TextRenderer{
 				};
 				characters.insert(std::pair<char, Character>( c, temp ));
 			}
-		}
+
+
+					}
 		~TextRenderer(){
 			delete shader;
 			FT_Done_Face(font);
