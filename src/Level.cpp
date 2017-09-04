@@ -53,6 +53,19 @@ Level::Level(std::string path){
 			flags[FOUND_PROGRESSOR] = true;
 			em.set_progressor(Progressor(Vec2(x, y), Vec2(w, h), Vec4(r, g, b, 1.0)));
 		}
+		if(token == "env_txt"){
+			float x=0, y=0, r=0, g=0, b=0, scale=0;
+			std::string text="";
+			// I'm going to be honest. Even though this
+			// is a type of istream.
+			// I for some reason did not know you could essentially "string" together
+			// "right shift" operators like this. I only learned this from
+			// Mat hopson by sifting through his new automat(screw spelling) source code,
+			// and noticing how he reads his configs.
+			file >> x >> y >> r >> g >> b >> scale;
+			std::getline( file, text );
+			em.create_text(EnvironmentText( Vec2(x, y), Vec3(r, g, b), scale, text ));
+		}
 		if(token == "bgrnd"){
 			float w=0, h=0, x=0, y=0, sx=0, sy=0 , r=0, g=0, b=0;
 			int type=0;

@@ -9,6 +9,7 @@
 #include "../GameCamera.h"
 #include "../SpriteBatcher.h"
 #include "../LightStruct.h"
+#include "../FreeTypeText.h"
 #include "../LightShader.h"
 #include "../typedefs.h"
 #include "../Level.h"
@@ -80,6 +81,7 @@ class GLCanvas : public wxGLCanvas{
 		// and changes the position to the mouse position.
 		Entity* creation_object=nullptr;
 		EntityManager entity_manager;
+		std::shared_ptr<TextRenderer> ftr;
 		std::array<Light, 10> lights;
 		wxGLContext* ctx_obj;
 		std::shared_ptr<DefaultShader> ds;

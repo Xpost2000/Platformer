@@ -205,6 +205,7 @@ void Game::draw(){
 		em.draw_background_props( gc.getPos(), *sb );
 		em.draw_progressor(*sb);
 		em.draw_blocks( *sb );
+		em.draw_text( *ftr );
 
 		ls->setTextured(false);
 		em.draw_jumping_enemies(*sb);

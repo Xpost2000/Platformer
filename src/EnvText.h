@@ -11,7 +11,7 @@
 #include <string>
 struct EnvironmentText{
 	public:
-		EnvironmentText( Vec2& pos, Vec3& color, float scale , const std::string& str ) : pos(pos), color(color), scale(scale), str(str){
+		EnvironmentText( Vec2 pos, Vec3 color, float scale , const std::string& str ) : pos(pos), color(color), scale(scale), str(str){
 		}
 		Vec2 pos;
 		Vec3 color;

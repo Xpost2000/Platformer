@@ -30,6 +30,7 @@ GLCanvas::GLCanvas( wxWindow* parent, const wxGLAttributes& disp, wxWindowID id,
 	ls = std::make_shared<LightShader>(dev);
 	sb = std::make_shared<SpriteBatcher>(dev);
 	tm = std::make_shared<TextureManager>();
+	ftr = std::make_shared<TextRenderer>( dev, "textures\\ui\\ocr.ttf" )	;
 	tm->add_texture("tiles", "textures\\tiles.png", get_device());
 	tm->add_texture("player", "textures\\test_player.png", get_device());
 	// set up matrix and stuff
@@ -68,6 +69,7 @@ void GLCanvas::PaintScene( wxPaintEvent& pnt ){
 	entity_manager.draw_background_props( camera.getPos(), *sb, parallax );
 	entity_manager.draw_progressor(*sb);	
 	entity_manager.draw_blocks(*sb);
+	entity_manager.draw_text( *ftr );
 	entity_manager.draw_jumping_enemies(*sb);
 	entity_manager.draw_basic_enemies(*sb);
 	tm->get_tex("player")->bind();
