@@ -1,0 +1,17 @@
+In file included from ../../src/mat4.hpp:8:0,
+                 from ../../src/vectors.cpp:3:
+../../src/math_etc.hpp:3:0: warning: "M_PI" redefined
+ #define M_PI 3.141592653589793238462643383279502884197169399375105820974944592307816406286208998628034825342117067982148086
+ ^
+In file included from /usr/include/c++/5/cmath:44:0,
+                 from ../../src/mat4.hpp:2,
+                 from ../../src/vectors.cpp:3:
+/usr/include/math.h:373:0: note: this is the location of the previous definition
+ # define M_PI  3.14159265358979323846 /* pi */
+ ^
+In file included from ../../src/vec3.hpp:4:0,
+                 from ../../src/mat4.hpp:9,
+                 from ../../src/vectors.cpp:3:
+../../src/vec2.hpp:156:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
+ #endif VEC2_CROSS_PRODUCT
+        ^

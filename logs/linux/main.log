@@ -4,12 +4,14 @@ In file included from ../../src/mat4.hpp:8:0,
 ../../src/math_etc.hpp:3:0: warning: "M_PI" redefined
  #define M_PI 3.141592653589793238462643383279502884197169399375105820974944592307816406286208998628034825342117067982148086
  ^
-In file included from C:/TDM-GCC-32/lib/gcc/mingw32/5.1.0/include/c++/cmath:44:0,
-                 from ../../src/mat4.hpp:2,
-                 from ../../src/Game.h:7,
+In file included from /usr/include/SDL2/SDL_stdinc.h:74:0,
+                 from /usr/include/SDL2/SDL_main.h:25,
+                 from /usr/include/SDL2/SDL.h:67,
+                 from ../../src/LevelList.h:6,
+                 from ../../src/Game.h:3,
                  from ../../src/main.cpp:1:
-C:/TDM-GCC-32/include/math.h:58:0: note: this is the location of the previous definition
- #define M_PI  3.14159265358979323846
+/usr/include/math.h:373:0: note: this is the location of the previous definition
+ # define M_PI  3.14159265358979323846 /* pi */
  ^
 In file included from ../../src/vec3.hpp:4:0,
                  from ../../src/mat4.hpp:9,
@@ -18,3 +20,105 @@ In file included from ../../src/vec3.hpp:4:0,
 ../../src/vec2.hpp:156:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
  #endif VEC2_CROSS_PRODUCT
         ^
+In file included from ../../src/typedefs.h:13:0,
+                 from ../../src/Game.h:10,
+                 from ../../src/main.cpp:1:
+../../src/ShaderUniform.h: In member function ‘bool ShaderUniform::is_valid()’:
+../../src/ShaderUniform.h:48:33: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+   bool is_valid() { return (obj != -1); } 
+                                 ^
+In file included from ../../src/Block.h:3:0,
+                 from ../../src/EntityManager.h:4,
+                 from ../../src/Game.h:16,
+                 from ../../src/main.cpp:1:
+../../src/Entity.h: In constructor ‘Entity::Entity(Vec2, Vec2, Vec2, Vec4)’:
+../../src/Entity.h:100:8: warning: ‘Entity::size’ will be initialized after [-Wreorder]
+   Vec2 size;
+        ^
+../../src/Entity.h:99:8: warning:   ‘Vec2 Entity::velocity’ [-Wreorder]
+   Vec2 velocity;
+        ^
+../../src/Entity.h:37:3: warning:   when initialized here [-Wreorder]
+   Entity(Vec2 pos, Vec2 size, Vec2 velocity, Vec4 color)
+   ^
+../../src/Entity.h: In member function ‘virtual bool Entity::DeathAnimation(float)’:
+../../src/Entity.h:84:3: warning: no return statement in function returning non-void [-Wreturn-type]
+   }
+   ^
+In file included from ../../src/Game.h:18:0,
+                 from ../../src/main.cpp:1:
+../../src/uiButton.h: In constructor ‘uiButton::uiButton(Vec2, Vec2, Vec3, Vec3, ButtonType)’:
+../../src/uiButton.h:74:7: warning: ‘uiButton::highlightColor’ will be initialized after [-Wreorder]
+  Vec3 highlightColor;
+       ^
+../../src/uiButton.h:70:13: warning:   ‘ButtonType uiButton::id’ [-Wreorder]
+  ButtonType id;
+             ^
+In file included from ../../src/Game.h:18:0,
+                 from ../../src/main.cpp:1:
+../../src/uiButton.h:19:3: warning:   when initialized here [-Wreorder]
+   uiButton( Vec2 pos, Vec2 size, Vec3 color, Vec3 highlightColor, ButtonType id ) : pos(pos), size(size), color(color), highlightColor(highlightColor), id(id){
+   ^
+In file included from ../../src/Game.h:20:0,
+                 from ../../src/main.cpp:1:
+../../src/Window.h: In constructor ‘Window::Window(int, int, std::__cxx11::string, bool)’:
+../../src/Window.h:29:10: warning: ‘Window::h’ will be initialized after [-Wreorder]
+   int w, h;
+          ^
+../../src/Window.h:26:15: warning:   ‘std::__cxx11::string Window::title’ [-Wreorder]
+   std::string title;
+               ^
+../../src/Window.h:7:3: warning:   when initialized here [-Wreorder]
+   Window(int w, int h, std::string title, bool fullscreen=false): w(w), h(h), title(title), fullscreen(fullscreen){
+   ^
+In file included from ../../src/Game.h:23:0,
+                 from ../../src/main.cpp:1:
+../../src/GameCamera.h: In constructor ‘GameCamera::GameCamera(Vec2, Vec2, Vec2, Vec2)’:
+../../src/GameCamera.h:28:32: warning: ‘GameCamera::lowerLimits’ will be initialized after [-Wreorder]
+   Vec2 lowerLimits=Vec2(-100000);
+                                ^
+../../src/GameCamera.h:24:8: warning:   ‘Vec2 GameCamera::screenResolution’ [-Wreorder]
+   Vec2 screenResolution;
+        ^
+In file included from ../../src/Game.h:23:0,
+                 from ../../src/main.cpp:1:
+../../src/GameCamera.h:12:3: warning:   when initialized here [-Wreorder]
+   GameCamera(Vec2 pos, Vec2 screenResolution, Vec2 limits, Vec2 lowerLimits) : pos(pos), limits(limits), lowerLimits(lowerLimits), screenResolution(screenResolution) {}
+   ^
+In file included from ../../src/Game.h:23:0,
+                 from ../../src/main.cpp:1:
+../../src/GameCamera.h: In member function ‘Vec2 GameCamera::transform(Vec2)’:
+../../src/GameCamera.h:17:88: warning: no return statement in function returning non-void [-Wreturn-type]
+   inline Vec2 transform( Vec2 offset ) { pos.x() += offset.x(); pos.y() += offset.y(); }
+                                                                                        ^
+In file included from ../../src/Game.h:26:0,
+                 from ../../src/main.cpp:1:
+../../src/FreeTypeText.h: In destructor ‘TextRendererShader::~TextRendererShader()’:
+../../src/FreeTypeText.h:89:11: warning: deleting object of polymorphic class type ‘ShaderUniform’ which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
+    delete tex;
+           ^
+../../src/FreeTypeText.h:90:11: warning: deleting object of polymorphic class type ‘ShaderUniform’ which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
+    delete clr;
+           ^
+../../src/FreeTypeText.h:91:11: warning: deleting object of polymorphic class type ‘ShaderUniform’ which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
+    delete transform;
+           ^
+../../src/FreeTypeText.h:92:11: warning: deleting object of polymorphic class type ‘ShaderUniform’ which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
+    delete view;
+           ^
+../../src/FreeTypeText.h:93:11: warning: deleting object of polymorphic class type ‘ShaderUniform’ which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
+    delete proj;
+           ^
+../../src/FreeTypeText.h:94:11: warning: deleting object of polymorphic class type ‘Shader’ which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
+    delete vs;
+           ^
+../../src/FreeTypeText.h:95:11: warning: deleting object of polymorphic class type ‘Shader’ which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
+    delete fs;
+           ^
+../../src/FreeTypeText.h:96:11: warning: deleting object of polymorphic class type ‘ShaderProgram’ which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
+    delete sp;
+           ^
+../../src/FreeTypeText.h: In constructor ‘TextRenderer::TextRenderer(const std::shared_ptr<IDevice>&, std::__cxx11::string)’:
+../../src/FreeTypeText.h:161:27: warning: narrowing conversion of ‘((TextRenderer*)this)->TextRenderer::font->FT_FaceRec_::glyph->FT_GlyphSlotRec_::advance.FT_Vector_::x’ from ‘FT_Pos {aka long int}’ to ‘int’ inside { } [-Wnarrowing]
+      font->glyph->advance.x
+                           ^

@@ -1,3 +1,0 @@
-C:\TDM-GCC-32\bin/ld.exe: cannot find -lGLEW
-C:\TDM-GCC-32\bin/ld.exe: cannot find -lGL
-collect2.exe: error: ld returned 1 exit status

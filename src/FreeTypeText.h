@@ -11,7 +11,12 @@
 #include "vec3.hpp"
 #include "vec4.hpp"
 #include "matrix_typedef.h"
+#ifndef __linux__
 #include <ft2build.h>
+#else
+#include <freetype2/ft2build.h> 
+// my home copy of linux has freetype installed there.
+#endif
 #include FT_FREETYPE_H
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
