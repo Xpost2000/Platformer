@@ -13,6 +13,11 @@ Level::Level(std::string path){
 	bool flags[3]={false};
 	try{
 	while(file >> token){
+		if(token == "##" || token == "#" || token == "//"){
+			// comment is pointless.
+			std::string garbage;
+			std::getline(file, garbage);
+		}
 		if(token == "camera_limits"){
 			if(flags[FOUND_LIMITS]){ std::cerr << "WARNING: MULTIPLE CAMERA LIMITS FOUND. SKIPPING\n"; break; }
 			float lX=0, lY=0, hX=0, hY=0;
