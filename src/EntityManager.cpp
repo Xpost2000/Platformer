@@ -1,10 +1,14 @@
 #include "EntityManager.h"
+#include "FreeTypeText.h"
 
 void EntityManager::create_block(const Block b){
 	blocks.push_back(b);
 }
 void EntityManager::create_block(const BackgroundBlock b){
 	bs.push_back(b);
+}
+void EntityManager::create_text( const EnvironmentText ev ){
+	evtxt.push_back(ev);
 }
 void EntityManager::create_block(const BackgroundBlockStatic b){
 	bss.push_back(b);
@@ -19,6 +23,11 @@ void EntityManager::clear_entities(){
 	blocks.clear();
 	jumpingEnemies.clear();
 	basicEnemies.clear();
+}
+void EntityManager::draw_text( TextRenderer& txt){
+	for(auto& text : evtxt){
+		txt.render(text.str, glm::vec2(text.pos.x(), text.pos.y()), text.scale, glm::vec3(text.color.x(), text.color.y(), text.color.z()), true );
+	}
 }
 void EntityManager::draw_blocks( SpriteBatcher& sb ){
 	for(auto &b : blocks)	{
