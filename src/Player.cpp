@@ -87,13 +87,13 @@ void Player::collide_blocks( float dt, std::vector<Block>& blocks ){
 void Player::move_left(float dt){
 	velocity.x() = -190;
 	playerDir = Direction::LEFT;
-	if(!onGround)
+	if(onGround)
 	pState = PlayerState::WALKING;
 }
 void Player::move_right(float dt){
 	velocity.x() = 190;
 	playerDir = Direction::RIGHT;
-	if(!onGround)
+	if(onGround)
 	pState = PlayerState::WALKING;
 }
 void Player::jump(float dt){
