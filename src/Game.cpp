@@ -99,6 +99,7 @@ void Game::init(){
 	Sound::load_sound(cfg.get_sounds_dir()+std::string("beep.wav"), "beep");
 	Sound::load_sound(cfg.get_sounds_dir()+std::string("jump.wav"), "jump");
 	Sound::load_sound(cfg.get_sounds_dir()+std::string("progressor.wav"), "nextLevel");
+	Sound::load_music(cfg.get_sounds_dir()+std::string("main.wav"), "music");
 	gc = GameCamera(Vec2(0, 0), Vec2(w, h), Vec2(-3000, -3000), Vec2(3000, 3000));
 	ls->setProj(proj);
 	initalized =true;
@@ -136,6 +137,7 @@ void Game::update(){
 		}
 	}
 	if(state == GameState::Playing || state == GameState::Progression){
+		Sound::play_music("music", 1);
 		if(levels[currentLevel].loaded == false){
 			levels[currentLevel].load(p, em, lights);
 		}

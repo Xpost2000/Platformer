@@ -11,6 +11,7 @@ class Sound{
 		static void load_music( std::string fPath, std::string key );
 		static void play_sound( std::string keyName, int volume=100 ,int channel=0, int loops=0 );
 		static void play_music( std::string keyName, int loops=0 );
+		static void stop_music();
 		static void free_memory();
 		static bool init( int frequency=44100, Uint16 fmt=MIX_DEFAULT_FORMAT, int channels=2, int chunksize=2048 );
 	private:
