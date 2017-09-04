@@ -5,6 +5,8 @@ enum class GameState{
 	Menu,
 	Pause,
 	Playing,
-	Progression
+	Progression,
+	Intro,
+	Ending
 };
 #endif

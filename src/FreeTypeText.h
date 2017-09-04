@@ -176,8 +176,17 @@ class TextRenderer{
 			glBindVertexArray(vao);
 			glBindBuffer(GL_ARRAY_BUFFER, vbo);
 			std::string::const_iterator c;
+			const glm::vec2 copy_pos = pos;
 			for (c = txt.begin(); c != txt.end(); c++){
 				Character ch = characters[*c];
+				if(*c == '\n'){
+					// like a type writter. POP
+					pos.x = copy_pos.x;
+					pos.y+=ch.size.y*scale;
+					c++;
+				}
+				ch = characters[*c];
+				if(*c != '\n'){
 				float x = pos.x + ch.bearing.x * scale;
 				float y = pos.y + (characters['H'].bearing.y - ch.bearing.y) * scale;
 				float w = ch.size.x * scale;
@@ -196,6 +205,7 @@ class TextRenderer{
 				glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(verts), verts);
 				glDrawArrays(GL_TRIANGLES, 0, 6);
 				pos.x += (ch.advance >> 6) * scale;
+				}
 			}
 			glBindBuffer(GL_ARRAY_BUFFER, 0);
 			glBindTexture(GL_TEXTURE_2D, 0);

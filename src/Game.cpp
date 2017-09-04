@@ -167,7 +167,7 @@ void Game::update(){
 		if((ev.type == SDL_MOUSEBUTTONDOWN)){
 			if(start.mouse_inside(mX, mY)){
 				if(state == GameState::Menu || state == GameState::Pause){
-					state = GameState::Playing;
+					state = GameState::Intro;
 				}
 			}
 			if(option.mouse_inside(mX, mY)){
@@ -255,6 +255,17 @@ void Game::draw(){
 		sb->draw(quit.getPos(), quit.getUvs(), quit.getSize(), Vec4(quit.getColor().x(), quit.getColor().y(), quit.getColor().z(), 1.0));
 		sb->render();
 		ftr->render("A game by Xpost 2000", glm::vec2(0, 0), 0.3, glm::vec3(1));
+	}else if ( state == GameState::Intro ){
+		if(cutSceneLength > 0){
+			// Emerge epic cutscene :D
+			ls->setTextured(false);
+			sb->draw(Vec2(-1000), Vec4(0), Vec2(50000), Vec4(0));
+			sb->render();
+			ftr->render("Insert Story Mode Gibberish", glm::vec2(10, 300), 1.1, glm::vec3(1));
+			ftr->render("*Totally Filler content with no significant contribution to story*\n2+2=fish.", glm::vec2(100, 400), 0.3, glm::vec3(1));
+			std::cout << cutSceneLength << std::endl;
+			cutSceneLength -= ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS)*45;
+		}else{ cutSceneLength = 100; state = GameState::Playing; }
 	}
 	ls->unuse();
 	pp->end();
