@@ -30,6 +30,7 @@
 #include "Player.h"
 #include "Level.h"
 
+const int CUTSCENE_LENGTH = 250;
 /*
  * 
  * TODO: Refactor all of this code
@@ -67,7 +68,7 @@ class Game{
 		GameState state = GameState::Menu;
 	private:
 		float levelDelay=100;
-		float cutSceneLength=130;
+		float cutSceneLength=CUTSCENE_LENGTH;
 		bool draw_game=true;
 		Config cfg;
 		LevelListFile lst;

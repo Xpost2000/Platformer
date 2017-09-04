@@ -261,11 +261,16 @@ void Game::draw(){
 			ls->setTextured(false);
 			sb->draw(Vec2(-1000), Vec4(0), Vec2(50000), Vec4(0));
 			sb->render();
+			if(cutSceneLength > CUTSCENE_LENGTH-100){
 			ftr->render("Insert Story Mode Gibberish", glm::vec2(10, 300), 1.1, glm::vec3(1));
 			ftr->render("*Totally Filler content with no significant contribution to story*\n2+2=fish.", glm::vec2(100, 400), 0.3, glm::vec3(1));
-			std::cout << cutSceneLength << std::endl;
+			}else if(cutSceneLength > 0){
+				ftr->render("Page 2 of story mode gibberish", glm::vec2(10, 300), 0.8, glm::vec3(1));
+				ftr->render("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nummus in Croesi divitiis obscuratur, pars est\ntamen divitiarum. Graece donan, Latine voluptatem vocant. Nulla erit controversia. Tu vero, inquam, ducas\nlicet, si sequetur; Quodsi ipsam honestatem undique pertectam atque absolutam. Respondent extrema\nprimis, media utrisque, omnia omnibus. Iam id ipsum absurdum, maximum malum neglegi. Duo Reges:\nconstructio interrete. Ergo in gubernando nihil, in officio plurimum interest, quo in genere peccetur. Quod\nautem in homine praestantissimum atque optimum est, id deseruit.",
+						glm::vec2(30, 420), 0.3, glm::vec3(1));
+			}
 			cutSceneLength -= ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS)*45;
-		}else{ cutSceneLength = 100; state = GameState::Playing; }
+		}else{ cutSceneLength = CUTSCENE_LENGTH; state = GameState::Playing; }
 	}
 	ls->unuse();
 	pp->end();
