@@ -1,3 +1,8 @@
+## This demo map was made as a "tech" demo
+## for the game "engine" used to create this.
+## This level is very small. But is compact and good looking to showcase the features
+## This takes a very similar design to the Tutorial level ( only 2 parts )
+## This is essentially a shrunken version of the Tutorial
 player_spawn 100 140
 progressor 50 70 741.3 500 1 1 1
 light 0 500 120 2000 1 1 1
@@ -620,22 +625,6 @@ block 30 30 870 180 1 1 1 1
 block 30 30 870 180 1 1 1 1
 block 30 30 870 150 1 1 1 1
 block 30 30 870 150 1 1 1 1
-block 30 30 870 150 1 1 1 1
-block 30 30 870 150 1 1 1 1
-block 30 30 870 150 1 1 1 1
-block 30 30 870 150 1 1 1 1
-block 30 30 870 150 1 1 1 1
-block 30 30 870 150 1 1 1 1
-block 30 30 870 120 1 1 1 1
-block 30 30 870 120 1 1 1 1
-block 30 30 870 120 1 1 1 1
-block 30 30 870 120 1 1 1 1
-block 30 30 870 120 1 1 1 1
-block 30 30 870 120 1 1 1 1
-block 30 30 870 120 1 1 1 1
-block 30 30 870 120 1 1 1 1
-block 30 30 870 120 1 1 1 1
-block 30 30 870 120 1 1 1 1
 block 30 30 870 120 1 1 1 1
 block 30 30 870 120 1 1 1 1
 block 30 30 870 90 1 1 1 1
@@ -643,13 +632,6 @@ block 30 30 870 90 1 1 1 1
 block 30 30 870 90 1 1 1 1
 block 30 30 870 90 1 1 1 1
 block 30 30 870 90 1 1 1 1
-block 30 30 840 90 1 1 1 1
-block 30 30 840 90 1 1 1 1
-block 30 30 840 90 1 1 1 1
-block 30 30 840 90 1 1 1 1
-block 30 30 840 90 1 1 1 1
-block 30 30 840 90 1 1 1 1
-block 30 30 840 90 1 1 1 1
 block 30 30 840 90 1 1 1 1
 block 30 30 810 90 1 1 1 1
 block 30 30 810 90 1 1 1 1

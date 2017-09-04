@@ -1,3 +1,5 @@
+## This map and test1.map were the original levels that were hard coded.
+## The original demo.map was created with a primitive tilemap to this format convertor ( it's dead simple to write )
 player_spawn 200 400
 progressor 10 40 500 860 1 0 0
 light 0 400 500 10000 1 1 1
