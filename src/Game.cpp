@@ -91,7 +91,7 @@ void Game::init(){
 	ls = std::make_shared<LightShader>(ctx);
 	pp = std::make_shared<PostProcessor>(ctx, w, h);
 	btr = std::make_shared<BitmapTextRenderer>(ctx);
-	ftr = std::make_shared<TextRenderer>(ctx, "test.ttf");
+	ftr = std::make_shared<TextRenderer>(ctx, "textures//ui//ocr.ttf");
 	p = Player(ftr.get(),Vec2(300, 300), Vec2(73, 73), Vec2(100), Vec4(1.0, 1.0, 1.0, 1.0));
 	tm.add_texture("tiles", "textures//tiles.png", ctx);
 	tm.add_texture("player", "textures//test_player.png", ctx);

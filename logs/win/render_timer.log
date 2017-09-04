@@ -28,7 +28,7 @@ In file included from ../../src/editor_src/GLCanvas.h:9:0,
 ../../src/editor_src/../GameCamera.h:17:88: warning: no return statement in function returning non-void [-Wreturn-type]
    inline Vec2 transform( Vec2 offset ) { pos.x() += offset.x(); pos.y() += offset.y(); }
                                                                                         ^
-In file included from ../../src/editor_src/../LightShader.h:5:0,
+In file included from ../../src/editor_src/../FreeTypeText.h:8:0,
                  from ../../src/editor_src/GLCanvas.h:12,
                  from ../../src/editor_src/RenderTimer.h:4,
                  from ../../src/editor_src/RenderTimer.cpp:1:
@@ -36,29 +36,7 @@ In file included from ../../src/editor_src/../LightShader.h:5:0,
 ../../src/editor_src/../ShaderUniform.h:48:33: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
    bool is_valid() { return (obj != -1); } 
                                  ^
-In file included from ../../src/editor_src/../Progressor.h:3:0,
-                 from ../../src/editor_src/../Player.h:5,
-                 from ../../src/editor_src/../Level.h:6,
-                 from ../../src/editor_src/GLCanvas.h:14,
-                 from ../../src/editor_src/RenderTimer.h:4,
-                 from ../../src/editor_src/RenderTimer.cpp:1:
-../../src/editor_src/../Entity.h: In constructor 'Entity::Entity(Vec2, Vec2, Vec2, Vec4)':
-../../src/editor_src/../Entity.h:100:8: warning: 'Entity::size' will be initialized after [-Wreorder]
-   Vec2 size;
-        ^
-../../src/editor_src/../Entity.h:99:8: warning:   'Vec2 Entity::velocity' [-Wreorder]
-   Vec2 velocity;
-        ^
-../../src/editor_src/../Entity.h:37:3: warning:   when initialized here [-Wreorder]
-   Entity(Vec2 pos, Vec2 size, Vec2 velocity, Vec4 color)
-   ^
-../../src/editor_src/../Entity.h: In member function 'virtual bool Entity::DeathAnimation(float)':
-../../src/editor_src/../Entity.h:84:3: warning: no return statement in function returning non-void [-Wreturn-type]
-   }
-   ^
-In file included from ../../src/editor_src/../Player.h:26:0,
-                 from ../../src/editor_src/../Level.h:6,
-                 from ../../src/editor_src/GLCanvas.h:14,
+In file included from ../../src/editor_src/GLCanvas.h:12:0,
                  from ../../src/editor_src/RenderTimer.h:4,
                  from ../../src/editor_src/RenderTimer.cpp:1:
 ../../src/editor_src/../FreeTypeText.h: In destructor 'TextRendererShader::~TextRendererShader()':
@@ -86,6 +64,26 @@ In file included from ../../src/editor_src/../Player.h:26:0,
 ../../src/editor_src/../FreeTypeText.h:91:11: warning: deleting object of polymorphic class type 'ShaderProgram' which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
     delete sp;
            ^
+In file included from ../../src/editor_src/../Progressor.h:3:0,
+                 from ../../src/editor_src/../Player.h:5,
+                 from ../../src/editor_src/../Level.h:6,
+                 from ../../src/editor_src/GLCanvas.h:15,
+                 from ../../src/editor_src/RenderTimer.h:4,
+                 from ../../src/editor_src/RenderTimer.cpp:1:
+../../src/editor_src/../Entity.h: In constructor 'Entity::Entity(Vec2, Vec2, Vec2, Vec4)':
+../../src/editor_src/../Entity.h:100:8: warning: 'Entity::size' will be initialized after [-Wreorder]
+   Vec2 size;
+        ^
+../../src/editor_src/../Entity.h:99:8: warning:   'Vec2 Entity::velocity' [-Wreorder]
+   Vec2 velocity;
+        ^
+../../src/editor_src/../Entity.h:37:3: warning:   when initialized here [-Wreorder]
+   Entity(Vec2 pos, Vec2 size, Vec2 velocity, Vec4 color)
+   ^
+../../src/editor_src/../Entity.h: In member function 'virtual bool Entity::DeathAnimation(float)':
+../../src/editor_src/../Entity.h:84:3: warning: no return statement in function returning non-void [-Wreturn-type]
+   }
+   ^
 In file included from ../../src/editor_src/RenderTimer.cpp:1:0:
 ../../src/editor_src/RenderTimer.h: In constructor 'RenderTimer::RenderTimer(GLCanvas*)':
 ../../src/editor_src/RenderTimer.h:18:13: warning: 'RenderTimer::ptr' will be initialized after [-Wreorder]

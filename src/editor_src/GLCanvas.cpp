@@ -69,7 +69,6 @@ void GLCanvas::PaintScene( wxPaintEvent& pnt ){
 	entity_manager.draw_background_props( camera.getPos(), *sb, parallax );
 	entity_manager.draw_progressor(*sb);	
 	entity_manager.draw_blocks(*sb);
-	entity_manager.draw_text( *ftr );
 	entity_manager.draw_jumping_enemies(*sb);
 	entity_manager.draw_basic_enemies(*sb);
 	tm->get_tex("player")->bind();
