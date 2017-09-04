@@ -135,6 +135,7 @@ void Player::update(float dt, std::vector<Block> &blocks, std::vector<BasicEnemy
 	else{
 		floaty_jump(dt);
 	}
+	if( input_allowed ){
 	if(keys[SDL_SCANCODE_A]||keys[SDL_SCANCODE_LEFT]){
 		move_left(dt);
 	}
@@ -148,9 +149,9 @@ void Player::update(float dt, std::vector<Block> &blocks, std::vector<BasicEnemy
 		pState = PlayerState::FALLING;
 	}
 	velocity.y() += gravity * dt;
-
+	
 	collide_blocks( dt, blocks );
-
+	}
 	if(onGround==true){
 		jump_delay = 10;
 	}
@@ -212,11 +213,12 @@ void Player::update(float dt, std::vector<Block> &blocks, std::vector<BasicEnemy
 		Sound::play_sound("nextLevel");
 		}
 	}
-
+if(input_allowed){
 	pos.y() += velocity.y() * dt;
 	// clamp gravity
 	velocity.y() = std::min<float>(velocity.y(), 330.0f);
 	pos.x() += velocity.x() * dt;
+}
 	calculate_uvs();
 	reposition_aabb();
 }

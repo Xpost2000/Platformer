@@ -135,10 +135,11 @@ void Game::update(){
 			}
 		}
 	}
-	if(state == GameState::Playing){
+	if(state == GameState::Playing || state == GameState::Progression){
 		if(levels[currentLevel].loaded == false){
 			levels[currentLevel].load(p, em, lights);
 		}
+		if(state == GameState::Playing && levels[currentLevel].loaded){
 		em.update(ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS));
 		if(!p.death_check()){
 			p.update(ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS), em);
@@ -148,11 +149,12 @@ void Game::update(){
 		else{
 			pp->get()->setFade(true);
 			if(p.DeathAnimation(ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS), state)){
-				levels[currentLevel].load(p, em, lights);
+				levels[currentLevel].loaded=false;
 				p.lives--;
 			}
 			amnt -= ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS)/2;
 			pp->get()->setDt(amnt);			
+		}
 		}
 		if(em.get_progressor().can_go_next_level()){
 			if(levelDelay <= 0){
@@ -160,9 +162,11 @@ void Game::update(){
 			em.get_progressor().recall();
 			draw_game = true;
 			levelDelay=100;
+			p.set_input(true);
 			}else{
 				levelDelay-= ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS)*45;
 				draw_game = false;
+				p.set_input(false);
 			}
 		}
 		if(p.lives <= 0){
@@ -188,7 +192,7 @@ void Game::draw(){
 	ctx->viewport(0, 0, w, h);
 	ctx->enableAlpha();
 	pp->begin();
-	if(state == GameState::Playing || state == GameState::Pause){
+	if(state == GameState::Playing || state == GameState::Pause || state == GameState::Progression){
 		for(int i = 0; i < 10; ++i){
 			ls->setLight(i, lights[i]);
 		}
@@ -198,7 +202,6 @@ void Game::draw(){
 		ls->setTextured(true);
 		tm.get_tex("tiles")->bind();
 		sb->draw(Vec2(-5000), Vec4(Block::get_uv_from_type(BlockTypes::FlatColor)), Vec2(10000), Vec4(0.1, 0.1, 0.1, 1.0));
-		if(draw_game){
 		em.draw_background_props( gc.getPos(), *sb );
 		em.draw_progressor(*sb);
 		em.draw_blocks( *sb );
@@ -212,6 +215,13 @@ void Game::draw(){
 		sb->draw(p.getPos(), p.getUvs(), p.getSize(), Vec4(p.getColor().r(), p.getColor().g(), p.getColor().b(), 1.0f));
 		sb->render();
 		ls->setTextured(false);
+		if(!draw_game){
+			// there is an issue of the player falling through the world due to frame
+			// issues. ( The framerate is absurdly high and it ends up skipping or pretty much overpowering my game's
+			// updating )
+			tm.get_tex("tiles")->bind();
+			sb->draw( Vec2(-5000), Vec4(Block::get_uv_from_type(BlockTypes::FlatColor)), Vec2(20000), Vec4(0, 0, 0, 1) );
+			sb->render();
 		}
 
 		ftr->render("Lives : " + std::to_string(p.lives), glm::vec2(30, 00), 0.5, glm::vec3(1));
@@ -220,6 +230,10 @@ void Game::draw(){
 		if(em.get_progressor().can_go_next_level() && levelDelay > 0){
 			ftr->render("You have " + std::to_string(p.lives) + " Lives", glm::vec2(200, 330), 0.6,glm::vec3(0, 1, 0));
 			ftr->render("Approaching next floor on ship...", glm::vec2(200, 300), 0.5, glm::vec3(1));
+			state = GameState::Progression;
+		}
+		if(draw_game){
+			state = GameState::Playing;
 		}
 		gc.update(p);
 	}else{

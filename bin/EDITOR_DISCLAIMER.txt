@@ -1,0 +1,10 @@
+Should someone peek at the level files ment for the actual game's
+progression. You may notice an entity named like this
+
+env_text or something similar.
+
+These entities are only ment to be hand written because their usage
+is just to display messages during tutorial sequences or simple
+game progression usage.
+
+Not ment for other levels that can be created.

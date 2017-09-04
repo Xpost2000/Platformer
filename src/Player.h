@@ -62,11 +62,13 @@ class Player : public Entity{
 		}
 		void kill(){ dead = true; pState = PlayerState::DEAD; }
 		void revive(){ dead = false; health=100;}
+		void set_input( bool i ) { input_allowed = i; }
 		int score;
 		// for da future
 		int coins;
 		int lives;
 	private:
+		bool input_allowed=1;
 		void reposition_aabb(){ bb.pos.x() = pos.x()+15; bb.pos.y() = pos.y()+8; }
 		void calculate_uvs();
 		void print_state();
