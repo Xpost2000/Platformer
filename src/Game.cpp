@@ -227,6 +227,7 @@ void Game::draw(){
 		ftr->render("Lives : " + std::to_string(p.lives), glm::vec2(30, 00), 0.5, glm::vec3(1));
 		ftr->render("Score : " + std::to_string(p.score), glm::vec2(30, 50), 0.5, glm::vec3(1));
 		ftr->render("Coins : " + std::to_string(p.coins), glm::vec2(500, 000), 0.5, glm::vec3(1));
+		ftr->render("Sample Text" , glm::vec2(p.getPos().x(), p.getPos().y()), 0.2, glm::vec3(1), true);
 		if(em.get_progressor().can_go_next_level() && levelDelay > 0){
 			ftr->render("You have " + std::to_string(p.lives) + " Lives", glm::vec2(200, 330), 0.6,glm::vec3(0, 1, 0));
 			ftr->render("Approaching next floor on ship...", glm::vec2(200, 300), 0.5, glm::vec3(1));
