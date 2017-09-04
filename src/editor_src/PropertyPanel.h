@@ -25,17 +25,14 @@ class PropertyPanel : public wxPanel{
 		grid_block_type->SetValue(wxVariant(res));
 		return 	res;
 		}
-		int gridR(){
-			int r = static_cast<int>( grid_r->GetValue().GetLong() );
-			return r;
+		float gridR(){
+			return grid_r->GetValue().GetDouble();
 		}
-		int gridG(){
-			int g = static_cast<int>( grid_g->GetValue().GetLong() );
-			return g;
+		float gridG(){
+			return grid_g->GetValue().GetDouble();
 		}
-		int gridB(){
-			int b = static_cast<int>( grid_b->GetValue().GetLong() );
-			return b;
+		float gridB(){
+			return grid_b->GetValue().GetDouble();
 		}
 		int gridType() { 
 			int grid_type_i = static_cast<int>( grid_type->GetValue().GetLong() );
