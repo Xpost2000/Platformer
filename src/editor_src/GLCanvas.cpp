@@ -261,7 +261,9 @@ void GLCanvas::save(std::string path){
 		level_save << "bgrnd-static " << block.getSize().x() << " " << block.getSize().y() << " " << block.getPos().x() << " " << block.getPos().y() << " "
 			   << block.getColor().x() << " " << block.getColor().y() << " " << block.getColor().z() << " " << block.get_type() << std::endl;
 	}
-	
+	for( auto& text : entity_manager.get_env_text() )	{
+		level_save << text.pos.x() << " " << text.pos.y() << " " << text.color.x() << " " << text.color.y() << " " << text.color.z() << " " << text.scale << " " << text.str << std::endl;
+	}
 }
 void GLCanvas::save(){
 	std::string path = "C:\\DEFAULT_LEVEL_NAME.lvl";
