@@ -116,10 +116,6 @@ In file included from ../../src/Game.h:26:0,
 ../../src/FreeTypeText.h:91:11: warning: deleting object of polymorphic class type 'ShaderProgram' which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
     delete sp;
            ^
-../../src/Game.cpp: In member function 'void Game::update()':
-../../src/Game.cpp:134:12: warning: statement has no effect [-Wunused-value]
-      state == GameState::Menu;
-            ^
 In file included from ../../src/EntityManager.h:4:0,
                  from ../../src/Game.h:16,
                  from ../../src/Game.cpp:1:

@@ -107,41 +107,12 @@ void Game::init(){
 void Game::update(){
 	ClockTimer::Tick();
 	SDL_GetMouseState(&mX, &mY);
-	while(SDL_PollEvent(&ev)){
-		if(ev.type==SDL_QUIT){
-			window->set_should_close(true);
-		}
-		//DEBUGGING PURPOSES
-		if(ev.key.keysym.sym == SDLK_RETURN){
-			p.kill();
-		}
-		if(ev.type == SDL_MOUSEBUTTONDOWN){
-			if(start.mouse_inside(mX, mY)){
-				if(ev.button.button == SDL_BUTTON(SDL_BUTTON_LEFT)){
-					state = GameState::Playing;
-				}
-			}
-			if(option.mouse_inside(mX, mY)){
-				if(ev.button.button == SDL_BUTTON(SDL_BUTTON_LEFT)){
-					// options menu.
-				}
-			}		
-			if(quit.mouse_inside(mX, mY)){
-				if(ev.button.button == SDL_BUTTON(SDL_BUTTON_LEFT)){
-					if(state == GameState::Menu)
-					window->set_should_close(true);
-					else
-					state == GameState::Menu;
-				}
-			}
-		}
-	}
 	if(state == GameState::Playing || state == GameState::Progression){
-		Sound::play_music("music", 1);
 		if(levels[currentLevel].loaded == false){
 			levels[currentLevel].load(p, em, lights);
 		}
 		if(state == GameState::Playing && levels[currentLevel].loaded){
+		Sound::play_music("music", 1);
 		em.update(ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS));
 		if(!p.death_check()){
 			p.update(ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS), em);
@@ -182,7 +153,33 @@ void Game::update(){
 		start.update(mX, mY);
 		option.update(mX, mY);
 		quit.update(mX, mY);
+		Sound::stop_music();
 		pp->get()->setFade(false);
+	}
+	while(SDL_PollEvent(&ev)){
+		if(ev.type==SDL_QUIT){
+			window->set_should_close(true);
+		}
+		//DEBUGGING PURPOSES
+		if(ev.key.keysym.sym == SDLK_RETURN){
+			p.kill();
+		}
+		if((ev.type == SDL_MOUSEBUTTONDOWN)){
+			if(start.mouse_inside(mX, mY)){
+				if(state == GameState::Menu || state == GameState::Pause){
+					state = GameState::Playing;
+				}
+			}
+			if(option.mouse_inside(mX, mY)){
+					// options menu.
+			}		
+			if(quit.mouse_inside(mX, mY)){
+				if(state == GameState::Menu)
+				window->set_should_close(true);
+				else
+				state = GameState::Menu;
+			}
+		}
 	}
 }
 
@@ -194,7 +191,8 @@ void Game::draw(){
 	ctx->viewport(0, 0, w, h);
 	ctx->enableAlpha();
 	pp->begin();
-	if(state == GameState::Playing || state == GameState::Pause || state == GameState::Progression){
+	if(state == GameState::Playing || state == GameState::Progression){
+		std::cout << "Game Drawing\n";
 		for(int i = 0; i < 10; ++i){
 			ls->setLight(i, lights[i]);
 		}
@@ -240,7 +238,7 @@ void Game::draw(){
 			state = GameState::Playing;
 		}
 		gc.update(p);
-	}else{
+	}else if( state == GameState::Menu || state == GameState::Pause ){
 		pp->get()->setFade(false);
 		ls->setTex(0);
 		ls->setTextured(false);
@@ -257,8 +255,6 @@ void Game::draw(){
 		sb->draw(quit.getPos(), quit.getUvs(), quit.getSize(), Vec4(quit.getColor().x(), quit.getColor().y(), quit.getColor().z(), 1.0));
 		sb->render();
 		ftr->render("A game by Xpost 2000", glm::vec2(0, 0), 0.3, glm::vec3(1));
-//		ftr->render("test", glm::vec2(200, 100), 0.6, glm::vec3(1));
-
 	}
 	ls->unuse();
 	pp->end();
