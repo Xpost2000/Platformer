@@ -206,10 +206,12 @@ void Player::update(float dt, std::vector<Block> &blocks, std::vector<BasicEnemy
 		}
 	}
 	for(auto& c : coin){
-		if(intersect_aabb(c)){
+		if(intersect(c) && !c.isDead()){
 			score+=c.get_value();
 			c.kill();
 			coins++;
+			std::cout << "Coin obtained\n";
+			break;
 		}
 	}
 	if(intersect(p)){

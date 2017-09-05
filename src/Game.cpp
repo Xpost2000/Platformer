@@ -111,7 +111,6 @@ void Game::update(){
 	if(state == GameState::Playing || state == GameState::Progression){
 		if(levels[currentLevel].loaded == false){
 			levels[currentLevel].load(p, em, lights);
-			em.create_coin(Coin(Vec2(300, 400), Vec2(50, 50)));
 		}
 		if(state == GameState::Playing && levels[currentLevel].loaded){
 		Sound::play_music("music", 1);
@@ -198,7 +197,6 @@ void Game::draw(){
 	ctx->enableAlpha();
 	pp->begin();
 	if(state == GameState::Playing || state == GameState::Progression){
-		std::cout << "Game Drawing\n";
 		for(int i = 0; i < 10; ++i){
 			ls->setLight(i, lights[i]);
 		}
