@@ -2,6 +2,7 @@
 
 Coin::Coin(Vec2 pos, Vec2 size)
 : Entity(pos, size, Vec2(0), Vec4(0)){
+	magic = COIN;
 }
 
 const int Coin::get_value(){

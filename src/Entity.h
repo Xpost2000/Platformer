@@ -13,6 +13,7 @@
 #define BLOCK 1
 #define PLAYER 2
 #define PROGRESSOR 33
+#define COIN 1337
 #define STBLOCK 3
 #define BGRNDBLOCK 4
 

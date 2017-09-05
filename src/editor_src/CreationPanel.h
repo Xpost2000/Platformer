@@ -15,6 +15,7 @@ class CreationPanel : public wxPanel{
 		void OnCreateBlock(wxCommandEvent& ev);
 		void OnCreateSBlock(wxCommandEvent& ev);
 		void OnCreatePBlock(wxCommandEvent& ev);
+		void OnCreateCoin(wxCommandEvent& ev);
 		void OnRecenterProgressor(wxCommandEvent& ev);
 	private:
 	EditorFrame* parent;

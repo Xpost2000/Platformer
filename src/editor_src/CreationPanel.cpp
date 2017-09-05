@@ -12,7 +12,8 @@ CreationPanel::CreationPanel( wxWindow* window, wxWindowID id,
 	wxButton *b = new wxButton(this, 12300, "Create Block", wxPoint((size.x/2)-100, pos.y+100));
 	wxButton *c = new wxButton(this, 12400, "Create Static Background Block", wxPoint((size.x/2)-100, pos.y+200));
 	wxButton *d = new wxButton(this, 12500, "Create Parallax Background Block", wxPoint((size.x/2)-100, pos.y+300));
-	wxButton* e = new wxButton(this, 12600, "Put Progressor at (Player Pos)", wxPoint((size.x/2)-100, pos.y+400));
+	wxButton *f = new wxButton(this, 12700, "Create a Coin", wxPoint((size.x/2)-100, pos.y+400));
+	wxButton *e = new wxButton(this, 12600, "Put Progressor at (Player Pos)", wxPoint((size.x/2)-100, pos.y+500));
 }
 CreationPanel::~CreationPanel(){
 }
@@ -31,9 +32,13 @@ void CreationPanel::OnCreatePBlock(wxCommandEvent& ev){
 void CreationPanel::OnRecenterProgressor(wxCommandEvent& ev){
 	parent->canvas->get_em().set_progressor(Progressor(parent->canvas->get_player().getPos(), Vec2(100, 100), Vec4(1)));
 }
+void CreationPanel::OnCreateCoin(wxCommandEvent& ev){
+	parent->canvas->get_em().create_coin(Coin(parent->canvas->get_player().getPos(), Vec2(30, 30)));
+}
 wxBEGIN_EVENT_TABLE(CreationPanel, wxPanel)
 	EVT_BUTTON( 12300, CreationPanel::OnCreateBlock )
 	EVT_BUTTON( 12400, CreationPanel::OnCreateSBlock )
 	EVT_BUTTON( 12500, CreationPanel::OnCreatePBlock )
 	EVT_BUTTON( 12600, CreationPanel::OnRecenterProgressor )
+	EVT_BUTTON( 12700, CreationPanel::OnCreateCoin )
 wxEND_EVENT_TABLE()

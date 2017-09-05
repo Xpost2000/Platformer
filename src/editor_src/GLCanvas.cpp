@@ -168,6 +168,9 @@ void GLCanvas::MouseEvents( wxMouseEvent& ev ){
 		for( auto& bbs : entity_manager.get_background_static_blocks() ){
 			entities.push_back( &bbs );
 		}
+		for( auto& coin : entity_manager.get_coins() ){
+			entities.push_back( &coin );
+		}
 		entities.push_back ( &entity_manager.get_progressor() );
 		entities.push_back ( &player );
 		if( mode==CREATE_M ){
@@ -192,6 +195,8 @@ void GLCanvas::MouseEvents( wxMouseEvent& ev ){
 					entity_manager.create_block(BackgroundBlockStatic(Vec2(x, y), Vec2(property->gridW(), property->gridH()), Vec4(property->gridR(), property->gridG(), property->gridB(), 1), property->gridBlockType()));
 					break;
 				case 3:
+					// this was supposed to be for parallax blocks. But you really don't need many of them
+					entity_manager.create_coin(Coin(Vec2(x, y), Vec2(property->gridW(), property->gridH())));
 					break;
 				default:
 					break;
@@ -242,6 +247,9 @@ void GLCanvas::save(std::string path){
 	for( size_t i = 0; i < lights.size(); ++i ){
 		level_save << "light " << i << " " << lights[i].pos.x() << " " << lights[i].pos.y() << " " << lights[i].strength << " " << lights[i].color.r() << " " << lights[i].color.g() << " " << lights[i].color.b() << std::endl;
 	}
+	for( auto& coins : entity_manager.get_coins() ){
+		level_save << "coin " << coins.getPos().x() << " " << coins.getPos().y() << " " << coins.getSize().x() << " " << coins.getSize().y() << std::endl;
+	}
 	for( auto& block : entity_manager.get_blocks() ){
 		level_save << "block " << block.getSize().x() << " " << block.getSize().y() << " " << block.getPos().x() << " " << block.getPos().y() << " "
 			   << block.getColor().x() << " " << block.getColor().y() << " " << block.getColor().z() << " " << block.get_type() << std::endl;
@@ -279,6 +287,7 @@ void GLCanvas::paste(){
 		auto& bk_st_blocks = entity_manager.get_background_static_blocks();
 		auto& bk_blocks = entity_manager.get_background_blocks();
 		auto& blocks = entity_manager.get_blocks();
+		auto& coins = entity_manager.get_coins();
 		switch(magic){
 			case PLAYER:
 				break;
@@ -293,6 +302,10 @@ void GLCanvas::paste(){
 			case STBLOCK:
 				entity_manager.create_block(*(BackgroundBlockStatic*)copy);
 				currentEnt = &bk_st_blocks.back();
+				break;
+			case COIN:
+				entity_manager.create_coin(*(Coin*)copy);
+				currentEnt = &coins.back();
 				break;
 			default:
 				std::cout << "OBJECT UNIDENTIFIABLE\n";
@@ -312,6 +325,7 @@ void GLCanvas::delete_cur(){
 		auto& bk_st_blocks = entity_manager.get_background_static_blocks();
 		auto& bk_blocks = entity_manager.get_background_blocks();
 		auto& blocks = entity_manager.get_blocks();
+		auto& coins = entity_manager.get_coins();
 		// if the number matches we loop through the appropriete
 		// container and check if the addresses match. I know for these
 		// classes they don't implement the == operator but pointers
@@ -341,9 +355,17 @@ void GLCanvas::delete_cur(){
 				}
 				break;
 			case STBLOCK:
-				for(int i = 0; i , bk_st_blocks.size(); ++i){
+				for(int i = 0; i < bk_st_blocks.size(); ++i){
 					if(&bk_st_blocks[i] == currentEnt){
 						bk_st_blocks.erase(bk_st_blocks.begin()+i);
+						break;
+					}
+				}
+				break;
+			case COIN:
+				for(int i = 0; i < coins.size(); ++i){
+					if(&coins[i] == currentEnt){
+						coins.erase(coins.begin()+i);
 						break;
 					}
 				}
