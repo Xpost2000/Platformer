@@ -111,6 +111,7 @@ void Game::update(){
 	if(state == GameState::Playing || state == GameState::Progression){
 		if(levels[currentLevel].loaded == false){
 			levels[currentLevel].load(p, em, lights);
+			em.create_coin(Coin(Vec2(300, 400), Vec2(50, 50)));
 		}
 		if(state == GameState::Playing && levels[currentLevel].loaded){
 		Sound::play_music("music", 1);
@@ -163,7 +164,11 @@ void Game::update(){
 		}
 		//DEBUGGING PURPOSES
 		if(ev.key.keysym.sym == SDLK_RETURN){
-			p.kill();
+			if(state == GameState::Intro){
+				if(cutSceneLength > 0){
+					cutSceneLength=-1;
+				}
+			}
 		}
 		if((ev.type == SDL_MOUSEBUTTONDOWN)){
 			if(start.mouse_inside(mX, mY)){
@@ -207,7 +212,8 @@ void Game::draw(){
 		em.draw_progressor(*sb);
 		em.draw_blocks( *sb );
 		em.draw_text( *ftr );
-
+		tm.get_tex("coin")->bind();
+		em.draw_coins( *sb );
 		ls->setTextured(false);
 		em.draw_jumping_enemies(*sb);
 		em.draw_basic_enemies(*sb);

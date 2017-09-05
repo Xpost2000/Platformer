@@ -20,5 +20,6 @@ Vec4& Coin::getColor(){
     }else if( sum > 60 ){
 	   color = Vec4(255, 215, 0, 255).rgb8_normalize();
     }
+    color.a() = 1;
     return color;
 }

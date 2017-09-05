@@ -40,6 +40,11 @@ Level::Level(std::string path){
 			file >> type;
 			em.create_block(Block(Vec2(x, y), Vec2(w, h), Vec4(r, g, b, 1.0), type));
 		}
+		if(token == "coin"){
+			float w, h, x, y;
+			file >> w >> h >> x >> y;
+			em.create_coin(Coin(Vec2(x, y), Vec2 ( w, h )));
+		}
 		if(token == "progressor"){
 			if(flags[FOUND_PROGRESSOR]){ std::cerr << "WARNING: MULTIPLE PROGRESSORS FOUND. SKIPPING\n"; break; }
 			float w=0, h=0, x=0, y=0, r=0, g=0, b=0;

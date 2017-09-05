@@ -83,8 +83,8 @@ class Entity{
 		virtual void reposition_aabb() { bb = aabb( pos , bb.size); }
 		virtual bool DeathAnimation( float dt ) {
 		}
-		virtual void kill() {}
-		virtual void revive() {}
+		virtual void kill() {dead=1;}
+		virtual void revive() {dead=0;}
 		aabb& get_aabb() { return bb; }
 		// I use a pointer to a generic entity in the
 		// editor. For the copy and pasting I do not store the entities
