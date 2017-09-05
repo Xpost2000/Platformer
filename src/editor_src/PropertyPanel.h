@@ -42,6 +42,7 @@ class PropertyPanel : public wxPanel{
 			return grid_type_i;
 		}
 	private:
+		void update_cur_light();
 		int current_index=0;
 		// I need to do this.
 		wxPropertyGrid* properties;

@@ -141,17 +141,21 @@ void PropertyPanel::IdleHandler( ){
 			cast->scrollFactor.x() = scrollX->GetValue().GetDouble();
 			cast->scrollFactor.y() = scrollY->GetValue().GetDouble();
 		}
-		goto please_forgive_me;
+		update_cur_light();
 	} else if ( parent->canvas->should_update==false  ){
-please_forgive_me:
-		Light& light = parent->canvas->get_lights()[current_index];
-		light.strength = lPower->GetValue().GetDouble();
-		light.color.r() = lR->GetValue().GetDouble();
-		light.color.g() = lG->GetValue().GetDouble();
-		light.color.b() = lB->GetValue().GetDouble();
-		light.pos.x() = lX->GetValue().GetDouble();
-		light.pos.y() = lY->GetValue().GetDouble();
+		update_cur_light();
 	}
+}
+
+void PropertyPanel::update_cur_light(){
+	Light& light = parent->canvas->get_lights()[current_index];
+	light.strength = lPower->GetValue().GetDouble();
+	light.color.r() = lR->GetValue().GetDouble();
+	light.color.g() = lG->GetValue().GetDouble();
+	light.color.b() = lB->GetValue().GetDouble();
+	light.pos.x() = lX->GetValue().GetDouble();
+	light.pos.y() = lY->GetValue().GetDouble();
+
 }
 
 PropertyPanel::~PropertyPanel(){
