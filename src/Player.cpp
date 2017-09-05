@@ -131,7 +131,7 @@ void Player::update(float dt, std::vector<Block> &blocks, std::vector<BasicEnemy
 		pState = PlayerState::STANDING;
 	}
 	if(onGround)
-	velocity.x() = 0; // cannot control your movements in air bro.
+	velocity.x() = 0; // I know how weird this line looks. But it's so that the character speed will reset. Otherwise it would stay at the speed I previously set it to. 
 	else{
 		floaty_jump(dt);
 	}
@@ -165,19 +165,19 @@ void Player::update(float dt, std::vector<Block> &blocks, std::vector<BasicEnemy
 				velocity.y() = -200;
 				b.kill();
 				score += b.getSize().x()*b.getSize().y();
+				break;
 			}
 			else{
 				if(!b.isDead()){
 					if(playerDir == Direction::RIGHT){
 						velocity.x() = -290;
-						velocity.y() = -300;
-						health -= 20;
 					}
 					if(playerDir == Direction::LEFT){
 						velocity.x() = 290;
+					}
 						velocity.y() = -300;
 						health -= 20;
-					}
+						break;
 				}
 			}
 		}
@@ -188,19 +188,19 @@ void Player::update(float dt, std::vector<Block> &blocks, std::vector<BasicEnemy
 				velocity.y() = -200;
 				b.kill();
 				score += b.getSize().x()*b.getSize().y();
+				break;
 			}
 			else{
 				if(!b.isDead()){
 					if(playerDir == Direction::RIGHT){
 						velocity.x() = -290;
-						velocity.y() = -300;
-						health -= 20;
 					}
 					if(playerDir == Direction::LEFT){
 						velocity.x() = 290;
+					}
 						velocity.y() = -300;
 						health -= 20;
-					}
+						break;
 				}
 			}
 		}
