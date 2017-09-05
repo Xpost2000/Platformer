@@ -60,6 +60,7 @@ OBJ_FILES= ../../obj/IDevice.o\
 	  ../../obj/sdl_surface_load_image_wrapper.o\
 	  ../../obj/vectors.o\
 	  ../../obj/Window.o\
+	  ../../obj/Coin.o\
 	  ../../obj/EntityManager.o
 ##	  ../../obj/Game.o\
 ##	  ../../obj/main.o
@@ -110,6 +111,7 @@ all:
 	$(GCC) ../../src/GameCamera.cpp $(LIBS) $(FLAGS) -c -o ../../obj/GameCamera.o 2> ../../logs/win/GameCamera.log
 	$(GCC) ../../src/EntityManager.cpp $(LIBS) $(FLAGS) -c -o ../../obj/EntityManager.o 2> ../../logs/win/EntityManager.log
 	$(GCC) ../../src/Sound.cpp $(LIBS) $(FLAGS) -c -o ../../obj/Sound.o 2> ../../logs/win/Sound.log
+	$(GCC) ../../src/Coin.cpp $(LIBS) $(FLAGS) -c -o ../../obj/Coin.o 2> ../../logs/win/Coin.log
 ## FROM HERE COMPILE EDITOR SPECIFIC SOURCE FILES.
 build-editor:
 	$(GCC) ../../src/editor_src/EditorApplication.cpp $(EDITOR_LIBS) $(EDITOR_FLAGS) -c -o ../../obj/EditorApplication.o 2> ../../logs/win/editor_app.log
