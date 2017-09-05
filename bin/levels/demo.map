@@ -1,6 +1,6 @@
 player_spawn 100 140
 progressor 50 70 741.3 500 1 1 1
-light 0 350 0 2600 1 1 1
+light 0 400 0 3500 1 1 1
 light 1 450 440 4500 1 0 0
 light 2 0 0 1 1 1 1
 light 3 0 0 1 1 1 1
@@ -10,6 +10,18 @@ light 6 0 0 1 1 1 1
 light 7 0 0 1 1 1 1
 light 8 0 0 1 1 1 1
 light 9 0 0 1 1 1 1
+coin 10 10 310 310
+coin 10 10 330 280
+coin 10 10 350 270
+coin 10 10 380 260
+coin 10 10 380 260
+coin 10 10 400 260
+coin 10 10 430 280
+coin 10 10 490 280
+coin 30 30 630 270
+coin 30 30 630 210
+coin 61 61 732 366
+coin 61 61 732 244
 block 30 30 30 210 1 1 1 1
 block 30 30 30 210 1 1 1 1
 block 30 30 30 210 1 1 1 1
@@ -6710,4 +6722,3 @@ bgrnd-static 15 15 840 525 0 0 0.6 2
 bgrnd-static 15 15 840 525 0 0 0.6 2
 bgrnd-static 55 60 603.5 299 1 1 1 13
 bgrnd-static 47 47 790.6 499 1 1 1 12
-100 240 1 1 0 0.3  Hello There Friend!
