@@ -1,0 +1,5 @@
+In file included from ../../src/GLDevice.cpp:6:0:
+../../src/ShaderUniform.h: In member function 'bool ShaderUniform::is_valid()':
+../../src/ShaderUniform.h:48:33: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+   bool is_valid() { return (obj != -1); } 
+                                 ^

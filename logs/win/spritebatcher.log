@@ -1,0 +1,14 @@
+In file included from ../../src/vec3.hpp:4:0,
+                 from ../../src/Vertex.h:5,
+                 from ../../src/SpriteBatcher.h:4,
+                 from ../../src/SpriteBatcher.cpp:1:
+../../src/vec2.hpp:156:8: warning: extra tokens at end of #endif directive [-Wendif-labels]
+ #endif VEC2_CROSS_PRODUCT
+        ^
+../../src/SpriteBatcher.cpp: In destructor 'SpriteBatcher::~SpriteBatcher()':
+../../src/SpriteBatcher.cpp:10:9: warning: deleting object of polymorphic class type 'Buffer' which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
+  delete vbo;
+         ^
+../../src/SpriteBatcher.cpp:11:9: warning: deleting object of polymorphic class type 'VertexArray' which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
+  delete vao;
+         ^
