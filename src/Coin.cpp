@@ -16,7 +16,7 @@ Vec4& Coin::getColor(){
     const int sum = (int)size.x() + (int)size.y() ;
     if(sum <= 30){
 	   color = Vec4(184, 115, 51, 255).rgb8_normalize();
-    }else if( sum > 30 ){
+    }else if( sum > 30 && sum < 60 ){
 	   color = Vec4(192, 192, 192, 255).rgb8_normalize();
     }else if( sum > 60 ){
 	   color = Vec4(255, 215, 0, 255).rgb8_normalize();
