@@ -251,7 +251,7 @@ void GLCanvas::save(std::string path){
 		level_save << "light " << i << " " << lights[i].pos.x() << " " << lights[i].pos.y() << " " << lights[i].strength << " " << lights[i].color.r() << " " << lights[i].color.g() << " " << lights[i].color.b() << std::endl;
 	}
 	for( auto& coins : entity_manager.get_coins() ){
-		level_save << "coin " << coins.getPos().x() << " " << coins.getPos().y() << " " << coins.getSize().x() << " " << coins.getSize().y() << std::endl;
+		level_save << "coin " << coins.getSize().x() << " " << coins.getSize().y() << " " << coins.getPos().x() << " " << coins.getPos().y() << std::endl;
 	}
 	for( auto& block : entity_manager.get_blocks() ){
 		level_save << "block " << block.getSize().x() << " " << block.getSize().y() << " " << block.getPos().x() << " " << block.getPos().y() << " "
