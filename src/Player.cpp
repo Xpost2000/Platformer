@@ -210,7 +210,7 @@ void Player::update(float dt, std::vector<Block> &blocks, std::vector<BasicEnemy
 			score+=c.get_value();
 			c.kill();
 			coins++;
-			std::cout << "Coin obtained\n";
+			Sound::play_sound("coin", 70);
 			break;
 		}
 	}

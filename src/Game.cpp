@@ -97,8 +97,9 @@ void Game::init(){
 	tm.add_texture("player", "textures//test_player.png", ctx);
 	tm.add_texture("ui-menu", "textures//ui//ui_atlas.png", ctx);
 	tm.add_texture("coin", "textures//coin_base.png", ctx);
-	Sound::load_sound(cfg.get_sounds_dir()+std::string("beep.wav"), "beep");
 	Sound::load_sound(cfg.get_sounds_dir()+std::string("jump.wav"), "jump");
+	Sound::load_sound(cfg.get_sounds_dir()+std::string("beep.wav"), "beep");
+	Sound::load_sound(cfg.get_sounds_dir()+std::string("coin.wav"), "coin");
 	Sound::load_sound(cfg.get_sounds_dir()+std::string("progressor.wav"), "nextLevel");
 	Sound::load_music(cfg.get_sounds_dir()+std::string("main.wav"), "music");
 	gc = GameCamera(Vec2(0, 0), Vec2(w, h), Vec2(-3000, -3000), Vec2(3000, 3000));
