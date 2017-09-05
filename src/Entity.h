@@ -53,7 +53,8 @@ class Entity{
 		// I plan to have the objects calculate their own uvs.
 		virtual Vec4 getUvs()  { return uvs; }
 		Vec2& getSize(){ return size; }
-		Vec4& getColor(){ return color; }
+		// this is specifically for the coins. Because the coins will calculate their own color via size.
+		virtual Vec4& getColor(){ return color; }
 		void setPos(Vec2 pos) { this->pos = pos; }
 		void setVelocity(Vec2 velocity) { this->velocity = velocity; }
 		// this is virtual because they may implement

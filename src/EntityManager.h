@@ -2,6 +2,7 @@
 #define ENTITY_MANAGER_H
 #include <vector>
 #include "Block.h"
+#include "Coin.h"
 #include "Progressor.h"
 #include "JumpingEnemy.h"
 #include "SpriteBatcher.h"
@@ -14,6 +15,7 @@ class EntityManager{
 		EntityManager(){}
 		EntityManager(const EntityManager& other) = default;
 		~EntityManager(){}
+		void create_coin( const Coin );
 		void create_block(const Block)	;
 		void create_block(const BackgroundBlock) ;
 		void create_block(const BackgroundBlockStatic) ;
@@ -25,6 +27,7 @@ class EntityManager{
 		void clear_entities();
 		std::vector<JumpingEnemy>& get_jumping_enemies(){ return jumpingEnemies; }
 		std::vector<Block>& get_blocks(){ return blocks; }
+		std::vector<Coin>& get_coins(){ return coins; }
 		std::vector<EnvironmentText>& get_env_text() { return evtxt; }
 		std::vector<BasicEnemy>& get_basic_enemies(){ return basicEnemies; }
 		std::vector<BackgroundBlock>& get_background_blocks() { return bs; }
@@ -32,6 +35,7 @@ class EntityManager{
 		Progressor& get_progressor() { return p; }
 		void draw_text( TextRenderer& );
 		void draw_blocks( SpriteBatcher& );	
+		void draw_coins( SpriteBatcher& );
 		void draw_progressor( SpriteBatcher& );
 		void draw_background_props( Vec2 camPos, SpriteBatcher&, bool p=true );	
 		void draw_jumping_enemies( SpriteBatcher& );	
@@ -44,6 +48,7 @@ class EntityManager{
 		std::vector<JumpingEnemy> jumpingEnemies;
 		std::vector<Block> blocks;
 		std::vector<BasicEnemy> basicEnemies;
+		std::vector<Coin> coins;
 		Progressor p;
 };
 #endif

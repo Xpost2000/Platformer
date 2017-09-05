@@ -11,6 +11,7 @@
 #include "Entity.h"
 #include "GameState.h"
 class BasicEnemy;
+class Coin;
 class JumpingEnemy;
 
 enum class PlayerState{
@@ -43,7 +44,7 @@ class Player : public Entity{
 		}
 #endif
 		void update(float dt, EntityManager& em);
-		void update(float dt, std::vector<Block> &blocks, std::vector<BasicEnemy>& be, std::vector<JumpingEnemy>& je, Progressor& p);
+		void update(float dt, std::vector<Block> &blocks, std::vector<BasicEnemy>& be, std::vector<JumpingEnemy>& je, std::vector<Coin>& coins, Progressor& p);
 		bool death_check(){ if(health < 0){ kill(); } return dead; }
 		bool DeathAnimation( float dt, GameState& gs ) {
 			if(color.a() > 0.0f){

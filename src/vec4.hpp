@@ -219,7 +219,7 @@ class Vector4{
 		 */
 		const Vector4 rgb8_normalize() const{
 			if( X < 256 && Y < 256 && Z < 256 && W < 256){
-				return Vector4(X/255,Y/255,Z/255,W/255);
+				return Vector4(X/255.0f,Y/255.0f,Z/255.0f,W/255.0f);
 			}else{
 				return Vector4(0);
 			}

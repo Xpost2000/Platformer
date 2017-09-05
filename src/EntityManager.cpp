@@ -1,6 +1,10 @@
 #include "EntityManager.h"
 #include "FreeTypeText.h"
 
+void EntityManager::create_coin( const Coin c ){
+	coins.push_back(c);
+}
+
 void EntityManager::create_block(const Block b){
 	blocks.push_back(b);
 }
@@ -28,6 +32,12 @@ void EntityManager::draw_text( TextRenderer& txt){
 	for(auto& text : evtxt){
 		txt.render(text.str, glm::vec2(text.pos.x(), text.pos.y()), text.scale, glm::vec3(text.color.x(), text.color.y(), text.color.z()), true );
 	}
+}
+void EntityManager::draw_coins( SpriteBatcher& sb ){
+	for(auto &c : coins){
+		sb.draw( c.getPos(), Vec4(0, 0, 1, 1), c.getSize(), c.getColor() );
+	}
+	sb.render();
 }
 void EntityManager::draw_blocks( SpriteBatcher& sb ){
 	for(auto &b : blocks)	{
@@ -83,5 +93,10 @@ void EntityManager::update( float dt ){
 			jumpingEnemies.erase(jumpingEnemies.begin() + i);
 		}
 		jumpingEnemies[i].update(dt, blocks);
+	}
+	for(int i = 0; i < coins.size(); ++i){
+		if(coins[i].isDead()){
+			coins.erase(coins.begin() + i);
+		}
 	}
 }

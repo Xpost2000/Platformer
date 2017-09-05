@@ -122,10 +122,10 @@ void Player::floaty_jump(float dt){
 		}
 }
 void Player::update(float dt, EntityManager& em){
-	update(dt, em.get_blocks(), em.get_basic_enemies(), em.get_jumping_enemies(), em.get_progressor());
+	update(dt, em.get_blocks(), em.get_basic_enemies(), em.get_jumping_enemies(), em.get_coins(), em.get_progressor());
 }
 // and organize everything more.
-void Player::update(float dt, std::vector<Block> &blocks, std::vector<BasicEnemy>& be, std::vector<JumpingEnemy>& je, Progressor& p){
+void Player::update(float dt, std::vector<Block> &blocks, std::vector<BasicEnemy>& be, std::vector<JumpingEnemy>& je, std::vector<Coin>& coin, Progressor& p){
 	const Uint8* keys = SDL_GetKeyboardState(NULL);	
 	if(velocity.x() == 0 && onGround){
 		pState = PlayerState::STANDING;
@@ -205,7 +205,13 @@ void Player::update(float dt, std::vector<Block> &blocks, std::vector<BasicEnemy
 			}
 		}
 	}
-
+	for(auto& c : coin){
+		if(intersect_aabb(c)){
+			score+=c.get_value();
+			c.kill();
+			coins++;
+		}
+	}
 	if(intersect(p)){
 		if(!p.can_go_next_level()){
 		p.mark();
