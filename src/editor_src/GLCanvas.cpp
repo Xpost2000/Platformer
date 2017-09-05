@@ -33,6 +33,7 @@ GLCanvas::GLCanvas( wxWindow* parent, const wxGLAttributes& disp, wxWindowID id,
 	ftr = std::make_shared<TextRenderer>( dev, "textures\\ui\\ocr.ttf" )	;
 	tm->add_texture("tiles", "textures\\tiles.png", get_device());
 	tm->add_texture("player", "textures\\test_player.png", get_device());
+	tm->add_texture("coin", "textures\\coin_base.png", get_device());
 	// set up matrix and stuff
 	projection = glm::ortho(0.0f, static_cast<float>(size.x), static_cast<float>(size.y), 0.0f, -1.f, 1.f);
 }
@@ -71,6 +72,8 @@ void GLCanvas::PaintScene( wxPaintEvent& pnt ){
 	entity_manager.draw_blocks(*sb);
 	entity_manager.draw_jumping_enemies(*sb);
 	entity_manager.draw_basic_enemies(*sb);
+	tm->get_tex("coin")->bind();
+	entity_manager.draw_coins(*sb);
 	tm->get_tex("player")->bind();
 	sb->draw( player.getPos(), player.getUvs(), player.getSize(), Vec4(1.0f) );
 	sb->render();
