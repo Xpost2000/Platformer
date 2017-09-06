@@ -49,7 +49,7 @@ class Block : public Entity{
 					return Vec4(NW(12), NH(49), NW(22), NH(59));
 				break;
 				case BlockTypes::Canister:
-					return Vec4(NW(44), NH(27), NW(44+15), NH(44+15));
+					return Vec4(NW(44), NH(27), NW(44+15), NH(44+27));
 				break;
 				case BlockTypes::ControlPanel:
 					return Vec4(NW(44), NH(44), NW(44+15), NH(44+15));
@@ -79,7 +79,7 @@ class Block : public Entity{
 					return Vec4(NW(71), NH(0), NW(71+15), NH(15));
 				break;
 				case BlockTypes::WallTile:
-					return Vec4(NW(0), NH(0), NW(25), NH(25));
+					return Vec4(NW(88), NH(0), NW(15+88), NH(15));
 				break;
 				case BlockTypes::WarningSign:
 					return Vec4(NW(22), NH(27), NW(42), NH(47));
