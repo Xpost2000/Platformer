@@ -294,7 +294,7 @@ void Game::draw(){
 			else if( cutSceneLength > CUTSCENE_LENGTH-200 ){
 				ftr->render("Thank you for having played it.\nPlease understand it's quality\nis due to the fact it is a project from a novice\nin game development.\nThank you, though. Seriously.", glm::vec2(10, 300), 0.5, glm::vec3(1));
 			}else{
-				ftr->render("Now back to the main menu!\nYou can continue your playthrough if you wish.", glm::vec2(10, 300), 1.0, glm::vec3(1));
+				ftr->render("Now back to the main menu!\nYou can continue your\nplaythrough if you wish.", glm::vec2(10, 300), 1.0, glm::vec3(1));
 			}
 			cutSceneLength -= ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS)*45;
 	}else{ completions++; cutSceneLength = CUTSCENE_LENGTH; state = GameState::Menu; gc.get_matrix() = glm::mat4(); currentLevel = 0; 
