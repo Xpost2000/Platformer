@@ -110,8 +110,12 @@ void Game::update(){
 	ClockTimer::Tick();
 	SDL_GetMouseState(&mX, &mY);
 	if(state == GameState::Playing || state == GameState::Progression){
-		if(levels[currentLevel].loaded == false){
-			levels[currentLevel].load(p, em, lights);
+		if( currentLevel < lst.entries.size() ){
+			if(levels[currentLevel].loaded == false){
+				levels[currentLevel].load(p, em, lights);
+			}
+		} else if ( currentLevel == lst.entries.size() ){
+			state = GameState::Ending;
 		}
 		if(state == GameState::Playing && levels[currentLevel].loaded){
 		Sound::play_music("music", 1);
@@ -164,7 +168,7 @@ void Game::update(){
 		}
 		//DEBUGGING PURPOSES
 		if(ev.key.keysym.sym == SDLK_RETURN){
-			if(state == GameState::Intro){
+			if(state == GameState::Intro || state == GameState::Ending){
 				if(cutSceneLength > 0){
 					cutSceneLength=-1;
 				}
@@ -234,7 +238,6 @@ void Game::draw(){
 		ftr->render("Lives : " + std::to_string(p.lives), glm::vec2(30, 00), 0.5, glm::vec3(1));
 		ftr->render("Score : " + std::to_string(p.score), glm::vec2(30, 50), 0.5, glm::vec3(1));
 		ftr->render("Coins : " + std::to_string(p.coins), glm::vec2(500, 000), 0.5, glm::vec3(1));
-		ftr->render("Sample Text" , glm::vec2(p.getPos().x(), p.getPos().y()), 0.2, glm::vec3(1), true);
 		if(em.get_progressor().can_go_next_level() && levelDelay > 0){
 			ftr->render("You have " + std::to_string(p.lives) + " Lives", glm::vec2(200, 330), 0.6,glm::vec3(0, 1, 0));
 			ftr->render("Approaching next floor on ship...", glm::vec2(200, 300), 0.5, glm::vec3(1));
@@ -261,6 +264,8 @@ void Game::draw(){
 		sb->draw(quit.getPos(), quit.getUvs(), quit.getSize(), Vec4(quit.getColor().x(), quit.getColor().y(), quit.getColor().z(), 1.0));
 		sb->render();
 		ftr->render("A game by Xpost 2000", glm::vec2(0, 0), 0.3, glm::vec3(1));
+		if(completions>0){ ftr->render(std::to_string(completions) + " current completions.", glm::vec2(0, 30), 0.3, glm::vec3(1)); }
+		gc.get_matrix() = glm::mat4();
 	}else if ( state == GameState::Intro ){
 		if(cutSceneLength > 0){
 			// Emerge epic cutscene :D
@@ -277,6 +282,24 @@ void Game::draw(){
 			}
 			cutSceneLength -= ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS)*45;
 		}else{ cutSceneLength = CUTSCENE_LENGTH; state = GameState::Playing; }
+	}
+	else if ( state == GameState::Ending ){
+		if(cutSceneLength > 0){
+			ls->setTextured(false);
+			sb->draw(Vec2(-1000), Vec4(0), Vec2(50000), Vec4(0));
+			sb->render();
+			if(cutSceneLength > CUTSCENE_LENGTH-100){
+				ftr->render("You have finished this game!", glm::vec2(10, 300), 1.0, glm::vec3(1));
+			}
+			else if( cutSceneLength > CUTSCENE_LENGTH-200 ){
+				ftr->render("Thank you for having played it.\nPlease understand it's quality\nis due to the fact it is a project from a novice\nin game development.\nThank you, though. Seriously.", glm::vec2(10, 300), 0.5, glm::vec3(1));
+			}else{
+				ftr->render("Now back to the main menu!\nYou can continue your playthrough if you wish.", glm::vec2(10, 300), 1.0, glm::vec3(1));
+			}
+			cutSceneLength -= ClockTimer::returnDeltatime(TimeMeasure::TIME_SECONDS)*45;
+	}else{ completions++; cutSceneLength = CUTSCENE_LENGTH; state = GameState::Menu; gc.get_matrix() = glm::mat4(); currentLevel = 0; 
+		for( auto& l : levels ){ l.loaded=false; }
+	}
 	}
 	ls->unuse();
 	pp->end();
@@ -356,3 +379,4 @@ void Game::parse_cmd(int argc, char** argv){
 		}
 	}
 }
+

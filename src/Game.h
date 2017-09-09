@@ -70,6 +70,7 @@ class Game{
 		float levelDelay=100;
 		float cutSceneLength=CUTSCENE_LENGTH;
 		bool draw_game=true;
+		unsigned short completions=0;
 		Config cfg;
 		LevelListFile lst;
 		GameCamera gc;
