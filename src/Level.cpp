@@ -99,6 +99,11 @@ Level::Level(std::string path){
 			file >> type;
 			em.create_block(BackgroundBlockStatic(Vec2(x,y),Vec2(w,h),Vec4(r, g, b, 1.0), type));
 		}
+		if(token == "enemy"){
+			float x=0, y=0, w=0, h=0, vX=0, vY=0, r=0, g=0, b=0;
+			file >> x >> y >> w >> h >> vX >> vY >> r >> g >> b;
+			em.create_enemy(BasicEnemy(Vec2(x, y), Vec2(w, h), Vec2(vX, vY), Vec4(r, g, b, 1.0)));
+		}
 		if(token == "light"){
 			// I usually declare the variables in the order they are supposed to be used.
 			int index;
