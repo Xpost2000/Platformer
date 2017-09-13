@@ -14,3 +14,5 @@ EDIT : I'm seriously starting to regret not learning Component systems ( out of 
 	or just have entities draw themselves like SDL SFML and everything else
 
 NOTE TO SELF: Add transition screens. I'm actually trying to finish this game.
+
+9/12/17 : From here on. Actually focus on the principle Make the game not the engine. Even if this isn't a bad project( I certainly did new things and learned quite a bit. ) this is the most featureless platformer that can exist and I'm certain with a bit more motivation I could make it much better, like my top down shooter I can always remake this thing with all the features I originally intended..
