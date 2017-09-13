@@ -261,6 +261,7 @@ void GLCanvas::save(std::string path){
 		//
 	}
 	for( auto& basic_enemy : entity_manager.get_basic_enemies() ){
+		level_save << "enemy " << basic_enemy.getPos().x() << " " << basic_enemy.getPos().y() << " " << basic_enemy.getSize().x() << " " << basic_enemy.getSize().y() << " " << basic_enemy.getVelocity().x() << " " << basic_enemy.getVelocity().y() << " " << basic_enemy.getColor().x() << " " << basic_enemy.getColor().y() << " " << basic_enemy.getColor().z() << std::endl;
 		//
 	}
 	for( auto& block : entity_manager.get_background_blocks() ){

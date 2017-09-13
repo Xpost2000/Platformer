@@ -93,20 +93,17 @@ In file included from ../../src/editor_src/PropertyPanel.h:9:0,
 ../../src/editor_src/GLCanvas.cpp:260:13: warning: unused variable 'jumping_enemy' [-Wunused-variable]
   for( auto& jumping_enemy : entity_manager.get_jumping_enemies() ){
              ^
-../../src/editor_src/GLCanvas.cpp:263:13: warning: unused variable 'basic_enemy' [-Wunused-variable]
-  for( auto& basic_enemy : entity_manager.get_basic_enemies() ){
-             ^
 ../../src/editor_src/GLCanvas.cpp: In member function 'void GLCanvas::delete_cur()':
-../../src/editor_src/GLCanvas.cpp:345:22: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+../../src/editor_src/GLCanvas.cpp:346:22: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
      for(int i = 0; i < blocks.size(); ++i){
                       ^
-../../src/editor_src/GLCanvas.cpp:353:22: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+../../src/editor_src/GLCanvas.cpp:354:22: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
      for(int i = 0; i < bk_blocks.size(); ++i){
                       ^
-../../src/editor_src/GLCanvas.cpp:361:22: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+../../src/editor_src/GLCanvas.cpp:362:22: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
      for(int i = 0; i < bk_st_blocks.size(); ++i){
                       ^
-../../src/editor_src/GLCanvas.cpp:369:22: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+../../src/editor_src/GLCanvas.cpp:370:22: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
      for(int i = 0; i < coins.size(); ++i){
                       ^
 In file included from ../../src/editor_src/../Progressor.h:4:0,
