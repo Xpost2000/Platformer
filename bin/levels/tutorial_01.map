@@ -1,7 +1,7 @@
 player_spawn 250 460
 progressor 100 100 1364.5 620 1 1 1
 env_txt 414 460 0 0 0 0.3 Welcome to
-env_txt 414 475 0 0 0 0.3 Letter X!
+env_txt 414 475 0 0 0 0.3 Platformer.
 env_txt 885 440 0 0 0 0.5 To proceed
 env_txt 885 490 0 1 0 0.52 this way!
 light 0 0 0 0 0 0 0
