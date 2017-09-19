@@ -224,10 +224,8 @@ void GLCanvas::MouseEvents( wxMouseEvent& ev ){
 				break;
 			}
 		}
-		// This is to imitate a lot of more mature programs that allow selection
-		// in which if you don't hit anything like white space. It is deselected.
 		if( !found_anything ) currentEnt = nullptr;
-		// so now I'm goign to add a new feature based on "mode"
+		// so now I'm going to add a new feature based on "mode"
 		// perform a dragging operation pretty much
 		if(mode==SELECT_M){
 		if(already_equal){
