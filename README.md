@@ -3,6 +3,10 @@ This is a platformer game. My third overall game. My first almost complete game 
 This is not a good game. But I do these to improve little by little. For some dumb reason I do end up creating a new mini framework
 just for one time use. This mini framework actually takes up a week or so ( because I end up making wrappers for OpenGL things instead of using something like some
 opengl C++ wrapper ).
+
+This is one of my first serious attempts at crossplatform development ( Linux and Windows supported, now if I could "borrow" a mac that'd be great ).
+This is also my first big project without an IDE. In retrospect I should've done so but I would've felt less comfortable as I use IDEs rarely now.
+But I don't particularly like managing my own makefiles ( there was probably some other way to work with just makefiles but it's a bit late now )
 ## Features?
 -Working collision
 -Text Rendering
