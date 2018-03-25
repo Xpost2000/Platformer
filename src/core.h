@@ -1,6 +1,7 @@
 /*
  * This header just includes every header file here.
  */
+//3/25/18 : Great comment. I think I ment it includes every important header that most of the classes require, it also includes mini files which only have a enum class.
 #ifndef CORE_HEADER
 #define CORE_HEADER
 #include "Buffer.h"
