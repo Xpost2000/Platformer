@@ -2,8 +2,11 @@
 #include "Sound.h"
 
 // I'm likely going to stre a different vector for different enemy types.
+// 3/24/18 *store, and while I haven't used Component Entity Systems yet, I'm pretty damn tempted and have been using the Command design pattern to help alleviate this inheritance nightmare.
 // I used it for animation time.
 
+//3/24/18
+// I could've just used the POD initializer, since Light is a POD, there would've went 8 lines of unnecessary code.
 std::array<Light, 10> lights{
 	Light(),
 	Light(),
@@ -106,6 +109,7 @@ void Game::init(){
 	ls->setProj(proj);
 	initalized =true;
 }
+// 3/24/18. For both the update and drawing functions. Just use a simple Finite State Machine. This looks messy.
 void Game::update(){
 	ClockTimer::Tick();
 	SDL_GetMouseState(&mX, &mY);
@@ -313,6 +317,7 @@ void Game::draw(){
 // representation and the standand representation.
 
 // here's a convient macro
+// 3/24/18 I think a typedef is less frowned on.
 #define COMMAND(sh, cmd, desc) std::make_pair<std::pair<std::string, std::string>, std::string>(std::make_pair<std::string, std::string>(sh, cmd), desc)
 /*
 std::pair<std::string, std::string> command_strings[]={
@@ -326,6 +331,8 @@ std::pair<std::string, std::string> command_strings[]={
 // because I'm using it like this
 // (shortcut cmd, full cmd name), (description)
 // TODO use an std array so I don't have to slightly change the for loop next time.
+
+// 3/24/18 this + the comment above sums why I should've used a typedef. Less confusing
 std::pair<std::pair<std::string, std::string>, std::string> command_strings[]={
 	COMMAND("-h", "--help", "Shows you all command line arguments"),
 	COMMAND("-v", "--version", "Shows you current software version"),
@@ -334,6 +341,8 @@ std::pair<std::pair<std::string, std::string>, std::string> command_strings[]={
 	COMMAND("-e", "--editor-run", "Only use if the editor runs this program, it is a combination of -v and -fl")
 };
 
+// 3/24/18 actually I'm kind of ok with this, also the macro actually makes sense. It looks nicer, except for the
+// std::function declaration. Just use a darn typedef.
 #define CALLBACK_CMD(name) [&](int &argc, char** argv , Game* instance)
 std::function<void(int&, char**, Game*)> command_callbacks[]={
 	CALLBACK_CMD("HELP"){
