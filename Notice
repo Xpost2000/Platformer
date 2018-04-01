@@ -1,0 +1,1 @@
+TODO: I had forgotten that Windows searches PATH for dlls as well. My compiler is also in path, and I because I didn't want to setup an extra dependency folder. Some dlls are also there.... I need to add all the dependencies so SomethingToCryAbout 2 and this can actually run.
