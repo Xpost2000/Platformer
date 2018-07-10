@@ -1,0 +1,15 @@
+This was also very ambitious too... Oh but I love the work I did on this.
+
+This project I recall putting ALOT of effort in and it shows despite being in-complete.
+
+Infact it is basically a perfectly functional 2D Platformer with a level editor and
+something that none of my other games feature. Resolution independence that sort of works.
+
+The level editor was made in a GUI library ( wxWidgets ), and the work I put into it makes
+it a very functional what you see is what you get editor, and I'm very very proud of it!
+
+Otherwise it's nothing very special but I did try heavy organization as I recall looking at the
+OpenSpades source code to learn how others did things.
+
+My only issue: because I wanted to follow the OpenSpades example, I implemented my graphics to where it
+could be extensible, but knowing only OpenGL it was a complete waste of time...
